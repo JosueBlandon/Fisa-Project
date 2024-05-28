@@ -66,6 +66,7 @@
 		<name>CustomTab</name>
 	</types>
 	<types>
+		<members>unfiled$public/FS_TiempoEstimadoRespuesta</members>
 		<members>unfiled$public/FS_TiempoEstimadoRespuestaClientes</members>
 		<name>EmailTemplate</name>
 	</types>

@@ -1,0 +1,14 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<div style="text-align: center;"><font size="4"><span style="color: rgb(0, 0, 102);">Hola,&nbsp;</span><font color="#000066" face="arial"><b>{!Case.OwnerFirstName}</b></font></font></div><div style="text-align: center;"><br></div><div style="text-align: center;"><font color="#000066" size="4">Se ha incumplido el tiempo estimado para resolver este caso.</font></div><div style="text-align: center;"><font color="#000066" size="4">Por favor revisar el caso&nbsp;<b><u><a href="https://fisagrp--uatfs.sandbox.lightning.force.com/lightning/r/Case/{!Case.Id}/view">{!Case.CaseNumber}</a></u></b></font></div><div><font color="#000066" size="4"><br></font></div><div><font color="#000066" size="4"><br></font></div><div style="text-align: center;"><font color="#000066" size="4">Saludos&nbsp;</font></div><div><font color="#000066" size="4"><br></font></div><div style="text-align: center;"><font color="#000066" size="4">FISA</font></div>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[]]></td>
+</tr>
+</table>
