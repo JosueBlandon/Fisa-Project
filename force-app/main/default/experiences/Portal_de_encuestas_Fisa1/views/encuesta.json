@@ -1,0 +1,38 @@
+{
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "ca5064c3-721a-4db8-974f-1baa175d20cf",
+  "label" : "Encuesta",
+  "regions" : [ {
+    "id" : "5ba3483a-3a1a-47a7-ae6a-964c864e8631",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "933e0919-2c66-4c58-a925-41e659fa3bd3",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "3ccc7fe9-29f5-4a74-a840-a7219cbf0b9f",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Encuesta"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "24fbba39-ee14-4991-85de-58582b9ee1ff",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d5deb268-b67b-4b24-a9af-439e76adfb0c",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-encuesta"
+}

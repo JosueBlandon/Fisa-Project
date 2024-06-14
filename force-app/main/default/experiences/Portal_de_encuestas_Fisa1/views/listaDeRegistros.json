@@ -1,0 +1,46 @@
+{
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "a077b465-b9de-493c-bfd7-bf6818190b94",
+  "label" : "Lista de registros",
+  "regions" : [ {
+    "id" : "0b5486a7-cdec-45a7-b054-0e0f72c5bf5c",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "enableInlineEdit" : true,
+        "filterName" : "{!filterId}",
+        "layout" : "FULL",
+        "pageSize" : 25,
+        "scope" : "{!objectName}",
+        "showActionBar" : true,
+        "showChartsPanel" : true,
+        "showDisplay" : "showall",
+        "showFilterPanel" : true,
+        "showImageIcon" : true,
+        "showManualRefreshButton" : true,
+        "showObjectName" : true,
+        "showPinnedList" : true,
+        "showSearchBar" : true
+      },
+      "componentName" : "forceCommunity:objectHome",
+      "id" : "f378e17f-c25f-48bf-82b3-a929d3ebe98a",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "d4bdc30a-0b65-4823-bbc3-851da3a6f0bc",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "1386fbec-b44b-4087-9212-d4e60ebb6d9b",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list"
+}

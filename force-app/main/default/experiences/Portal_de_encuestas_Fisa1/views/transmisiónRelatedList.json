@@ -1,0 +1,23 @@
+{
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "47c29c50-23e0-4997-99aa-24e29f90c4ef",
+  "label" : "Transmisión Related List",
+  "regions" : [ {
+    "id" : "862e4b27-92de-453f-8b02-6dba3613ea5f",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "ad853363-1ea8-4dac-ae75-108a33ab91b9",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "5a71ab2e-4698-45a9-89c7-1c858d9bda86",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "relatedlist-0Fq"
+}

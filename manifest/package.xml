@@ -62,6 +62,10 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+		<members>Portal_de_encuestas_Fisa</members>
+		<name>CustomSite</name>
+	</types>
+	<types>
 		<members>FS_BaseConocimiento__c</members>
 		<name>CustomTab</name>
 	</types>
@@ -74,6 +78,10 @@
 		<members>caso de consulta_v3</members>
 		<members>caso de incidente_v3</members>
 		<name>EntitlementProcess</name>
+	</types>
+	<types>
+		<members>Portal_de_encuestas_Fisa1</members>
+		<name>ExperienceBundle</name>
 	</types>
 	<types>
 		<members>FS_AccountPage</members>
@@ -109,6 +117,14 @@
 		<name>MilestoneType</name>
 	</types>
 	<types>
+		<members>SFDC_Default_Navigation_Portal_de_encuestas_Fisa</members>
+		<name>NavigationMenu</name>
+	</types>
+	<types>
+		<members>Portal de encuestas Fisa</members>
+		<name>Network</name>
+	</types>
+	<types>
 		<members>FS_PermisosServicioCliente</members>
 		<members>FS_PermisosServicioClientePlus</members>
 		<members>FS_Permisos_para_usuario_de_integracion_PowerBI</members>
@@ -119,6 +135,10 @@
 		<members>FS_Integracion_Jira</members>
 		<members>FS_Integracion_PowerBI</members>
 		<name>PermissionSetGroup</name>
+	</types>
+	<types>
+		<members>Portal de encuestas Fisa Perfil</members>
+		<name>Profile</name>
 	</types>
 	<types>
 		<members>Case.FS_CamposControlConsulta</members>
@@ -135,7 +155,16 @@
 	<types>
 		<members>BusinessHours</members>
 		<members>Entitlement</members>
+		<members>Survey</members>
 		<name>Settings</name>
+	</types>
+	<types>
+		<members>Portal_para_Servicio_al_Cliente1</members>
+		<name>SiteDotCom</name>
+	</types>
+	<types>
+		<members>SNA_ApfRa_sf_default_cdn_Portal_de_encuestas_Fisa1</members>
+		<name>StaticResource</name>
 	</types>
 	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
@@ -171,10 +200,6 @@
 		<members>Case.FS_Validacion_Ingresar_Fecha_Compromiso</members>
 		<members>Case.FS_validacionCasoNuevoAgente</members>
 		<name>ValidationRule</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>WorkflowAlert</name>
 	</types>
 	<version>60.0</version>
 </Package>

@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "481b0b4f-2402-4998-8f9c-8ebfef69b657",
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "configurationTags" : [ ],
+  "devName" : "Contact_Support",
+  "id" : "24068024-59fa-49e8-882b-fbbec941f5a8",
+  "label" : "Contacto con el Servicio de asistencia técnica",
+  "pageAccess" : "UseParent",
+  "routeType" : "contactsupport",
+  "type" : "route",
+  "urlPrefix" : "contactsupport"
+}

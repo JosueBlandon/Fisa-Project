@@ -1,0 +1,31 @@
+{
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "ca17277e-032a-4f21-bfb5-ce8bc374f7d6",
+  "label" : "Lista del panel",
+  "regions" : [ {
+    "id" : "737e38c3-5471-444d-aa46-00ac96b6a554",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "forceCommunity:dashboardList",
+      "id" : "b050b369-deca-4346-9804-cfeb341b0cff",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "90be7590-7855-456e-9f45-bebbbb482585",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "bf29d2a7-3bd5-4c3b-870a-f9c46c981f65",
+    "regionName" : "footer",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "list-01Z"
+}

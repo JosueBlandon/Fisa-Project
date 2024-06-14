@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "7664261c-019f-47e2-a523-5848571e5807",
+  "appPageId" : "34e8831b-9338-4592-87d8-22b5c5963206",
+  "configurationTags" : [ ],
+  "devName" : "Topic_Catalog",
+  "id" : "73956de5-7539-460e-bb1f-fbbf0109b6af",
+  "label" : "Catálogo de temas",
+  "pageAccess" : "UseParent",
+  "routeType" : "topic-catalog",
+  "type" : "route",
+  "urlPrefix" : "topiccatalog"
+}
