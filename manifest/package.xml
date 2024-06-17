@@ -31,6 +31,14 @@
 		<name>ApexTrigger</name>
 	</types>
 	<types>
+		<members>*</members>
+		<name>BrandingSet</name>
+	</types>
+	<types>
+		<members>servicioDeAtenciónAlCliente</members>
+		<name>CommunityThemeDefinition</name>
+	</types>
+	<types>
 		<members>Case.FS_Compromisos_internos__c</members>
 		<members>Case.FS_Es_cliente__c</members>
 		<members>Case.FS_Fecha_de_entrega__c</members>
@@ -117,7 +125,7 @@
 		<name>MilestoneType</name>
 	</types>
 	<types>
-		<members>SFDC_Default_Navigation_Portal_de_encuestas_Fisa</members>
+		<members>*</members>
 		<name>NavigationMenu</name>
 	</types>
 	<types>
