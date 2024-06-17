@@ -163,10 +163,6 @@
 		<name>SiteDotCom</name>
 	</types>
 	<types>
-		<members>SNA_ApfRa_sf_default_cdn_Portal_de_encuestas_Fisa1</members>
-		<name>StaticResource</name>
-	</types>
-	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
 		<members>Case.FS_Datos_Es_Precontratado</members>
