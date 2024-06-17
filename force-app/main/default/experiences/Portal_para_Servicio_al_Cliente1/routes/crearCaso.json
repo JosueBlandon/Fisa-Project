@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "3e9cdfa5-22b7-4c6d-b7a3-fb6dc130ce16",
+  "appPageId" : "957aa91a-bf13-46ce-b739-439c33d06eb9",
+  "configurationTags" : [ ],
+  "devName" : "crearCaso__c",
+  "id" : "5d57276a-b828-4eee-92e6-bb39dfc0be9e",
+  "label" : "crearCaso",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-crearcaso",
+  "type" : "route",
+  "urlPrefix" : "crearcaso"
+}

@@ -1,0 +1,74 @@
+{
+  "appPageId" : "957aa91a-bf13-46ce-b739-439c33d06eb9",
+  "componentName" : "siteforce:sldsTwoCol84SidebarFeaturedLayout",
+  "dataProviders" : [ ],
+  "id" : "512c25b4-c16f-4ce6-881c-c86f3c5d38ff",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "richTextValue" : "<div style=\"text-align: center\">\n\t<img  src=\"https://fisagrp--devfs.sandbox.my.site.com/servicios/resource/1689775202000/FS_FisaLogo?\">\n</div>"
+      },
+      "componentName" : "forceCommunity:htmlBlock",
+      "id" : "5a677977-892d-4398-bbe3-42623b684b11",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : { },
+      "componentName" : "c:fs_Inicio",
+      "id" : "357d20c8-b557-40f3-b147-b45a26634a1d",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "3e456a86-8ce9-46ca-aba4-641ca291ae26",
+    "regionName" : "header",
+    "type" : "region"
+  }, {
+    "id" : "f55118ae-4394-479d-b7f1-c802d8864038",
+    "regionName" : "featured",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "channel" : "DefaultChannel",
+        "title" : ""
+      },
+      "componentName" : "forceCommunity:recommendations",
+      "id" : "0aac92ed-ce10-4289-a747-da28e4c3bb16",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "6c736a91-3961-413e-827b-d6a0cd9febad",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "id" : "1957eaea-b4b4-438f-bdc9-7189e7804278",
+    "regionName" : "sidebar",
+    "type" : "region"
+  }, {
+    "id" : "2151efc8-be0f-444c-b0b8-eb3a1c126dd5",
+    "regionName" : "footer",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "38eacf17-35b3-44ac-8f7f-f2418a82bcc0",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "bea2212d-3b18-4f4c-b1cc-bf6120b47667",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

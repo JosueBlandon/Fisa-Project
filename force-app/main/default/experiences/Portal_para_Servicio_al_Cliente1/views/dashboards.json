@@ -1,0 +1,78 @@
+{
+  "appPageId" : "957aa91a-bf13-46ce-b739-439c33d06eb9",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "502cc0c4-ae6a-4743-b0c9-f3c9b3839a1f",
+  "label" : "Dashboards",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "2673a8c5-a1dc-4ff7-8b36-c137c8d1afb6",
+          "columns" : [ {
+            "UUID" : "ebb65e31-9da6-4822-8863-4418d9612983",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "2673a8c5-a1dc-4ff7-8b36-c137c8d1afb6",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:reportEx",
+          "id" : "3603e397-a3d4-43ff-af53-58b8c718c22f",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "height" : "1080",
+            "recordId" : "01Z6C0000004kUIUAY"
+          },
+          "componentName" : "forceCommunity:dashboard",
+          "id" : "34f861da-469f-427a-bbc3-c69f9459e2ec",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "ebb65e31-9da6-4822-8863-4418d9612983",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "03ce3084-beca-48ee-934d-c912931fe410",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Dashboards"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "98e3f630-e5f4-4d86-beee-d75f355454d6",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "9e6579e8-6eb7-43b3-a604-90036e45356b",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-dashboards"
+}

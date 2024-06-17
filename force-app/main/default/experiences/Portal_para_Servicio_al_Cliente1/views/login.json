@@ -1,0 +1,65 @@
+{
+  "appPageId" : "b81da169-b801-462e-8256-7157ee3a5622",
+  "componentName" : "siteforce:sldsOneColLayout",
+  "dataProviders" : [ ],
+  "id" : "c6ab0b25-0c76-4bb3-a8e4-640883cd8ab4",
+  "label" : "Login",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : { },
+      "componentName" : "salesforceIdentity:communityLogo2",
+      "id" : "14cc51b1-d9d1-4dda-a80f-91c337a716ea",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "forgotPasswordLabel" : "¿Olvidó la contraseña?",
+        "forgotPasswordUrl" : "/ForgotPassword",
+        "loginButtonLabel" : "Iniciar Sesión",
+        "passwordLabel" : "Contraseña",
+        "selfRegisterLabel" : "",
+        "selfRegisterUrl" : "/SelfRegister",
+        "startUrl" : "",
+        "usernameLabel" : "Nombre de usuario"
+      },
+      "componentName" : "salesforceIdentity:loginForm2",
+      "id" : "3ff46c92-dc09-47cc-8ba4-122353de3fcf",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "headerText" : "",
+        "showHeader" : false,
+        "useCommunityDomainSso" : true
+      },
+      "componentName" : "salesforceIdentity:socialLogin2",
+      "id" : "2a1bbd2a-4beb-430e-b54c-3e36fd1749b9",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "f4518574-3c74-4c49-9ec5-9e08e35a4605",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Login"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "1ab09f47-1a7b-4b43-9657-c79665080fea",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "47fba15d-6b57-4f07-95d0-5f814480598b",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Login",
+  "type" : "view",
+  "viewType" : "login-home"
+}

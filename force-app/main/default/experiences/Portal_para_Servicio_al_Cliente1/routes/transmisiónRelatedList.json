@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "ad9879a9-d667-4cbf-ab64-0e7c87c54ca1",
+  "appPageId" : "957aa91a-bf13-46ce-b739-439c33d06eb9",
+  "configurationTags" : [ ],
+  "devName" : "relatedlist_0Fq",
+  "id" : "5ab391df-1663-4e08-8084-cc60f310184e",
+  "label" : "Transmisión Related List",
+  "routeType" : "relatedlist-0Fq",
+  "type" : "route",
+  "urlPrefix" : "streams"
+}

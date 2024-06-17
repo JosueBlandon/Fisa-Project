@@ -1,0 +1,68 @@
+{
+  "appPageId" : "c30014c2-6e42-4d4c-8f86-3167f82a98f3",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "6b698404-31f9-421c-a6ba-db6a38ffa7ca",
+  "label" : "Encuesta",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "ee4af113-316a-4a58-bfc0-442b4abf37e4",
+          "columns" : [ {
+            "UUID" : "9fa80000-d508-46f2-9e48-956da1d93188",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "ee4af113-316a-4a58-bfc0-442b4abf37e4",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:fs_Encuesta",
+          "id" : "19c0bb09-02da-43d4-9437-143c833813c0",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "9fa80000-d508-46f2-9e48-956da1d93188",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "64494f2d-3f24-4e3a-ae19-fa9675499ff8",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Encuesta"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "8efb4638-ad0d-40ad-8750-be4afd0877b3",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a0995535-92c8-4684-81dd-0a5eea29480f",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-encuesta"
+}

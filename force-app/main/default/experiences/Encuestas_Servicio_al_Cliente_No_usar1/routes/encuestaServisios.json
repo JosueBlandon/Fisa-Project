@@ -1,0 +1,11 @@
+{
+  "activeViewId" : "00020d50-1bf8-42fb-81b2-1affac79cdf3",
+  "appPageId" : "7645108a-4d43-45cf-b918-033286ac5e66",
+  "configurationTags" : [ ],
+  "devName" : "EncuestaServisios__c",
+  "id" : "a09f0271-4a8d-4402-b3aa-99f17c6813a6",
+  "label" : "EncuestaServisios",
+  "routeType" : "custom-encuestaser",
+  "type" : "route",
+  "urlPrefix" : "encuestaser"
+}

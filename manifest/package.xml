@@ -88,7 +88,7 @@
 		<name>EntitlementProcess</name>
 	</types>
 	<types>
-		<members>Portal_de_encuestas_Fisa1</members>
+		<members>*</members>
 		<name>ExperienceBundle</name>
 	</types>
 	<types>
