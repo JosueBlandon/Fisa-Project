@@ -159,6 +159,7 @@
 	<types>
 		<members>FS_PermisosServicioCliente</members>
 		<members>FS_PermisosServicioClientePlus</members>
+		<members>FS_Permisos_Encuestas_Fisa</members>
 		<members>FS_Permisos_para_usuario_de_integracion_PowerBI</members>
 		<members>Permiso_PM_PS</members>
 		<name>PermissionSet</name>
