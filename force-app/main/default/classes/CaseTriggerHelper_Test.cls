@@ -120,42 +120,42 @@ public class CaseTriggerHelper_Test {
         insert serviceUser;
         
        	System.runAs(serviceUser) {
-            record.Subject = 'Subject Changed';
-            record.FS_Producto__c = 'FISA System';
-            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';
-            //record.FS_TipoIncidente__c = 'Puntual';    
-            record.Status = 'En Análisis';    
-            record.FS_SubEstado__c = 'Análisis N1';
-            record.FS_SubEstadoAnterior__c = 'Apertura de caso';     
-            record.FS_RequiereInformacionAdicional__c = false;              
-            record.FS_EnviarAprobacionSolucionIPN2__c = false;   
-            record.FS_EnviarAprobacionDisenioTecnico__c = true;
-            record.FS_EnviarAprobacionSolucionDN2__c = true;
-            record.FS_URLParcheCliente__c = 'http://www.parche.com';
-            record.FS_IngenieroProducto__c = null;
-            record.FS_IngenieroProductoQA__c = null;
-            
-            update record;   
+            try{
+                record.Subject = 'Subject Changed';
+                record.FS_Producto__c = 'FISA System';
+                record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+                record.FS_SubModulo__c = 'Crédito Hipotecario';
+                //record.FS_TipoIncidente__c = 'Puntual';    
+                record.Status = 'En Análisis';    
+                record.FS_SubEstado__c = 'Análisis N1';
+                record.FS_SubEstadoAnterior__c = 'Apertura de caso';     
+                record.FS_RequiereInformacionAdicional__c = false;              
+                record.FS_EnviarAprobacionSolucionIPN2__c = false;   
+                record.FS_EnviarAprobacionDisenioTecnico__c = true;
+                record.FS_EnviarAprobacionSolucionDN2__c = true;
+                record.FS_URLParcheCliente__c = 'http://www.parche.com';
+                record.FS_IngenieroProducto__c = null;
+                record.FS_IngenieroProductoQA__c = null;
                 
-            record.FS_SolucionCortoPlazo__c = 'Si';
-            record.FS_PropietarioCasoSolucionCortoPlazo__c = serviceUser.Id;       
-            record.FS_AprobacionSolucionDefinitivaN2__c = 'Si';
-            record.FS_AprobacionSolucionDefinitivaRelease__c = 'Si';
-            record.FS_AprobacionPlanPruebas__c = 'Si';   
-            record.FS_AprobacionInstalacionParcheRelease__c = 'Si';
-            record.FS_UrlAmbientePruebas__c = 'http://www.test.com';
-            //record.FS_UrlEvidenciaPruebas__c = 'http://www.evidencia.com'; 
-            record.FS_AprobacionCertificacionParcheQA__c = 'Si';  
-            record.FS_URLParcheCliente__c = '';
-            record.FS_AceptaInstalacionParche__c = 'Si';
-            record.FS_AceptaPaseProducion__c = 'Si';
-            //record.FS_IngenieroProducto__c = serviceUser.Id;
-            //record.FS_IngenieroProductoQA__c = serviceUser.Id;
-            
-            update record;    
+                update record;   
+                    
+                record.FS_SolucionCortoPlazo__c = 'Si';
+                record.FS_PropietarioCasoSolucionCortoPlazo__c = serviceUser.Id;       
+                record.FS_AprobacionSolucionDefinitivaN2__c = 'Si';
+                record.FS_AprobacionSolucionDefinitivaRelease__c = 'Si';
+                record.FS_AprobacionPlanPruebas__c = 'Si';   
+                record.FS_AprobacionInstalacionParcheRelease__c = 'Si';
+                record.FS_UrlAmbientePruebas__c = 'http://www.test.com';
+                //record.FS_UrlEvidenciaPruebas__c = 'http://www.evidencia.com'; 
+                record.FS_AprobacionCertificacionParcheQA__c = 'Si';  
+                record.FS_URLParcheCliente__c = '';
+                record.FS_AceptaInstalacionParche__c = 'Si';
+                record.FS_AceptaPaseProducion__c = 'Si';
+                //record.FS_IngenieroProducto__c = serviceUser.Id;
+                //record.FS_IngenieroProductoQA__c = serviceUser.Id;
                 
-            try{      
+                update record;    
+                      
                 record.FS_AceptaRespuesta__c = 'No';     
                 //record.FS_TipoIncidente__c = 'Definitivo'; 
                 record.FS_RequiereInformacionAdicional__c = true;
