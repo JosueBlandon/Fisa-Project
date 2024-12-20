@@ -11,66 +11,142 @@
         <controllingField>FS_Modulo__c</controllingField>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
+            <value>
+                <fullName>ACH</fullName>
+                <default>false</default>
+                <label>ACH</label>
+            </value>
+            <value>
+                <fullName>Activación de versiones por política</fullName>
+                <default>false</default>
+                <label>Activación de versiones por política</label>
+            </value>
+            <value>
+                <fullName>Administración multicanal</fullName>
+                <default>false</default>
+                <label>Administración multicanal</label>
+            </value>
+            <value>
+                <fullName>Afiliación</fullName>
+                <default>false</default>
+                <label>Afiliación</label>
+            </value>
+            <value>
+                <fullName>Afiliaciones</fullName>
+                <default>false</default>
+                <label>Afiliaciones</label>
+            </value>
+            <value>
+                <fullName>Analizer Monitor</fullName>
+                <default>false</default>
+                <label>Analizer Monitor</label>
+            </value>
+            <value>
+                <fullName>Autenticación y seguridad</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Autenticación y seguridad</label>
+            </value>
+            <value>
+                <fullName>Autorizaciones</fullName>
+                <default>false</default>
+                <label>Autorizaciones</label>
+            </value>
+            <value>
+                <fullName>Autorizados de pago</fullName>
+                <default>false</default>
+                <label>Autorizados de pago</label>
+            </value>
+            <value>
+                <fullName>Avales</fullName>
+                <default>false</default>
+                <label>Avales</label>
+            </value>
+            <value>
+                <fullName>Beneficiarios</fullName>
+                <default>false</default>
+                <label>Beneficiarios</label>
+            </value>
+            <value>
+                <fullName>Beneficiarios Enterprise Banking</fullName>
+                <default>false</default>
+                <label>Beneficiarios Enterprise Banking</label>
+            </value>
+            <value>
+                <fullName>Boletas de garantía</fullName>
+                <default>false</default>
+                <label>Boletas de garantía</label>
+            </value>
+            <value>
+                <fullName>Business Application Tools</fullName>
+                <default>false</default>
+                <label>Business Application Tools</label>
+            </value>
+            <value>
+                <fullName>Business Rule Engine - BRE</fullName>
+                <default>false</default>
+                <label>Business Rule Engine - BRE</label>
+            </value>
+            <value>
+                <fullName>Calendarización Y Procesos Masivos</fullName>
+                <default>false</default>
+                <label>Calendarización Y Procesos Masivos</label>
+            </value>
+            <value>
+                <fullName>Campaign Management</fullName>
+                <default>false</default>
+                <label>Campaign Management</label>
+            </value>
+            <value>
+                <fullName>Carga de Documentos</fullName>
+                <default>false</default>
+                <label>Carga de Documentos</label>
+            </value>
+            <value>
+                <fullName>Cartas de crédito</fullName>
+                <default>false</default>
+                <label>Cartas de crédito</label>
+            </value>
+            <value>
+                <fullName>Catálogos y Mapeos B.O</fullName>
+                <default>false</default>
+                <label>Catálogos y Mapeos B.O</label>
+            </value>
             <value>
                 <fullName>Clientes (Módulo 2)</fullName>
                 <default>false</default>
                 <label>Clientes (Módulo 2)</label>
             </value>
             <value>
-                <fullName>Parametros Generales (Módulo 1)</fullName>
+                <fullName>Cobranzas</fullName>
                 <default>false</default>
-                <label>Parametros Generales (Módulo 1)</label>
+                <label>Cobranzas</label>
             </value>
             <value>
-                <fullName>Seguridades (Modulo 90)</fullName>
+                <fullName>Cobros Enterprise Banking</fullName>
                 <default>false</default>
-                <label>Seguridades (Modulo 90)</label>
+                <label>Cobros Enterprise Banking</label>
             </value>
             <value>
-                <fullName>Cuentas de Ahorro</fullName>
+                <fullName>Componente generales</fullName>
                 <default>false</default>
-                <label>Cuentas de Ahorro</label>
+                <label>Componente generales</label>
             </value>
             <value>
-                <fullName>Cuentas Corrientes</fullName>
+                <fullName>Configuración de servidores</fullName>
                 <default>false</default>
-                <label>Cuentas Corrientes</label>
+                <label>Configuración de servidores</label>
             </value>
             <value>
-                <fullName>Cuentas de Acumulación</fullName>
+                <fullName>Consultas de saldos</fullName>
                 <default>false</default>
-                <label>Cuentas de Acumulación</label>
-            </value>
-            <value>
-                <fullName>Cuentas Nostro</fullName>
-                <default>false</default>
-                <label>Cuentas Nostro</label>
-            </value>
-            <value>
-                <fullName>Cuentas Líneas de Crédito</fullName>
-                <default>false</default>
-                <label>Cuentas Líneas de Crédito</label>
-            </value>
-            <value>
-                <fullName>Depositos a Plazo Fijo</fullName>
-                <default>false</default>
-                <label>Depositos a Plazo Fijo</label>
-            </value>
-            <value>
-                <fullName>Créditos de Consumo/Comerciales/Personales</fullName>
-                <default>false</default>
-                <label>Créditos de Consumo/Comerciales/Personales</label>
+                <label>Consultas de saldos</label>
             </value>
             <value>
                 <fullName>Crédito Automotriz</fullName>
                 <default>false</default>
                 <label>Crédito Automotriz</label>
-            </value>
-            <value>
-                <fullName>Líneas de Crédito</fullName>
-                <default>false</default>
-                <label>Líneas de Crédito</label>
             </value>
             <value>
                 <fullName>Crédito Hipotecario</fullName>
@@ -83,29 +159,34 @@
                 <label>Crédito Hipotecario con Letras</label>
             </value>
             <value>
-                <fullName>Cartas de crédito</fullName>
+                <fullName>Créditos de Consumo/Comerciales/Personales</fullName>
                 <default>false</default>
-                <label>Cartas de crédito</label>
+                <label>Créditos de Consumo/Comerciales/Personales</label>
             </value>
             <value>
-                <fullName>Cobranzas</fullName>
+                <fullName>Cuentas Corrientes</fullName>
                 <default>false</default>
-                <label>Cobranzas</label>
+                <label>Cuentas Corrientes</label>
             </value>
             <value>
-                <fullName>Avales</fullName>
+                <fullName>Cuentas de Acumulación</fullName>
                 <default>false</default>
-                <label>Avales</label>
+                <label>Cuentas de Acumulación</label>
             </value>
             <value>
-                <fullName>Boletas de garantía</fullName>
+                <fullName>Cuentas de Ahorro</fullName>
                 <default>false</default>
-                <label>Boletas de garantía</label>
+                <label>Cuentas de Ahorro</label>
             </value>
             <value>
-                <fullName>Títulos y valores</fullName>
+                <fullName>Cuentas Líneas de Crédito</fullName>
                 <default>false</default>
-                <label>Títulos y valores</label>
+                <label>Cuentas Líneas de Crédito</label>
+            </value>
+            <value>
+                <fullName>Cuentas Nostro</fullName>
+                <default>false</default>
+                <label>Cuentas Nostro</label>
             </value>
             <value>
                 <fullName>Cupones</fullName>
@@ -113,16 +194,608 @@
                 <label>Cupones</label>
             </value>
             <value>
-                <fullName>Tarjetas Nominadas</fullName>
+                <fullName>Cupos y límites</fullName>
                 <default>false</default>
-                <label>Tarjetas Nominadas</label>
+                <label>Cupos y límites</label>
+            </value>
+            <value>
+                <fullName>Definción de políticas</fullName>
+                <default>false</default>
+                <label>Definción de políticas</label>
+            </value>
+            <value>
+                <fullName>Definición de características</fullName>
+                <default>false</default>
+                <label>Definición de características</label>
+            </value>
+            <value>
+                <fullName>Definición de decisiones</fullName>
+                <default>false</default>
+                <label>Definición de decisiones</label>
+            </value>
+            <value>
+                <fullName>Definición de estructura de matrices</fullName>
+                <default>false</default>
+                <label>Definición de estructura de matrices</label>
+            </value>
+            <value>
+                <fullName>Definición de funciones</fullName>
+                <default>false</default>
+                <label>Definición de funciones</label>
+            </value>
+            <value>
+                <fullName>Definición de matrices</fullName>
+                <default>false</default>
+                <label>Definición de matrices</label>
+            </value>
+            <value>
+                <fullName>Definición de menús</fullName>
+                <default>false</default>
+                <label>Definición de menús</label>
+            </value>
+            <value>
+                <fullName>Definición de plantillas</fullName>
+                <default>false</default>
+                <label>Definición de plantillas</label>
+            </value>
+            <value>
+                <fullName>Definición de variables</fullName>
+                <default>false</default>
+                <label>Definición de variables</label>
+            </value>
+            <value>
+                <fullName>Definición flujo política por versión</fullName>
+                <default>false</default>
+                <label>Definición flujo política por versión</label>
+            </value>
+            <value>
+                <fullName>Depositos a Plazo Fijo</fullName>
+                <default>false</default>
+                <label>Depositos a Plazo Fijo</label>
+            </value>
+            <value>
+                <fullName>Diccionario de aplicaciones</fullName>
+                <default>false</default>
+                <label>Diccionario de aplicaciones</label>
+            </value>
+            <value>
+                <fullName>Divisas</fullName>
+                <default>false</default>
+                <label>Divisas</label>
+            </value>
+            <value>
+                <fullName>Documentos</fullName>
+                <default>false</default>
+                <label>Documentos</label>
+            </value>
+            <value>
+                <fullName>Documentos-Alfresco</fullName>
+                <default>false</default>
+                <label>Documentos-Alfresco</label>
+            </value>
+            <value>
+                <fullName>Documentos BAG</fullName>
+                <default>false</default>
+                <label>Documentos BAG</label>
+            </value>
+            <value>
+                <fullName>Enrolamiento</fullName>
+                <default>false</default>
+                <label>Enrolamiento</label>
+            </value>
+            <value>
+                <fullName>Enrolamiento R.C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Enrolamiento R.C</label>
+            </value>
+            <value>
+                <fullName>Flujo Cuentas Vista</fullName>
+                <default>false</default>
+                <label>Flujo Cuentas Vista</label>
+            </value>
+            <value>
+                <fullName>Flujo Prestamos Personales</fullName>
+                <default>false</default>
+                <label>Flujo Prestamos Personales</label>
+            </value>
+            <value>
+                <fullName>Flujos BPEL</fullName>
+                <default>false</default>
+                <label>Flujos BPEL</label>
+            </value>
+            <value>
+                <fullName>Flujos-Camunda</fullName>
+                <default>false</default>
+                <label>Flujos-Camunda</label>
+            </value>
+            <value>
+                <fullName>Flujos JBPM</fullName>
+                <default>false</default>
+                <label>Flujos JBPM</label>
+            </value>
+            <value>
+                <fullName>Flujos Rutas De Procesos</fullName>
+                <default>false</default>
+                <label>Flujos Rutas De Procesos</label>
+            </value>
+            <value>
+                <fullName>Flujo Tarjeta de Crédito</fullName>
+                <default>false</default>
+                <label>Flujo Tarjeta de Crédito</label>
+            </value>
+            <value>
+                <fullName>Flujo venta cruzada</fullName>
+                <default>false</default>
+                <label>Flujo venta cruzada</label>
+            </value>
+            <value>
+                <fullName>Herramientas de Desarrollo</fullName>
+                <default>false</default>
+                <label>Herramientas de Desarrollo</label>
+            </value>
+            <value>
+                <fullName>Integración BT-BRE</fullName>
+                <default>false</default>
+                <label>Integración BT-BRE</label>
+            </value>
+            <value>
+                <fullName>Integración Servicios MCM</fullName>
+                <default>false</default>
+                <label>Integración Servicios MCM</label>
+            </value>
+            <value>
+                <fullName>Integración Servicios Terceros</fullName>
+                <default>false</default>
+                <label>Integración Servicios Terceros</label>
+            </value>
+            <value>
+                <fullName>Integrador Login</fullName>
+                <default>false</default>
+                <label>Integrador Login</label>
+            </value>
+            <value>
+                <fullName>Integrador Transferencias</fullName>
+                <default>false</default>
+                <label>Integrador Transferencias</label>
+            </value>
+            <value>
+                <fullName>Integration Service FSY</fullName>
+                <default>false</default>
+                <label>Integration Service FSY</label>
+            </value>
+            <value>
+                <fullName>Jerarquías</fullName>
+                <default>false</default>
+                <label>Jerarquías</label>
+            </value>
+            <value>
+                <fullName>Líneas de Crédito</fullName>
+                <default>false</default>
+                <label>Líneas de Crédito</label>
+            </value>
+            <value>
+                <fullName>Manejador de contenidos</fullName>
+                <default>false</default>
+                <label>Manejador de contenidos</label>
+            </value>
+            <value>
+                <fullName>Mantenimiento de Clientes</fullName>
+                <default>false</default>
+                <label>Mantenimiento de Clientes</label>
+            </value>
+            <value>
+                <fullName>Motor transaccional</fullName>
+                <default>false</default>
+                <label>Motor transaccional</label>
+            </value>
+            <value>
+                <fullName>Notificaciones</fullName>
+                <default>false</default>
+                <label>Notificaciones</label>
+            </value>
+            <value>
+                <fullName>Notificaciones BAG</fullName>
+                <default>false</default>
+                <label>Notificaciones BAG</label>
+            </value>
+            <value>
+                <fullName>Obtención de datos</fullName>
+                <default>false</default>
+                <label>Obtención de datos</label>
+            </value>
+            <value>
+                <fullName>Originación-Flujo AMICAR</fullName>
+                <default>false</default>
+                <label>Originación-Flujo AMICAR</label>
+            </value>
+            <value>
+                <fullName>Originación-Flujo Automotriz</fullName>
+                <default>false</default>
+                <label>Originación-Flujo Automotriz</label>
+            </value>
+            <value>
+                <fullName>Originación-Flujo Consumo</fullName>
+                <default>false</default>
+                <label>Originación-Flujo Consumo</label>
+            </value>
+            <value>
+                <fullName>Pagos</fullName>
+                <default>false</default>
+                <label>Pagos</label>
+            </value>
+            <value>
+                <fullName>Pagos Enterprise Banking</fullName>
+                <default>false</default>
+                <label>Pagos Enterprise Banking</label>
+            </value>
+            <value>
+                <fullName>Pagos R.C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pagos R.C</label>
+            </value>
+            <value>
+                <fullName>Parametrización</fullName>
+                <default>false</default>
+                <label>Parametrización</label>
+            </value>
+            <value>
+                <fullName>Parametrización B.O</fullName>
+                <default>false</default>
+                <label>Parametrización B.O</label>
+            </value>
+            <value>
+                <fullName>Parametros Generales (Módulo 1)</fullName>
+                <default>false</default>
+                <label>Parametros Generales (Módulo 1)</label>
+            </value>
+            <value>
+                <fullName>Posición Consolidada</fullName>
+                <default>false</default>
+                <label>Posición Consolidada</label>
+            </value>
+            <value>
+                <fullName>Posición Consolidada Enterprise Banking</fullName>
+                <default>false</default>
+                <label>Posición Consolidada Enterprise Banking</label>
+            </value>
+            <value>
+                <fullName>Posición Consolidada R.C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Posición Consolidada R.C</label>
+            </value>
+            <value>
+                <fullName>Pricing y cupos</fullName>
+                <default>false</default>
+                <label>Pricing y cupos</label>
+            </value>
+            <value>
+                <fullName>Procesos-lentitud-herramientas</fullName>
+                <default>false</default>
+                <label>Procesos-lentitud-herramientas</label>
+            </value>
+            <value>
+                <fullName>Resultados de las reglas</fullName>
+                <default>false</default>
+                <label>Resultados de las reglas</label>
+            </value>
+            <value>
+                <fullName>Seguridad</fullName>
+                <default>false</default>
+                <label>Seguridad</label>
+            </value>
+            <value>
+                <fullName>Seguridades</fullName>
+                <default>false</default>
+                <label>Seguridades</label>
+            </value>
+            <value>
+                <fullName>Seguridades (Modulo 90)</fullName>
+                <default>false</default>
+                <label>Seguridades (Modulo 90)</label>
+            </value>
+            <value>
+                <fullName>Seguridades y/o Tecnología</fullName>
+                <default>false</default>
+                <label>Seguridades y/o Tecnología</label>
+            </value>
+            <value>
+                <fullName>Simulaciones</fullName>
+                <default>false</default>
+                <label>Simulaciones</label>
+            </value>
+            <value>
+                <fullName>Solicitud de crédito - Cliente final</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Solicitud de crédito - Cliente final</label>
+            </value>
+            <value>
+                <fullName>Suscripciones</fullName>
+                <default>false</default>
+                <label>Suscripciones</label>
             </value>
             <value>
                 <fullName>Tarjetas Innominadas</fullName>
                 <default>false</default>
                 <label>Tarjetas Innominadas</label>
             </value>
+            <value>
+                <fullName>Tarjetas Nominadas</fullName>
+                <default>false</default>
+                <label>Tarjetas Nominadas</label>
+            </value>
+            <value>
+                <fullName>Títulos y valores</fullName>
+                <default>false</default>
+                <label>Títulos y valores</label>
+            </value>
+            <value>
+                <fullName>Transferencias</fullName>
+                <default>false</default>
+                <label>Transferencias</label>
+            </value>
+            <value>
+                <fullName>Transferencias Internacionales</fullName>
+                <default>false</default>
+                <label>Transferencias Internacionales</label>
+            </value>
+            <value>
+                <fullName>Transferencias R.C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Transferencias R.C</label>
+            </value>
+            <value>
+                <fullName>Transferencias y/o pagos programados</fullName>
+                <default>false</default>
+                <label>Transferencias y/o pagos programados</label>
+            </value>
+            <value>
+                <fullName>Wizard BT</fullName>
+                <default>false</default>
+                <label>Wizard BT</label>
+            </value>
+            <value>
+                <fullName>Wizard QT</fullName>
+                <default>false</default>
+                <label>Wizard QT</label>
+            </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Mobile Banking Personas</controllingFieldValue>
+            <valueName>Integrador Login</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mobile Banking Personas</controllingFieldValue>
+            <valueName>Integrador Transferencias</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mobile Banking Personas</controllingFieldValue>
+            <valueName>Seguridades y/o Tecnología</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Kioskos</controllingFieldValue>
+            <valueName>Consultas de saldos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Afiliaciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Autorizados de pago</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Beneficiarios Enterprise Banking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Cobros Enterprise Banking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Motor transaccional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Pagos Enterprise Banking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Posición Consolidada Enterprise Banking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Enterprise Banking</controllingFieldValue>
+            <valueName>Pricing y cupos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Flujos</controllingFieldValue>
+            <valueName>Flujos BPEL</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Flujos</controllingFieldValue>
+            <valueName>Flujos JBPM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Flujos</controllingFieldValue>
+            <valueName>Flujos Rutas De Procesos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Administración multicanal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Autorizaciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Calendarización Y Procesos Masivos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Componente generales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Configuración de servidores</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Documentos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Notificaciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MCM (MultiChannel Managemt)</controllingFieldValue>
+            <valueName>Seguridad</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Diccionario de aplicaciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Documentos BAG</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Herramientas de Desarrollo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Jerarquías</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Notificaciones BAG</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Parametrización</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Wizard BT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Generator</controllingFieldValue>
+            <valueName>Wizard QT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Support Aplication</controllingFieldValue>
+            <valueName>Analizer Monitor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Support Aplication</controllingFieldValue>
+            <valueName>Business Rule Engine - BRE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Support Aplication</controllingFieldValue>
+            <valueName>Campaign Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Activación de versiones por política</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definción de políticas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de características</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de decisiones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de estructura de matrices</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de funciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de matrices</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición de variables</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Definición flujo política por versión</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Integración BT-BRE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Obtención de datos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Resultados de las reglas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BRE (Motor de reglas)</controllingFieldValue>
+            <valueName>Simulaciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Business Application Tools</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Carga de Documentos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Flujo Cuentas Vista</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Flujo Prestamos Personales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Flujos-Camunda</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Flujo Tarjeta de Crédito</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Flujo venta cruzada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Integración Servicios Terceros</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Integration Service FSY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Mantenimiento de Clientes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Business Application Products (Plataforma de Ventas)</controllingFieldValue>
+            <valueName>Procesos-lentitud-herramientas</valueName>
+        </valueSettings>
         <valueSettings>
             <controllingFieldValue>Núcleo del Sistema</controllingFieldValue>
             <valueName>Clientes (Módulo 2)</valueName>
@@ -137,10 +810,6 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Captaciones a la Vista (Módulo 4)</controllingFieldValue>
-            <valueName>Cuentas de Ahorro</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Captaciones a la Vista (Módulo 4)</controllingFieldValue>
             <valueName>Cuentas Corrientes</valueName>
         </valueSettings>
         <valueSettings>
@@ -149,11 +818,15 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Captaciones a la Vista (Módulo 4)</controllingFieldValue>
-            <valueName>Cuentas Nostro</valueName>
+            <valueName>Cuentas de Ahorro</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Captaciones a la Vista (Módulo 4)</controllingFieldValue>
             <valueName>Cuentas Líneas de Crédito</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Captaciones a la Vista (Módulo 4)</controllingFieldValue>
+            <valueName>Cuentas Nostro</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Captaciones a Plazo (Módulo 5)</controllingFieldValue>
@@ -161,15 +834,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
-            <valueName>Créditos de Consumo/Comerciales/Personales</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
             <valueName>Crédito Automotriz</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
-            <valueName>Líneas de Crédito</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
@@ -180,12 +845,12 @@
             <valueName>Crédito Hipotecario con Letras</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Comercio Exterior (Módulo 10)</controllingFieldValue>
-            <valueName>Cartas de crédito</valueName>
+            <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
+            <valueName>Créditos de Consumo/Comerciales/Personales</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Comercio Exterior (Módulo 10)</controllingFieldValue>
-            <valueName>Cobranzas</valueName>
+            <controllingFieldValue>Colocaciones (Módulo 6)</controllingFieldValue>
+            <valueName>Líneas de Crédito</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Comercio Exterior (Módulo 10)</controllingFieldValue>
@@ -196,20 +861,100 @@
             <valueName>Boletas de garantía</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Tesorería (Módulo 12)</controllingFieldValue>
-            <valueName>Títulos y valores</valueName>
+            <controllingFieldValue>Comercio Exterior (Módulo 10)</controllingFieldValue>
+            <valueName>Cartas de crédito</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comercio Exterior (Módulo 10)</controllingFieldValue>
+            <valueName>Cobranzas</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Tesorería (Módulo 12)</controllingFieldValue>
             <valueName>Cupones</valueName>
         </valueSettings>
         <valueSettings>
-            <controllingFieldValue>Tarjeta de Débito (Módulo 15)</controllingFieldValue>
-            <valueName>Tarjetas Nominadas</valueName>
+            <controllingFieldValue>Tesorería (Módulo 12)</controllingFieldValue>
+            <valueName>Títulos y valores</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Tarjeta de Débito (Módulo 15)</controllingFieldValue>
             <valueName>Tarjetas Innominadas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tarjeta de Débito (Módulo 15)</controllingFieldValue>
+            <valueName>Tarjetas Nominadas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Afiliación</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Catálogos y Mapeos B.O</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Definición de menús</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Definición de plantillas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Manejador de contenidos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Parametrización B.O</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BackOffice</controllingFieldValue>
+            <valueName>Seguridades</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>ACH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Beneficiarios</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Cupos y límites</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Divisas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Enrolamiento</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Pagos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Posición Consolidada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Suscripciones</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Transferencias</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Transferencias Internacionales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Online Banking Personas</controllingFieldValue>
+            <valueName>Transferencias y/o pagos programados</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

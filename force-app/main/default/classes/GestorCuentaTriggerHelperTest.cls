@@ -14,6 +14,8 @@
 
 @isTest
 public class GestorCuentaTriggerHelperTest {
+    
+    public static final String ACCOUNT_NAME = 'Test New Account';
 
     /**
      * @method      createRecordGestor
@@ -24,13 +26,13 @@ public class GestorCuentaTriggerHelperTest {
     static void createRecordGestor() {
         
         //Account RECORD_ACCOUNT = DataFactory.insertAccount();
-        Account acc = DataFactory.insertAccount();
+        Account acc = DataFactory.insertNewAccount(true, ACCOUNT_NAME);
         Contact cont = DataFactory.insertContact(acc);
-        List<FS_Gestor_Cuenta__c> gs = DataFactory.insertManager(acc);
+        FS_Gestor_Cuenta__c gs = DataFactory.insertNewManager(true, acc);
         
-        Account cuenta =  [    SELECT	Id, Name  
-                               FROM 	Account 
-                               WHERE	Id =: acc.Id    ];
+        Account cuenta =  [ SELECT	Id, Name  
+                            FROM 	Account 
+                            WHERE	Id =: acc.Id ];
         
         update gs;
         delete gs;

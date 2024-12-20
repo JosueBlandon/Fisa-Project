@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_Tipo_de_Registro__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Tipo de Registro</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Consulta</fullName>
+                <default>true</default>
+                <label>Consulta</label>
+            </value>
+            <value>
+                <fullName>Incidente</fullName>
+                <default>false</default>
+                <label>Incidente</label>
+            </value>
+            <value>
+                <fullName>Requerimiento</fullName>
+                <default>false</default>
+                <label>Requerimiento</label>
+            </value>
+            <value>
+                <fullName>Solicitud (Falla Operativa)</fullName>
+                <default>false</default>
+                <label>Solicitud (Falla Operativa)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

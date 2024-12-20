@@ -485,6 +485,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_CSATCaso__c</field>
         <readable>true</readable>
@@ -532,6 +552,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_FechaAprobacion1erCosto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClienteEM__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -645,6 +670,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_SubEstado__c</field>
         <readable>true</readable>
@@ -652,6 +697,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_SubModulo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1195,7 +1260,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ContractLineItem.ListPrice</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1210,7 +1275,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ContractLineItem.RootContractLineItemId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1230,12 +1295,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ContractLineItem.Subtotal</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ContractLineItem.TotalPrice</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1522,6 +1587,51 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FS_ProductoAdquirido__c.FS_SubModulo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Cliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Es_Pre_contratado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Fecha_Fin_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Fecha_Inicio_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Numero_de_dias_consumidos__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Numero_de_dias_contratados__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Saldo_de_dias__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Tarifa_Dias_Hombre__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Tipo_de_Caso__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3076,27 +3186,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Aprobaci_n_HD__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Opportunity.Aprobaci_n_de_PS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.BANT__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.BOM_R_D__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.BOM_en__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3112,11 +3207,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.Cartas_de_Referencia__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Caso_de_xito_Referencia__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3181,17 +3271,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Delivery__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Opportunity.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Dimensionamiento_Productos__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3216,11 +3296,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Opportunity.Escalabilidad_del_requerimiento__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Opportunity.Etapa_de_Baja__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3237,11 +3312,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.Fecha_Siguiente_Paso__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Key_Business_Results__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3315,11 +3385,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Primera_reuni_n__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Probability</field>
         <readable>true</readable>
@@ -3352,11 +3417,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.Propuesta_Comercial__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Propuesta_de_valor__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3665,7 +3725,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Quote.AccountId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3705,7 +3765,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Quote.Discount</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3725,7 +3785,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Quote.GrandTotal</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3790,12 +3850,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>QuoteLineItem.ListPrice</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>QuoteLineItem.ProductCode</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3805,12 +3865,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>QuoteLineItem.Subtotal</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>QuoteLineItem.TotalPrice</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3995,7 +4055,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ServiceContract.Discount</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4005,7 +4065,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ServiceContract.GrandTotal</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4015,7 +4075,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>ServiceContract.RootServiceContractId</field>
         <readable>true</readable>
     </fieldPermissions>
