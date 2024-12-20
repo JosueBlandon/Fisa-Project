@@ -9,9 +9,11 @@
 * Date         Author                        Description
 * ----------   ---------------------------   -----------------------------------------------------------------
 * 2023-09-04   Intellect Systems             Initial version.
+* 2024-10-29   Intellect Systems             Add @isTest to apex class.
 **************************************************************************************************************
 */
 
+@isTest
 public without sharing class DataFactory {
     
     private static final String USER_FIRST_NAME = 'TestUser';
@@ -71,6 +73,39 @@ public without sharing class DataFactory {
         return acc;
     }
     
+    public static Account insertNewAccount(Boolean doInsert, String name){
+        User adminUser = [  SELECT  Id, UserRoleId 
+                            FROM    User 
+                            WHERE   (Profile.Name='Administrador del sistema' or  Profile.Name='System Administrator') and IsActive = true
+                            LIMIT 1 ];
+
+        Account acc = new Account();
+        acc.Name = name;
+        acc.OwnerId = adminUser.Id;
+        
+        if(doInsert) {
+        	insert acc;    
+        }
+        
+        return acc;
+    }
+    
+    public static FS_Gestor_Cuenta__c insertNewManager(Boolean doInsert, Account acc){
+                
+        
+        FS_Gestor_Cuenta__c gestor = new FS_Gestor_Cuenta__c();
+        gestor.FS_Cuenta__c = acc.Id;
+        gestor.FS_Project_Manager__c = userInfo.getUserId();
+        gestor.FS_Area__c = 'Core';
+        gestor.FS_Principal__c = false;        
+        
+        if(doInsert) {
+        	insert gestor;    
+        }
+        
+        return gestor;
+    }
+    
     public static Contact insertContact(Account acc){
         Contact contc = new Contact();
         contc.FirstName = 'FistName Test';
@@ -83,9 +118,9 @@ public without sharing class DataFactory {
     
     public static List<FS_Gestor_Cuenta__c> insertManager(Account acc){
         
-        Account cuenta =  [    SELECT	Id, Name  
-                               FROM 	Account 
-                               WHERE	Id =: acc.Id    ];
+        Account cuenta =  [     SELECT	Id, Name  
+                                FROM 	Account 
+                                WHERE	Id =: acc.Id    ];
         
         
         FS_Gestor_Cuenta__c gestor = new FS_Gestor_Cuenta__c();
@@ -118,12 +153,18 @@ public without sharing class DataFactory {
         gestor4.FS_Area__c = 'PM-PS';
         gestor4.FS_Principal__c = true;
         
+        FS_Gestor_Cuenta__c gestor5 = new FS_Gestor_Cuenta__c();
+        gestor5.FS_Cuenta__c = cuenta.Id;
+        gestor5.FS_Project_Manager__c = userInfo.getUserId();
+        gestor5.FS_Area__c = 'PM-PS';
+        gestor5.FS_Principal__c = true;
         
         insert gestor;
         insert gestor1;
         insert gestor2;
         insert gestor3;
         insert gestor4;
+        insert gestor5;
         
         List<FS_Gestor_Cuenta__c> ltsRecords = new List<FS_Gestor_Cuenta__c>();
         ltsRecords.add(gestor);
@@ -146,10 +187,33 @@ public without sharing class DataFactory {
     }
     
     public static Case insertCase(Account acc, Contact cont, FS_ProductoAdquirido__c p, String tipoRegistro){
+        FS_Proyecto__c newProyect = new FS_Proyecto__c();
+        List<FS_Proyecto__c> newProyectls = [SELECT ID FROM FS_Proyecto__c WHERE Name = 'Test1'];
+        String proyectId;
+        for(FS_Proyecto__c lts : newProyectls){
+            proyectId = lts.Id;
+        }
+        
+        if(proyectId == null){
+            newProyect.Name = 'Test1';
+            newProyect.FS_Cliente__c = acc.Id;
+            newProyect.FS_Tipo_de_Caso__c = 'Requerimiento';
+            newProyect.FS_Tarifa_Dias_Hombre__c = 56;
+            newProyect.FS_Numero_de_dias_contratados__c = 15;
+            newProyect.FS_Fecha_Inicio_Proyecto__c = system.today();
+            newProyect.FS_Fecha_Fin_Proyecto__c = system.today() + 30;
+            insert newProyect;
+            
+            proyectId = newProyect.Id;
+        }
+        
+        
+        
         Case caso = new Case();
         caso.AccountId = acc.Id;
         caso.ContactId = cont.Id;
         caso.FS_Producto__c = p.FS_Producto__c;
+        caso.FS_Buscar_Proyecto__c = proyectId;
         caso.FS_Modulo__c = p.FS_Modulo__c;
         caso.FS_SubModulo__c = p.FS_SubModulo__c;
         caso.FS_DescripcionCliente__c = '<p>Test</p>';
@@ -157,6 +221,28 @@ public without sharing class DataFactory {
         caso.FS_AgenteQA__c = userInfo.getUserId();
         caso.FS_AgenteN2__c = userInfo.getUserId();
         caso.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get(tipoRegistro).getRecordTypeId();
+        insert caso;
+        return caso;
+    }
+    
+    public static Case insertCase2(Account acc, Contact cont, String tipoRegistro){
+        FS_Proyecto__c newProyect = new FS_Proyecto__c();
+        List<FS_Proyecto__c> newProyectls = [SELECT ID FROM FS_Proyecto__c WHERE Name = 'Test1'];
+        String proyectId;
+        for(FS_Proyecto__c lts : newProyectls){
+            proyectId = lts.Id;
+        }        
+        
+        Case caso = new Case();
+        caso.Status = 'Nuevo';
+        caso.FS_SubEstado__c = 'Apertura de caso';
+        caso.FS_TipoIncidente__c = 'Puntual';
+        caso.AccountId = acc.Id;
+        caso.ContactId = cont.Id;
+        caso.FS_Buscar_Proyecto__c = proyectId;
+        caso.FS_DescripcionCliente__c = 'Test';
+        caso.RecordTypeId = tipoRegistro;
+        caso.FS_RequiereInformacionAdicional__c = false;
         insert caso;
         return caso;
     }
@@ -183,7 +269,7 @@ public without sharing class DataFactory {
         User u = new User();
 
         System.runAs(adminUser) {
-            u.Alias = 'tes'; 
+            u.Alias = 'test'; 
             u.Email='test@myorg.com'; 
             u.EmailEncodingKey='UTF-8'; 
             u.LastName='Testing'; 

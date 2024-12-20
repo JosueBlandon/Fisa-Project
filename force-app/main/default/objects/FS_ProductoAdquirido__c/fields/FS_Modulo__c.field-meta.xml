@@ -11,16 +11,41 @@
         <controllingField>FS_Producto__c</controllingField>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
-                <fullName>Núcleo del Sistema</fullName>
+                <fullName>BackOffice</fullName>
                 <default>false</default>
-                <label>Núcleo del Sistema</label>
+                <label>BackOffice</label>
+            </value>
+            <value>
+                <fullName>BRE (Motor de reglas)</fullName>
+                <default>false</default>
+                <label>BRE (Motor de reglas)</label>
+            </value>
+            <value>
+                <fullName>Business Application Generator</fullName>
+                <default>false</default>
+                <label>Business Application Generator</label>
+            </value>
+            <value>
+                <fullName>Business Application Products (Plataforma de Ventas)</fullName>
+                <default>false</default>
+                <label>Business Application Products (Plataforma de Ventas)</label>
+            </value>
+            <value>
+                <fullName>Business Support Aplication</fullName>
+                <default>false</default>
+                <label>Business Support Aplication</label>
             </value>
             <value>
                 <fullName>Cajas y Bóveda (Módulo 3)</fullName>
                 <default>false</default>
                 <label>Cajas y Bóveda (Módulo 3)</label>
+            </value>
+            <value>
+                <fullName>Calendarizador Procesos Bach</fullName>
+                <default>false</default>
+                <label>Calendarizador Procesos Bach</label>
             </value>
             <value>
                 <fullName>Captaciones a la Vista (Módulo 4)</fullName>
@@ -43,39 +68,9 @@
                 <label>Comercio Exterior (Módulo 10)</label>
             </value>
             <value>
-                <fullName>Tesorería (Módulo 12)</fullName>
-                <default>false</default>
-                <label>Tesorería (Módulo 12)</label>
-            </value>
-            <value>
-                <fullName>Tarjeta de Débito (Módulo 15)</fullName>
-                <default>false</default>
-                <label>Tarjeta de Débito (Módulo 15)</label>
-            </value>
-            <value>
-                <fullName>DIPS (Modulo 19)</fullName>
-                <default>false</default>
-                <label>DIPS (Modulo 19)</label>
-            </value>
-            <value>
                 <fullName>Contabilidad (Módulo 20)</fullName>
                 <default>false</default>
                 <label>Contabilidad (Módulo 20)</label>
-            </value>
-            <value>
-                <fullName>Reportes (Módulo 21)</fullName>
-                <default>false</default>
-                <label>Reportes (Módulo 21)</label>
-            </value>
-            <value>
-                <fullName>Garantías (Módulo 28)</fullName>
-                <default>false</default>
-                <label>Garantías (Módulo 28)</label>
-            </value>
-            <value>
-                <fullName>Calendarizador Procesos Bach</fullName>
-                <default>false</default>
-                <label>Calendarizador Procesos Bach</label>
             </value>
             <value>
                 <fullName>Core Tarjeta de Crédito</fullName>
@@ -83,64 +78,14 @@
                 <label>Core Tarjeta de Crédito</label>
             </value>
             <value>
-                <fullName>MCM (MultiChannel Managemt)</fullName>
-                <default>false</default>
-                <label>MCM (MultiChannel Managemt)</label>
-            </value>
-            <value>
-                <fullName>Business Application Generator</fullName>
-                <default>false</default>
-                <label>Business Application Generator</label>
-            </value>
-            <value>
-                <fullName>Business Support Aplication</fullName>
-                <default>false</default>
-                <label>Business Support Aplication</label>
-            </value>
-            <value>
-                <fullName>BRE (Motor de reglas)</fullName>
-                <default>false</default>
-                <label>BRE (Motor de reglas)</label>
-            </value>
-            <value>
-                <fullName>Business Application Products (Plataforma de Ventas)</fullName>
-                <default>false</default>
-                <label>Business Application Products (Plataforma de Ventas)</label>
-            </value>
-            <value>
-                <fullName>BackOffice</fullName>
-                <default>false</default>
-                <label>BackOffice</label>
-            </value>
-            <value>
-                <fullName>Online Banking Personas</fullName>
-                <default>false</default>
-                <label>Online Banking Personas</label>
-            </value>
-            <value>
-                <fullName>Mobile Banking Personas</fullName>
-                <default>false</default>
-                <label>Mobile Banking Personas</label>
-            </value>
-            <value>
-                <fullName>Kioskos</fullName>
-                <default>false</default>
-                <label>Kioskos</label>
-            </value>
-            <value>
-                <fullName>Enterprise Banking</fullName>
-                <default>false</default>
-                <label>Enterprise Banking</label>
-            </value>
-            <value>
-                <fullName>Rapid Cash</fullName>
-                <default>false</default>
-                <label>Rapid Cash</label>
-            </value>
-            <value>
                 <fullName>DIPS</fullName>
                 <default>false</default>
                 <label>DIPS</label>
+            </value>
+            <value>
+                <fullName>DIPS (Modulo 19)</fullName>
+                <default>false</default>
+                <label>DIPS (Modulo 19)</label>
             </value>
             <value>
                 <fullName>ECCO</fullName>
@@ -148,18 +93,78 @@
                 <label>ECCO</label>
             </value>
             <value>
+                <fullName>Enterprise Banking</fullName>
+                <default>false</default>
+                <label>Enterprise Banking</label>
+            </value>
+            <value>
+                <fullName>Flujos</fullName>
+                <default>false</default>
+                <label>Flujos</label>
+            </value>
+            <value>
+                <fullName>Garantías (Módulo 28)</fullName>
+                <default>false</default>
+                <label>Garantías (Módulo 28)</label>
+            </value>
+            <value>
                 <fullName>IMS</fullName>
                 <default>false</default>
                 <label>IMS</label>
             </value>
+            <value>
+                <fullName>Kioskos</fullName>
+                <default>false</default>
+                <label>Kioskos</label>
+            </value>
+            <value>
+                <fullName>MCM (MultiChannel Managemt)</fullName>
+                <default>false</default>
+                <label>MCM (MultiChannel Managemt)</label>
+            </value>
+            <value>
+                <fullName>Mobile Banking Personas</fullName>
+                <default>false</default>
+                <label>Mobile Banking Personas</label>
+            </value>
+            <value>
+                <fullName>Núcleo del Sistema</fullName>
+                <default>false</default>
+                <label>Núcleo del Sistema</label>
+            </value>
+            <value>
+                <fullName>Online Banking Personas</fullName>
+                <default>false</default>
+                <label>Online Banking Personas</label>
+            </value>
+            <value>
+                <fullName>Rapid Cash</fullName>
+                <default>false</default>
+                <label>Rapid Cash</label>
+            </value>
+            <value>
+                <fullName>Reportes (Módulo 21)</fullName>
+                <default>false</default>
+                <label>Reportes (Módulo 21)</label>
+            </value>
+            <value>
+                <fullName>Tarjeta de Débito (Módulo 15)</fullName>
+                <default>false</default>
+                <label>Tarjeta de Débito (Módulo 15)</label>
+            </value>
+            <value>
+                <fullName>Tesorería (Módulo 12)</fullName>
+                <default>false</default>
+                <label>Tesorería (Módulo 12)</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Núcleo del Sistema</valueName>
+            <valueName>Cajas y Bóveda (Módulo 3)</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Cajas y Bóveda (Módulo 3)</valueName>
+            <valueName>Calendarizador Procesos Bach</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
@@ -179,11 +184,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Tesorería (Módulo 12)</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Tarjeta de Débito (Módulo 15)</valueName>
+            <valueName>Contabilidad (Módulo 20)</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
@@ -191,7 +192,11 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Contabilidad (Módulo 20)</valueName>
+            <valueName>Garantías (Módulo 28)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FISA System</controllingFieldValue>
+            <valueName>Núcleo del Sistema</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
@@ -199,11 +204,11 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Garantías (Módulo 28)</valueName>
+            <valueName>Tarjeta de Débito (Módulo 15)</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
-            <valueName>Calendarizador Procesos Bach</valueName>
+            <valueName>Tesorería (Módulo 12)</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA CreditCard</controllingFieldValue>
@@ -211,15 +216,7 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>MCM (MultiChannel Managemt)</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>Business Application Generator</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>Business Support Aplication</valueName>
+            <valueName>BackOffice</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
@@ -227,19 +224,19 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
+            <valueName>Business Application Generator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OMNIA</controllingFieldValue>
             <valueName>Business Application Products (Plataforma de Ventas)</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>BackOffice</valueName>
+            <valueName>Business Support Aplication</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>Online Banking Personas</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>Mobile Banking Personas</valueName>
+            <valueName>Enterprise Banking</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
@@ -247,7 +244,15 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
-            <valueName>Enterprise Banking</valueName>
+            <valueName>MCM (MultiChannel Managemt)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OMNIA</controllingFieldValue>
+            <valueName>Mobile Banking Personas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OMNIA</controllingFieldValue>
+            <valueName>Online Banking Personas</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
