@@ -183,6 +183,7 @@
 		<name>CustomTab</name>
 	</types>
 	<types>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
 		<members>unfiled$public/CommunityWelcomeEmailTemplate</members>
 		<members>unfiled$public/FS_PlantillaEncuestaFISA</members>
 		<members>unfiled$public/FS_TiempoEstimadoRespuesta</members>
@@ -200,9 +201,11 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
+		<members>AceptaEstadoChatter</members>
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
 		<members>FS_CustomSurveyFlow</members>
 		<members>FS_EncuestasAutomatizadas</members>
+		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
 		<members>SurveyQuestionResponseClone</members>
 		<name>Flow</name>
@@ -223,6 +226,7 @@
 	</types>
 	<types>
 		<members>fs_Inicio</members>
+		<members>fs_CampoPendienteCaso</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
@@ -265,12 +269,20 @@
 		<name>PermissionSetGroup</name>
 	</types>
 	<types>
+		<members>Case.FS_AnalisisPrevioPS</members>
 		<members>Case.FS_CamposControlConsulta</members>
 		<members>Case.FS_CamposControlIncidente</members>
 		<members>Case.FS_CamposControlIncidenteDefinitivo</members>
 		<members>Case.FS_CamposControlSolicitud</members>
+		<members>Case.FS_CertificadoPS</members>
+		<members>Case.FS_DEFPS</members>
 		<members>Case.FS_DatosEncuesta</members>
+		<members>Case.FS_DesarolloPS</members>
 		<members>Case.FS_Detalles_Planificacion_PS</members>
+		<members>Case.FS_EnProduccionPS</members>
+		<members>Case.FS_EntregadoPS</members>
+		<members>Case.FS_EstimacionMacroPS</members>
+		<members>Case.FS_PropuestaEconomicaPS</members>
 		<members>Case.Reuniones_internas</members>
 		<name>QuickAction</name>
 	</types>
@@ -288,6 +300,7 @@
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
 		<members>Case.FS_Datos_Es_Precontratado</members>
 		<members>Case.FS_Datos_Licencia_Recurrente</members>
+		<members>Case.FS_FechaCompromisoEntrega</members>
 		<members>Case.FS_Fecha_Desarollo_Listo</members>
 		<members>Case.FS_PrevenirEditarCampoProyecto</members>
 		<members>Case.FS_PrevenirEditarDetallesFinancieros</members>
@@ -312,6 +325,7 @@
 		<members>Case.FS_ValidacionRechazoSolucionIPN2</members>
 		<members>Case.FS_ValidacionRespuestaCliente</members>
 		<members>Case.FS_ValidacionSolucionCortoPlazo</members>
+		<members>Case.FS_ValidacionAprobacionAnalisisP</members>
 		<members>Case.FS_ValidacionTipoIncidente</members>
 		<members>Case.FS_Validacion_Campo_Dias_que_Aplica_LR</members>
 		<members>Case.FS_Validacion_Campos_En_Blanco</members>

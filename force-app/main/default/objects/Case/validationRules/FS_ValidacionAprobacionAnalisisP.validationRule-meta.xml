@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_ValidacionAprobacionAnalisisP</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  ISPICKVAL(FS_AceptaAnalisisPrevio__c, &apos;Si&apos;),
+  ISCHANGED(FS_DiasAprobacionAnalisisPrevio__c),
+  $Profile.Name  &lt;&gt; &apos;Administrador del sistema&apos;
+)</errorConditionFormula>
+    <errorMessage>No puede modificar los días de aprobación del análisis previo si ya fueron aprobados.</errorMessage>
+</ValidationRule>

@@ -553,6 +553,106 @@ public with sharing class CaseTriggerHelperPMPS {
         
     }
     
+    /*public static void envioNotificacionFinanzas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
+        
+        for(Case item: newCaseList){
+            Case caso = oldCaseMap.get(item.Id);
+            if(caso.Status != item.Status && ( item.Status == 'Dado de Baja' || item.Status == 'En Planificación') ){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                String titulo;
+                decimal contadorDias;
+                decimal Total ;
+                
+                if(item.Status == 'Dado de Baja'){
+                    titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
+                }else{
+                    titulo = 'El Cliente Aprobo la Propuesta economica del Caso Numero: '+item.CaseNumber;
+                }
+                
+                String descripcion = 'El caso '+ item.CaseNumber+ ' para el cliente '+ item.FS_NombreContacto__c +  ' ha cambiado de estado, por favor dar seguimiento';
+                
+                if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.FS_Buscar_Proyecto__r.FS_Es_Pre_contratado__c == false){
+                    //contadorDias =  Integer.valueOf(item.FS_DiasAprobacionAnalisisPrevio__c);
+                    //Total = item.FS_TotalUSDAnalisisPrevio__c;
+                    descripcion = descripcion + 'El Cliente acepto el Analisis Previo con la cantidad de Dias: '+ item.FS_DiasAprobacionAnalisisPrevio__c + 
+                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre__c + ' y el total USD: ' + item.FS_TotalUSDAnalisisPrevio__c + ' \n' ;
+                }
+                if(item.FS_AceptaEstimacionMacro__c == 'Si' && item.FS_Buscar_Proyecto2__r.FS_Es_Pre_contratado__c == false){
+                    //contadorDias = contadorDias +  Integer.valueOf(item.FS_DiasAprobacionEstimacionMacro__c);
+                    //Total = Total + item.FS_TotalUSDEstimacionMacro__c;
+                    descripcion = descripcion + 'El Cliente acepto la Estimacion Macro con la cantidad de Dias: ' + item.FS_DiasAprobacionEstimacionMacro__c +
+                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre2__c + ' y el total USD: ' + item.FS_TotalUSDEstimacionMacro__c + ' \n' ;
+                    
+                }else if(item.FS_AceptaEstimacionMacro__c == 'No' && item.FS_Buscar_Proyecto2__r.FS_Es_Pre_contratado__c == false){
+                    //contadorDias = contadorDias + Integer.valueOf(item.FS_DiasDEF__c);
+                    //Total = Total + (item.FS_DiasDEF__c * item.FS_Tarifa_Dias_Hombre2__c);
+                    descripcion = descripcion + 'El Cliente rechazo la Estimacion Macro, la cantidad de Dias DEF fueron: ' + item.FS_DiasDEF__c + 
+                                  ' la tarifa es la siguiente: ' + + item.FS_Tarifa_Dias_Hombre2__c + ' \n' ;
+                }
+                
+                if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.FS_Buscar_Proyecto4__r.FS_Es_Pre_contratado__c == false){
+                     //contadorDias = contadorDias +  Integer.valueOf(item.FS_DiasAprobacionPropuestaEconomica__c);
+                     //Total = Total + item.FS_TotalUSDPropuestaEconomicaF__c;
+                     descripcion = descripcion + 'El Cliente acepto la Propuesta Economica con la cantidad de Dias: ' + item.FS_DiasAprobacionPropuestaEconomica__c +
+                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre4__c + ' y el total USD: ' + item.FS_TotalUSDPropuestaEconomicaF__c + 
+                                  ' Aplica Licencia Recurrente: ' + item.FS_Aplica_Licencia_Recurrente__c + ' Cuándo Aplica LR: ' + item.FS_Cuando_Aplica_LR__c + 
+                                  ' Días que Aplica LR: ' + item.FS_Dias_que_Aplica_LR__c + ' \n' ;
+                }
+                
+                //descripcion = 'Dias Totales: ' + contadorDias + 'Sumatoria Total USD: ' + Total;
+                //envio dde correo
+
+                   // enviarNotificacion('pfinanzas94@gmail.com', caso.Id, titulo, descripcion);
+
+                
+                
+            } 
+        }
+    }*/
+    
+    
+    /**
+     * @method      enviarNotificacion
+     * @description Method to send email notification
+     * @author      Intellect Systems - 2024-12-19
+     * @param       usuarioId
+     * @param       recordId
+     * @param       titulo
+     * @param       descripcion
+     */
+    /*public static void enviarNotificacion(String email, String recordId, String titulo, String descripcion) {
+
+        List<Messaging.SingleEmailMessage> MessageList = new List<Messaging.SingleEmailMessage>();
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        EmailTemplate plantilla = CaseTriggerHelper.mapPlantillas.get('FS_NotificacionInterna');
+
+        
+        String baseUrl = URL.getOrgDomainUrl().toExternalForm() + '/' + recordId;
+        String urlLogo = CaseTriggerHelper.getLogoImagen();
+        String asunnto = titulo;
+        String html = plantilla.HTMLValue.replace('{contenido}', descripcion.replace('\n', '<br/>'));
+        html = html.replace('{linkRecord}', baseUrl);
+        html = CaseTriggerHelper.getLogoImagen() + html;
+        
+        
+        html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
+        html = html.replace('<![CDATA[', '');
+        mail.setSubject(titulo);
+        mail.setHtmlBody(html);
+        mail.saveAsActivity = false;
+        //mail.setOrgWideEmailAddressId(owea.Id);
+        
+        try{
+            mail.setBccAddresses(  new List<String>{email});
+            MessageList.add(mail);          
+            Messaging.SendEmailResult[] results = Messaging.sendEmail(MessageList);
+        }catch(Exception ex){
+            System.debug(ex.getMessage()+' ----- '+ex.getLineNumber());
+        }
+    }*/
+    
+    
+    
     
 
 }

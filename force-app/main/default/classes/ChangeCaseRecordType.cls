@@ -50,7 +50,7 @@ public with sharing class ChangeCaseRecordType {
             caso.FS_TipoIncidente__c = '';
             caso.FS_SubEstado__c = '';
             caso.FS_FechaCompromisoEntrega__c = null;
-            caso.FS_InformacionCompleta__c = '';
+            caso.FS_RequiereInformacionAdicional__c = false;
             caso.FS_NumeroRequerimientosNuevo__c = null;
 
             if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId) {

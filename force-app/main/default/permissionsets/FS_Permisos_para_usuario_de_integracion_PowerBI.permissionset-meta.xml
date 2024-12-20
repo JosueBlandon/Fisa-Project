@@ -350,6 +350,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_AceptacionSolucionSalesforce__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_AgenteN2__c</field>
         <readable>true</readable>
@@ -566,6 +571,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_EnviarNotificacionCertificado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_EnviarNotificacionEntregado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_EnviarNotificacionProduccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_EnvioNotificacionDEF__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -630,6 +650,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_FechaCertificacionCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_FechaCompromisoEntrega__c</field>
         <readable>true</readable>
@@ -677,6 +702,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_FechaEstadoActual__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_FechaPuestaProduccionCliente__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
