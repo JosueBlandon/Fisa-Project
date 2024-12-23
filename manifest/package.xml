@@ -232,7 +232,6 @@
 		<name>Layout</name>
 	</types>
 	<types>
-		<members>fs_customLookup</members>
 		<members>fs_Inicio</members>
 		<members>fs_CampoPendienteCaso</members>
 		<name>LightningComponentBundle</name>
