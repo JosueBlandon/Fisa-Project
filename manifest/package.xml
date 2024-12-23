@@ -105,6 +105,8 @@
 		<members>Case.FS_EnviarNotificacionCertificado__c</members>
 		<members>Case.FS_EnviarNotificacionEntregado__c</members>
 		<members>Case.FS_EnviarNotificacionProduccion__c</members>
+		<members>Case.FS_FechaCertificacionCliente__c</members>
+		<members>Case.FS_FechaPuestaProduccionCliente__c</members>
 		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
@@ -230,6 +232,7 @@
 		<name>Layout</name>
 	</types>
 	<types>
+		<members>fs_customLookup</members>
 		<members>fs_Inicio</members>
 		<members>fs_CampoPendienteCaso</members>
 		<name>LightningComponentBundle</name>
