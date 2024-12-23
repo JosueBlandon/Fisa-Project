@@ -71,6 +71,7 @@
 		<members>Case.FS_Buscar_Proyecto4__c</members>
 		<members>Case.FS_EstadoAnterior__c</members>
 		<members>Case.FS_AceptaAnalisisPrevio__c</members>
+		<members>Case.FS_AceptacionSolucionSalesforce__c</members>
 		<members>Case.FS_EnvioNotificacion__c</members>
 		<members>Case.FS_FechaAprobacionCliente__c</members>
 		<members>Case.FS_AceptaEstimacionMacro__c</members>
@@ -100,6 +101,10 @@
 		<members>Case.FS_DiasAprobacionPropuestaEconomica__c</members>
 		<members>Case.FS_TotalUSDEstimacionMacro__c</members>
 		<members>Case.FS_TotalUSDPropuestaEconomica__c</members>
+		<members>Case.FS_DiasDEF__c</members>
+		<members>Case.FS_EnviarNotificacionCertificado__c</members>
+		<members>Case.FS_EnviarNotificacionEntregado__c</members>
+		<members>Case.FS_EnviarNotificacionProduccion__c</members>
 		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
