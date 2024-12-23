@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Nuevo</fullName>
+        <default>true</default>
+        <label>Nuevo</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Análisis</fullName>
+        <default>false</default>
+        <label>Análisis Previo</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Estimación Macro</fullName>
+        <default>false</default>
+        <label>Estimación Macro</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Documento de Especificación Funcional</fullName>
+        <default>false</default>
+        <label>Documento de Especificación Funcional</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Propuesta Económica</fullName>
+        <default>false</default>
+        <label>En Propuesta Económica</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Planificación</fullName>
+        <default>false</default>
+        <label>En Planificación</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Desarrollo</fullName>
+        <default>false</default>
+        <label>En Desarrollo</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Pruebas</fullName>
+        <default>false</default>
+        <label>En Pruebas</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Validación de Respuesta (Cliente)</fullName>
+        <default>false</default>
+        <label>Entregado</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Certificado</fullName>
+        <default>false</default>
+        <label>Certificado</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Producción</fullName>
+        <default>false</default>
+        <label>En Producción</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Aprobación 1er Costo</fullName>
+        <default>false</default>
+        <label>Aprobación 1er Costo</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Análisis Falla Operativa</fullName>
+        <default>false</default>
+        <label>Análisis Falla Operativa</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Pendiente de Respuesta CSAT</fullName>
+        <default>false</default>
+        <label>Pendiente de Respuesta CSAT</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cerrado</fullName>
+        <default>false</default>
+        <label>Cerrado</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Dado de Baja</fullName>
+        <default>false</default>
+        <label>Dado de Baja</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Espera de Respuesta del Cliente</fullName>
+        <default>false</default>
+        <label>En Espera de Respuesta del Cliente</label>
+        <closed>false</closed>
+    </standardValue>
+</StandardValueSet>

@@ -64,10 +64,16 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             this.data.caso.FS_Tipo_de_Aprobacion__c = '';
             this.data.caso.FS_Fecha_de_Pase_Produccion__c = '';
             this.data.caso.FS_ComentariosRespuesta__c = '';
-            if(response.caso.Status === 'Certificado') {
+            if(response.caso.Status === 'Certificado' && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
                 this.data.pendienteEstadoCertificado = true;
                 this.data.pendienteRespuestaCertificado = true;
-            }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false) {
+            }else if(response.caso.Status === 'Certificado' && response.caso.FS_EnviarNotificacionCertificado__c == true) {
+                this.data.pendienteEstadoCertificado = true;
+                this.data.pendienteRespuestaCertificado = true;
+            }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
+                this.data.pendienteEstadoEnProduccion = true;
+                this.data.pendienteRespuestaEnProduccion = true;
+            }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_EnviarNotificacionProduccion__c == true) {
                 this.data.pendienteEstadoEnProduccion = true;
                 this.data.pendienteRespuestaEnProduccion = true;
             }else if(response.caso.Status === "En Análisis"  && response.caso.FS_EnvioNotificacion__c === true){
@@ -109,10 +115,13 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === true){
                 this.data.pendienteInformacionDetalle = true;
                 this.data.pendienteInformacion = true;
-            }else if(response.caso.FS_SubEstado__c === "Instalación de Parche"){
+            }else if(response.caso.FS_SubEstado__c === "Instalación de Parche" || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)' ) ){
                 this.data.pendienteInstalacionParcheDetalle = true;
                 this.data.pendienteInstalacionParche = true;
-            }else if(response.caso.FS_SubEstado__c === "Paso a Producción"){
+            }else if(response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento'){
+                this.data.pendientePaseProduccionDetalle = true;
+                this.data.pendientePaseProduccion = true;
+            }else if(response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_EnviarNotificacionCertificado__c == true){
                 this.data.pendientePaseProduccionDetalle = true;
                 this.data.pendientePaseProduccion = true;
             }else if(response.caso.FS_SubEstado__c === "Paso a Producción Confirmado" && response.caso.Status === "Pendiente de Respuesta CSAT"){

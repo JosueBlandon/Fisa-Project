@@ -165,6 +165,10 @@
 		<name>CustomField</name>
 	</types>
 	<types>
+		<members>FS_CorreoFinanzas</members>
+		<name>CustomLabel</name>
+	</types>
+	<types>
 		<members>FS_Project_Jira.X001</members>
 		<members>FS_Project_Jira.X002</members>
 		<members>FS_Project_Jira.X003</members>
@@ -281,6 +285,7 @@
 		<members>Case.FS_CamposControlIncidente</members>
 		<members>Case.FS_CamposControlIncidenteDefinitivo</members>
 		<members>Case.FS_CamposControlSolicitud</members>
+		<members>Case.FS_Campos_de_Control_PS</members>
 		<members>Case.FS_CertificadoPS</members>
 		<members>Case.FS_DEFPS</members>
 		<members>Case.FS_DatosEncuesta</members>
@@ -302,6 +307,10 @@
 		<members>Entitlement</members>
 		<name>Settings</name>
 	</types>
+	<types>
+        <members>CaseStatus</members>
+        <name>StandardValueSet</name>
+    </types>
 	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
