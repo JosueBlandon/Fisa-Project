@@ -33,7 +33,7 @@ public class CaseTriggerHelperPMPSTest {
             FS_ProductoAdquirido__c p = DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', '');
             test.startTest();
             DataFactory.insertCase(acc, cont, p, 'FS_Requerimiento');
-            //DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
+            DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
             DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
             test.stopTest();
         }
@@ -66,8 +66,6 @@ public class CaseTriggerHelperPMPSTest {
             oldRecords.put(record.Id, record);
             
             record.FS_TipoRequerimiento__c = 'Master';
-            //newCaseClone = record;
-           // newCaseClone2 = record;
             record.FS_Notificaciones__c = 'Estimación Macro';
             record.FS_Aplica_Licencia_Recurrente__c = 'Si';
             record.FS_Cuando_Aplica_LR__c = 'Entrega de Solución';
@@ -84,22 +82,6 @@ public class CaseTriggerHelperPMPSTest {
         
         update updateCasos;
         update oldRecords.values();
-        
-        //insert newCaseClone;
-        //insert newCaseClone2;
-        
-        //oldRecords2.put(newCaseClone.Id, newCaseClone);
-        //newCaseClone.FS_RequiereInformacionAdicional__c = true;
-        //newCaseClone.Status = 'En Análisis';
-       // update oldRecords2.values();
-        //update newCaseClone;
-        
-        
-        //oldRecords3.put(newCaseClone2.Id, newCaseClone2);
-        //newCaseClone2.FS_RequiereInformacionAdicional__c = true;
-        //newCaseClone2.Status = 'Pendiente de Respuesta CSAT'; 
-       // update oldRecords3.values();
-       // update newCaseClone2;
         
         
         
@@ -146,7 +128,7 @@ public class CaseTriggerHelperPMPSTest {
      */
     @isTest
     static void caseDocumentoFuncional() {
-        List<Case> casosRequerimiento =  [	SELECT	Id, Status, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c  
+        List<Case> casosRequerimiento =  [	SELECT	Id, Status, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c, FS_Buscar_Proyecto__c  
                                             FROM 	Case 
                                             WHERE	RecordTypeId =: REQUERIMIENTO_TIPO_REGISTRO];
 

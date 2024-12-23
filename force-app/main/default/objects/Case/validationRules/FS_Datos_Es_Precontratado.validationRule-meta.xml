@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Datos_Es_Precontratado</fullName>
-    <active>true</active>
+    <active>false</active>
     <description>Validación de campos requeridos si es precontratado.</description>
     <errorConditionFormula>OR(
 AND(

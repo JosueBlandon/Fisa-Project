@@ -19,7 +19,7 @@ OR(
 ISBLANK(PRIORVALUE(FS_MotivoCambioFechaEntrega__c)), 
 ISNULL(PRIORVALUE(FS_MotivoCambioFechaEntrega__c))
 ),
-NOT(ISPICKVAL(FS_InformacionCompleta__c, &apos;&apos;))
+FS_RequiereInformacionAdicional__c = false
 )</errorConditionFormula>
     <errorDisplayField>FS_MotivoCambioFechaEntrega__c</errorDisplayField>
     <errorMessage>Debe eleigir una opcion en el campo Motivo de Cambio de Fecha Entrega, cuando la Fecha Compromiso Entrega cambia.</errorMessage>

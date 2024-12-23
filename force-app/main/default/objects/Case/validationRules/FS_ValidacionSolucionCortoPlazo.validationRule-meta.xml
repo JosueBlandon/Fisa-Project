@@ -5,7 +5,7 @@
     <errorConditionFormula>AND(
 !ISNEW(),
 ISCHANGED(FS_SolucionCortoPlazo__c),
-ISCHANGED(FS_InformacionCompleta__c)
+ISCHANGED(FS_RequiereInformacionAdicional__c)
 )</errorConditionFormula>
     <errorDisplayField>FS_SolucionCortoPlazo__c</errorDisplayField>
     <errorMessage>No puede seleccionar esta campo todavía.</errorMessage>

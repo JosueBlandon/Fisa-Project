@@ -45,6 +45,7 @@ public class FeedCommentTriggerHelper_Test {
         Test.startTest();
         
             Case caso =  [Select Id, RecordType.DeveloperName, FS_SubEstadoQueSePideInformacion__c, FS_SubEstado__c from Case Where RecordTypeId = :CaseTriggerHelper.CONSULTA_TIPO_REGISTRO];
+        
             
             System.runAs(u) {
                 FeedItem fi = new FeedItem(ParentId = caso.Id, Body = 'Test', Visibility = 'AllUsers');
@@ -74,7 +75,7 @@ public class FeedCommentTriggerHelper_Test {
         update caso; 
         
         Test.startTest();
-            caso.FS_InformacionCompleta__c = 'No';
+            caso.FS_RequiereInformacionAdicional__c = true;
             update caso;
             
             FeedItem fi = new FeedItem(ParentId = caso.Id, Body = 'Test', Visibility = 'AllUsers');
@@ -105,7 +106,7 @@ public class FeedCommentTriggerHelper_Test {
         
         Test.startTest();
             try {
-                caso.FS_InformacionCompleta__c = 'No';
+                caso.FS_RequiereInformacionAdicional__c = true;
                 update caso;
             
                 FeedItem fi = new FeedItem(ParentId = caso.Id, Body = 'Test', Visibility = 'AllUsers');
@@ -136,7 +137,7 @@ public class FeedCommentTriggerHelper_Test {
         update caso;
         
         Test.startTest();
-            caso.FS_InformacionCompleta__c = 'No';
+            caso.FS_RequiereInformacionAdicional__c = true;
             update caso;
             
             FeedItem fi = new FeedItem(ParentId = caso.Id, Body = 'Test', Visibility = 'AllUsers');
@@ -164,7 +165,7 @@ public class FeedCommentTriggerHelper_Test {
         update caso;
 
         Test.startTest();
-            caso.FS_InformacionCompleta__c = 'No';
+            caso.FS_RequiereInformacionAdicional__c = true;
             update caso;
             System.runAs(u){
                 try { 
@@ -193,7 +194,7 @@ public class FeedCommentTriggerHelper_Test {
         update caso;
 
         Test.startTest();
-            caso.FS_InformacionCompleta__c = 'No';
+            caso.FS_RequiereInformacionAdicional__c = true;
             update caso;
             
             FeedItem fi = new FeedItem(ParentId = caso.Id, Body = 'Test', Visibility = 'AllUsers');

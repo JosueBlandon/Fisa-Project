@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_FechaCompromisoEntrega</fullName>
+    <active>true</active>
+    <description>Valida que el campo fecha compromiso entrega sea mayor o igual a la fecha actual</description>
+    <errorConditionFormula>FS_FechaCompromisoEntrega__c  &lt;  TODAY()</errorConditionFormula>
+    <errorMessage>Ingrese una fecha mayor a la fecha actual.</errorMessage>
+</ValidationRule>

@@ -13,7 +13,7 @@ AND(
 RecordType.DeveloperName = &apos;FS_Incidente&apos;,
 ISPICKVAL(FS_SubEstado__c, &apos;Desarrollo Incidente Puntual&apos;),
 ISPICKVAL(FS_TipoIncidente__c, &apos;Puntual&apos;),
-ISPICKVAL(FS_InformacionCompleta__c, &apos;Si&apos;),
+FS_RequiereInformacionAdicional__c = false,
 ISBLANK(FS_FechaCompromisoEntrega__c)
 ),
 AND(
