@@ -15,7 +15,7 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>FS_FechaPuestaProduccionCliente__c</field>
+                <field>FS_Fecha_Puesta_en_Produccion__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>

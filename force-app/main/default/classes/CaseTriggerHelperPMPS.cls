@@ -459,6 +459,67 @@ public with sharing class CaseTriggerHelperPMPS {
                     
                 }
             }
+            
+            if(caso.FS_AceptaInstalacionParche__c != item.FS_AceptaInstalacionParche__c && item.FS_AceptaInstalacionParche__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_AceptaInstalacionParche__c == 'Si' && item.Status == 'Validación de Respuesta (Cliente)'){ 
+                    item.Status = 'Certificado';
+                    item.FS_RequiereInformacionAdicional__c = false;
+                    item.FS_EnviarNotificacionCertificado__c = false;
+                    item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_EnviarNotificacionEntregado__c = false;
+                    //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
+                    String titulo = 'EL CLIENTE APROBO LA VALIDACION DEL PARCHE '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
+                }else if(item.FS_AceptaInstalacionParche__c == 'No'){
+                    //item.Status = 'Validación de Respuesta (Cliente)';
+                   	item.FS_RequiereInformacionAdicional__c = false;
+                    item.FS_EnviarNotificacionCertificado__c = false;
+                    item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_EnviarNotificacionEntregado__c = false;
+
+                    /*if(!Test.isRunningTest()){
+                        CaseTriggerHelper.envioCorreo(item, 'FS_RechazoRespuesta', false);
+                    }*/
+                    
+                    String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
+                    
+                    
+                }
+            }
+            
+            if(caso.FS_Fecha_Puesta_en_Produccion__c != item.FS_Fecha_Puesta_en_Produccion__c && item.FS_Fecha_Puesta_en_Produccion__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_Fecha_Puesta_en_Produccion__c != NULL && item.Status == 'Certificado'){ 
+                    item.FS_EnviarNotificacionCertificado__c = false;
+                    //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
+                    String titulo = 'EL CLIENTE APROBO LA CERTIFICACION '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
+                }
+            }
+            
+            if(caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c != item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c && item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && item.Status == 'En Producción'){ 
+                    item.FS_EnviarNotificacionProduccion__c = false;
+                    //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
+                    String titulo = 'EL CLIENTE APROBO EL ENVIO A PRODUCCIÓN '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
+                }
+            }
         }
     }
     
@@ -549,11 +610,32 @@ public with sharing class CaseTriggerHelperPMPS {
                 
             }
             
+            if(caso.FS_EnviarNotificacionEntregado__c != item.FS_EnviarNotificacionEntregado__c && item.FS_EnviarNotificacionEntregado__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                //estado igual a 'entregado'
+                if(item.FS_EnviarNotificacionEntregado__c == true && item.Status == 'Validación de Respuesta (Cliente)'){
+                    item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
+                    //envio de notificacion campana - comunidad
+                    Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                 	customNotificationObj.setBody('Se envio una Solicitud para aprobacion del parche');
+				 	customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
+				 	customNotificationObj.setNotificationTypeId(cnType.id);
+				 	customNotificationObj.setSenderId(item.CreatedById);
+				 	customNotificationObj.setTargetId(item.Id);
+                    //envio de correo cliente
+                   	if(!Test.isRunningTest()){
+                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                    }
+                }
+                
+            }
+            
         }
         
     }
     
-    /*public static void envioNotificacionFinanzas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
+    public static void envioNotificacionFinanzas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -569,90 +651,77 @@ public with sharing class CaseTriggerHelperPMPS {
                     titulo = 'El Cliente Aprobo la Propuesta economica del Caso Numero: '+item.CaseNumber;
                 }
                 
-                String descripcion = 'El caso '+ item.CaseNumber+ ' para el cliente '+ item.FS_NombreContacto__c +  ' ha cambiado de estado, por favor dar seguimiento';
+                String descripcion = 'El caso '+ item.CaseNumber+ ' para el cliente '+ item.FS_NombreContacto__c +  ' ha cambiado de estado, por favor dar seguimiento. \n \n';
                 
                 if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.FS_Buscar_Proyecto__r.FS_Es_Pre_contratado__c == false){
                     //contadorDias =  Integer.valueOf(item.FS_DiasAprobacionAnalisisPrevio__c);
                     //Total = item.FS_TotalUSDAnalisisPrevio__c;
                     descripcion = descripcion + 'El Cliente acepto el Analisis Previo con la cantidad de Dias: '+ item.FS_DiasAprobacionAnalisisPrevio__c + 
-                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre__c + ' y el total USD: ' + item.FS_TotalUSDAnalisisPrevio__c + ' \n' ;
+                                  ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre__c + ' y el total USD: ' + item.FS_TotalUSDAnalisisPrevio__c + ' \n' ;
                 }
                 if(item.FS_AceptaEstimacionMacro__c == 'Si' && item.FS_Buscar_Proyecto2__r.FS_Es_Pre_contratado__c == false){
                     //contadorDias = contadorDias +  Integer.valueOf(item.FS_DiasAprobacionEstimacionMacro__c);
                     //Total = Total + item.FS_TotalUSDEstimacionMacro__c;
                     descripcion = descripcion + 'El Cliente acepto la Estimacion Macro con la cantidad de Dias: ' + item.FS_DiasAprobacionEstimacionMacro__c +
-                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre2__c + ' y el total USD: ' + item.FS_TotalUSDEstimacionMacro__c + ' \n' ;
+                                  ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre2__c + ' y el total USD: ' + item.FS_TotalUSDEstimacionMacro__c + ' \n' ;
                     
                 }else if(item.FS_AceptaEstimacionMacro__c == 'No' && item.FS_Buscar_Proyecto2__r.FS_Es_Pre_contratado__c == false){
                     //contadorDias = contadorDias + Integer.valueOf(item.FS_DiasDEF__c);
                     //Total = Total + (item.FS_DiasDEF__c * item.FS_Tarifa_Dias_Hombre2__c);
                     descripcion = descripcion + 'El Cliente rechazo la Estimacion Macro, la cantidad de Dias DEF fueron: ' + item.FS_DiasDEF__c + 
-                                  ' la tarifa es la siguiente: ' + + item.FS_Tarifa_Dias_Hombre2__c + ' \n' ;
+                                  ', la tarifa es la siguiente: ' + + item.FS_Tarifa_Dias_Hombre2__c + ' \n' ;
                 }
                 
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.FS_Buscar_Proyecto4__r.FS_Es_Pre_contratado__c == false){
                      //contadorDias = contadorDias +  Integer.valueOf(item.FS_DiasAprobacionPropuestaEconomica__c);
                      //Total = Total + item.FS_TotalUSDPropuestaEconomicaF__c;
                      descripcion = descripcion + 'El Cliente acepto la Propuesta Economica con la cantidad de Dias: ' + item.FS_DiasAprobacionPropuestaEconomica__c +
-                                  'mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre4__c + ' y el total USD: ' + item.FS_TotalUSDPropuestaEconomicaF__c + 
-                                  ' Aplica Licencia Recurrente: ' + item.FS_Aplica_Licencia_Recurrente__c + ' Cuándo Aplica LR: ' + item.FS_Cuando_Aplica_LR__c + 
-                                  ' Días que Aplica LR: ' + item.FS_Dias_que_Aplica_LR__c + ' \n' ;
+                                  ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre4__c + ' y el total USD: ' + item.FS_TotalUSDPropuestaEconomicaF__c + 
+                                  ', \nAplica Licencia Recurrente: ' + item.FS_Aplica_Licencia_Recurrente__c + ', Cuándo Aplica LR: ' + item.FS_Cuando_Aplica_LR__c + 
+                                  ', Días que Aplica LR: ' + item.FS_Dias_que_Aplica_LR__c + ' \n' ;
                 }
                 
                 //descripcion = 'Dias Totales: ' + contadorDias + 'Sumatoria Total USD: ' + Total;
-                //envio dde correo
-
-                   // enviarNotificacion('pfinanzas94@gmail.com', caso.Id, titulo, descripcion);
+                //envio de correo Finanzas
+                String correo = System.Label.FS_CorreoFinanzas;
+                enviarCorreoSimple(correo, titulo, descripcion, caso.Id);
 
                 
                 
             } 
         }
-    }*/
-    
+    }
     
     /**
-     * @method      enviarNotificacion
-     * @description Method to send email notification
+     * @method      enviarCorreoSimple
+     * @description Method to send email
      * @author      Intellect Systems - 2024-12-19
-     * @param       usuarioId
-     * @param       recordId
-     * @param       titulo
+     * @param       address
+     * @param       subject
      * @param       descripcion
+     * @param       recordId
      */
-    /*public static void enviarNotificacion(String email, String recordId, String titulo, String descripcion) {
 
-        List<Messaging.SingleEmailMessage> MessageList = new List<Messaging.SingleEmailMessage>();
+    public static void enviarCorreoSimple(String address, String subject, String descripcion, String recordId) {
+        OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where Address = :Label.FS_CorreoElectronicoServicio];
+
+        // Create an email message object
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        EmailTemplate plantilla = CaseTriggerHelper.mapPlantillas.get('FS_NotificacionInterna');
-
-        
-        String baseUrl = URL.getOrgDomainUrl().toExternalForm() + '/' + recordId;
-        String urlLogo = CaseTriggerHelper.getLogoImagen();
-        String asunnto = titulo;
-        String html = plantilla.HTMLValue.replace('{contenido}', descripcion.replace('\n', '<br/>'));
-        html = html.replace('{linkRecord}', baseUrl);
-        html = CaseTriggerHelper.getLogoImagen() + html;
-        
-        
-        html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
-        html = html.replace('<![CDATA[', '');
-        mail.setSubject(titulo);
-        mail.setHtmlBody(html);
-        mail.saveAsActivity = false;
-        //mail.setOrgWideEmailAddressId(owea.Id);
-        
+        String[] toAddresses = new String[] {address};
+        mail.setToAddresses(toAddresses);
+        mail.setSubject(subject);
+        mail.setPlainTextBody(descripcion);
+        mail.setWhatId(recordId);
+        mail.setOrgWideEmailAddressId(owea.Id);
+        //mail.saveAsActivity = false;
         try{
-            mail.setBccAddresses(  new List<String>{email});
-            MessageList.add(mail);          
-            Messaging.SendEmailResult[] results = Messaging.sendEmail(MessageList);
+            if(!Test.isRunningTest()){
+                Messaging.SendEmailResult[] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+            }
         }catch(Exception ex){
-            System.debug(ex.getMessage()+' ----- '+ex.getLineNumber());
+            System.debug(ex.getMessage()+'Error Correo Simple ----- '+ex.getLineNumber());
         }
-    }*/
-    
-    
-    
-    
+    }
+
 
 }
