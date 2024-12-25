@@ -70,6 +70,7 @@ public without sharing class DataFactory {
         acc.Name = 'Account Test';
         acc.OwnerId = adminUser.Id;
         insert acc;
+
         return acc;
     }
     
@@ -86,23 +87,21 @@ public without sharing class DataFactory {
         if(doInsert) {
         	insert acc;    
         }
-        
+
         return acc;
     }
     
     public static FS_Gestor_Cuenta__c insertNewManager(Boolean doInsert, Account acc){
-                
-        
         FS_Gestor_Cuenta__c gestor = new FS_Gestor_Cuenta__c();
         gestor.FS_Cuenta__c = acc.Id;
         gestor.FS_Project_Manager__c = userInfo.getUserId();
         gestor.FS_Area__c = 'Core';
         gestor.FS_Principal__c = false;        
-        
+
         if(doInsert) {
         	insert gestor;    
         }
-        
+
         return gestor;
     }
     
@@ -113,6 +112,7 @@ public without sharing class DataFactory {
         contc.AccountId = acc.Id;
         contc.Email = 'test@test.com';
         insert contc;
+
         return contc;
     }
     
@@ -121,7 +121,6 @@ public without sharing class DataFactory {
         Account cuenta =  [     SELECT	Id, Name  
                                 FROM 	Account 
                                 WHERE	Id =: acc.Id    ];
-        
         
         FS_Gestor_Cuenta__c gestor = new FS_Gestor_Cuenta__c();
         gestor.FS_Cuenta__c = cuenta.Id;
@@ -172,6 +171,7 @@ public without sharing class DataFactory {
         ltsRecords.add(gestor2);
         ltsRecords.add(gestor3);
         ltsRecords.add(gestor4);
+
         return ltsRecords;
     }
     
@@ -183,6 +183,7 @@ public without sharing class DataFactory {
         p.FS_SubModulo__c = subM;
         p.FS_Esta_activo__c = true;
         insert p;
+
         return p;
     }
     
@@ -207,8 +208,6 @@ public without sharing class DataFactory {
             proyectId = newProyect.Id;
         }
         
-        
-        
         Case caso = new Case();
         caso.AccountId = acc.Id;
         caso.ContactId = cont.Id;
@@ -222,6 +221,7 @@ public without sharing class DataFactory {
         caso.FS_AgenteN2__c = userInfo.getUserId();
         caso.RecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get(tipoRegistro).getRecordTypeId();
         insert caso;
+
         return caso;
     }
     
@@ -244,6 +244,7 @@ public without sharing class DataFactory {
         caso.RecordTypeId = tipoRegistro;
         caso.FS_RequiereInformacionAdicional__c = false;
         insert caso;
+
         return caso;
     }
     
@@ -281,6 +282,7 @@ public without sharing class DataFactory {
             u.UserName= 'test@myorg.com';
             insert u;
         }
+
         return u;
     }
     
@@ -295,6 +297,24 @@ public without sharing class DataFactory {
         insert SLA;
         
         return SLA;
-    }    
-    
+    }
+
+    public static FS_Proyecto__c insertProyect(Boolean doInsert, String name, String accId) {
+        FS_Proyecto__c newProyect = new FS_Proyecto__c();
+        
+        newProyect.Name = name;
+        newProyect.FS_Cliente__c = accId;
+        newProyect.FS_Tipo_de_Caso__c = 'Requerimiento';
+        newProyect.FS_Tarifa_Dias_Hombre__c = 56;
+        newProyect.FS_Numero_de_dias_contratados__c = 15;
+        newProyect.FS_Fecha_Inicio_Proyecto__c = system.today();
+        newProyect.FS_Fecha_Fin_Proyecto__c = system.today() + 30;
+        
+        if(doInsert) {
+        	insert newProyect;
+        }    
+        
+        return newProyect;            
+    }
+
 }
