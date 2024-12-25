@@ -16,6 +16,8 @@
 		<members>ControladorEncuesta_Test</members>
 		<members>CreateJiraRecord</members>
 		<members>CreateJiraRecord_Test</members>
+		<members>CustomLookupController</members>
+		<members>CustomLookupControllerTest</members>
 		<members>DataFactory</members>
 		<members>DuplicateChecker</members>
 		<members>DuplicateCheckerTest</members>
@@ -236,8 +238,10 @@
 		<name>Layout</name>
 	</types>
 	<types>
-		<members>fs_Inicio</members>
 		<members>fs_CampoPendienteCaso</members>
+		<members>fs_customLookup</members>
+		<members>fs_Inicio</members>
+		<members>fs_ldsUtils</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>

@@ -1,9 +1,9 @@
 /**
 **************************************************************************************************************
-* @author           Intellect Systems href=<info@intellectsystems.net>
+* @author           Intellect Systems
 * @project          Fisa Ecuador - Implementación CRM
-* @name             ClassName
-* @description      ClassDescription
+* @name             CreateJiraRecord
+* @description      Class to create and update jira records
 * @changes
 * ----------   ---------------------------   -----------------------------------------------------------------
 * Date         Author                        Description

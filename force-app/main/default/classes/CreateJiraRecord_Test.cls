@@ -1,9 +1,28 @@
+/**
+**************************************************************************************************************
+* @author           Intellect Systems
+* @project          Fisa Ecuador - Implementación CRM
+* @name             CreateJiraRecord_Test
+* @description      Test class to CreateJiraRecord
+* @changes
+* ----------   ---------------------------   -----------------------------------------------------------------
+* Date         Author                        Description
+* ----------   ---------------------------   -----------------------------------------------------------------
+* 2024-12-24   Intellect Systems             Initial version.
+**************************************************************************************************************
+*/
+
 @isTest
 public class CreateJiraRecord_Test {
 
     // Create a mock Case record
     public static final String TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
 
+    /**
+     * @method      setup
+     * @description Create fake data
+     * @author      Intellect Systems - 2024-12-24
+     */
     @testSetup
     static void setup() {       
         Account acc = DataFactory.insertAccount();
@@ -12,6 +31,11 @@ public class CreateJiraRecord_Test {
         Case cs = DataFactory.insertCase(acc, cont, prod, 'FS_Requerimiento');
     }
 
+    /**
+     * @method      testCreateJira
+     * @description Method to create Jira record
+     * @author      Intellect Systems - 2024-12-24
+     */
     @isTest
     static void testCreateJira() {
         // Mock the Case records
@@ -23,7 +47,7 @@ public class CreateJiraRecord_Test {
 
         // Call the createJira method
         Test.startTest();
-        	CreateJiraRecord.createJira(newRecords, oldRecords);
+            CreateJiraRecord.createJira(newRecords, oldRecords);
         Test.stopTest();
 
         // Assertions to validate the method's behavior
@@ -31,6 +55,11 @@ public class CreateJiraRecord_Test {
         System.assertEquals('FS_Requerimiento', newRecords[0].RecordType.DeveloperName);
     }
 
+    /**
+     * @method      testUpdateIssueJira
+     * @description Method to update Jira record
+     * @author      Intellect Systems - 2024-12-24
+     */
     @isTest
     static void testUpdateIssueJira() {
         // Mock Case records
@@ -42,8 +71,8 @@ public class CreateJiraRecord_Test {
 
         // Call the updateIssueJira method
         Test.startTest();
-        	CreateJiraRecord.updateIssueJira(newRecords, oldRecords);
-        	CreateJiraRecord.checkCloseJira(newRecords, oldRecords);
+            CreateJiraRecord.updateIssueJira(newRecords, oldRecords);
+            CreateJiraRecord.checkCloseJira(newRecords, oldRecords);
         Test.stopTest();
 
         // Assert the case was updated correctly
