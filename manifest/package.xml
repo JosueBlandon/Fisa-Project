@@ -217,7 +217,6 @@
 	<types>
 		<members>AceptaEstadoChatter</members>
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
-		<members>FS_CustomSurveyFlow</members>
 		<members>FS_EncuestasAutomatizadas</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
