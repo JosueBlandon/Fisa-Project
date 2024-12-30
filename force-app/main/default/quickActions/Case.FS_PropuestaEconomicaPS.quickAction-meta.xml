@@ -13,11 +13,6 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>FS_TotalUSDPropuestaEconomica__c</field>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
                 <field>FS_TotalUSDPropuestaEconomicaF__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>

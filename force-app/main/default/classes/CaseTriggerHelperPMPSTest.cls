@@ -365,6 +365,14 @@ public class CaseTriggerHelperPMPSTest {
         newCaseClone.Status = 'En Propuesta Económica';
         update newCaseClone;
         
+        newCaseClone.FS_AprobacionSolucion__c = 'Si';
+        newCaseClone.Status = 'Validación de Respuesta (Cliente)';
+        update newCaseClone;
+        
+        newCaseClone.FS_AprobacionSolucion__c = 'No';
+        newCaseClone.FS_ComentariosRechazoSolucion__c = 'prueba';
+        update newCaseClone;
+        
         newCaseClone.Status = 'En Espera de Respuesta del Cliente';
         update newCaseClone;
             
