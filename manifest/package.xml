@@ -13,6 +13,7 @@
 		<members>ControladorBaseConocimientos_Test</members>
 		<members>ControladorCrearCaso</members>
 		<members>ControladorCrearCaso_Test</members>
+		<members>ControladorEncuesta</members>
 		<members>ControladorEncuesta_Test</members>
 		<members>CreateJiraRecord</members>
 		<members>CreateJiraRecord_Test</members>
@@ -109,6 +110,7 @@
 		<members>Case.FS_EnviarNotificacionProduccion__c</members>
 		<members>Case.FS_FechaCertificacionCliente__c</members>
 		<members>Case.FS_FechaPuestaProduccionCliente__c</members>
+		<members>Case.FS_ResultadoEncuestaNumero__c</members>
 		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
@@ -120,6 +122,7 @@
 		<members>Contact.FS_Producto_3__c</members>
 		<members>Contact.FS_Producto_4__c</members>
 		<members>Contact.FS_Tipo_de_Contacto__c</members>
+		<members>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</members>
 		<members>FS_BaseConocimiento__c.FS_Activo__c</members>
 		<members>FS_BaseConocimiento__c.FS_Contenido__c</members>
 		<members>FS_BaseConocimiento__c.FS_Cuenta__c</members>
@@ -216,7 +219,6 @@
 	<types>
 		<members>AceptaEstadoChatter</members>
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
-		<members>FS_CustomSurveyFlow</members>
 		<members>FS_EncuestasAutomatizadas</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
@@ -240,6 +242,7 @@
 	<types>
 		<members>fs_CampoPendienteCaso</members>
 		<members>fs_customLookup</members>
+		<members>fs_Encuesta</members>
 		<members>fs_Inicio</members>
 		<members>fs_ldsUtils</members>
 		<name>LightningComponentBundle</name>
@@ -315,6 +318,19 @@
         <members>CaseStatus</members>
         <name>StandardValueSet</name>
     </types>
+	<types>
+		<members>FS_Cinco</members>
+		<members>FS_Cuatro</members>
+		<members>FS_Diez</members>
+		<members>FS_Dos</members>
+		<members>FS_Nueve</members>
+		<members>FS_Ocho</members>
+		<members>FS_Seis</members>
+		<members>FS_Siete</members>
+		<members>FS_Tres</members>
+		<members>FS_Uno</members>
+		<name>StaticResource</name>
+	</types>
 	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>

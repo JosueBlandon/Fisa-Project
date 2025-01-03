@@ -1,0 +1,112 @@
+<template>
+    <form>
+    <div style="width:100%; text-align: center;  "><img src={data.logoFisa} /> </div>
+    <template if:false={data.casoObjeto.esCerrado}>
+        <br /><br />
+        <font style="font-size: 28px; color:#57b888;">¿Como calificarías la resolución del Caso
+            {data.casoObjeto.numeroCaso}?</font>
+        <br />
+        <lightning-layout vertical-align="stretch" multiple-rows="true">
+            <lightning-layout-item padding="around-small" size="1">
+            </lightning-layout-item>
+            <!-- <lightning-layout-item padding="around-small" style={data.styleLogoMuyInsatisfecho} size="2">
+                <img src={data.logoMuyInsatisfecho} style="width: 100%;" name="logoMuyInsatisfecho"
+                    onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.styleLogoInsatisfecho} size="2">
+                <img src={data.logoInsatisfecho} style="width: 100%;" name="logoInsatisfecho" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.styleLogoNeutral} size="2">
+                <img src={data.logoNeutral} style="width: 100%;" name="logoNeutral" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.styleLogoSatisfecho} size="2">
+                <img src={data.logoSatisfecho} style="width: 100%;" name="logoSatisfecho" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.styleLogoMuySatisfecho} size="2">
+                <img src={data.logoMuySatisfecho} style="width: 100%;" name="logoMuySatisfecho" onclick={onclickImg} />
+            </lightning-layout-item> -->
+            
+            <lightning-layout-item padding="around-small" style={data.stylelogoUno} size="1">
+                <img src={data.logoUno} style="width: 100%;" name="logoUno"
+                    onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoDos} size="1">
+                <img src={data.logoDos} style="width: 100%;" name="logoDos"
+                    onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoTres} size="1">
+                <img src={data.logoTres} style="width: 100%;" name="logoTres"
+                    onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoCuatro} size="1">
+                <img src={data.logoCuatro} style="width: 100%;" name="logoCuatro"
+                    onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoCinco} size="1">
+                <img src={data.logoCinco} style="width: 100%;" name="logoCinco" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoSeis} size="1">
+                <img src={data.logoSeis} style="width: 100%;" name="logoSeis" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoSiete} size="1">
+                <img src={data.logoSiete} style="width: 100%;" name="logoSiete" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoOcho} size="1">
+                <img src={data.logoOcho} style="width: 100%;" name="logoOcho" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoNueve} size="1">
+                <img src={data.logoNueve} style="width: 100%;" name="logoNueve" onclick={onclickImg} />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" style={data.stylelogoDiez} size="1">
+                <img src={data.logoDiez} style="width: 100%;" name="logoDiez" onclick={onclickImg} />
+            </lightning-layout-item>
+
+
+
+
+            <lightning-layout-item padding="around-small" size="1">
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <lightning-layout vertical-align="stretch" multiple-rows="true">
+            <!-- lightning-layout-item padding="around-small" size="6" if:true={data.casoObjeto.mostrarMotivo} -->
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-combobox name="motivo" label="Seleccione un Motivo"
+                    value={data.casoObjeto.motivoSeleccionado} options={data.casoObjeto.listMotivoInsatisfaccion}
+                    onchange={onchangeMotivo} placeholder="Seleccione un Motivo" required></lightning-combobox>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="6">
+                <lightning-textarea name="comentarios" label="Comentarios" vaue={data.casoObjeto.comentarios}
+                    onchange={onchangeMotivo}></lightning-textarea>
+            </lightning-layout-item>
+        </lightning-layout>
+        <br />
+        <footer class="slds-modal__footer">
+            <lightning-button label="Enviar" title="Enviar" variant="brand" name="enviar" class="slds-m-left_x-small"
+                onclick={enviarEncuesta} disabled={data.casoObjeto.deshabilitarBoton}></lightning-button>
+        </footer>
+    </template>
+    <lightning-layout vertical-align="stretch" multiple-rows="true" if:true={data.casoObjeto.esCerrado}>
+        <lightning-layout-item padding="around-small" size="1">
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="2">
+            <img src={data.logoLike} style="width: 100%;" />
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small" size="9">
+            <br /><br /><br /><br />
+            <font style="font-size: 28px; color:#57b888;">¡Gracias por haber contestado la encuesta del caso
+                {data.casoObjeto.numeroCaso} !</font>
+        </lightning-layout-item>
+    </lightning-layout>
+
+    <template if:true={showSpinner}>
+        <div id="activityIndicator" class="slds-spinner_container">
+            <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+                <span class="slds-assistive-text">Loading, Please Wait...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </template>
+    </form>
+</template>

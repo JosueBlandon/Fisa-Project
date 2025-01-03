@@ -608,6 +608,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_ResultadoEncuestaNumero__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_ResultadoEncuesta__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1109,6 +1114,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FS_Encuesta__c.FS_MotivoInsatisfaccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

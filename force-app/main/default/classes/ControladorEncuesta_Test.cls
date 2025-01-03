@@ -18,7 +18,7 @@ public class ControladorEncuesta_Test {
         Test.startTest();
         caso.FS_AceptaRespuesta__c = 'Si';
         update caso;
-        ControladorEncuesta.actualizarCaso(JSON.serialize(ControladorEncuesta.getCaso(caso.Id, 'Muy Insatisfecho')));
+        ControladorEncuesta.actualizarCaso(JSON.serialize(ControladorEncuesta.getCaso(caso.Id, 'Muy Insatisfecho', '1')));
         Test.stopTest();
     }
 
