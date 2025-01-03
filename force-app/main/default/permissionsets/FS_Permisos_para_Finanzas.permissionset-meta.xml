@@ -446,11 +446,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.FS_ComentariosInternos__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.FS_ComentariosRechazoSolucion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -552,11 +547,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_EnviarNotificacionProduccion__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.FS_Enviar_Primer_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -867,11 +857,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_Project_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.FS_Project_Manager__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
