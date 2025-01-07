@@ -13,6 +13,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CustomLookupController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>GestorCuentaTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -432,6 +436,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_Referencia__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_ResultadoEncuestaNumero__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -907,6 +916,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FS_Encuesta__c.FS_CreadoPor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
