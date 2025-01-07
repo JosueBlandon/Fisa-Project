@@ -164,17 +164,22 @@ export default class Fs_customLookup extends LightningElement {
         this.isLoading = true;
         this.projectId = this.projectId == null ? this.idProject : this.projectId;
 
-        saveProyect({caseId: this.recordId, projectId: this.projectId})
-        .then(result => {
+        if(this.projectId == null) {
             this.isLoading = false;
-            this.fireToastMessage('Éxito', 'Proyecto asignado al caso', 'success');
-            this.dispatchEvent(new RefreshEvent());
-        })
-        .catch(error => {
-            this.isLoading = false;
-            this.error = error;
-            this.displayMessageError(error);
-        });
+            this.fireToastMessage('Error', 'Debe seleccionar un proyecto', 'error');
+        } else {
+            saveProyect({caseId: this.recordId, projectId: this.projectId})
+            .then(result => {
+                this.isLoading = false;
+                this.fireToastMessage('Éxito', 'Proyecto asignado al caso', 'success');
+                this.dispatchEvent(new RefreshEvent());
+            })
+            .catch(error => {
+                this.isLoading = false;
+                this.error = error;
+                this.displayMessageError(error);
+            });
+        }
     }
 
     isJSON(str) {
