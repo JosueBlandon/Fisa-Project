@@ -219,6 +219,7 @@
 	<types>
 		<members>AceptaEstadoChatter</members>
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
+		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
 		<members>FS_EncuestasAutomatizadas</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
@@ -373,5 +374,5 @@
 		<members>*</members>
 		<name>WorkflowAlert</name>
 	</types>
-	<version>62.0</version>
+	<version>63.0</version>
 </Package>

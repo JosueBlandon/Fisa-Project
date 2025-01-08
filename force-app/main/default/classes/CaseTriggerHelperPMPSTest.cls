@@ -82,10 +82,6 @@ public class CaseTriggerHelperPMPSTest {
         
         update updateCasos;
         update oldRecords.values();
-        
-        
-        
-
         CaseTriggerHelperPMPS.sendToJiraPMPS(updateCasos, oldRecords);
 
         List<Case> updateCasosThree = new List<Case>();
@@ -116,9 +112,6 @@ public class CaseTriggerHelperPMPSTest {
         }
 
         update updateCasosTwo;
-
-        //CaseTriggerHelperPMPS.validateChangeRecordType(updateCasosTwo, oldRecordsTwo);
-        //End validate change of case record type
     }
     
     /**
@@ -240,7 +233,7 @@ public class CaseTriggerHelperPMPSTest {
     static void caseTypeRequerimiento2() {
         List<Case> casosRequerimiento =  [	SELECT	Id, Status, AccountId, ContactId, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c,  
                                             FS_Producto__c, FS_Buscar_Proyecto__c, FS_Modulo__c, FS_SubModulo__c, FS_DescripcionCliente__c, FS_AgenteQA__c, FS_AgenteN2__c
-                                          	FROM 	Case 
+                                            FROM 	Case 
                                             WHERE	RecordTypeId =: REQUERIMIENTO_TIPO_REGISTRO];
 
         List<Case> updateCasos = new List<Case>();
@@ -253,18 +246,17 @@ public class CaseTriggerHelperPMPSTest {
             oldRecords.put(record.Id, record);
             newCaseClone.Status = 'Nuevo';
             newCaseClone.AccountId = record.AccountId;
-        	newCaseClone.ContactId = record.ContactId;
-        	newCaseClone.FS_Producto__c = record.FS_Producto__c;
-        	newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
-        	newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
-        	newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
-        	newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
-        	newCaseClone.FS_TipoIncidente__c = 'Puntual';
-        	newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
-        	newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
-        	newCaseClone.RecordTypeId = REQUERIMIENTO_TIPO_REGISTRO;
+            newCaseClone.ContactId = record.ContactId;
+            newCaseClone.FS_Producto__c = record.FS_Producto__c;
+            newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
+            newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
+            newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
+            newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
+            newCaseClone.FS_TipoIncidente__c = 'Puntual';
+            newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
+            newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
+            newCaseClone.RecordTypeId = REQUERIMIENTO_TIPO_REGISTRO;
             newCaseClone.Subject = 'Prueba1';
-            
         }
 
         Insert newCaseClone;
@@ -274,6 +266,7 @@ public class CaseTriggerHelperPMPSTest {
         
         newCaseClone.FS_RequiereInformacionAdicional__c = false;
         newCaseClone.Status = 'En Análisis';
+        newCaseClone.FS_DiasAprobacionAnalisisPrevio__c = 5;
         newCaseClone.FS_AceptaAnalisisPrevio__c = 'Si';
         update newCaseClone;
         
@@ -281,6 +274,8 @@ public class CaseTriggerHelperPMPSTest {
         update newCaseClone;
         
         newCaseClone.FS_AceptaEstimacionMacro__c = 'Si';
+        newCaseClone.FS_DiasAprobacionEstimacionMacro__c = 5;
+        newCaseClone.FS_DiasDEF__c = 5;
         newCaseClone.FS_AceptaAnalisisPrevio__c = 'Si';
         newCaseClone.Status = 'Estimación Macro'; 
         update newCaseClone;
@@ -295,27 +290,13 @@ public class CaseTriggerHelperPMPSTest {
         
         newCaseClone.FS_AceptaDEF__c = 'No';
         update newCaseClone;
-        
-        newCaseClone.FS_Acepta_Propuesta_Economica__c = 'Si';
-        newCaseClone.FS_AceptaDEF__c = 'Si';
-        newCaseClone.Status = 'En Propuesta Económica';
-        newCaseClone.FS_Aplica_Licencia_Recurrente__c = 'Si';
-        newCaseClone.FS_Dias_que_Aplica_LR__c = 5;
-        newCaseClone.FS_Cuando_Aplica_LR__c = 'Entrega de Solución';
-        update newCaseClone;
-        
-        newCaseClone.FS_Acepta_Propuesta_Economica__c = 'No';
-        update newCaseClone;
-        
-
-
     }
     
     @isTest
     static void caseTypeRequerimiento3() {
         List<Case> casosRequerimiento =  [	SELECT	Id, Status, AccountId, ContactId, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c,  
                                             FS_Producto__c, FS_Buscar_Proyecto__c, FS_Modulo__c, FS_SubModulo__c, FS_DescripcionCliente__c, FS_AgenteQA__c, FS_AgenteN2__c
-                                          	FROM 	Case 
+                                            FROM 	Case 
                                             WHERE	RecordTypeId =: REQUERIMIENTO_TIPO_REGISTRO];
         
         List<Case> updateCasos = new List<Case>();
@@ -328,18 +309,17 @@ public class CaseTriggerHelperPMPSTest {
             oldRecords.put(record.Id, record);
             newCaseClone.Status = 'Nuevo';
             newCaseClone.AccountId = record.AccountId;
-        	newCaseClone.ContactId = record.ContactId;
-        	newCaseClone.FS_Producto__c = record.FS_Producto__c;
-        	newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
-        	newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
-        	newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
-        	newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
-        	newCaseClone.FS_TipoIncidente__c = 'Puntual';
-        	newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
-        	newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
-        	newCaseClone.RecordTypeId = REQUERIMIENTO_TIPO_REGISTRO;
+            newCaseClone.ContactId = record.ContactId;
+            newCaseClone.FS_Producto__c = record.FS_Producto__c;
+            newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
+            newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
+            newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
+            newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
+            newCaseClone.FS_TipoIncidente__c = 'Puntual';
+            newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
+            newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
+            newCaseClone.RecordTypeId = REQUERIMIENTO_TIPO_REGISTRO;
             newCaseClone.Subject = 'Prueba2';
-            
         }
         
         Insert newCaseClone;
@@ -374,7 +354,52 @@ public class CaseTriggerHelperPMPSTest {
         update newCaseClone;
         
         newCaseClone.Status = 'En Espera de Respuesta del Cliente';
-        update newCaseClone;
-            
+        update newCaseClone;        
+    }
+    
+    
+    @isTest
+    static void caseTypeRequerimiento4() {
+        List<Case> casosRequerimiento =  [	SELECT	Id, Status, AccountId, ContactId, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c,  
+                                            FS_Producto__c, FS_Buscar_Proyecto__c, FS_Modulo__c, FS_SubModulo__c, FS_DescripcionCliente__c, FS_AgenteQA__c, FS_AgenteN2__c
+                                            FROM 	Case 
+                                            WHERE	RecordTypeId =: REQUERIMIENTO_TIPO_REGISTRO];
+
+        List<Case> updateCasos = new List<Case>();
+        List<Case> updateCasos2 = new List<Case>();
+        Map<Id, Case> oldRecords = new Map<Id, Case>();
+        Date day = System.today();
+        Case newCaseClone = new Case();
+        
+        for(Case record : casosRequerimiento) {
+            oldRecords.put(record.Id, record);
+            newCaseClone.Status = 'Nuevo';
+            newCaseClone.AccountId = record.AccountId;
+            newCaseClone.ContactId = record.ContactId;
+            newCaseClone.FS_Producto__c = record.FS_Producto__c;
+            newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
+            newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
+            newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
+            newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
+            newCaseClone.FS_TipoIncidente__c = 'Puntual';
+            newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
+            newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
+            newCaseClone.RecordTypeId = REQUERIMIENTO_TIPO_REGISTRO;
+            newCaseClone.Subject = 'Prueba1';
         }
+
+        Insert newCaseClone;
+
+        newCaseClone.FS_Acepta_Propuesta_Economica__c = 'Si';
+        newCaseClone.FS_AceptaDEF__c = 'Si';
+        newCaseClone.Status = 'En Propuesta Económica';
+        newCaseClone.FS_Aplica_Licencia_Recurrente__c = 'Si';
+        newCaseClone.FS_Dias_que_Aplica_LR__c = 5;
+        newCaseClone.FS_DiasAprobacionPropuestaEconomica__c = 5;
+        newCaseClone.FS_Cuando_Aplica_LR__c = 'Entrega de Solución';
+        update newCaseClone;
+        
+        newCaseClone.FS_Acepta_Propuesta_Economica__c = 'No';
+        update newCaseClone;
+    }
 }
