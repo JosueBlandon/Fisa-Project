@@ -61,7 +61,7 @@ export default class Fs_customLookup extends LightningElement {
                         },
                         {
                             fieldPath: 'FS_Tipo_de_Caso__c',
-                            operator: 'eq',
+                            operator: 'includes',
                             value: this.caseType
                         },
                         {

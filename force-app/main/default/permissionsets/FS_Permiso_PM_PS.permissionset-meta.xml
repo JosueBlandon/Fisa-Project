@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
+        <apexClass>CaseTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperPMPS</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChangeCaseRecordType</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ContactTriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -10,6 +26,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ContactTriggerHelper_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreateJiraRecord</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -465,6 +485,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_CasoRQOrigenNovedad__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_Cerrar_caso_en_Jira__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1643,32 +1668,32 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Cliente__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Es_Pre_contratado__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Fecha_Fin_Proyecto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Fecha_Inicio_Proyecto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Numero_de_dias_consumidos__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Numero_de_dias_contratados__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1678,12 +1703,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Tarifa_Dias_Hombre__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>FS_Proyecto__c.FS_Tipo_de_Caso__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1921,6 +1946,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>FS_Proyecto__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Respuestas_a_la_preguntas_de_encuestas__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -1962,6 +1996,10 @@
     </recordTypeVisibilities>
     <tabSettings>
         <tab>FS_Gestor_Cuenta__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>FS_Proyecto__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

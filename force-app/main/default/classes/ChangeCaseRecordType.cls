@@ -26,8 +26,7 @@ public with sharing class ChangeCaseRecordType {
     public static void validateChangeRecordType(List<Case> records, Map<Id, Case> oldRecords) {
         // Get a list of records
         List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
-                                                        FROM    FS_Project_Jira__mdt 
-                                                        WITH    SECURITY_ENFORCED  ];
+                                                        FROM    FS_Project_Jira__mdt ];
 
         //Close Jira
         if(!records.isEmpty()) {
@@ -50,7 +49,7 @@ public with sharing class ChangeCaseRecordType {
             caso.FS_TipoIncidente__c = '';
             caso.FS_SubEstado__c = '';
             caso.FS_FechaCompromisoEntrega__c = null;
-            caso.FS_RequiereInformacionAdicional__c = false;
+            caso.FS_InformacionCompleta__c = '';
             caso.FS_NumeroRequerimientosNuevo__c = null;
 
             if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId) {
