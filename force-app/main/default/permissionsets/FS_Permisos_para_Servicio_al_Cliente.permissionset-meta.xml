@@ -309,6 +309,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Cerrar_caso_en_Jira__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_ComentariosEncuesta__c</field>
         <readable>true</readable>

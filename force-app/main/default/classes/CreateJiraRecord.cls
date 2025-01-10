@@ -24,8 +24,7 @@ public without sharing class CreateJiraRecord {
     public static void createJira(List<Case> records, Map<Id, Case> oldRecords) { 
         // Get a list of records
         List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
-                                                        FROM    FS_Project_Jira__mdt 
-                                                        WITH    SECURITY_ENFORCED  ];
+                                                        FROM    FS_Project_Jira__mdt  ];
 
         List<Case> casesNew = new List<Case>();
         List<Case> casesOld = new List<Case>();
@@ -79,8 +78,7 @@ public without sharing class CreateJiraRecord {
     public static void checkCloseJira(List<Case> records, Map<Id, Case> oldRecords) {
         // Get a list of records
         List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
-                                                        FROM    FS_Project_Jira__mdt 
-                                                        WITH    SECURITY_ENFORCED  ];
+                                                        FROM    FS_Project_Jira__mdt ];
 
         // Initialize lists before loop
         List<Case> casesNew = new List<Case>();
