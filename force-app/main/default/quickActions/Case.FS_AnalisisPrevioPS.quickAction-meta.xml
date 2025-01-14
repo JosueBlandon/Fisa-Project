@@ -8,6 +8,11 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>FS_NombreProyecto__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>FS_Tarifa_Dias_Hombre__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>

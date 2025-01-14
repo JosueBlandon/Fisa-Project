@@ -40,7 +40,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
         pendienteAnalisisPrevio: false,
         pendienteEstadoEntregado: false,
         pendienteEstadoCertificado: false,
-        pendienteEstadoEnProduccion: false
+        pendienteEstadoEnProduccion: false,
+        pendienteEstadoEnProduccionRequerimiento: false
+        
     }
 
     connectedCallback() {
@@ -73,9 +75,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
                 this.data.pendienteEstadoEnProduccion = true;
                 this.data.pendienteRespuestaEnProduccion = true;
-            }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_EnviarNotificacionProduccion__c == true) {
-                this.data.pendienteEstadoEnProduccion = true;
-                this.data.pendienteRespuestaEnProduccion = true;
+            }else if(response.caso.Status === 'En Producción' && response.caso.FS_AceptacionSolucionSalesforce__c == null && response.caso.FS_EnviarNotificacionProduccion__c == true) {
+                this.data.pendienteEstadoEnProduccionRequerimiento = true;
+                this.data.pendienteRespuestaEnProduccionRequerimiento = true;
             }else if(response.caso.Status === "En Análisis"  && response.caso.FS_EnvioNotificacion__c === true){
                 this.data.pendienteAnalisisPrevio = true;
                 this.data.pendienteRespuestaAnalisisPrevio = true;   
@@ -115,7 +117,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === true){
                 this.data.pendienteInformacionDetalle = true;
                 this.data.pendienteInformacion = true;
-            }else if(response.caso.FS_SubEstado__c === "Instalación de Parche" || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)' ) ){
+            }else if((response.caso.FS_SubEstado__c === "Instalación de Parche" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)' ) ){
                 this.data.pendienteInstalacionParcheDetalle = true;
                 this.data.pendienteInstalacionParche = true;
             }else if(response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento'){
@@ -166,6 +168,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
         this.data.pendienteEstadoEntregado = false;
         this.data.pendienteEstadoCertificado = false;
         this.data.pendienteEstadoEnProduccion = false; 
+        this.data.pendienteEstadoEnProduccionRequerimiento = false;
     }
 
     handleChange(event) {
@@ -224,7 +227,14 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             this.data.caso.FS_Tipo_de_Aprobacion__c = value;
         } else if(name === "fechaPaseProd") {
             this.data.caso.FS_Fecha_Puesta_en_Produccion__c = value;
-        } 
+        } else if(name === "aceptaEstadoEnProduccion") {
+            this.data.caso.FS_AceptacionSolucionSalesforce__c = value;
+            this.data.caso.FS_EnviarNotificacionProduccion__c = false;
+            if(value == "Si"){
+                //this.data.caso.Status = 'Pendiente de Respuesta CSAT';
+                this.data.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c = true;
+            }
+        }
 
         this.validarBotonPendResp();
     }
@@ -255,6 +265,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             this.data.pendienteRespuestaEntregado = false;
             this.data.pendienteRespuestaCertificado = false;
             this.data.pendienteRespuestaEnProduccion = false;
+            this.data.pendienteRespuestaEnProduccionRequerimiento = false;
             this.data.pendientePropuestaEconomica = false;
             this.data.pendienteAnalisisPrevio = false;
             this.data.pendienteEstimacionMacro = false;
@@ -262,6 +273,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             this.data.pendienteEstadoEntregado = false;
             this.data.pendienteEstadoCertificado = false;
             this.data.pendienteEstadoEnProduccion = false; 
+            this.data.pendienteEstadoEnProduccionRequerimiento = false;
             this.init();
             this.showSpinner = false;
             this.pushMessage('Exitoso', 'success', 'Datos guardados exitosamente');
@@ -320,6 +332,8 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             this.data.pendienteEstadoCertificado = true;
         } else if(this.data.pendienteRespuestaEnProduccion) {
             this.data.pendienteEstadoEnProduccion = true;
+        } else if(this.data.pendienteRespuestaEnProduccionRequerimiento) {
+            this.data.pendienteEstadoEnProduccionRequerimiento = true;
         } else if(this.data.pendienteRespuestaAnalisisPrevio) {
             this.data.pendienteAnalisisPrevio = true;
         } else if(this.data.pendienteRespuestaEstimacionMacro) {
