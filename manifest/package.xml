@@ -81,6 +81,7 @@
 		<members>Case.FS_EnvioNotificacionEM__c</members>
 		<members>Case.FS_FechaAprobacionClienteEM__c</members>
 		<members>Case.FS_AceptaDEF__c</members>
+		<members>Case.FS_AceptaSolucionEnProduccion__c </members>
 		<members>Case.FS_EnvioNotificacionDEF__c</members>
 		<members>Case.FS_FechaAprobacionClienteDEF__c</members>
 		<members>Case.FS_EnvioNotificacionPE__c</members>
@@ -111,6 +112,10 @@
 		<members>Case.FS_FechaCertificacionCliente__c</members>
 		<members>Case.FS_FechaPuestaProduccionCliente__c</members>
 		<members>Case.FS_ResultadoEncuestaNumero__c</members>
+		<members>Case.FS_NombreProyecto2__c</members>
+		<members>Case.FS_NombreProyecto3__c</members>
+		<members>Case.FS_NombreProyecto4__c</members>
+		<members>Case.FS_NombreProyecto__c</members>
 		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
