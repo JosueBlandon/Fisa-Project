@@ -73,9 +73,19 @@ export default class Fs_customLookup extends LightningElement {
                             fieldPath: 'FS_Fecha_Fin_Proyecto__c',
                             operator: 'gt',
                             value: { literal: 'TODAY' }
+                        },
+                        {
+                            fieldPath: 'FS_Es_Pre_contratado__c',
+                            operator: 'eq',
+                            value: true
+                        },
+                        {
+                            fieldPath: 'FS_Es_Pre_contratado__c',
+                            operator: 'eq',
+                            value: false
                         }
                     ],
-                    filterLogic: '1 AND 2 AND 3 AND 4',
+                    filterLogic: '1 AND 2 AND 4 AND ((3 AND 5) OR (6))',
                 }
                 this.isLoading2 = false;
             })
