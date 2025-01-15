@@ -50,6 +50,11 @@
     </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_AceptaSolucionEnProduccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_AceptacionSolucionSalesforce__c</field>
         <readable>true</readable>
     </fieldPermissions>

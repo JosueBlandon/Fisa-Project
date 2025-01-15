@@ -234,6 +234,8 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
                 //this.data.caso.Status = 'Pendiente de Respuesta CSAT';
                 this.data.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c = true;
             }
+        }else if(name === "PuestaEnProduccion") {
+            this.data.caso.FS_AceptaSolucionEnProduccion__c = value;
         }
 
         this.validarBotonPendResp();

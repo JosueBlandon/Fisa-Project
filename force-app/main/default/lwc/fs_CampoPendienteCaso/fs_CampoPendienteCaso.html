@@ -799,6 +799,10 @@
                                         <lightning-card icon-name="standard:answer_best" title="Estado en Certificado">
                                             <lightning-layout vertical-align="stretch" multiple-rows="true">
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                                                    <lightning-combobox name="PuestaEnProduccion" label="Puesta en Producción"
+                                                        value={data.caso.FS_AceptaSolucionEnProduccion__c} options={data.listAceptaRespuesta}
+                                                        onchange={handleChange} placeholder="Seleccione una Opción">
+                                                    </lightning-combobox>
                                                     <lightning-input name="fechaPaseProd" label="Fecha Puesta en Producción" type="date" date-style="short"
                                                     value={data.caso.FS_Fecha_Puesta_en_Produccion__c} onchange={handleChange}>
                                                     </lightning-input>
