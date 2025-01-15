@@ -81,6 +81,7 @@
 		<members>Case.FS_EnvioNotificacionEM__c</members>
 		<members>Case.FS_FechaAprobacionClienteEM__c</members>
 		<members>Case.FS_AceptaDEF__c</members>
+		<members>Case.FS_AceptaSolucionEnProduccion__c </members>
 		<members>Case.FS_EnvioNotificacionDEF__c</members>
 		<members>Case.FS_FechaAprobacionClienteDEF__c</members>
 		<members>Case.FS_EnvioNotificacionPE__c</members>
