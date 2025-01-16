@@ -84,8 +84,11 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelperPMPS.actualizacionDescripcion(newCaseList, oldCaseMap);
             CaseTriggerHelperPMPS.informacionCompleta(newCaseList, oldCaseMap);
             CaseTriggerHelperPMPS.aceptaRespuesta(newCaseList, oldCaseMap);
-            CaseTriggerHelperPMPS.envioNotificacionComunidad(newCaseList, oldCaseMap);
             CaseTriggerHelper.validacionProducto(newCaseList, oldCaseMap);
+            CaseTriggerHelperPMPS.envioNotificacionFinanzas(newCaseList, oldCaseMap);
+            if(UserInfo.getUserType() != 'Guest'){
+                CaseTriggerHelperPMPS.envioNotificacionComunidad(newCaseList, oldCaseMap);
+            }
         }
 
         List<Case> lstCase = new List<Case>();
