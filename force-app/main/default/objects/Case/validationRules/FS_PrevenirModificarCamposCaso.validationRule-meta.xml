@@ -5,10 +5,10 @@
     <description>Regla de valida que un usuario PM-PS no puede editar ciertos campos del caso.</description>
     <errorConditionFormula>AND(
 NOT(ISNEW()),
-OR(				
+OR(
 CreatedBy.Profile.Name = &apos;Customer Community User&apos;,
-CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;				
-),				
+CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;
+),
 RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
 $Profile.Name == &apos;PM-PS&apos;,
 OR(
@@ -34,9 +34,9 @@ ISCHANGED(FS_Fecha_Entrega_de_Propuesta_Economica__c),
 ISCHANGED(FS_Acepta_Propuesta_Economica__c),
 ISCHANGED(FS_Fecha_Aprobacion_PE__c),
 ISCHANGED(FS_URLParcheCliente__c),
-ISCHANGED(FS_Fecha_Entrega_Cliente__c),
 ISCHANGED(FS_Fecha_Puesta_en_Produccion__c)
-)
+),
+NOT(ISCHANGED(FS_RequiereInformacionAdicional__c))
 )</errorConditionFormula>
     <errorMessage>Privilegios insuficientes, no puede editar campos del caso ingresados por el cliente o el sistema.</errorMessage>
 </ValidationRule>
