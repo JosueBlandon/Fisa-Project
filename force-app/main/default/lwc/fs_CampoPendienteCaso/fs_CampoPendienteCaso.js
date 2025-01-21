@@ -105,6 +105,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === false){
                 this.data.pendienteHorasDetalle = true;
                 this.data.pendienteHoras = true;
+            }else if(response.caso.Status === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === true){
+                this.data.pendienteInformacionDetalle = true;
+                this.data.pendienteInformacion = true;
             }else if(response.caso.Status === "En Análisis" && response.caso.FS_RequiereInformacionAdicional__c === true){
                 this.data.pendienteInformacionDetalle = true;
                 this.data.pendienteInformacion = true;

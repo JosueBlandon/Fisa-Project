@@ -399,7 +399,14 @@ public class CaseTriggerHelperPMPSTest {
         newCaseClone.FS_Cuando_Aplica_LR__c = 'Entrega de Solución';
         update newCaseClone;
         
+        
+        
+        
         newCaseClone.FS_Acepta_Propuesta_Economica__c = 'No';
+        update newCaseClone;
+        
+        newCaseClone.FS_EnviarNotificacionEntregado__c = true;
+        newCaseClone.Status = 'Validación de Respuesta (Cliente)';
         update newCaseClone;
     }
 }

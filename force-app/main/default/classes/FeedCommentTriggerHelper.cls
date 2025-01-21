@@ -43,14 +43,21 @@ public without sharing class FeedCommentTriggerHelper {
             listCasosIds.add(item.ParentId);
         }
         
-        for(Case item: [    SELECT  FS_SubEstado__c, FS_SubEstadoQueSePideInformacion__c, FS_RequiereInformacionAdicional__c, FS_EstadoAnterior__c
+        for(Case item: [    SELECT  FS_SubEstado__c, FS_SubEstadoQueSePideInformacion__c, FS_RequiereInformacionAdicional__c, FS_EstadoAnterior__c, Status
                             FROM    Case 
-                            WHERE   Id IN : listCasosIds and FS_SubEstadoQueSePideInformacion__c != null  AND  Status != 'Dado de Baja' AND  Status != 'Cerrado' ]){
-            item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
-            item.FS_SubEstadoQueSePideInformacion__c = null;
-            item.FS_RequiereInformacionAdicional__c = false;
-            item.Status = item.FS_EstadoAnterior__c;
-            item.FS_EstadoAnterior__c = '';
+                            WHERE   Id IN : listCasosIds and (FS_SubEstadoQueSePideInformacion__c != null OR FS_EstadoAnterior__c != null)  
+                            AND  Status != 'Dado de Baja' AND  Status != 'Cerrado' ]){
+                                
+            if(item.FS_SubEstadoQueSePideInformacion__c != null){
+                item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
+            	item.FS_SubEstadoQueSePideInformacion__c = null;
+            }
+            if(item.FS_EstadoAnterior__c != null){
+                 item.FS_RequiereInformacionAdicional__c = false;
+            	 item.Status = item.FS_EstadoAnterior__c;
+                 item.FS_EstadoAnterior__c = '';
+            }
+            
             listCasosUpdate.add(item);
         }
 
