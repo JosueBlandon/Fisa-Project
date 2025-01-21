@@ -299,7 +299,9 @@ public with sharing class CaseTriggerHelperPMPS {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_AceptaAnalisisPrevio__c != item.FS_AceptaAnalisisPrevio__c && item.FS_AceptaAnalisisPrevio__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.Status == 'En Análisis'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Estimación Macro';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacion__c = false;
@@ -311,6 +313,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }                    
                 }else if(item.FS_AceptaAnalisisPrevio__c == 'No'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacion__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -332,8 +335,9 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_AceptaEstimacionMacro__c != item.FS_AceptaEstimacionMacro__c && item.FS_AceptaEstimacionMacro__c != null){
-                //CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_AceptaEstimacionMacro__c == 'Si' && item.Status == 'Estimación Macro'){ 
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_AceptaEstimacionMacro__c == 'Si' && item.Status == 'Estimación Macro'){
+                     item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Documento de Especificación Funcional';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionEM__c = false;
@@ -346,6 +350,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
 
                 }else if(item.FS_AceptaEstimacionMacro__c == 'No'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionEM__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -368,7 +373,9 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_AceptaDEF__c != item.FS_AceptaDEF__c && item.FS_AceptaDEF__c != null){
-                if(item.FS_AceptaDEF__c == 'Si' && item.Status == 'Documento de Especificación Funcional'){ 
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_AceptaDEF__c == 'Si' && item.Status == 'Documento de Especificación Funcional'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'En Propuesta Económica';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionDEF__c = false;
@@ -380,6 +387,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_AceptaDEF__c == 'No'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionDEF__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -404,7 +412,9 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_Aplica_Licencia_Recurrente__c != item.FS_Aplica_Licencia_Recurrente__c && item.FS_Aplica_Licencia_Recurrente__c != null ){
-                if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && item.FS_Aplica_Licencia_Recurrente__c != null && UserInfo.getUserType() != 'Guest'){ 
+                //CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && item.FS_Aplica_Licencia_Recurrente__c != null && UserInfo.getUserType() != 'Guest'){
+                    item.FS_AceptaRespuesta__c = '';
                     item.Status = 'En Planificación';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionPE__c = false;
@@ -418,6 +428,7 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_Acepta_Propuesta_Economica__c != item.FS_Acepta_Propuesta_Economica__c && item.FS_Acepta_Propuesta_Economica__c != null) {
+                //CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && UserInfo.getUserType() != 'Guest'){ 
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionPE__c = false;

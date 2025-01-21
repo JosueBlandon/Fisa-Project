@@ -1808,6 +1808,18 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Análisis Previo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documento de Especificación Funcional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estimación Macro</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Finalizar Atención</fullName>
             <default>false</default>
         </values>

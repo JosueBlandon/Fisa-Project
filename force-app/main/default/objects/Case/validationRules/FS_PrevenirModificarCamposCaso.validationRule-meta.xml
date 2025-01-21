@@ -44,7 +44,6 @@ ISCHANGED(FS_FechaAprobacionClienteDEF__c),
 ISCHANGED(FS_Acepta_Propuesta_Economica__c),
 ISCHANGED(FS_Fecha_Aprobacion_PE__c),
 ISCHANGED(FS_FechaCertificacionCliente__c),
-ISCHANGED(FS_Fecha_Entrega_Cliente__c),
 ISCHANGED(FS_AceptaSolucionEnProduccion__c),
 ISCHANGED(FS_AceptacionSolucionSalesforce__c)
 

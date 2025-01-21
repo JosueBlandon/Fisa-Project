@@ -102,6 +102,7 @@
 		<members>Case.FS_Tarifa_Dias_Hombre2__c</members>
 		<members>Case.FS_Tarifa_Dias_Hombre3__c</members>
 		<members>Case.FS_Tarifa_Dias_Hombre4__c</members>
+		<members>Case.FS_Tipo_de_Aprobacion__c</members>
 		<members>Case.FS_DiasAprobacionPropuestaEconomica__c</members>
 		<members>Case.FS_TotalUSDEstimacionMacro__c</members>
 		<members>Case.FS_TotalUSDPropuestaEconomica__c</members>
@@ -127,6 +128,7 @@
 		<members>Contact.FS_Producto_3__c</members>
 		<members>Contact.FS_Producto_4__c</members>
 		<members>Contact.FS_Tipo_de_Contacto__c</members>
+		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
 		<members>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</members>
 		<members>FS_BaseConocimiento__c.FS_Activo__c</members>
 		<members>FS_BaseConocimiento__c.FS_Contenido__c</members>

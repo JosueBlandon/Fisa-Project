@@ -90,7 +90,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.Status === "En Propuesta Económica"  && response.caso.FS_EnvioNotificacionPE__c === true){
                 this.data.pendientePropuestaEconomica = true;
                 this.data.pendienteRespuestaPropuestaEconomica = true;
-            } else if(response.caso.Status === "Validación de Respuesta (Cliente)" && response.caso.FS_AceptaRespuesta__c != "Si" && response.caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            } else if(response.caso.Status === "Validación de Respuesta (Cliente)" && response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
                 this.data.pendienteEstadoEntregado = true;
                 this.data.pendienteRespuestaEntregado = true;
             } else if((response.caso.FS_Acepta_Propuesta_Economica__c === "No" || response.caso.Status === "Pendiente de Respuesta CSAT") && (response.caso.Status != 'Dado de Baja' && response.caso.Status != 'Cerrado')) {
