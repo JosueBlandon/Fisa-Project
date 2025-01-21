@@ -6,7 +6,7 @@
     <letterhead>FS_CasoClientes</letterhead>
     <name>Aprobación Notificación</name>
     <style>freeForm</style>
-    <subject>Caso: {!Case.CaseNumber} {!Case.FS_Notificaciones__c}</subject>
+    <subject>Caso: {!Case.CaseNumber} {!Case.Status}</subject>
     <textOnly>{!Case.FS_NombreContacto__c},
 
 

@@ -8,7 +8,8 @@ ISCHANGED(FS_FechaCompromisoEntrega__c),
 NOT(ISBLANK(FS_FechaCompromisoEntrega__c)),
 OR(
 RecordType.DeveloperName = &apos;FS_Consulta&apos;,
-RecordType.DeveloperName = &apos;FS_Incidente&apos;
+RecordType.DeveloperName = &apos;FS_Incidente&apos;,
+RecordType.DeveloperName = &apos;FS_Requerimiento&apos;
 ),				
 OR(
 NOT(ISBLANK(PRIORVALUE(FS_FechaCompromisoEntrega__c))), 
