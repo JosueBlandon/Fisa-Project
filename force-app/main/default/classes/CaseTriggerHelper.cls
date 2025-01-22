@@ -60,8 +60,7 @@ public without sharing class CaseTriggerHelper {
     public static void validacionEstado(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         if(validacionUser(false)){
             return;
-        }
-                    
+        } 
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
             if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId) {
@@ -114,7 +113,6 @@ public without sharing class CaseTriggerHelper {
                     }
                 }
             }
-            
         }    
     }
     
@@ -124,7 +122,7 @@ public without sharing class CaseTriggerHelper {
         flagPerfil = flagPerfil || (u.UserRole.DeveloperName != null && u.UserRole.DeveloperName.contains('FS_Jefe'));
         flagPerfil = flagPerfil || Label.FS_IdUsuarioJira == u.Id || ((u.Profile.Name == 'Customer Community User' || u.Profile.Name == 'Customer Community Plus User') && userComunity);
         flagPerfil = flagPerfil || u.Name.contains('invitado al sitio Web');
-        	return flagPerfil;  
+          return flagPerfil;  
     }
     
     public static void validacionCorreoNuevo(List<Case> newCaseList){
@@ -171,9 +169,6 @@ public without sharing class CaseTriggerHelper {
                 flag = false;
                 isActive = true;
                 for(FS_ProductoAdquirido__c p :productos) {
-                    
-                    
-                    
                     if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModulo__c == p.FS_SubModulo__c){
                         flag = true;
                     }
@@ -184,7 +179,6 @@ public without sharing class CaseTriggerHelper {
                     if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModulo__c == p.FS_SubModulo__c && item.FS_TipoRequerimiento__c != ''){
                         flag = true;
                     }
-                    
                 }
 
                 if(!flag) {
@@ -355,7 +349,6 @@ public without sharing class CaseTriggerHelper {
         if(!updateCaseList.isEmpty()) {
             update updateCaseList;
         }
-        
     }
     
     public static void validacionAprobacionSolucion(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
@@ -382,7 +375,7 @@ public without sharing class CaseTriggerHelper {
             }
         }        
     }
-    
+
     public static void aceptaRespuesta(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -414,7 +407,6 @@ public without sharing class CaseTriggerHelper {
                     if(item.RecordTypeId == INCIDENTE_TIPO_REGISTRO && item.FS_TipoIncidente__c == 'Puntual' ){
                         item.FS_SubEstado__c = 'Desarrollo Incidente Puntual';
                         item.Status = 'En Desarrollo';
-                        //item.FS_URLResultadoAnalasis__c = null;
                         item.FS_EnviarAprobacionSolucionIPN2__c = false;
                     }else if (item.RecordTypeId == INCIDENTE_TIPO_REGISTRO && item.FS_TipoIncidente__c == 'Definitivo'){
                         item.FS_SubEstado__c = 'Elaboración Diseño Técnico';
@@ -422,7 +414,6 @@ public without sharing class CaseTriggerHelper {
                         item.FS_URLDisenioTecnico__c = null;
                     }
                 }
-                
             }
         }
     }
@@ -494,7 +485,7 @@ public without sharing class CaseTriggerHelper {
         if(!userRecord.isEmpty()) {
             update userRecord;
             Case record = new Case(Id = Item.Id);
-            
+
             item.FS_UsuarioAprobadorSolucion__c = userRecord[0].Id;
             item.FS_AprobacionSolucion__c = null;
             item.FS_ComentariosRechazoSolucion__c = null;
@@ -599,7 +590,6 @@ public without sharing class CaseTriggerHelper {
                     item.FS_UsuarioAprobacionSolucionRelease__c = null;
                     item.FS_SubEstado__c = 'Aprobación de Solución IP-Release';
                 }else if(item.FS_AprobacionSolucionIPN2__c == 'No'){
-                    //item.FS_URLResultadoAnalasis__c = null;
                     item.FS_EnviarAprobacionSolucionIPN2__c = false;
                     item.FS_SubEstado__c = 'Desarrollo Incidente Puntual';
                     String titulo = 'Rechazo de Aprobación Solución IP-N2 para caso '+item.CaseNumber;
@@ -626,7 +616,6 @@ public without sharing class CaseTriggerHelper {
                     descripcion = 'Estimado cliente '+item.FS_NombreContacto__c+'\n\n\nSe ha realizado la entrega de la solución al caso '+item.CaseNumber+', la cual se puede descargar en la herramienta Azure Explorer en el siguiente directorio '+item.FS_URLCodigoFuente__c +'\n\nLe recordamos que tiene 15 días para descargar el parche.\n\nGracias\nCustomer Care Team';
                     insert new FeedItem(ParentId = item.Id, Body = descripcion, Visibility = 'AllUsers');
                 }else if(item.FS_AprobacionSolucionIPRelease__c == 'No'){
-                    //item.FS_URLResultadoAnalasis__c = null;
                     item.FS_EnviarAprobacionSolucionIPN2__c = false;
                     item.FS_SubEstado__c = 'Desarrollo Incidente Puntual';
                     String titulo = 'Rechazo de Solución IP-Release para caso '+item.CaseNumber;
@@ -652,14 +641,13 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c = 'Escalado a N2';
                     item.IsEscalated = true;
                 }
-                
                 item.FS_RequiereInformacionAdicional__c = false;
                 item.Type = item.FS_TipoIncidente__c;
                 validarTareas(item);
             }
         }
     }
-    
+
     public static void validacionSolucionCortoPlazo(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -700,7 +688,7 @@ public without sharing class CaseTriggerHelper {
                 String titulo = 'Aprobación Diseño Técnico para caso '+item.CaseNumber;
                 String descripcion = 'El agente '+item.FS_NombrePropietario__c + ' necesita Aprobación Diseño Técnico para el caso número '+item.CaseNumber +' \nPor favor dar seguimiento.';
                 enviarNotificacion(item.FS_UsuarioAprobadorDT__c, item.Id, titulo, descripcion);
-				validarTareas(item);
+                validarTareas(item);
             }
         }
     }
@@ -721,7 +709,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionURLCodigoFuente(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -730,7 +718,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionURLSolucionDefinitiva(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -798,7 +786,6 @@ public without sharing class CaseTriggerHelper {
                         }
                     }
                 }else if(item.FS_AprobacionSolucionDefinitivaRelease__c == 'No'){
-                    //item.FS_URLSolucionDefinitiva__c = null;
                     item.FS_EnviarAprobacionSolucionDN2__c = false;
                     item.FS_SubEstado__c = 'Elaboración Solución Definitiva';
                     item.OwnerId = item.FS_AgenteN2__c;
@@ -809,7 +796,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionURLPlanPruebas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -825,7 +812,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAprobacionPlanPruebas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -846,7 +833,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAprobacionInstalacionRelease(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -865,7 +852,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionURLAmbientePruebas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -874,7 +861,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionURLEvidenciaPruebas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -888,7 +875,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAprobacionCertificacionQA(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -898,7 +885,6 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c = String.isBlank(caso.FS_URLParcheCliente__c) ? 'Entrega de Parche' : 'Instalación de Parche';
                     item.Status = String.isBlank(caso.FS_URLParcheCliente__c) ? item.Status : 'Validación de Respuesta (Cliente)';
                 }else if(item.FS_AprobacionCertificacionParcheQA__c  == 'No'){
-                    //item.FS_URLSolucionDefinitiva__c = null;
                     item.FS_EnviarAprobacionSolucionDN2__c = false;
                     item.FS_SubEstado__c = 'Elaboración Solución Definitiva';
                     item.OwnerId = item.FS_AgenteN2__c;
@@ -910,7 +896,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionUrlEntregaParche(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -927,7 +913,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAceptaInstalacionParche(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -953,7 +939,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAceptaPaseProduccion(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -968,7 +954,6 @@ public without sharing class CaseTriggerHelper {
                     envioCorreo(item, 'FS_PaseProduccionAceptado', false);
                 }else if(item.FS_AceptaPaseProducion__c == 'No'){
                     item.FS_SubEstado__c = 'Paso a Producción No Confirmado';
-                    //List<String> listCorreos = new List<String>();
                     String rollUsuario = productoCore(item) ? 'FS_JefeCore' : 'FS_JefeOmnia';
                     String titulo = 'Pase a Producción rechazado para caso No '+item.CaseNumber;
                     String descripcion = 'Buen día\n\n Se ha rechazado el pase a producción del caso No ' + item.CaseNumber +' \nPor favor dar seguimiento.';
@@ -982,7 +967,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionIngProducto(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -998,14 +983,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
-    public static void llenarOrigen(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-        for(Case item: newCaseList){
-            item.Origin = item.FS_SubEstado__c;
-        }
-        esCliente(newCaseList);
-    }
-    
+
     public static void asignarAprobadorActual(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             item.FS_AprobadorActual__c = null;
@@ -1022,7 +1000,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-	
+
     public static void historialCaso(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         Map<String, Schema.SObjectField> fieldMap = Schema.getGlobalDescribe().get('Case').getDescribe().fields.getMap();
         String camposEstandar = 'Subject,ParentId,Description,Status,Type';
@@ -1055,8 +1033,8 @@ public without sharing class CaseTriggerHelper {
             }
         }
         DataBase.insert(listHistorial, false);
-        
     }
+
     public static void mapeoFechaEstado(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
@@ -1068,6 +1046,7 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
+
     public static void historialCaso(List<Case> newCaseList){
         Map<String, Schema.SObjectField> fieldMap = Schema.getGlobalDescribe().get('Case').getDescribe().fields.getMap();
         List<FS_HistorialCampos__c > listHistorial = new List<FS_HistorialCampos__c >();
@@ -1079,17 +1058,23 @@ public without sharing class CaseTriggerHelper {
                 FS_ValorOriginal__c  = null,
                 FS_ValorNuevo__c = String.valueOf( DateTime.valueOf( item.CreatedDate ).format() ))); 
         }
-        
         DataBase.insert(listHistorial, false); 
     }
-    
+
     public static Id getUsuario(Case caso) {
         Id userId;
+
+        List<User> updateUser = new List<User>();
         for(User usuario : [Select Id, FS_FechaUltimaAprobacion__c from User where UserRoleId = :caso.FS_RolPropietario__c And Id != :caso.OwnerId and IsActive = true Order by FS_FechaUltimaAprobacion__c asc limit 1]){
             usuario.FS_FechaUltimaAprobacion__c = System.now();
-            update usuario;
+            updateUser.add(usuario);
             userId = usuario.Id;
         }
+
+        if(!updateUser.isEmpty()) {
+          update updateUser;
+        }
+
         return userId;
     }
     
@@ -1102,12 +1087,12 @@ public without sharing class CaseTriggerHelper {
         List<Case> casesNewID = new List<Case>();
         Map<Id, Case> casesOldIP = new Map<Id, Case>();
         Map<Id, Case> casesOldID = new Map<Id, Case>();
-        
+
         List<Case> casesNewUpdateIP = new List<Case>();
         List<Case> casesNewUpdateID = new List<Case>();
         Map<Id, Case> casesOldUpdateIP = new Map<Id, Case>();
         Map<Id, Case> casesOldUpdateID = new Map<Id, Case>();
-        
+
         for(Case item: newCaseList){   
             Case caso = oldCaseMap.get(item.Id);
             System.debug('Datos son: '+caso.FS_SubEstado__c + '---' + item.FS_SubEstado__c + '---' + item.FS_TipoIncidente__c );
@@ -1151,9 +1136,8 @@ public without sharing class CaseTriggerHelper {
         if(casesNewUpdateID.size() > 0){
             CreateJiraRecord.updateIssueJira(casesNewUpdateID, casesOldUpdateID);
         }           
-        
     }
-    
+
     public static void envioCorreo(Case caso, String nombrePlantilla, Boolean esContacto){
         try{
             if(esContacto && caso.FS_OrigenCaso__c != 'Web'){
@@ -1175,14 +1159,13 @@ public without sharing class CaseTriggerHelper {
             mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
             mail.setSaveAsActivity(true);
-            //mail.setWhatId(caso.Id);
 
             if(esContacto){
                 User usuario = mapUser.get(userInfo.getUserId());
                 if(usuario.Profile.Name != 'Customer Community User' || usuario.Profile.Name != 'Customer Community Plus User'){
                     mail.setWhatId(caso.Id);
                 }
-    
+
                 mail.setTargetObjectId(caso.ContactId);
                 String allMails = ' ';
                 if(String.isNotBlank(caso.FS_CorreosNotificacionesServicios__c)){
@@ -1206,7 +1189,7 @@ public without sharing class CaseTriggerHelper {
             System.debug(ex.getMessage()+'Error Correo ----- '+ex.getLineNumber());
         }
     }
-    
+
     /**
      * @method      enviarNotificacion
      * @description Method to send email notification
@@ -1223,26 +1206,24 @@ public without sharing class CaseTriggerHelper {
         notification.setNotificationTypeId(notificacion.Id);
         notification.setTargetId(recordId); 
         notification.send(new Set<String> { usuarioId }); 
-        
+
         List<Messaging.SingleEmailMessage> MessageList = new List<Messaging.SingleEmailMessage>();
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         EmailTemplate plantilla = mapPlantillas.get('FS_NotificacionInterna');
-        
+
         String baseUrl = URL.getOrgDomainUrl().toExternalForm() + '/' + recordId;
         String urlLogo = getLogoImagen();
         String asunnto = titulo;
         String html = plantilla.HTMLValue.replace('{contenido}', descripcion.replace('\n', '<br/>'));
         html = html.replace('{linkRecord}', baseUrl);
         html = getLogoImagen() + html;
-        
-        
         html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
         html = html.replace('<![CDATA[', '');
         mail.setSubject(titulo);
         mail.setHtmlBody(html);
         mail.saveAsActivity = false;
         mail.setOrgWideEmailAddressId(owea.Id);
-        
+
         try{
             User usuario = !Test.isRunningTest() ? mapUser.get(usuarioId) : new User(Email = Label.FS_CorreoElectronicoServicio);
             mail.setBccAddresses(  new List<String>{usuario.Email});
@@ -1252,7 +1233,7 @@ public without sharing class CaseTriggerHelper {
             System.debug(ex.getMessage()+' ----- '+ex.getLineNumber());
         }
     }
-    
+
     public static void crearHistorialAprobaciones(Case caso){
         FS_AceptacionRechazoCaso__c aceptacion = new FS_AceptacionRechazoCaso__c ();
         aceptacion.FS_Caso__c = caso.Id;
@@ -1267,7 +1248,7 @@ public without sharing class CaseTriggerHelper {
 
         insert aceptacion;
     }
-    
+
     public static void crearHistorialDescripcion(Case caso, String valorOriginal, String valorNuevo){
         FS_HistorialDescripcionCaso__c historial = new FS_HistorialDescripcionCaso__c  ();
         historial.FS_Caso__c = caso.Id;
@@ -1275,18 +1256,18 @@ public without sharing class CaseTriggerHelper {
         historial.FS_ValorNuevo__c = valorNuevo;
         insert historial;
     }
-    
+
     public static void crearEncuesta(Case caso){
         FS_Encuesta__c encuesta = new FS_Encuesta__c (FS_Caso__c = Caso.Id, FS_CreadoPor__c = UserInfo.getUserId());
         insert encuesta;
     }
-    
+
     public static void validarTareas(Case caso){
         if([Select count() from Task where WhatId = :caso.Id and Status != 'Finalizada'] > 0){
             caso.addError('El caso no se puede escalar ya que tiene tareas pendiente por cerrar.');
         }
     }
-    
+
     public static String getLogoImagen(){
         StaticResource staticResource = [   SELECT Id, SystemModStamp, Name, Body
                                             FROM StaticResource 
@@ -1299,7 +1280,7 @@ public without sharing class CaseTriggerHelper {
         urlRecurso += '"/></td></tr></table>';
         return urlRecurso;
     }
-    
+
     public static String reemplazarCampos(Case caso, String html, String objeto){
         Map<String, Schema.SObjectField> fieldMap = Schema.getGlobalDescribe().get(objeto).getDescribe().fields.getMap();
         for(Schema.SObjectField sfield : fieldMap.Values()){
@@ -1315,27 +1296,26 @@ public without sharing class CaseTriggerHelper {
     }
 
     public static Id entitlementCaseId(string recordTypeName){
-        
         List<Entitlement> ltsEntitlement = new List<Entitlement>();
         List<recordtype> ltsrecordtype = new List<recordtype>();
-        
+
         ltsEntitlement = [  SELECT  Id, Name 
                             FROM    Entitlement    ];
 
         ltsrecordtype = [   SELECT  Id, Name 
                             FROM    Recordtype 
                             WHERE   Id =: recordTypeName    ];
-        
+
         String Consulta;
         String consultaCliente;
         String Incidente;
         id entitlementId;
         String nameRT;
-        
+
         for(recordtype recordTypeList: ltsrecordtype){
             nameRT = recordTypeList.Name;
         }
-        
+
         for(Entitlement lstEMT: ltsEntitlement){
             if(lstEMT.Name == 'SLA Consulta'){
                 Consulta = lstEMT.id;
@@ -1345,7 +1325,7 @@ public without sharing class CaseTriggerHelper {
                 consultaCliente = lstEMT.id;
             }
         }
-        
+
         if(nameRT == 'Consulta'){
             entitlementId = Consulta;
         }else if(nameRT == 'Incidente'){
@@ -1354,7 +1334,7 @@ public without sharing class CaseTriggerHelper {
 
         return entitlementId;
 
-    }//fin proceso entitlementCaseId
+    }
 
     public static void esCliente(List<Case> newCaseList) {
         try{
@@ -1369,12 +1349,12 @@ public without sharing class CaseTriggerHelper {
                     SubEstado = lstCase.FS_SubEstado__c;
                 }    
             }
-    
+
             if(!caseId.isEmpty()) {    
                 Case c = [  SELECT  Priority, RecordType.Name, FS_SubEstado__c, AccountId 
                             FROM    Case 
                             WHERE   Id =: caseId    ];
-                
+
                 FS_ConfiguracionSLA__c slaLs = [    SELECT  Id, FS_NombreDeCuenta__c, FS_NombreTipoRegistro__c, FS_SLA__c, FS_SubEstado__c, FS_EsCliente__c, FS_Activo__c 
                                                     FROM    FS_ConfiguracionSLA__c 
                                                     WHERE   FS_Activo__c = true AND FS_NombreTipoRegistro__c =: c.RecordType.Name AND FS_SubEstado__c INCLUDES(:SubEstado) AND FS_NombreDeCuenta__c =:accId limit 1    ];
@@ -1392,8 +1372,8 @@ public without sharing class CaseTriggerHelper {
             System.debug('Error en helper de casos: '+ex.getLineNumber()+'--'+ex.getMessage());
         }
 
-    }//fin proceso esCliente
-    
+    }
+
     /**
      * @method      assignDeliveryDate
      * @description Method that assigns value in the called field: Fecha de entrega. 
@@ -1408,9 +1388,8 @@ public without sharing class CaseTriggerHelper {
             }
         }
     }
-    
+
     public static void validacionAgenteN2(List<Case> newCaseList) {
-        
         for(Case record : newCaseList) {
             if(record.OwnerId.getSobjectType() != Group.SobjectType){
                 record.FS_AgenteN2__c = record.OwnerId;

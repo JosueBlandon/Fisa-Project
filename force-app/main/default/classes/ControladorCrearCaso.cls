@@ -204,7 +204,19 @@ public without sharing class ControladorCrearCaso {
             caso.FS_Tipo_de_Aprobacion__c = 'Propuesta Económica';
             caso.FS_Fecha_Aprobacion_PE__c = System.now();
         }
-        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'Validación de Respuesta (Cliente)') {
+        if(caso.FS_AceptaAnalisisPrevio__c == 'Si' && caso.Status == 'En Análisis') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaEstimacionMacro__c == 'Si' && caso.Status == 'Estimación Macro') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Estimación Macro';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaDEF__c == 'Si' && caso.Status == 'Documento de Especificación Funcional') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Documento de Especificación Funcional';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'Validación de Respuesta (Cliente)' ) {
             caso.FS_Tipo_de_Aprobacion__c = 'Aceptación Solución';
         }
         if(caso.FS_Fecha_Puesta_en_Produccion__c != null && caso.Status == 'Certificado') {

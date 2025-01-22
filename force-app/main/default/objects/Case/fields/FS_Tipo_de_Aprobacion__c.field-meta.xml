@@ -28,6 +28,21 @@
                 <label>Puesta en Producción</label>
             </value>
             <value>
+                <fullName>Análisis Previo</fullName>
+                <default>false</default>
+                <label>Análisis Previo</label>
+            </value>
+            <value>
+                <fullName>Estimación Macro</fullName>
+                <default>false</default>
+                <label>Estimación Macro</label>
+            </value>
+            <value>
+                <fullName>Documento de Especificación Funcional</fullName>
+                <default>false</default>
+                <label>Documento de Especificación Funcional</label>
+            </value>
+            <value>
                 <fullName>Finalizar Atención</fullName>
                 <default>false</default>
                 <label>Finalizar Atención</label>
