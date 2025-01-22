@@ -281,10 +281,19 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
                     
                 } else if(item.FS_RequiereInformacionAdicional__c == true && item.Status != 'Pendiente de Respuesta CSAT' && item.Status != 'Cerrado' && item.Status != 'Dado de Baja') {
+                    CustomNotificationType cnType = [SELECT Id FROM CustomNotificationType WHERE DeveloperName = 'FS_NotificacionServicio'];
                     item.FS_EstadoAnterior__c = caso.Status;
                     item.status = 'En Espera de Respuesta del Cliente';
+                    //envio de notificacion campana - comunidad
+                    Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                    customNotificationObj.setBody('Informacion Adicional');
+                    customNotificationObj.setTitle('Requerimos tu ayuda con información adicional del caso No. ' + item.CaseNumber);
+                    customNotificationObj.setNotificationTypeId(cnType.id);
+                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setTargetId(item.Id);
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_InformacionFaltante', true);
+                        customNotificationObj.send(new Set<String> {item.CreatedById});
                     }
                     
                 }else if(item.FS_RequiereInformacionAdicional__c == true && (item.Status == 'Pendiente de Respuesta CSAT' || item.Status == 'Cerrado' || item.Status == 'Dado de Baja')){
@@ -601,6 +610,40 @@ public with sharing class CaseTriggerHelperPMPS {
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion del parche');
+                    customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
+                    customNotificationObj.setNotificationTypeId(cnType.id);
+                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setTargetId(item.Id);
+                    //envio de correo cliente
+                    if(!Test.isRunningTest()){
+                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                    }
+                }
+            }
+            
+            if(caso.FS_EnviarNotificacionCertificado__c != item.FS_EnviarNotificacionCertificado__c && item.FS_EnviarNotificacionCertificado__c != null){
+                if(item.FS_EnviarNotificacionCertificado__c == true && item.Status == 'Certificado'){
+                    //envio de notificacion campana - comunidad
+                    Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                    customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Certificado');
+                    customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
+                    customNotificationObj.setNotificationTypeId(cnType.id);
+                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setTargetId(item.Id);
+                    //envio de correo cliente
+                    if(!Test.isRunningTest()){
+                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                    }
+                }
+            }
+            
+            if(caso.FS_EnviarNotificacionProduccion__c != item.FS_EnviarNotificacionProduccion__c && item.FS_EnviarNotificacionProduccion__c != null){
+                if(item.FS_EnviarNotificacionProduccion__c == true && item.Status == 'En Producción'){
+                    //envio de notificacion campana - comunidad
+                    Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                    customNotificationObj.setBody('Se envio una Solicitud para aprobacion en Produccion');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
                     customNotificationObj.setSenderId(item.CreatedById);

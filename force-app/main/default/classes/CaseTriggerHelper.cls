@@ -1159,6 +1159,7 @@ public without sharing class CaseTriggerHelper {
             mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
             mail.setSaveAsActivity(true);
+            mail.setWhatId(caso.Id);
 
             if(esContacto){
                 User usuario = mapUser.get(userInfo.getUserId());
@@ -1221,7 +1222,8 @@ public without sharing class CaseTriggerHelper {
         html = html.replace('<![CDATA[', '');
         mail.setSubject(titulo);
         mail.setHtmlBody(html);
-        mail.saveAsActivity = false;
+        mail.saveAsActivity = true;
+        mail.setWhatId(recordId);
         mail.setOrgWideEmailAddressId(owea.Id);
 
         try{

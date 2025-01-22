@@ -408,5 +408,14 @@ public class CaseTriggerHelperPMPSTest {
         newCaseClone.FS_EnviarNotificacionEntregado__c = true;
         newCaseClone.Status = 'Validación de Respuesta (Cliente)';
         update newCaseClone;
+        
+        newCaseClone.FS_EnviarNotificacionCertificado__c = true;
+        newCaseClone.Status = 'Certificado';
+        update newCaseClone;
+        
+        newCaseClone.FS_EnviarNotificacionProduccion__c = true;
+        newCaseClone.Status = 'En Producción';
+        update newCaseClone;
+        
     }
 }
