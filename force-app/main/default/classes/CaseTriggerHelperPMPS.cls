@@ -469,10 +469,10 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_AceptaRespuesta__c != item.FS_AceptaRespuesta__c && item.FS_AceptaRespuesta__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_AceptaRespuesta__c == 'Si' && item.Status == 'Validación de Respuesta (Cliente)'){ 
-                    item.Status = 'Certificado';
+                    item.Status = 'Certificado'; 
                     item.FS_RequiereInformacionAdicional__c = false;
-                    item.FS_EnviarNotificacionCertificado__c = false;
                     item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EnviarNotificacionEntregado__c = false;
                     item.FS_AceptaRespuesta__c = '';
@@ -482,10 +482,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
-                }else if(item.FS_AprobacionSolucion__c == 'No'){
-                    item.FS_RequiereInformacionAdicional__c = false;
-                    item.FS_EnviarNotificacionCertificado__c = false;
-                    item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
+                }else if(item.FS_AceptaRespuesta__c == 'No'){
+                    item.Status = 'En Revisión Entregado';
+                    item.FS_AceptaRespuesta__c = '';
                     item.FS_EnviarNotificacionEntregado__c = false;
                     String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
@@ -495,8 +494,9 @@ public with sharing class CaseTriggerHelperPMPS {
                 }
             }
         
-            if(caso.FS_Fecha_Puesta_en_Produccion__c != item.FS_Fecha_Puesta_en_Produccion__c && item.FS_Fecha_Puesta_en_Produccion__c != null){
-                if(item.FS_Fecha_Puesta_en_Produccion__c != NULL && item.Status == 'Certificado'){ 
+            if(caso.FS_AceptaSolucionEnProduccion__c != item.FS_AceptaSolucionEnProduccion__c && item.FS_AceptaSolucionEnProduccion__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_AceptaSolucionEnProduccion__c == 'Si' && item.Status == 'Certificado'){ 
                     item.FS_EnviarNotificacionCertificado__c = false;
                     item.Status = 'En Producción';
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
@@ -505,15 +505,32 @@ public with sharing class CaseTriggerHelperPMPS {
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
+                }else if(item.FS_AceptaSolucionEnProduccion__c == 'No'){
+                    item.Status = 'En Revisión Certificado';
+                    item.FS_EnviarNotificacionCertificado__c = false;
+                    String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
                 }
             }
             
-            if(caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c != item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c && item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c != null){
-                if(item.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && item.Status == 'En Producción'){ 
+            if(caso.FS_AceptacionSolucionSalesforce__c != item.FS_AceptacionSolucionSalesforce__c && item.FS_AceptacionSolucionSalesforce__c != null){
+                CaseTriggerHelper.crearHistorialAprobaciones(item);
+                if(item.FS_AceptacionSolucionSalesforce__c == 'Si' && item.Status == 'En Producción'){ 
                     item.FS_EnviarNotificacionProduccion__c = false;
                     item.Status = 'Pendiente de Respuesta CSAT';  
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
                     String titulo = 'EL CLIENTE APROBO EL ENVIO A PRODUCCIÓN '+item.CaseNumber;
+                    String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
+                    if(!Test.isRunningTest()){
+                        CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
+                    }
+                }else if(item.FS_AceptacionSolucionSalesforce__c == 'No'){
+                    item.Status = 'En Revisión en Producción';
+                    item.FS_EnviarNotificacionProduccion__c = false;
+                    String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
@@ -603,10 +620,18 @@ public with sharing class CaseTriggerHelperPMPS {
                 
             }
             
+            if(caso.FS_URLParcheCliente__c != item.FS_URLParcheCliente__c && item.FS_URLParcheCliente__c != null){
+                //estado igual a 'entregado'
+                if(item.FS_URLParcheCliente__c != null && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
+                    item.FS_EnviarNotificacionEntregado__c = true;
+                    item.status = 'Validación de Respuesta (Cliente)';
+                }
+            }
+            
             if(caso.FS_EnviarNotificacionEntregado__c != item.FS_EnviarNotificacionEntregado__c && item.FS_EnviarNotificacionEntregado__c != null){
                 //estado igual a 'entregado'
                 if(item.FS_EnviarNotificacionEntregado__c == true && item.Status == 'Validación de Respuesta (Cliente)'){
-                    item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
+                    //item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion del parche');
@@ -626,6 +651,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_EnviarNotificacionCertificado__c == true && item.Status == 'Certificado'){
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                    item.FS_AceptaSolucionEnProduccion__c = '';
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Certificado');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -643,6 +669,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_EnviarNotificacionProduccion__c == true && item.Status == 'En Producción'){
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+                    item.FS_AceptacionSolucionSalesforce__c = '';
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion en Produccion');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -731,5 +758,63 @@ public with sharing class CaseTriggerHelperPMPS {
             System.debug(ex.getMessage()+'Error Correo Simple ----- '+ex.getLineNumber());
         }
     }
+    
+    /**
+     * @method      enviarNotificacionCampana
+     * @description Método muestra las notificaciones en la campana
+     * @author      Intellect Systems - 2025-01-16
+     * @param       wrapper
+     */
+    /*private static void enviarNotificacionCampana(wrapperNotificacion wrapper) {
+        Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
+        customNotificationObj.setBody(wrapper.body);
+        customNotificationObj.setTitle(wrapper.title);
+        customNotificationObj.setNotificationTypeId(wrapper.notification);
+        customNotificationObj.setSenderId(wrapper.sender);
+        customNotificationObj.setTargetId(wrapper.target);
+        if(!Test.isRunningTest()){
+            customNotificationObj.send(new Set<String> {wrapper.createdById});
+        }
+    }
+
+    public class wrapperNotificacion {
+        public String createdById { get; private set; }
+        public String body { get; private set; }
+        public String title { get; private set; }
+        public String notification { get; private set; }
+        public String sender { get; private set; }
+        public String target { get; private set; }
+
+        // Fluent methods for setting properties
+        public wrapperNotificacion setCreatedById(String createdById) {
+            this.createdById = createdById;
+            return this;
+        }
+
+        public wrapperNotificacion setBody(String body) {
+            this.body = body;
+            return this;
+        }
+
+        public wrapperNotificacion setTitle(String title) {
+            this.title = body;
+            return this;
+        }
+
+        public wrapperNotificacion setNotification(String notification) {
+            this.notification = notification;
+            return this;
+        }
+
+        public wrapperNotificacion setSender(String sender) {
+            this.sender = sender;
+            return this;
+        }
+
+        public wrapperNotificacion setTarget(String target) {
+            this.target = target;
+            return this;
+        }
+    }*/
 
 }

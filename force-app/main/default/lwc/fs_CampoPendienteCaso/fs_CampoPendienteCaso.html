@@ -731,6 +731,9 @@
                                                         value={data.caso.FS_AceptaRespuesta__c} options={data.listAceptaRespuesta}
                                                         onchange={handleChange} placeholder="Seleccione una Opción">
                                                     </lightning-combobox>
+                                                    <lightning-input name="fechaEntregaCliente" label="Fecha Entrega Cliente" type="date" date-style="short"
+                                                    value={data.caso.FS_Fecha_Entrega_Cliente__c} onchange={handleChange}>
+                                                    </lightning-input>
                                                 </lightning-layout-item>
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
                                                     <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
