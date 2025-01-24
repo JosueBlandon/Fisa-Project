@@ -239,6 +239,8 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }
         }else if(name === "PuestaEnProduccion") {
             this.data.caso.FS_AceptaSolucionEnProduccion__c = value;
+        }else if(name === "fechaEntregaCliente") {
+            this.data.caso.FS_Fecha_Entrega_Cliente__c = value;
         }
 
         this.validarBotonPendResp();
