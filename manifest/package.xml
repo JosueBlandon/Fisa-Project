@@ -57,6 +57,10 @@
 		<name>ApexTrigger</name>
 	</types>
 	<types>
+		<members>Case.FS_Requerimiento</members>
+		<name>BusinessProcess</name>
+	</types>
+	<types>
 		<members>Case.FS_Cerrar_caso_en_Jira__c</members>
 		<members>Case.FS_Compromisos_internos__c</members>
 		<members>Case.FS_Es_cliente__c</members>
@@ -315,6 +319,10 @@
 		<members>Case.FS_PropuestaEconomicaPS</members>
 		<members>Case.Reuniones_internas</members>
 		<name>QuickAction</name>
+	</types>
+	<types>
+		<members>Case.FS_Requerimiento</members>
+		<name>RecordType</name>
 	</types>
 	<types>
 		<members>unfiled$public/Encuestas_Contestadas_por_Cliente_PMPS</members>

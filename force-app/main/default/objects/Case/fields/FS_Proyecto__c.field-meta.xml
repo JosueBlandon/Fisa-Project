@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Proyecto__c</fullName>
+    <externalId>false</externalId>
     <label>Proyecto</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -10,11 +11,181 @@
     <valueSet>
         <restricted>true</restricted>
         <valueSetDefinition>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
             <value>
-                <fullName>FSHD001 - Fisa System Help desk</fullName>
+                <fullName>FSAH001 - FISA SYSTEM AHIBA</fullName>
                 <default>false</default>
-                <label>FSHD001 - Fisa System Help desk</label>
+                <label>FSAH001 - FISA SYSTEM AHIBA</label>
+            </value>
+            <value>
+                <fullName>FSBD001 - FISA SYSTEM BDI</fullName>
+                <default>false</default>
+                <label>FSBD001 - FISA SYSTEM BDI</label>
+            </value>
+            <value>
+                <fullName>FSBL001 - FISA SYSTEM BLH</fullName>
+                <default>false</default>
+                <label>FSBL001 - FISA SYSTEM BLH</label>
+            </value>
+            <value>
+                <fullName>FSCA100 - FISA SYSTEM CARIBE</fullName>
+                <default>false</default>
+                <label>FSCA100 - FISA SYSTEM CARIBE</label>
+            </value>
+            <value>
+                <fullName>FSCM001 - FISA SYSTEM CREDITO MAESTRO</fullName>
+                <default>false</default>
+                <label>FSCM001 - FISA SYSTEM CREDITO MAESTRO</label>
+            </value>
+            <value>
+                <fullName>FSCN001 - FISA SYSTEM CONSORCIO</fullName>
+                <default>false</default>
+                <label>FSCN001 - FISA SYSTEM CONSORCIO</label>
+            </value>
+            <value>
+                <fullName>FSCR001 - FISA SYSTEM CREDICORP</fullName>
+                <default>false</default>
+                <label>FSCR001 - FISA SYSTEM CREDICORP</label>
+            </value>
+            <value>
+                <fullName>FSDE059 - Migración Fisa Web BDI</fullName>
+                <default>false</default>
+                <label>FSDE059 - Migración Fisa Web BDI</label>
+            </value>
+            <value>
+                <fullName>FSDE126 - HD28911 MEJORA EN LA DESCRIPCIÓN DE GLOSAS EN ESTA</fullName>
+                <default>false</default>
+                <label>FSDE126 - HD28911 MEJORA EN LA DESCRIPCIÓN DE GLOSAS EN ESTA</label>
+            </value>
+            <value>
+                <fullName>FSDE130 - DESARROLLO FISA SYSTEM - OMNIA MAF CHILE 1000 D/H</fullName>
+                <default>false</default>
+                <label>FSDE130 - DESARROLLO FISA SYSTEM - OMNIA MAF CHILE 1000 D/H</label>
+            </value>
+            <value>
+                <fullName>FSDE135 - HD29457 ASIGNACIÓN DE TASAS DE INTERÉS.</fullName>
+                <default>false</default>
+                <label>FSDE135 - HD29457 ASIGNACIÓN DE TASAS DE INTERÉS.</label>
+            </value>
+            <value>
+                <fullName>FSDE136 - HD29458 COBRO DE ADMINISTRACIÓN MENSUAL CLIENTES</fullName>
+                <default>false</default>
+                <label>FSDE136 - HD29458 COBRO DE ADMINISTRACIÓN MENSUAL CLIENTES</label>
+            </value>
+            <value>
+                <fullName>FSDE138 - SOPORTE INSTALACION HD 28957 &quot;PROYECTO CONFIRMACIO</fullName>
+                <default>false</default>
+                <label>FSDE138 - SOPORTE INSTALACION HD 28957 &quot;PROYECTO CONFIRMACIO</label>
+            </value>
+            <value>
+                <fullName>FSDE144 - HD29836 INSTALACIÓN SOFTWARE BASE PARA SERVIDORES</fullName>
+                <default>false</default>
+                <label>FSDE144 - HD29836 INSTALACIÓN SOFTWARE BASE PARA SERVIDORES</label>
+            </value>
+            <value>
+                <fullName>FSDE147 - HD29772 FUNCIONALIDAD NUEVO FACTOR DE SEGURIDA</fullName>
+                <default>false</default>
+                <label>FSDE147 - HD29772 FUNCIONALIDAD NUEVO FACTOR DE SEGURIDA</label>
+            </value>
+            <value>
+                <fullName>FSDE149 - PRECONTRATADO BDI 400 DIAS</fullName>
+                <default>false</default>
+                <label>FSDE149 - PRECONTRATADO BDI 400 DIAS</label>
+            </value>
+            <value>
+                <fullName>FSDE150 - PRECONTRATADO BLH 300 DIAS</fullName>
+                <default>false</default>
+                <label>FSDE150 - PRECONTRATADO BLH 300 DIAS</label>
+            </value>
+            <value>
+                <fullName>FSDE155 - HD30108 BANCO CARIBE CVN 18 (CRYPTOGRAM VERSION NU</fullName>
+                <default>false</default>
+                <label>FSDE155 - HD30108 BANCO CARIBE CVN 18 (CRYPTOGRAM VERSION NU</label>
+            </value>
+            <value>
+                <fullName>FSDE158 - HD30189 HABILITAR EL PROCESO DE TRANSACCIONES</fullName>
+                <default>false</default>
+                <label>FSDE158 - HD30189 HABILITAR EL PROCESO DE TRANSACCIONES</label>
+            </value>
+            <value>
+                <fullName>FSDE163 - HD30292 PRELACION DE PAGOS</fullName>
+                <default>false</default>
+                <label>FSDE163 - HD30292 PRELACION DE PAGOS</label>
+            </value>
+            <value>
+                <fullName>FSDE167 - HD30583 CONTABILIDAD AUTOMÁTICA</fullName>
+                <default>false</default>
+                <label>FSDE167 - HD30583 CONTABILIDAD AUTOMÁTICA</label>
+            </value>
+            <value>
+                <fullName>FSDE173 - PRECONTRATADO CREDICORP POR 1000 DÍAS</fullName>
+                <default>false</default>
+                <label>FSDE173 - PRECONTRATADO CREDICORP POR 1000 DÍAS</label>
+            </value>
+            <value>
+                <fullName>FSDE179 - HD31294 CC_MAF_RETENIDOS</fullName>
+                <default>false</default>
+                <label>FSDE179 - HD31294 CC_MAF_RETENIDOS</label>
+            </value>
+            <value>
+                <fullName>FSDE189 - HD30956 CONSULTA SOBRE UPGRADE DE VERSIÓN DE SO BD</fullName>
+                <default>false</default>
+                <label>FSDE189 - HD30956 CONSULTA SOBRE UPGRADE DE VERSIÓN DE SO BD</label>
+            </value>
+            <value>
+                <fullName>FSDE193 - HD30414 CARGA DE LOTES POR BCRD PARA REALIZAR PAGO</fullName>
+                <default>false</default>
+                <label>FSDE193 - HD30414 CARGA DE LOTES POR BCRD PARA REALIZAR PAGO</label>
+            </value>
+            <value>
+                <fullName>FSDE205 - HD30960 PROCESO MASIVO DE RENOVACIÓN DE CERTIFICAD</fullName>
+                <default>false</default>
+                <label>FSDE205 - HD30960 PROCESO MASIVO DE RENOVACIÓN DE CERTIFICAD</label>
+            </value>
+            <value>
+                <fullName>FSDE209 - PRECONTRATADOS CONSORCIO 800 DIAS</fullName>
+                <default>false</default>
+                <label>FSDE209 - PRECONTRATADOS CONSORCIO 800 DIAS</label>
+            </value>
+            <value>
+                <fullName>FSDE210 - HD30209 DIFERIMIENTO DE COMISIONES PARA OPERACIONE</fullName>
+                <default>false</default>
+                <label>FSDE210 - HD30209 DIFERIMIENTO DE COMISIONES PARA OPERACIONE</label>
+            </value>
+            <value>
+                <fullName>FSDE221 - HD31607 SERVICIO DE SOPORTE DE MANTENIMIENTO PREDI</fullName>
+                <default>false</default>
+                <label>FSDE221 - HD31607 SERVICIO DE SOPORTE DE MANTENIMIENTO PREDI</label>
+            </value>
+            <value>
+                <fullName>FSDE228 - HD31852 MODIFICACIONES PROCESO DE EMBOZO Y ACT</fullName>
+                <default>false</default>
+                <label>FSDE228 - HD31852 MODIFICACIONES PROCESO DE EMBOZO Y ACT</label>
+            </value>
+            <value>
+                <fullName>FSDE229 - FASE DE ESTABILIZACIÓN PROYECTO MAF</fullName>
+                <default>false</default>
+                <label>FSDE229 - FASE DE ESTABILIZACIÓN PROYECTO MAF</label>
+            </value>
+            <value>
+                <fullName>FSDE231 - PRECONTRATADOS BDI 500/DH</fullName>
+                <default>false</default>
+                <label>FSDE231 - PRECONTRATADOS BDI 500/DH</label>
+            </value>
+            <value>
+                <fullName>FSDE233 - HD31652 CONSULTA: PRE-REQUISITOS CORE VISA (IMPLE</fullName>
+                <default>false</default>
+                <label>FSDE233 - HD31652 CONSULTA: PRE-REQUISITOS CORE VISA (IMPLE</label>
+            </value>
+            <value>
+                <fullName>FSDE234 - HD31641 DETALLE REPORTE DE CUADRATURAS</fullName>
+                <default>false</default>
+                <label>FSDE234 - HD31641 DETALLE REPORTE DE CUADRATURAS</label>
+            </value>
+            <value>
+                <fullName>FSDE237 - NUEVOS REQUERIMIENTOS MAF 70 D/H</fullName>
+                <default>false</default>
+                <label>FSDE237 - NUEVOS REQUERIMIENTOS MAF 70 D/H</label>
             </value>
             <value>
                 <fullName>FSDE238 - Precontratados BMR por 250 días Q2</fullName>
@@ -22,9 +193,464 @@
                 <label>FSDE238 - Precontratados BMR por 250 días Q2</label>
             </value>
             <value>
-                <fullName>PNHD003 - OMNIA Help Desk</fullName>
+                <fullName>FSDE240 - HD32010 GENERACIÓN DE  ARCHIVOS INDEPENDIENTES</fullName>
                 <default>false</default>
-                <label>PNHD003 - OMNIA Help Desk</label>
+                <label>FSDE240 - HD32010 GENERACIÓN DE  ARCHIVOS INDEPENDIENTES</label>
+            </value>
+            <value>
+                <fullName>FSDE241 - HD32129 INTEGRACION PROYECTO MESAS DE TESORIA</fullName>
+                <default>false</default>
+                <label>FSDE241 - HD32129 INTEGRACION PROYECTO MESAS DE TESORIA</label>
+            </value>
+            <value>
+                <fullName>FSDE242 - HD32490  MODIFICACIÓN SWITCH TRANSACCIONAL</fullName>
+                <default>false</default>
+                <label>FSDE242 - HD32490  MODIFICACIÓN SWITCH TRANSACCIONAL</label>
+            </value>
+            <value>
+                <fullName>FSDE244 - HD32427 IMPLANTACIÓN FISA SYSTEM 12C CMA</fullName>
+                <default>false</default>
+                <label>FSDE244 - HD32427 IMPLANTACIÓN FISA SYSTEM 12C CMA</label>
+            </value>
+            <value>
+                <fullName>FSDE248 - HD32242 PURGA DE DATOS PARA BASE DE DATOS ORACLE</fullName>
+                <default>false</default>
+                <label>FSDE248 - HD32242 PURGA DE DATOS PARA BASE DE DATOS ORACLE</label>
+            </value>
+            <value>
+                <fullName>FSDE254 - HD30869 REPORTE HISTÓRICO DE POSICIÓN DE BOVEDA</fullName>
+                <default>false</default>
+                <label>FSDE254 - HD30869 REPORTE HISTÓRICO DE POSICIÓN DE BOVEDA</label>
+            </value>
+            <value>
+                <fullName>FSDE256 - HD32646 SWITCH TRANSACCIONAL -NUEVA VERSIÓN</fullName>
+                <default>false</default>
+                <label>FSDE256 - HD32646 SWITCH TRANSACCIONAL -NUEVA VERSIÓN</label>
+            </value>
+            <value>
+                <fullName>FSDE257 - HD33196 PRECONTRATADOS 150 D/H</fullName>
+                <default>false</default>
+                <label>FSDE257 - HD33196 PRECONTRATADOS 150 D/H</label>
+            </value>
+            <value>
+                <fullName>FSDE258 - HD33229 CONTINUACIÓN REQUERIMIENTOS DESARROLLOS</fullName>
+                <default>false</default>
+                <label>FSDE258 - HD33229 CONTINUACIÓN REQUERIMIENTOS DESARROLLOS</label>
+            </value>
+            <value>
+                <fullName>FSDE261 - HD32711 AGREGAR OTRO PROVEEDOR DE FIRMA</fullName>
+                <default>false</default>
+                <label>FSDE261 - HD32711 AGREGAR OTRO PROVEEDOR DE FIRMA</label>
+            </value>
+            <value>
+                <fullName>FSDE262 - PRECONTRATADOS BMR 150/DH</fullName>
+                <default>false</default>
+                <label>FSDE262 - PRECONTRATADOS BMR 150/DH</label>
+            </value>
+            <value>
+                <fullName>FSDE263 - HD33574 SERVICIO DE QA CMA</fullName>
+                <default>false</default>
+                <label>FSDE263 - HD33574 SERVICIO DE QA CMA</label>
+            </value>
+            <value>
+                <fullName>FSDE264 - PRECONTRATADOS BMR 150/DH NOVIEMBRE</fullName>
+                <default>false</default>
+                <label>FSDE264 - PRECONTRATADOS BMR 150/DH NOVIEMBRE</label>
+            </value>
+            <value>
+                <fullName>FSDE265 - HD33546 RENOVACIÓN DE TARJETAS DE DÉBITO FISA</fullName>
+                <default>false</default>
+                <label>FSDE265 - HD33546 RENOVACIÓN DE TARJETAS DE DÉBITO FISA</label>
+            </value>
+            <value>
+                <fullName>FSDE266 - PRECONTRATADOS BMR 150/DH DICIEMBRE</fullName>
+                <default>false</default>
+                <label>FSDE266 - PRECONTRATADOS BMR 150/DH DICIEMBRE</label>
+            </value>
+            <value>
+                <fullName>FSDE267 - PRECONTRATADOS CRE 100/DH</fullName>
+                <default>false</default>
+                <label>FSDE267 - PRECONTRATADOS CRE 100/DH</label>
+            </value>
+            <value>
+                <fullName>FSDE268 - HD33735 DIGITALIZACIÓN O AUTOMATIZACIÓN</fullName>
+                <default>false</default>
+                <label>FSDE268 - HD33735 DIGITALIZACIÓN O AUTOMATIZACIÓN</label>
+            </value>
+            <value>
+                <fullName>FSDE269 - HD33817 RECURSOS  FISA PARA SOPORTE EN DESPLIEGUE</fullName>
+                <default>false</default>
+                <label>FSDE269 - HD33817 RECURSOS  FISA PARA SOPORTE EN DESPLIEGUE</label>
+            </value>
+            <value>
+                <fullName>FSDE271 - PRECONTRATADOS BMR 150/DH ENERO</fullName>
+                <default>false</default>
+                <label>FSDE271 - PRECONTRATADOS BMR 150/DH ENERO</label>
+            </value>
+            <value>
+                <fullName>FSDE273 - HD33091 ROBUSTECER ALGORITMO DE CONFORMACION PAN</fullName>
+                <default>false</default>
+                <label>FSDE273 - HD33091 ROBUSTECER ALGORITMO DE CONFORMACION PAN</label>
+            </value>
+            <value>
+                <fullName>FSDE275 - HD33833 CAMBIO DE USABILIDAD DE FT-OLB Y RQ33414</fullName>
+                <default>false</default>
+                <label>FSDE275 - HD33833 CAMBIO DE USABILIDAD DE FT-OLB Y RQ33414</label>
+            </value>
+            <value>
+                <fullName>FSDE276 - HD33753 CÓDIGO DE VERIFICACIÓN CAPTACIONES</fullName>
+                <default>false</default>
+                <label>FSDE276 - HD33753 CÓDIGO DE VERIFICACIÓN CAPTACIONES</label>
+            </value>
+            <value>
+                <fullName>FSDE277 - HD33596 CUENTA DIGITAL BLH</fullName>
+                <default>false</default>
+                <label>FSDE277 - HD33596 CUENTA DIGITAL BLH</label>
+            </value>
+            <value>
+                <fullName>FSDE278 - HD33821 REQUERIMIENTO AUTOMATIZACIÓN PARÁMETROS</fullName>
+                <default>false</default>
+                <label>FSDE278 - HD33821 REQUERIMIENTO AUTOMATIZACIÓN PARÁMETROS</label>
+            </value>
+            <value>
+                <fullName>FSDE279 - PRECONTRATADOS BMR 150/DH FEBRERO</fullName>
+                <default>false</default>
+                <label>FSDE279 - PRECONTRATADOS BMR 150/DH FEBRERO</label>
+            </value>
+            <value>
+                <fullName>FSDE280 - HD33827 CREACIÓN DE TRX DE NOTA DE DÉBITO</fullName>
+                <default>false</default>
+                <label>FSDE280 - HD33827 CREACIÓN DE TRX DE NOTA DE DÉBITO</label>
+            </value>
+            <value>
+                <fullName>FSDE281 - HD2151 ASSESMENT MAF-FISA CORE</fullName>
+                <default>false</default>
+                <label>FSDE281 - HD2151 ASSESMENT MAF-FISA CORE</label>
+            </value>
+            <value>
+                <fullName>FSDE282 – HD33663 CAPACITACION TECNICA OMNIA-FISA System</fullName>
+                <default>false</default>
+                <label>FSDE282 – HD33663 CAPACITACION TECNICA OMNIA-FISA System</label>
+            </value>
+            <value>
+                <fullName>FSDE283 - HD33810 ACELERACIÓN CUOTAS CONVENIO FISASYSTEM</fullName>
+                <default>false</default>
+                <label>FSDE283 - HD33810 ACELERACIÓN CUOTAS CONVENIO FISASYSTEM</label>
+            </value>
+            <value>
+                <fullName>FSDE284 - HD33800 MEJORA AL REPORTE 21-1066</fullName>
+                <default>false</default>
+                <label>FSDE284 - HD33800 MEJORA AL REPORTE 21-1066</label>
+            </value>
+            <value>
+                <fullName>FSDE285 - HD33809 PROYECTO SITE DE CONTINGENCIA</fullName>
+                <default>false</default>
+                <label>FSDE285 - HD33809 PROYECTO SITE DE CONTINGENCIA</label>
+            </value>
+            <value>
+                <fullName>FSDE286 - PRECONTRATADOS BMR 150/DH MARZO</fullName>
+                <default>false</default>
+                <label>FSDE286 - PRECONTRATADOS BMR 150/DH MARZO</label>
+            </value>
+            <value>
+                <fullName>FSDE287 - SF2287 RECALCULO DE SOLICITUDES AMICAR</fullName>
+                <default>false</default>
+                <label>FSDE287 - SF2287 RECALCULO DE SOLICITUDES AMICAR</label>
+            </value>
+            <value>
+                <fullName>FSDE288 - SF2258 LEY DE SOLVENCIA</fullName>
+                <default>false</default>
+                <label>FSDE288 - SF2258 LEY DE SOLVENCIA</label>
+            </value>
+            <value>
+                <fullName>FSDE289 - SF2229 GENERACION DE ENROLAMIENTO EJECUTIVOS</fullName>
+                <default>false</default>
+                <label>FSDE289 - SF2229 GENERACION DE ENROLAMIENTO EJECUTIVOS</label>
+            </value>
+            <value>
+                <fullName>FSDE290 - SF2060 CAMBIOS EN MENSAJERÍA DE TARJETA DE DÉBITO</fullName>
+                <default>false</default>
+                <label>FSDE290 - SF2060 CAMBIOS EN MENSAJERÍA DE TARJETA DE DÉBITO</label>
+            </value>
+            <value>
+                <fullName>FSDE291 - HD33835 REPORTE DE SALDO DE DEUDA POR OPERACIÓN</fullName>
+                <default>false</default>
+                <label>FSDE291 - HD33835 REPORTE DE SALDO DE DEUDA POR OPERACIÓN</label>
+            </value>
+            <value>
+                <fullName>FSDE292 - SF2269 MODIFICACIONES EN FISA PARA TARJETAS</fullName>
+                <default>false</default>
+                <label>FSDE292 - SF2269 MODIFICACIONES EN FISA PARA TARJETAS</label>
+            </value>
+            <value>
+                <fullName>FSDE293 - HD33830 SERVICIOS DE SOPORTE DE MANTENIMIENTO</fullName>
+                <default>false</default>
+                <label>FSDE293 - HD33830 SERVICIOS DE SOPORTE DE MANTENIMIENTO</label>
+            </value>
+            <value>
+                <fullName>FSDE294 - SF2533 CAMBIO EN EL REGISTRO FISA SYSTEM</fullName>
+                <default>false</default>
+                <label>FSDE294 - SF2533 CAMBIO EN EL REGISTRO FISA SYSTEM</label>
+            </value>
+            <value>
+                <fullName>FSDE295 - SF2031 ESTIMACIÓN MACRO CONTRATOS PRESTAMOS FBP 2</fullName>
+                <default>false</default>
+                <label>FSDE295 - SF2031 ESTIMACIÓN MACRO CONTRATOS PRESTAMOS FBP 2</label>
+            </value>
+            <value>
+                <fullName>FSDE296 - PRECONTRATADOS BMR 150/DH MARZO</fullName>
+                <default>false</default>
+                <label>FSDE296 - PRECONTRATADOS BMR 150/DH MARZO</label>
+            </value>
+            <value>
+                <fullName>FSDE297 - SF2414 SERVICIO DE SOPORTE CERTIFICACIÓN Y POST</fullName>
+                <default>false</default>
+                <label>FSDE297 - SF2414 SERVICIO DE SOPORTE CERTIFICACIÓN Y POST</label>
+            </value>
+            <value>
+                <fullName>FSDE298 - SF2165 IMPLEMENTACIÓN CUENTA ESTÁNDAR REGIONAL</fullName>
+                <default>false</default>
+                <label>FSDE298 - SF2165 IMPLEMENTACIÓN CUENTA ESTÁNDAR REGIONAL</label>
+            </value>
+            <value>
+                <fullName>FSDE299 - SF2555 INCIDENCIAS BÓVEDAS</fullName>
+                <default>false</default>
+                <label>FSDE299 - SF2555 INCIDENCIAS BÓVEDAS</label>
+            </value>
+            <value>
+                <fullName>FSDE300 - SF2503 EMISORES DE LAC TENDRÁN QUE DENEGAR</fullName>
+                <default>false</default>
+                <label>FSDE300 - SF2503 EMISORES DE LAC TENDRÁN QUE DENEGAR</label>
+            </value>
+            <value>
+                <fullName>FSDE301 - SF2466 SOPORTE FISA – MPH</fullName>
+                <default>false</default>
+                <label>FSDE301 - SF2466 SOPORTE FISA – MPH</label>
+            </value>
+            <value>
+                <fullName>FSDE302 - SF2761 CONTROL DE CAMBIOS DE TMC SOBRE LEY</fullName>
+                <default>false</default>
+                <label>FSDE302 - SF2761 CONTROL DE CAMBIOS DE TMC SOBRE LEY</label>
+            </value>
+            <value>
+                <fullName>FSDE303 - PRECONTRATADOS BMR 150/DH JUNIO</fullName>
+                <default>false</default>
+                <label>FSDE303 - PRECONTRATADOS BMR 150/DH JUNIO</label>
+            </value>
+            <value>
+                <fullName>FSDE304 - SF2538 CÁLCULO DE REMARQUE OMNIA</fullName>
+                <default>false</default>
+                <label>FSDE304 - SF2538 CÁLCULO DE REMARQUE OMNIA</label>
+            </value>
+            <value>
+                <fullName>FSDE305 - SF3033 ANÁLISIS DEPENDENCIA DE REQUERIMIENTOS</fullName>
+                <default>false</default>
+                <label>FSDE305 - SF3033 ANÁLISIS DEPENDENCIA DE REQUERIMIENTOS</label>
+            </value>
+            <value>
+                <fullName>FSDE306 - SF2593 EMISION SEGUROS JURIDICOS</fullName>
+                <default>false</default>
+                <label>FSDE306 - SF2593 EMISION SEGUROS JURIDICOS</label>
+            </value>
+            <value>
+                <fullName>FSDE307 - SF2444 ID-351 - SEGUROS SIMULADOS</fullName>
+                <default>false</default>
+                <label>FSDE307 - SF2444 ID-351 - SEGUROS SIMULADOS</label>
+            </value>
+            <value>
+                <fullName>FSDE308 - SF2735 ID-350 - MEJORA API 2.0 INYECTAR MÁS CAMPOS</fullName>
+                <default>false</default>
+                <label>FSDE308 - SF2735 ID-350 - MEJORA API 2.0 INYECTAR MÁS CAMPOS</label>
+            </value>
+            <value>
+                <fullName>FSDE309 - SF2739 HEALTH CHECK BMSC PRODUCCIÓN 2024</fullName>
+                <default>false</default>
+                <label>FSDE309 - SF2739 HEALTH CHECK BMSC PRODUCCIÓN 2024</label>
+            </value>
+            <value>
+                <fullName>FSDE310 - SF2040 PERMITIR QUE LA FECHA DE REVISION ACEPTE</fullName>
+                <default>false</default>
+                <label>FSDE310 - SF2040 PERMITIR QUE LA FECHA DE REVISION ACEPTE</label>
+            </value>
+            <value>
+                <fullName>FSDE311 - SF2359 ID-352 MODIFICAR GARANTIA COMPRA PARA</fullName>
+                <default>false</default>
+                <label>FSDE311 - SF2359 ID-352 MODIFICAR GARANTIA COMPRA PARA</label>
+            </value>
+            <value>
+                <fullName>FSDE312 - SF2016 CCB 33272 UPGRADE OMNIA FT-OLB</fullName>
+                <default>false</default>
+                <label>FSDE312 - SF2016 CCB 33272 UPGRADE OMNIA FT-OLB</label>
+            </value>
+            <value>
+                <fullName>FSDE313 - PRECONTRATADOS BMR 150/DH JULIO</fullName>
+                <default>false</default>
+                <label>FSDE313 - PRECONTRATADOS BMR 150/DH JULIO</label>
+            </value>
+            <value>
+                <fullName>FSDE314 - SF3126 ACTIVACIONES AUTOMATICAS DE CUENTAS</fullName>
+                <default>false</default>
+                <label>FSDE314 - SF3126 ACTIVACIONES AUTOMATICAS DE CUENTAS</label>
+            </value>
+            <value>
+                <fullName>FSDE315 - SF2911 REINGENIERÍA DE PANTALLA DE CONSULTA</fullName>
+                <default>false</default>
+                <label>FSDE315 - SF2911 REINGENIERÍA DE PANTALLA DE CONSULTA</label>
+            </value>
+            <value>
+                <fullName>FSDE316 - PRECONTRATADOS BMR 150/DH AGOSTO</fullName>
+                <default>false</default>
+                <label>FSDE316 - PRECONTRATADOS BMR 150/DH AGOSTO</label>
+            </value>
+            <value>
+                <fullName>FSDE317 - PRECONTRATADOS MAF 500/DH</fullName>
+                <default>false</default>
+                <label>FSDE317 - PRECONTRATADOS MAF 500/DH</label>
+            </value>
+            <value>
+                <fullName>FSDE318 - SF2398 SUCURSAL Y NOMBRE DE OFICINA EN ARCHIVO</fullName>
+                <default>false</default>
+                <label>FSDE318 - SF2398 SUCURSAL Y NOMBRE DE OFICINA EN ARCHIVO</label>
+            </value>
+            <value>
+                <fullName>FSDE319 – SF3124 ASIGNAR UN MONTO MÍNIMO A CARGAR</fullName>
+                <default>false</default>
+                <label>FSDE319 – SF3124 ASIGNAR UN MONTO MÍNIMO A CARGAR</label>
+            </value>
+            <value>
+                <fullName>FSDE320 - SF3448 TRATAMIENTO CONTABLE SOBRE CUENTAS INACTIVA</fullName>
+                <default>false</default>
+                <label>FSDE320 - SF3448 TRATAMIENTO CONTABLE SOBRE CUENTAS INACTIVA</label>
+            </value>
+            <value>
+                <fullName>FSDE321 - SF3459 HABILITAR TRANSACCIONES EN CUENTAS INACTIVA</fullName>
+                <default>false</default>
+                <label>FSDE321 - SF3459 HABILITAR TRANSACCIONES EN CUENTAS INACTIVA</label>
+            </value>
+            <value>
+                <fullName>FSDE322 - SF3725 ADECUACIÓN MONITOREO PARA TRANSACCIONES</fullName>
+                <default>false</default>
+                <label>FSDE322 - SF3725 ADECUACIÓN MONITOREO PARA TRANSACCIONES</label>
+            </value>
+            <value>
+                <fullName>FSDE323 - SF4221 FISA - SWITCH - TOKENIZACIÓN VISA</fullName>
+                <default>false</default>
+                <label>FSDE323 - SF4221 FISA - SWITCH - TOKENIZACIÓN VISA</label>
+            </value>
+            <value>
+                <fullName>FSDE324 - SF4227 CONTROL FUERA DE HORARIO</fullName>
+                <default>false</default>
+                <label>FSDE324 - SF4227 CONTROL FUERA DE HORARIO</label>
+            </value>
+            <value>
+                <fullName>FSDE325 - SF4327 REQUERIMIENTO INTERESES SUBSIDIADOS</fullName>
+                <default>false</default>
+                <label>FSDE325 - SF4327 REQUERIMIENTO INTERESES SUBSIDIADOS</label>
+            </value>
+            <value>
+                <fullName>FSDE326 - SF4242 AUTOMATIZACIÓN RENOVACIÓN TARJETAS</fullName>
+                <default>false</default>
+                <label>FSDE326 - SF4242 AUTOMATIZACIÓN RENOVACIÓN TARJETAS</label>
+            </value>
+            <value>
+                <fullName>FSDE327 - PRECONTRATADOS BMSC POR 150 D/H OCTUBRE 2024</fullName>
+                <default>false</default>
+                <label>FSDE327 - PRECONTRATADOS BMSC POR 150 D/H OCTUBRE 2024</label>
+            </value>
+            <value>
+                <fullName>FSDE328 - SF3841 TALLER CAPACITACIÓN BRE</fullName>
+                <default>false</default>
+                <label>FSDE328 - SF3841 TALLER CAPACITACIÓN BRE</label>
+            </value>
+            <value>
+                <fullName>FSDE329 - SF 3702 HEALTHCHECK BASE DE DATOS</fullName>
+                <default>false</default>
+                <label>FSDE329 - SF 3702 HEALTHCHECK BASE DE DATOS</label>
+            </value>
+            <value>
+                <fullName>FSDE330 - PRECONTRATADOS CMA 100D/H</fullName>
+                <default>false</default>
+                <label>FSDE330 - PRECONTRATADOS CMA 100D/H</label>
+            </value>
+            <value>
+                <fullName>FSDE331 - SF4310 CLIENTES VISA B2B</fullName>
+                <default>false</default>
+                <label>FSDE331 - SF4310 CLIENTES VISA B2B</label>
+            </value>
+            <value>
+                <fullName>FSDE332 - SF 3477 APLICACIÓN REGLAMENTO CUENTAS INACTIVAS</fullName>
+                <default>false</default>
+                <label>FSDE332 - SF 3477 APLICACIÓN REGLAMENTO CUENTAS INACTIVAS</label>
+            </value>
+            <value>
+                <fullName>FSDE333 - SF3139 SESION DE CONSULTAS CARGOS DE PRODUCTO TD</fullName>
+                <default>false</default>
+                <label>FSDE333 - SF3139 SESION DE CONSULTAS CARGOS DE PRODUCTO TD</label>
+            </value>
+            <value>
+                <fullName>FSDE334 - SF4804 MIGRACION PRÉSTAMOS</fullName>
+                <default>false</default>
+                <label>FSDE334 - SF4804 MIGRACION PRÉSTAMOS</label>
+            </value>
+            <value>
+                <fullName>FSDE335 - SF3476 APLICACION REGLAMENTO CUENTAS INACTIVAS/ABD</fullName>
+                <default>false</default>
+                <label>FSDE335 - SF3476 APLICACION REGLAMENTO CUENTAS INACTIVAS/ABD</label>
+            </value>
+            <value>
+                <fullName>FSDE336 - SF4914 SOPORTE PASO PRODUCCION M6 MAF</fullName>
+                <default>false</default>
+                <label>FSDE336 - SF4914 SOPORTE PASO PRODUCCION M6 MAF</label>
+            </value>
+            <value>
+                <fullName>FSDE337 - SF4742 DESACTIVAR ACTIVACION AU CLIENT JURID BLH</fullName>
+                <default>false</default>
+                <label>FSDE337 - SF4742 DESACTIVAR ACTIVACION AU CLIENT JURID BLH</label>
+            </value>
+            <value>
+                <fullName>FSDE338 - SF4725 AUTENTICACION CRIPTOGRAFIA TRANS VCAS CAR</fullName>
+                <default>false</default>
+                <label>FSDE338 - SF4725 AUTENTICACION CRIPTOGRAFIA TRANS VCAS CAR</label>
+            </value>
+            <value>
+                <fullName>FSDE339 - SF4915 API INFORMACION BLOQUE Y CONCESIONARIOS MAF</fullName>
+                <default>false</default>
+                <label>FSDE339 - SF4915 API INFORMACION BLOQUE Y CONCESIONARIOS MAF</label>
+            </value>
+            <value>
+                <fullName>FSDE340 - PRECONTRATADO 1000D/H BMR 2025</fullName>
+                <default>false</default>
+                <label>FSDE340 - PRECONTRATADO 1000D/H BMR 2025</label>
+            </value>
+            <value>
+                <fullName>FSDE341 - SF4946 TOKENIZACION VISA CVV2 CAR</fullName>
+                <default>false</default>
+                <label>FSDE341 - SF4946 TOKENIZACION VISA CVV2 CAR</label>
+            </value>
+            <value>
+                <fullName>FSDE342 - SF5078 ESTIMACION UPGRADE SBR 2025</fullName>
+                <default>false</default>
+                <label>FSDE342 - SF5078 ESTIMACION UPGRADE SBR 2025</label>
+            </value>
+            <value>
+                <fullName>FSDE343 - SF5079 ESTIMACION APIS TC SBR</fullName>
+                <default>false</default>
+                <label>FSDE343 - SF5079 ESTIMACION APIS TC SBR</label>
+            </value>
+            <value>
+                <fullName>FSDE344 - SF5086 SOPORTE PREVENTIVO CORRECTIVO 2025 AHÍ</fullName>
+                <default>false</default>
+                <label>FSDE344 - SF5086 SOPORTE PREVENTIVO CORRECTIVO 2025 AHÍ</label>
+            </value>
+            <value>
+                <fullName>FSFL001 - FISA SYSTEM FLAMINGO</fullName>
+                <default>false</default>
+                <label>FSFL001 - FISA SYSTEM FLAMINGO</label>
+            </value>
+            <value>
+                <fullName>FSHD001 - Fisa System Help desk</fullName>
+                <default>false</default>
+                <label>FSHD001 - Fisa System Help desk</label>
             </value>
             <value>
                 <fullName>FSHD010 - Fallas operativas Helpdesk Fisa System</fullName>
@@ -32,14 +658,199 @@
                 <label>FSHD010 - Fallas operativas Helpdesk Fisa System</label>
             </value>
             <value>
+                <fullName>FSIM208 - IMPLEMENTACION CMA PROYECTO UPGRADE PC A OMNIA 4.5</fullName>
+                <default>false</default>
+                <label>FSIM208 - IMPLEMENTACION CMA PROYECTO UPGRADE PC A OMNIA 4.5</label>
+            </value>
+            <value>
+                <fullName>FSMA001 - FISA SYSTEM MAF</fullName>
+                <default>false</default>
+                <label>FSMA001 - FISA SYSTEM MAF</label>
+            </value>
+            <value>
+                <fullName>FSSB001 - FISA SYSTEM SALCOBRAND</fullName>
+                <default>false</default>
+                <label>FSSB001 - FISA SYSTEM SALCOBRAND</label>
+            </value>
+            <value>
+                <fullName>PNBD001 - PLATAFORMA DE NEGOCIOS BDI</fullName>
+                <default>false</default>
+                <label>PNBD001 - PLATAFORMA DE NEGOCIOS BDI</label>
+            </value>
+            <value>
+                <fullName>PNBI001 - PLATAFORMA DE NEGOCIOS BANCO INTERNACIONAL</fullName>
+                <default>false</default>
+                <label>PNBI001 - PLATAFORMA DE NEGOCIOS BANCO INTERNACIONAL</label>
+            </value>
+            <value>
+                <fullName>PNCM001 - PLATAFORMA DE NEGOCIOS CREDITO MAESTRO</fullName>
+                <default>false</default>
+                <label>PNCM001 - PLATAFORMA DE NEGOCIOS CREDITO MAESTRO</label>
+            </value>
+            <value>
+                <fullName>PNCR001 - PLATAFORMA DE NEGOCIOS CREDICORP BANK</fullName>
+                <default>false</default>
+                <label>PNCR001 - PLATAFORMA DE NEGOCIOS CREDICORP BANK</label>
+            </value>
+            <value>
+                <fullName>PNDP109 - SOLUCION DE ERRORES DE PRODUCTO</fullName>
+                <default>false</default>
+                <label>PNDP109 - SOLUCION DE ERRORES DE PRODUCTO</label>
+            </value>
+            <value>
+                <fullName>PNHD003 - OMNIA Help Desk</fullName>
+                <default>false</default>
+                <label>PNHD003 - OMNIA Help Desk</label>
+            </value>
+            <value>
                 <fullName>PNHD006 - Fallas operativas HLPDESK plataforma de negocios</fullName>
                 <default>false</default>
                 <label>PNHD006 - Fallas operativas HLPDESK plataforma de negocios</label>
             </value>
             <value>
+                <fullName>PNMA001 - PLATAFORMA DE NEGOCIOS MAF</fullName>
+                <default>false</default>
+                <label>PNMA001 - PLATAFORMA DE NEGOCIOS MAF</label>
+            </value>
+            <value>
+                <fullName>PNRE030 - ONLINE BANKING BANCA EMPRESAS</fullName>
+                <default>false</default>
+                <label>PNRE030 - ONLINE BANKING BANCA EMPRESAS</label>
+            </value>
+            <value>
+                <fullName>PNRE031 - HD24241 MEJORAS FUCIONALES PORTALES PERSONAS</fullName>
+                <default>false</default>
+                <label>PNRE031 - HD24241 MEJORAS FUCIONALES PORTALES PERSONAS</label>
+            </value>
+            <value>
+                <fullName>PNRE032 - HD23930 MOVIL FASE II</fullName>
+                <default>false</default>
+                <label>PNRE032 - HD23930 MOVIL FASE II</label>
+            </value>
+            <value>
+                <fullName>PNRE041 - PRECTR BANINTER 2021 CONTROLES DE CAMBIO 150 DIAS</fullName>
+                <default>false</default>
+                <label>PNRE041 - PRECTR BANINTER 2021 CONTROLES DE CAMBIO 150 DIAS</label>
+            </value>
+            <value>
+                <fullName>PNRE044 - SERVICIO CAMBIOS Y NUEVO PREC BIT 2022-2023 600D/H</fullName>
+                <default>false</default>
+                <label>PNRE044 - SERVICIO CAMBIOS Y NUEVO PREC BIT 2022-2023 600D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE046 - SOPORTE ESPECIALIZADO PREC BIT 2022-2023 240D/H</fullName>
+                <default>false</default>
+                <label>PNRE046 - SOPORTE ESPECIALIZADO PREC BIT 2022-2023 240D/H</label>
+            </value>
+            <value>
                 <fullName>PNRE047 - Servicio Soporte Local BIT 2022-2023</fullName>
                 <default>false</default>
                 <label>PNRE047 - Servicio Soporte Local BIT 2022-2023</label>
+            </value>
+            <value>
+                <fullName>PNRE048 - SERVICIO DE PRECONTRATADO 2022-2023 800D/H</fullName>
+                <default>false</default>
+                <label>PNRE048 - SERVICIO DE PRECONTRATADO 2022-2023 800D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE049 - SERVICIO CAMBIOS MENORES BIT 2023-2024</fullName>
+                <default>false</default>
+                <label>PNRE049 - SERVICIO CAMBIOS MENORES BIT 2023-2024</label>
+            </value>
+            <value>
+                <fullName>PNRE050 - SOPORTE LOCAL BNT 2023 - 2024</fullName>
+                <default>false</default>
+                <label>PNRE050 - SOPORTE LOCAL BNT 2023 - 2024</label>
+            </value>
+            <value>
+                <fullName>PNRE050 - SOPORTE LOCAL BNT 2023 – 2024</fullName>
+                <default>false</default>
+                <label>PNRE050 - SOPORTE LOCAL BNT 2023 – 2024</label>
+            </value>
+            <value>
+                <fullName>PNRE051 - PRECONTRATADO 2023-2024 800D/H</fullName>
+                <default>false</default>
+                <label>PNRE051 - PRECONTRATADO 2023-2024 800D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE052 - SOPORTE ESPECIALIZADO DE GERENCIA 240D/H</fullName>
+                <default>false</default>
+                <label>PNRE052 - SOPORTE ESPECIALIZADO DE GERENCIA 240D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE053 - PRECONTRATADO 2024 600 D/H</fullName>
+                <default>false</default>
+                <label>PNRE053 - PRECONTRATADO 2024 600 D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE054 - PRECONTRATADO 2024 500 D/H</fullName>
+                <default>false</default>
+                <label>PNRE054 - PRECONTRATADO 2024 500 D/H</label>
+            </value>
+            <value>
+                <fullName>PNRE055 - HD32927 Y HD32928 EXCENTO ISD</fullName>
+                <default>false</default>
+                <label>PNRE055 - HD32927 Y HD32928 EXCENTO ISD</label>
+            </value>
+            <value>
+                <fullName>PNRE056 - PRECONTRATADO 2024 150 D/H MULTIMONEDA</fullName>
+                <default>false</default>
+                <label>PNRE056 - PRECONTRATADO 2024 150 D/H MULTIMONEDA</label>
+            </value>
+            <value>
+                <fullName>PNRE057 - SF2470 MONITOR EMPRESAS</fullName>
+                <default>false</default>
+                <label>PNRE057 - SF2470 MONITOR EMPRESAS</label>
+            </value>
+            <value>
+                <fullName>PNRE058 - SERVICIOS DE CAMBIOS Y NUEVOS DESAROLLOS TD 575</fullName>
+                <default>false</default>
+                <label>PNRE058 - SERVICIOS DE CAMBIOS Y NUEVOS DESAROLLOS TD 575</label>
+            </value>
+            <value>
+                <fullName>PNRE059 - SOPORTE ESPECIALIZADO TD 289</fullName>
+                <default>false</default>
+                <label>PNRE059 - SOPORTE ESPECIALIZADO TD 289</label>
+            </value>
+            <value>
+                <fullName>PNRE060 - SERVICIOS DE CAMBIOS Y NUEVOS DESAROLLOS PT 500</fullName>
+                <default>false</default>
+                <label>PNRE060 - SERVICIOS DE CAMBIOS Y NUEVOS DESAROLLOS PT 500</label>
+            </value>
+            <value>
+                <fullName>PNRE061 - SOPORTE ESPECIALIZADO PT 240</fullName>
+                <default>false</default>
+                <label>PNRE061 - SOPORTE ESPECIALIZADO PT 240</label>
+            </value>
+            <value>
+                <fullName>PNRE062 - PROYECTO UPGRADE WAS A JBOSS</fullName>
+                <default>false</default>
+                <label>PNRE062 - PROYECTO UPGRADE WAS A JBOSS</label>
+            </value>
+            <value>
+                <fullName>PNRE063 - SF2637 NOTIFICACIONES PUSH</fullName>
+                <default>false</default>
+                <label>PNRE063 - SF2637 NOTIFICACIONES PUSH</label>
+            </value>
+            <value>
+                <fullName>PNRE064 - SF2547 VOZ DE QUALTRICS</fullName>
+                <default>false</default>
+                <label>PNRE064 - SF2547 VOZ DE QUALTRICS</label>
+            </value>
+            <value>
+                <fullName>PNRE065 - SERVICIO DE SOPORTE LOCAL Y DESARROLLO DE CAMBIOS</fullName>
+                <default>false</default>
+                <label>PNRE065 - SERVICIO DE SOPORTE LOCAL Y DESARROLLO DE CAMBIOS</label>
+            </value>
+            <value>
+                <fullName>PNRE066 - SERVICIO DE SOPORTE LOCAL Y DESARROLLO DE CAMBIOS</fullName>
+                <default>false</default>
+                <label>PNRE066 - SERVICIO DE SOPORTE LOCAL Y DESARROLLO DE CAMBIOS</label>
+            </value>
+            <value>
+                <fullName>PNRE067 - SF4533 FACTORING SPRINT</fullName>
+                <default>false</default>
+                <label>PNRE067 - SF4533 FACTORING SPRINT</label>
             </value>
             <value>
                 <fullName>PNSO045 - Soporte remoto online Banking</fullName>
@@ -52,9 +863,24 @@
                 <label>PNSO046 - Soporte remoto Online Banking</label>
             </value>
             <value>
-                <fullName>FSDE257 - HD33196 PRECONTRATADOS 150 D/H</fullName>
+                <fullName>PNSO047 - SOPORTE REMOTO ONLINE BANKING</fullName>
                 <default>false</default>
-                <label>FSDE257 - HD33196 PRECONTRATADOS 150 D/H</label>
+                <label>PNSO047 - SOPORTE REMOTO ONLINE BANKING</label>
+            </value>
+            <value>
+                <fullName>PNSO048 - SOPORTE REMOTO ONLINE BANKING</fullName>
+                <default>false</default>
+                <label>PNSO048 - SOPORTE REMOTO ONLINE BANKING</label>
+            </value>
+            <value>
+                <fullName>PNSO049 - SOPORTE REMOTO ONLINE BANKING</fullName>
+                <default>false</default>
+                <label>PNSO049 - SOPORTE REMOTO ONLINE BANKING</label>
+            </value>
+            <value>
+                <fullName>PNSO050 - SOPORTE REMOTO FT-OLB FBP Y DESARROLLOS CRE 250D/H</fullName>
+                <default>false</default>
+                <label>PNSO050 - SOPORTE REMOTO FT-OLB FBP Y DESARROLLOS CRE 250D/H</label>
             </value>
         </valueSetDefinition>
     </valueSet>
