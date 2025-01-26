@@ -56,15 +56,33 @@
         <closed>false</closed>
     </standardValue>
     <standardValue>
+        <fullName>En Revisión Entregado</fullName>
+        <default>false</default>
+        <label>En Revisión Entregado</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
         <fullName>Certificado</fullName>
         <default>false</default>
         <label>Certificado</label>
         <closed>false</closed>
     </standardValue>
     <standardValue>
+        <fullName>En Revisión Certificado</fullName>
+        <default>false</default>
+        <label>En Revisión Certificado</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
         <fullName>En Producción</fullName>
         <default>false</default>
         <label>En Producción</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>En Revisión en Producción</fullName>
+        <default>false</default>
+        <label>En Revisión en Producción</label>
         <closed>false</closed>
     </standardValue>
     <standardValue>

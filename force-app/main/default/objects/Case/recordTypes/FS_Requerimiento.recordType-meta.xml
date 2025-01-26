@@ -2026,6 +2026,77 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Nuevo</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>En Análisis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estimación Macro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documento de Especificación Funcional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Propuesta Económica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Planificación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Desarrollo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Validación de Respuesta (Cliente)</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión Entregado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión Certificado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión en Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pendiente de Respuesta CSAT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cerrado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dado de Baja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Espera de Respuesta del Cliente</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Type</picklist>
         <values>
             <fullName>Atención 24x7</fullName>
