@@ -470,12 +470,12 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_AceptaRespuesta__c != item.FS_AceptaRespuesta__c && item.FS_AceptaRespuesta__c != null){
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_AceptaRespuesta__c == 'Si' && item.Status == 'Validación de Respuesta (Cliente)'){ 
+                if(item.FS_AceptaRespuesta__c == 'Si' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){ 
                     item.Status = 'Certificado'; 
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EnviarNotificacionEntregado__c = false;
-                    item.FS_AceptaRespuesta__c = '';
+                    //item.FS_AceptaRespuesta__c = '';
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
                     String titulo = 'EL CLIENTE APROBO LA VALIDACION DEL PARCHE '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
@@ -496,7 +496,7 @@ public with sharing class CaseTriggerHelperPMPS {
         
             if(caso.FS_AceptaSolucionEnProduccion__c != item.FS_AceptaSolucionEnProduccion__c && item.FS_AceptaSolucionEnProduccion__c != null){
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_AceptaSolucionEnProduccion__c == 'Si' && item.Status == 'Certificado'){ 
+                if(item.FS_AceptaSolucionEnProduccion__c == 'Si' && (item.Status == 'Certificado' || item.Status == 'En Revisión Certificado')){ 
                     item.FS_EnviarNotificacionCertificado__c = false;
                     item.Status = 'En Producción';
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
@@ -518,7 +518,7 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_AceptacionSolucionSalesforce__c != item.FS_AceptacionSolucionSalesforce__c && item.FS_AceptacionSolucionSalesforce__c != null){
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_AceptacionSolucionSalesforce__c == 'Si' && item.Status == 'En Producción'){ 
+                if(item.FS_AceptacionSolucionSalesforce__c == 'Si' && (item.Status == 'En Producción' || item.Status == 'En Revisión en Producción') ){ 
                     item.FS_EnviarNotificacionProduccion__c = false;
                     item.Status = 'Pendiente de Respuesta CSAT';  
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
@@ -624,13 +624,13 @@ public with sharing class CaseTriggerHelperPMPS {
                 //estado igual a 'entregado'
                 if(item.FS_URLParcheCliente__c != null && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
                     item.FS_EnviarNotificacionEntregado__c = true;
-                    item.status = 'Validación de Respuesta (Cliente)';
+                    //item.status = 'Validación de Respuesta (Cliente)';
                 }
             }
             
             if(caso.FS_EnviarNotificacionEntregado__c != item.FS_EnviarNotificacionEntregado__c && item.FS_EnviarNotificacionEntregado__c != null){
                 //estado igual a 'entregado'
-                if(item.FS_EnviarNotificacionEntregado__c == true && item.Status == 'Validación de Respuesta (Cliente)'){
+                if(item.FS_EnviarNotificacionEntregado__c == true && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
                     //item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
@@ -648,7 +648,7 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_EnviarNotificacionCertificado__c != item.FS_EnviarNotificacionCertificado__c && item.FS_EnviarNotificacionCertificado__c != null){
-                if(item.FS_EnviarNotificacionCertificado__c == true && item.Status == 'Certificado'){
+                if(item.FS_EnviarNotificacionCertificado__c == true && (item.Status == 'Certificado' || item.Status == 'En Revisión Certificado')){
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     item.FS_AceptaSolucionEnProduccion__c = '';
@@ -666,7 +666,7 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_EnviarNotificacionProduccion__c != item.FS_EnviarNotificacionProduccion__c && item.FS_EnviarNotificacionProduccion__c != null){
-                if(item.FS_EnviarNotificacionProduccion__c == true && item.Status == 'En Producción'){
+                if(item.FS_EnviarNotificacionProduccion__c == true && (item.Status == 'En Producción' || item.Status == 'En Revisión en Producción')){
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     item.FS_AceptacionSolucionSalesforce__c = '';
