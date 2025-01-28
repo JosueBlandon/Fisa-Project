@@ -69,13 +69,13 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             if(response.caso.Status === 'Certificado' && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
                 this.data.pendienteEstadoCertificado = true;
                 this.data.pendienteRespuestaCertificado = true;
-            }else if(response.caso.Status === 'Certificado' && response.caso.FS_EnviarNotificacionCertificado__c == true) {
+            }else if((response.caso.Status === 'Certificado' || response.caso.Status === 'En Revisión Certificado') && response.caso.FS_EnviarNotificacionCertificado__c == true) {
                 this.data.pendienteEstadoCertificado = true;
                 this.data.pendienteRespuestaCertificado = true;
             }else if(response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
                 this.data.pendienteEstadoEnProduccion = true;
                 this.data.pendienteRespuestaEnProduccion = true;
-            }else if(response.caso.Status === 'En Producción' && response.caso.FS_AceptacionSolucionSalesforce__c == null && response.caso.FS_EnviarNotificacionProduccion__c == true) {
+            }else if((response.caso.Status === 'En Producción' || response.caso.Status === 'En Revisión en Producción') && response.caso.FS_EnviarNotificacionProduccion__c == true) {
                 this.data.pendienteEstadoEnProduccionRequerimiento = true;
                 this.data.pendienteRespuestaEnProduccionRequerimiento = true;
             }else if(response.caso.Status === "En Análisis"  && response.caso.FS_EnvioNotificacion__c === true){
@@ -90,7 +90,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
             }else if(response.caso.Status === "En Propuesta Económica"  && response.caso.FS_EnvioNotificacionPE__c === true){
                 this.data.pendientePropuestaEconomica = true;
                 this.data.pendienteRespuestaPropuestaEconomica = true;
-            } else if(response.caso.Status === "Validación de Respuesta (Cliente)" && response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            } else if((response.caso.Status === "Validación de Respuesta (Cliente)" || response.caso.Status === "En Revisión Entregado") && response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
                 this.data.pendienteEstadoEntregado = true;
                 this.data.pendienteRespuestaEntregado = true;
             } else if((response.caso.FS_Acepta_Propuesta_Economica__c === "No" || response.caso.Status === "Pendiente de Respuesta CSAT") && (response.caso.Status != 'Dado de Baja' && response.caso.Status != 'Cerrado')) {
