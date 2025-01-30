@@ -22,6 +22,8 @@
 		<members>DataFactory</members>
 		<members>DuplicateChecker</members>
 		<members>DuplicateCheckerTest</members>
+		<members>EnviarEmailCreacionCaso</members>
+		<members>EnviarEmailCreacionCasoTest</members>
 		<members>FeedCommentTriggerHelper</members>
 		<members>FeedCommentTriggerHelper_Test</members>
 		<members>GestorCuentaTriggerHandler</members>
@@ -235,6 +237,8 @@
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
 		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
 		<members>FS_EncuestasAutomatizadas</members>
+		<members>FS_Enviar_Notificacion_de_Email_al_Crear_un_Caso</members>
+		<members>FS_Evento_de_Plataforma_Notificacion_Email_Casos</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
 		<members>SurveyQuestionResponseClone</members>

@@ -22,7 +22,7 @@ public without sharing class CaseTriggerHandler {
     }
     
     public static void afterInsert(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-        CaseTriggerHelper.validacionCorreoNuevo(newCaseList);
+        CaseTriggerHelper.historialDescripcion(newCaseList);
         CaseTriggerHelper.historialCaso(newCaseList);
     }
     

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Enviar_Email_Creacion_Caso</name>
+        <label>Enviar Email Creacion Caso</label>
+        <locationX>176</locationX>
+        <locationY>170</locationY>
+        <actionName>EnviarEmailCreacionCaso</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>values</name>
+            <value>
+                <elementReference>$Record.FS_Case_Id__c</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>EnviarEmailCreacionCaso</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Evento de plataforma que se ejecuta cuando se crea un nuevo caso desde la comunidad.</description>
+    <environments>Default</environments>
+    <interviewLabel>Evento de Plataforma - Notificación Email Casos {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Evento de Plataforma - Notificación Email Casos</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Enviar_Email_Creacion_Caso</targetReference>
+        </connector>
+        <flowRunAsUser>DefaultWorkflowUser</flowRunAsUser>
+        <object>FS_Case_Event__e</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
