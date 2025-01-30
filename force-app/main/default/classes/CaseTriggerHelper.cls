@@ -93,7 +93,7 @@ public without sharing class CaseTriggerHelper {
                 item.addError('El caso se encuentra en Aprobación Consulta N2 y no tiene permisos para modificarlo.');
             }else if(item.FS_SubEstado__c == 'Aprobación Solicitud N2' && item.FS_UsuarioAprobadorSolucion__c != UserInfo.getUserId()){
                 item.addError('El caso se encuentra en Aprobación Solicitud N2 y no tiene permisos para modificarlo.');
-            }else if(item.FS_PudeSolventarPregunta__c != caso.FS_PudeSolventarPregunta__c &&  item.FS_RequiereInformacionAdicional__c != caso.FS_RequiereInformacionAdicional__c){
+            }else if(item.FS_PudeSolventarPregunta__c != caso.FS_PudeSolventarPregunta__c &&  (item.FS_InformacionCompleta__c != caso.FS_InformacionCompleta__c || item.FS_RequiereInformacionAdicional__c != caso.FS_RequiereInformacionAdicional__c)){
                 item.FS_PudeSolventarPregunta__c.addError('No puede modicar este campo a la vez con Información Completa.');
             }
         }
@@ -118,22 +118,22 @@ public without sharing class CaseTriggerHelper {
     
     public static Boolean validacionUser(Boolean userComunity){
         User u = mapUser.get(UserInfo.getUserId());
-        Boolean flagPerfil = u.Profile.Name == 'Administrador del sistema' || u.Profile.Name == 'System Administrator' || u.Profile.Name == 'Servicio al Cliente';
+        Boolean flagPerfil = u.Profile.Name == 'Administrador del sistema' || u.Profile.Name == 'System Administrator' || u.Profile.Name == 'Servicio al Cliente' || u.Profile.Name == 'Usuario Fisa';
         flagPerfil = flagPerfil || (u.UserRole.DeveloperName != null && u.UserRole.DeveloperName.contains('FS_Jefe'));
         flagPerfil = flagPerfil || Label.FS_IdUsuarioJira == u.Id || ((u.Profile.Name == 'Customer Community User' || u.Profile.Name == 'Customer Community Plus User') && userComunity);
         flagPerfil = flagPerfil || u.Name.contains('invitado al sitio Web');
-          return flagPerfil;  
+			return flagPerfil;  
     }
     
-    public static void validacionCorreoNuevo(List<Case> newCaseList){
+    /**
+     * @method      historialDescripcion
+     * @description Methos to create desciption history changes in case
+     * @author      Intellect Systems - 2025-01-26
+     * @param       newCaseList
+     */
+    public static void historialDescripcion(List<Case> newCaseList){
         for(Case item: newCaseList){
-            if(item.RecordTypeId == CONSULTA_TIPO_REGISTRO || item.RecordTypeId == SOLICITUD_TIPO_REGISTRO || item.RecordTypeId == INCIDENTE_TIPO_REGISTRO || ITEM.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO){
-                envioCorreo(item, 'FS_CreacionCaso', true);
-                crearHistorialDescripcion(item, null, item.FS_DescripcionCliente__c);
-            }
-            if(ITEM.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
-                envioCorreo(item, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
-            }
+            crearHistorialDescripcion(item, null, item.FS_DescripcionCliente__c);
         }
     }
     
@@ -233,8 +233,8 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList) {
             Case caso = oldCaseMap.get(item.Id);
 
-            if(caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c) {
-                if(item.FS_RequiereInformacionAdicional__c == false) {
+            if((caso.FS_InformacionCompleta__c != item.FS_InformacionCompleta__c) || (caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c)) {
+                if(item.FS_InformacionCompleta__c == 'No' || item.FS_RequiereInformacionAdicional__c == false) {
                     String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
                     msjError += String.isBlank(item.FS_SubModulo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
@@ -254,7 +254,7 @@ public without sharing class CaseTriggerHelper {
                         item.FS_SubEstado__c = item.FS_Area__c == 'N2- CORE' || item.FS_Area__c == 'N2-OMNIA' ? 'Análisis N2' : 'Análisis N1';
                         item.Status = 'En Análisis';
                     }
-                } else if(item.FS_RequiereInformacionAdicional__c == true) {
+                } else if(item.FS_InformacionCompleta__c == 'No' || item.FS_RequiereInformacionAdicional__c == true) {
                     item.FS_SubEstadoQueSePideInformacion__c = item.FS_SubEstado__c;
                     item.FS_SubEstado__c = 'En Espera de Respuesta del Cliente'; 
                     envioCorreo(item, 'FS_InformacionFaltante', true);
@@ -282,6 +282,7 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
                     item.FS_SubEstadoQueSePideInformacion__c = null;
                     item.Status = 'En Análisis';
+                    item.FS_InformacionCompleta__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     envioCorreo(item, 'FS_ActualizacionInformacionCliente', false);
                 }
@@ -321,6 +322,7 @@ public without sharing class CaseTriggerHelper {
                     record.FS_Area__c =  esCore ? 'N2- CORE' : 'N2-OMNIA';
                     record.FS_SubEstado__c = String.isBlank(item.FS_UsuarioAprobadorSolucion__c) ? 'Escalado a N2' : 'Análisis N2'; 
                     record.IsEscalated = true;
+                    record.FS_InformacionCompleta__c = null;
                     record.FS_RequiereInformacionAdicional__c = false;
                     updateCaseList.add(record);
                     validarTareas(item);
@@ -396,6 +398,7 @@ public without sharing class CaseTriggerHelper {
                     item.FS_NumeroHorasSolicitud__c = null;
                     item.FS_FechaCompromisoEntrega__c = null;
                     item.FS_MotivoCambioFechaEntrega__c = null;
+                    item.FS_InformacionCompleta__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
 
                     envioCorreo(item, 'FS_RechazoRespuesta', false);
@@ -433,6 +436,7 @@ public without sharing class CaseTriggerHelper {
                 }else if(item.FS_Acepta1erCosto__c == 'No'){
                     item.Status = 'En Análisis';
                     item.FS_SubEstado__c = 'Análisis N1';
+                    item.FS_InformacionCompleta__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     String titulo = 'Rechazo de primer costo para caso '+item.CaseNumber;
                     String descripcion = 'El cliente '+UserInfo.getFirstName() + ' ha rechazo el primer costo '+item.CaseNumber +' \nPor favor dar seguimiento.';
@@ -641,6 +645,8 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c = 'Escalado a N2';
                     item.IsEscalated = true;
                 }
+
+                item.FS_InformacionCompleta__c = null;
                 item.FS_RequiereInformacionAdicional__c = false;
                 item.Type = item.FS_TipoIncidente__c;
                 validarTareas(item);
