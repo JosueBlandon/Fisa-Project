@@ -143,6 +143,7 @@
 		<members>FS_BaseConocimiento__c.FS_ProductoAdquirido__c</members>
 		<members>FS_BaseConocimiento__c.FS_Producto__c</members>
 		<members>FS_BaseConocimiento__c.FS_SubModulo__c</members>
+		<members>FS_Case_Event__e.FS_Case_Id__c</members>
 		<members>FS_Gestor_Cuenta__c.FS_Area__c</members>
 		<members>FS_Gestor_Cuenta__c.FS_Producto__c</members>
 		<members>FS_HistorialCampos__c.FS_FechaCreacion__c</members>
@@ -198,6 +199,7 @@
 	</types>
 	<types>
 		<members>FS_BaseConocimiento__c</members>
+		<members>FS_Case_Event__e</members>
 		<members>FS_ConfiguracionSLA__c</members>
 		<members>FS_ProductoAdquirido__c</members>
 		<members>FS_Project_Jira__mdt</members>
