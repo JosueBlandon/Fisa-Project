@@ -109,7 +109,7 @@ export default class Fs_customLookup extends LightningElement {
 
     get proyecto() {
         let projectName = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'En Análisis') {
+        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
             this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT);
         } else if(this.statusVal == 'Estimación Macro') {
             this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT2);
@@ -123,7 +123,7 @@ export default class Fs_customLookup extends LightningElement {
 
     get tarifa() {
         let tarifaVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'En Análisis') {
+        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
             this.tarifaVal = getFieldValue(this.case.data, TARIFA);
         } else if(this.statusVal == 'Estimación Macro') {
             this.tarifaVal = getFieldValue(this.case.data, TARIFA2);
@@ -137,7 +137,7 @@ export default class Fs_customLookup extends LightningElement {
 
     get saldo() {
         let saldoVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'En Análisis') {
+        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
             this.saldoVal = getFieldValue(this.case.data, SALDO);
         } else if(this.statusVal == 'Estimación Macro') {
             this.saldoVal = getFieldValue(this.case.data, SALDO2);
@@ -151,7 +151,7 @@ export default class Fs_customLookup extends LightningElement {
 
     get idProject() {
         let projectVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'En Análisis') {
+        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
             this.projectVal = getFieldValue(this.case.data, ID_PROJECT);
         } else if(this.statusVal == 'Estimación Macro') {
             this.projectVal = getFieldValue(this.case.data, ID_PROJECT2);

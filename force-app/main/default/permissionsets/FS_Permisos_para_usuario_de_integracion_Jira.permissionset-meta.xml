@@ -468,6 +468,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_DiasProyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_Dias_Aprobados__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1264,6 +1269,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Title</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_AceptacionRechazoCaso__c.FS_DiasProyecto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

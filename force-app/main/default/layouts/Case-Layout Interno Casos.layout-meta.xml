@@ -10,6 +10,7 @@
     <excludeButtons>GenerateKnowledge</excludeButtons>
     <excludeButtons>MassAccept</excludeButtons>
     <excludeButtons>MergeCase</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>RecordShareHierarchy</excludeButtons>
     <excludeButtons>SendSurveyInvitation</excludeButtons>
@@ -203,9 +204,13 @@
         <fields>FS_MotivoRechazo__c</fields>
         <fields>FS_Comentarios__c</fields>
         <fields>FS_Horas__c</fields>
+        <fields>FS_DiasProyecto__c</fields>
         <fields>CREATEDBY_USER</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>FS_AceptacionRechazoCaso__c.FS_Caso__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEmailMessageList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -236,7 +241,7 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h5x00000NeRLL</masterLabel>
+        <masterLabel>00h6C000000HM3s</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

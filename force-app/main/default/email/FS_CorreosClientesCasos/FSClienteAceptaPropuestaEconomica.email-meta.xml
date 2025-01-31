@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Plantilla para notificar aceptación de propuesta económica</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_CasoClientes</letterhead>
+    <name>Cliente Acepta Propuesta Económica</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Aprobación de Estimación Macro</subject>
+    <textOnly>{!Case.FS_NombrePropietario__c},
+
+¡Gracias por contactarnos!
+
+
+
+En relación con tu caso {!Case.CaseNumber},
+
+Asunto: {!Case.Subject}
+
+Tipo de Caso: {!Case.FS_NombreTipoRegistro__c}
+
+Estado: {!Case.Status}
+
+
+
+El cliente ha procedido a dar respuesta a la solicitud
+
+de aprobación de propuesta económica. Con la
+
+aceptación de esta, procederá a levantar la
+
+planificación de atención.
+
+
+Saludos
+
+Professional Services Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

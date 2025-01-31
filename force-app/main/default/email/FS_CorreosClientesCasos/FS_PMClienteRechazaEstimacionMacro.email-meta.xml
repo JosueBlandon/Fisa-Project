@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla para notificar al PM rechazo de Estimación Macro</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_MembreteCasosFISA</letterhead>
+    <name>PM - Cliente Rechaza Estimación Macro</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Rechazo Estimación Macro, {!Case.Subject}, FISA GROUP</subject>
+    <textOnly>{!Case.FS_NombreContacto__c},
+
+
+¡Gracias por contactarnos! 
+
+
+En relación con tu caso {!Case.CaseNumber}
+
+
+Asunto: Adecuaciones Reporte FECI
+
+Tipo de Caso: Requerimiento
+
+Estado:  {!Case.Status}
+
+
+
+{!Case.CaseNumber}
+
+
+Hemos comenzado con la revisión de tu solicitud, para darle continuidad al mismo solicitamos tu aprobación del análisis previo por XX ( Días que viene del campo de horas) días y  una tarifa de xxx (tarifa que viene del campo de horas)
+
+Se dará de baja y facturará el tiempo en análisis del requerimiento si no hay respuesta en 15 días calendario
+
+
+
+Saludos,
+
+
+
+Professional Services Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
