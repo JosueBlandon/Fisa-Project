@@ -216,11 +216,6 @@
 		<name>CustomTab</name>
 	</types>
 	<types>
-		<members>Calificacindecuenta/FS_Footerfisa.png</members>
-		<members>Calificacindecuenta/FS_PendienteInformacionParaCliente1.png</members>
-		<name>Document</name>
-	</types>
-	<types>
 		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
 		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacion</members>
 		<members>FS_CorreosClientesCasos/FS_Cliente_Aprueba_Notificacion</members>
