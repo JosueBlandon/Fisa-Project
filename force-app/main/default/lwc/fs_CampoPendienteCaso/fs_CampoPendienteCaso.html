@@ -731,9 +731,11 @@
                                                         value={data.caso.FS_AceptaRespuesta__c} options={data.listAceptaRespuesta}
                                                         onchange={handleChange} placeholder="Seleccione una Opción">
                                                     </lightning-combobox>
-                                                    <lightning-input name="fechaEntregaCliente" label="Fecha Entrega Cliente" type="date" date-style="short"
-                                                    value={data.caso.FS_Fecha_Entrega_Cliente__c} onchange={handleChange}>
-                                                    </lightning-input>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarFechaEntrega}>
+                                                        <lightning-input name="fechaEntregaCliente" label="Fecha Certificación Cliente" type="date" date-style="short"
+                                                            value={data.caso.FS_FechaCertificacionCliente__c} onchange={handleChange} required={data.FechaRequerida}>
+                                                        </lightning-input>
+                                                    </lightning-layout-item>
                                                 </lightning-layout-item>
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
                                                     <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
@@ -806,9 +808,21 @@
                                                         value={data.caso.FS_AceptaSolucionEnProduccion__c} options={data.listAceptaRespuesta}
                                                         onchange={handleChange} placeholder="Seleccione una Opción">
                                                     </lightning-combobox>
-                                                    <lightning-input name="fechaPaseProd" label="Fecha Puesta en Producción" type="date" date-style="short"
-                                                    value={data.caso.FS_Fecha_Puesta_en_Produccion__c} onchange={handleChange}>
-                                                    </lightning-input>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarFechaPaseProd}>
+                                                        <lightning-input name="fechaPaseProd" label="Fecha Puesta en Producción" type="date" date-style="short"
+                                                            value={data.caso.FS_Fecha_Puesta_en_Produccion__c} onchange={handleChange} required={data.FechaRequeridaProd}>
+                                                        </lightning-input>
+                                                    </lightning-layout-item>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
+                                                        <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
+                                                        value={data.caso.FS_MotivoRechazo__c} options={data.listMotivosRechazo}
+                                                        onchange={handleChange} placeholder="Seleccione una Motivo">
+                                                        </lightning-combobox>
+                                                    </lightning-layout-item>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
+                                                        <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
+                                                        onchange={handleChange}></lightning-textarea>
+                                                    </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
                                         </lightning-card>
@@ -819,7 +833,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>
@@ -890,6 +904,16 @@
                                                         value={data.caso.FS_AceptacionSolucionSalesforce__c} options={data.listAceptaRespuesta}
                                                         onchange={handleChange} placeholder="Seleccione una Opción">
                                                     </lightning-combobox>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
+                                                        <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
+                                                        value={data.caso.FS_MotivoRechazo__c} options={data.listMotivosRechazo}
+                                                        onchange={handleChange} placeholder="Seleccione una Motivo">
+                                                        </lightning-combobox>
+                                                    </lightning-layout-item>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
+                                                        <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
+                                                        onchange={handleChange}></lightning-textarea>
+                                                    </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
                                         </lightning-card>
@@ -900,7 +924,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>

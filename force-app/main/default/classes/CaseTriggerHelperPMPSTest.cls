@@ -265,7 +265,7 @@ public class CaseTriggerHelperPMPSTest {
         update newCaseClone;
         
         newCaseClone.FS_RequiereInformacionAdicional__c = false;
-        newCaseClone.Status = 'En Análisis';
+        newCaseClone.Status = 'Análisis Previo';
         newCaseClone.FS_DiasAprobacionAnalisisPrevio__c = 5;
         newCaseClone.FS_AceptaAnalisisPrevio__c = 'Si';
         update newCaseClone;
@@ -324,7 +324,7 @@ public class CaseTriggerHelperPMPSTest {
         
         Insert newCaseClone;
         newCaseClone.FS_EnvioNotificacion__c = true;
-        newCaseClone.Status = 'En Análisis';
+        newCaseClone.Status = 'Análisis Previo';
         update newCaseClone;
         
         newCaseClone.FS_EnvioNotificacion__c = false;

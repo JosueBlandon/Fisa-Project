@@ -288,6 +288,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_DiasProyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_EncuestaEnviada__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1059,6 +1064,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FS_AceptacionRechazoCaso__c.FS_Comentarios__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_AceptacionRechazoCaso__c.FS_DiasProyecto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

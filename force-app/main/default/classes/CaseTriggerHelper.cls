@@ -247,12 +247,12 @@ public without sharing class CaseTriggerHelper {
                         item.Status = 'En Desarrollo';
                     } else if(item.FS_NombreTipoRegistro__c  == 'Solicitud (Falla Operativa)') {
                         item.FS_SubEstado__c = 'En Espera de Respuesta del Cliente';
-                        item.Status = 'En Análisis';
+                        item.Status = 'Análisis Previo';
                         item.FS_Acepta1erCosto__c = null;
                         envioCorreo(item, 'FS_AprobacionPrimerCosto', true);
                     } else {
                         item.FS_SubEstado__c = item.FS_Area__c == 'N2- CORE' || item.FS_Area__c == 'N2-OMNIA' ? 'Análisis N2' : 'Análisis N1';
-                        item.Status = 'En Análisis';
+                        item.Status = 'Análisis Previo';
                     }
                 } else if(item.FS_InformacionCompleta__c == 'No' || item.FS_RequiereInformacionAdicional__c == true) {
                     item.FS_SubEstadoQueSePideInformacion__c = item.FS_SubEstado__c;
@@ -267,7 +267,7 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
             if(caso.Type  != item.Type && item.RecordTypeId == SOLICITUD_TIPO_REGISTRO){
-                item.Status = 'En Análisis';
+                item.Status = 'Análisis Previo';
                 item.FS_SubEstado__c = 'Análisis N1';
             }
         }
@@ -281,7 +281,7 @@ public without sharing class CaseTriggerHelper {
                 if(item.FS_SubEstado__c == 'En Espera de Respuesta del Cliente'){
                     item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
                     item.FS_SubEstadoQueSePideInformacion__c = null;
-                    item.Status = 'En Análisis';
+                    item.Status = 'Análisis Previo';
                     item.FS_InformacionCompleta__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     envioCorreo(item, 'FS_ActualizacionInformacionCliente', false);
@@ -392,7 +392,7 @@ public without sharing class CaseTriggerHelper {
                     crearEncuesta(item);
                 }else if(item.FS_AceptaRespuesta__c == 'No'){
                     item.FS_SubEstado__c = item.FS_Area__c == 'N2- CORE' || item.FS_Area__c == 'N2-OMNIA' ? 'Análisis N2' : 'Análisis N1';
-                    item.Status = item.RecordTypeId == SOLICITUD_TIPO_REGISTRO ? 'Análisis Falla Operativa' : 'En Análisis';
+                    item.Status = item.RecordTypeId == SOLICITUD_TIPO_REGISTRO ? 'Análisis Falla Operativa' : 'Análisis Previo';
                     item.FS_SubEstado__c = item.RecordTypeId == SOLICITUD_TIPO_REGISTRO ? 'Análisis Falla Operativa' : item.FS_SubEstado__c ;
                     item.FS_PudeSolventarPregunta__c = null;
                     item.FS_NumeroHorasSolicitud__c = null;
@@ -434,7 +434,7 @@ public without sharing class CaseTriggerHelper {
                     String descripcion = 'El cliente '+UserInfo.getFirstName() + ' ha aceptado el 1er costo para el caso '+item.CaseNumber +' \nPor favor dar seguimiento.';
                     enviarNotificacion(item.OwnerId, item.Id, titulo, descripcion);
                 }else if(item.FS_Acepta1erCosto__c == 'No'){
-                    item.Status = 'En Análisis';
+                    item.Status = 'Análisis Previo';
                     item.FS_SubEstado__c = 'Análisis N1';
                     item.FS_InformacionCompleta__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
@@ -559,7 +559,7 @@ public without sharing class CaseTriggerHelper {
                     item.Status = 'Análisis Falla Operativa';
                     item.FS_SubEstado__c = 'Análisis Falla Operativa';
                 }else if(item.RecordTypeId == CONSULTA_TIPO_REGISTRO){
-                    item.Status = 'En Análisis';        
+                    item.Status = 'Análisis Previo';        
                     item.FS_SubEstado__c = item.FS_Area__c == 'N2- CORE' || item.FS_Area__c == 'N2-OMNIA' ? 'Análisis N2' : 'Análisis N1';
                 }
                 
@@ -634,7 +634,7 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_TipoIncidente__c != item.FS_TipoIncidente__c){
-                item.Status = 'En Análisis';
+                item.Status = 'Análisis Previo';
                 Boolean esCore = productoCore(item) ;
                 if(item.IsEscalated){
                     item.FS_SubEstado__c = 'Revisión Documentación N2';
@@ -666,7 +666,7 @@ public without sharing class CaseTriggerHelper {
                     Case casoHijo = item.clone(false, false, false, false);
                     casoHijo.OwnerId = item.FS_PropietarioCasoSolucionCortoPlazo__c;
                     casoHijo.Subject += ' Caso hijo de ' + Item.CaseNumber;
-                    casoHijo.Status = 'En Análisis';
+                    casoHijo.Status = 'Análisis Previo';
                     casoHijo.FS_SubEstado__c = 'Revisión Documentación N2';
                     casoHijo.ParentId = item.Id;
                     casoHijo.FS_TipoIncidente__c = 'Puntual';
@@ -1246,11 +1246,19 @@ public without sharing class CaseTriggerHelper {
         FS_AceptacionRechazoCaso__c aceptacion = new FS_AceptacionRechazoCaso__c ();
         aceptacion.FS_Caso__c = caso.Id;
         aceptacion.FS_Cliente__c = caso.AccountId;
-        aceptacion.FS_Tipo__c = caso.FS_AceptaRespuesta__c == 'Si' ? 'Aceptación' : 'Rechazo';
-        aceptacion.FS_Tipo__c = caso.FS_Acepta_Propuesta_Economica__c == 'Si' ? 'Aceptación' : aceptacion.FS_Tipo__c;
+        if(caso.FS_AceptaRespuesta__c == 'Si'){
+            aceptacion.FS_Tipo__c = 'Aceptación';
+        }else if(caso.FS_AceptaRespuesta__c == 'No'){
+            aceptacion.FS_Tipo__c = 'Rechazo';
+        }
+        //aceptacion.FS_Tipo__c = caso.FS_AceptaRespuesta__c == 'Si' ? 'Aceptación' : 'Rechazo';
+        if(caso.Status == 'En Propuesta Económica'){
+            aceptacion.FS_Tipo__c = caso.FS_Acepta_Propuesta_Economica__c == 'Si' ? 'Aceptación' : aceptacion.FS_Tipo__c;
+        }
         aceptacion.FS_MotivoRechazo__c = caso.FS_MotivoRechazo__c;
         aceptacion.FS_Comentarios__c = caso.FS_ComentariosRespuesta__c;
         aceptacion.FS_Horas__c = caso.FS_NumeroHorasSolicitud__c;
+        aceptacion.FS_DiasProyecto__c = caso.FS_DiasProyecto__c;
         aceptacion.FS_Tipo_de_Aprobacion__c = caso.FS_Tipo_de_Aprobacion__c;
         aceptacion.FS_Fecha_de_Pase_Produccion__c = caso.FS_Fecha_Puesta_en_Produccion__c;
 

@@ -49,10 +49,6 @@
                 <behavior>Edit</behavior>
                 <field>FS_Fecha_de_entrega__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_DiasDEF__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -209,6 +205,7 @@
         <fields>FS_MotivoRechazo__c</fields>
         <fields>FS_Comentarios__c</fields>
         <fields>FS_Horas__c</fields>
+        <fields>FS_DiasProyecto__c</fields>
         <fields>CREATEDBY_USER</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>FS_AceptacionRechazoCaso__c.FS_Caso__c</relatedList>

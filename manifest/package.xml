@@ -123,6 +123,7 @@
 		<members>Case.FS_NombreProyecto3__c</members>
 		<members>Case.FS_NombreProyecto4__c</members>
 		<members>Case.FS_NombreProyecto__c</members>
+		<members>Case.FS_DiasProyecto__c</members>
 		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
@@ -135,6 +136,7 @@
 		<members>Contact.FS_Producto_4__c</members>
 		<members>Contact.FS_Tipo_de_Contacto__c</members>
 		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
+		<members>FS_AceptacionRechazoCaso__c.FS_DiasProyecto__c</members>
 		<members>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</members>
 		<members>FS_BaseConocimiento__c.FS_Activo__c</members>
 		<members>FS_BaseConocimiento__c.FS_Contenido__c</members>
@@ -218,6 +220,21 @@
 		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacion</members>
 		<members>FS_CorreosClientesCasos/FS_Cliente_Aprueba_Notificacion</members>
 		<members>FS_CorreosClientesCasos/FS_Cliente_Acepta_Propuesta_Economica</members>
+		<members>FS_CorreosClientesCasos/FSClienteAceptaPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionEstimacioMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDadoBaja</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
 		<members>unfiled$public/CommunityWelcomeEmailTemplate</members>
 		<members>unfiled$public/FS_PlantillaEncuestaFISA</members>
 		<members>unfiled$public/FS_TiempoEstimadoRespuesta</members>
@@ -253,12 +270,17 @@
 	<types>
 		<members>Account-Formato de cuentas</members>
 		<members>Case-Layout Cliente</members>
+		<members>Case-Layout Interno Casos</members>
 		<members>Contact-Formato de contactos</members>
 		<members>FS_Gestor_Cuenta__c-Formato Gestor Cuenta</members>
 		<members>FS_ProductoAdquirido__c-Formato Producto Adquirido</members>
 		<members>FS_Project_Jira__mdt-Project Jira Layout</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c-Respuestas a la preguntas de encuestas Layout</members>
 		<name>Layout</name>
+	</types>
+	<types>
+		<members>FS_MembreteCasosFISA</members>
+		<name>Letterhead</name>
 	</types>
 	<types>
 		<members>fs_CampoPendienteCaso</members>
@@ -367,6 +389,7 @@
 		<members>Case.FS_PrevenirEditarDetallesFinancieros</members>
 		<members>Case.FS_PrevenirModificarCamposCaso</members>
 		<members>Case.FS_PrevenirModificarCamposCasoCare</members>
+		<members>Case.FS_PrevenirCambioProyecto</members>
 		<members>Case.FS_ValidacionBorrarMotivoCambioFecha</members>
 		<members>Case.FS_ValidacionFechaCompromiso</members>
 		<members>Case.FS_ValidacionFechaCompromisoConsulta</members>

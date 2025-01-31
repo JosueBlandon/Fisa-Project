@@ -76,7 +76,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';
-            record.Status = 'En Análisis';   
+            record.Status = 'Análisis Previo';   
             record.FS_Area__c = 'N1. CORE';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.Type = 'Puntual';
@@ -125,7 +125,7 @@ public class CaseTriggerHelper_Test {
                 record.FS_Producto__c = 'FISA System';
                 record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
                 record.FS_SubModulo__c = 'Crédito Hipotecario'; 
-                record.Status = 'En Análisis';    
+                record.Status = 'Análisis Previo';    
                 record.FS_SubEstado__c = 'Análisis N1';
                 record.FS_SubEstadoAnterior__c = 'Apertura de caso';     
                 record.FS_RequiereInformacionAdicional__c = false;              
@@ -200,7 +200,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';   
-            record.Status = 'En Análisis';    
+            record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1'; 
             record.FS_AprobacionSolucion__c = 'No';
             record.FS_ComentariosRechazoSolucion__c = 'Test'; 
@@ -256,7 +256,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';   
-            record.Status = 'En Análisis';
+            record.Status = 'Análisis Previo';
             record.FS_SubEstado__c = 'Aprobación Solución IP-N2';
             record.FS_UsuarioAprobadorSolucionIPN2__c = serviceUser.Id;
             update record; 
@@ -299,7 +299,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';
-            record.Status = 'En Análisis';    
+            record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_InformacionCompleta__c = 'Si';
             record.FS_TipoIncidente__c = 'Puntual';
@@ -341,7 +341,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';
-            record.Status = 'En Análisis';    
+            record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_InformacionCompleta__c = 'Si';
             record.FS_TipoIncidente__c = 'Definitivo';
@@ -380,7 +380,7 @@ public class CaseTriggerHelper_Test {
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
             record.FS_SubModulo__c = 'Crédito Hipotecario';
-            record.Status = 'En Análisis';    
+            record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_RequiereInformacionAdicional__c = false;  
             record.FS_Acepta1erCosto__c = 'No';

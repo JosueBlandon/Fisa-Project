@@ -202,14 +202,17 @@ public without sharing class ControladorCrearCaso {
         //Assigning default value to the field: Tipo de Aprobacion
         if(caso.FS_Acepta_Propuesta_Economica__c == 'Si' && caso.Status == 'En Propuesta Económica') {
             caso.FS_Tipo_de_Aprobacion__c = 'Propuesta Económica';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaEconomica__c;
             caso.FS_Fecha_Aprobacion_PE__c = System.now();
         }
-        if(caso.FS_AceptaAnalisisPrevio__c == 'Si' && caso.Status == 'En Análisis') {
+        if(caso.FS_AceptaAnalisisPrevio__c == 'Si' && caso.Status == 'Análisis Previo') {
             caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
             caso.FS_AceptaRespuesta__c = 'Si';
         }
         if(caso.FS_AceptaEstimacionMacro__c == 'Si' && caso.Status == 'Estimación Macro') {
             caso.FS_Tipo_de_Aprobacion__c = 'Estimación Macro';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionEstimacionMacro__c;
             caso.FS_AceptaRespuesta__c = 'Si';
         }
         if(caso.FS_AceptaDEF__c == 'Si' && caso.Status == 'Documento de Especificación Funcional') {
@@ -224,6 +227,27 @@ public without sharing class ControladorCrearCaso {
         }
         if(caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && caso.Status == 'En Producción') {
             caso.FS_Tipo_de_Aprobacion__c = 'Finalizar Atención';
+        }
+        
+        if(caso.FS_Acepta_Propuesta_Economica__c == 'No' && caso.Status == 'En Propuesta Económica') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Propuesta Económica';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaEconomica__c;
+            caso.FS_Fecha_Aprobacion_PE__c = System.now();
+        }
+        if(caso.FS_AceptaEstimacionMacro__c == 'No' && caso.Status == 'Estimación Macro') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Estimación Macro';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionEstimacionMacro__c;
+        }
+        if(caso.FS_AceptaAnalisisPrevio__c == 'No' && caso.Status == 'Análisis Previo') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
+        }
+        if(caso.FS_AceptaDEF__c == 'No' && caso.Status == 'Documento de Especificación Funcional') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Documento de Especificación Funcional';
+            caso.FS_AceptaRespuesta__c = 'No';
         }
 
         upsert caso;

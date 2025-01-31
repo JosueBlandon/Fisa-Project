@@ -100,7 +100,7 @@ public with sharing class CaseTriggerHelperPMPS {
         for (Case record : records) {
             Case caso = oldRecords.get(record.Id);
             if(record.FS_TipoRequerimiento__c == 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c) {
-                record.Status = 'En Análisis';
+                record.Status = 'Análisis Previo';
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.createJira(casesNew, casesOld);
@@ -309,7 +309,7 @@ public with sharing class CaseTriggerHelperPMPS {
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_AceptaAnalisisPrevio__c != item.FS_AceptaAnalisisPrevio__c && item.FS_AceptaAnalisisPrevio__c != null){
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.Status == 'En Análisis'){
+                if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.Status == 'Análisis Previo'){
                     item.FS_AceptaRespuesta__c = '';
                     item.Status = 'Estimación Macro';
                     item.FS_RequiereInformacionAdicional__c = false;
@@ -322,7 +322,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }                    
                 }else if(item.FS_AceptaAnalisisPrevio__c == 'No'){
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacion__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -359,7 +359,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
 
                 }else if(item.FS_AceptaEstimacionMacro__c == 'No'){
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionEM__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -384,7 +384,7 @@ public with sharing class CaseTriggerHelperPMPS {
             if(caso.FS_AceptaDEF__c != item.FS_AceptaDEF__c && item.FS_AceptaDEF__c != null){
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_AceptaDEF__c == 'Si' && item.Status == 'Documento de Especificación Funcional'){
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.Status = 'En Propuesta Económica';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionDEF__c = false;
@@ -396,7 +396,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_AceptaDEF__c == 'No'){
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionDEF__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -423,7 +423,7 @@ public with sharing class CaseTriggerHelperPMPS {
             if(caso.FS_Aplica_Licencia_Recurrente__c != item.FS_Aplica_Licencia_Recurrente__c && item.FS_Aplica_Licencia_Recurrente__c != null ){
                 //CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && item.FS_Aplica_Licencia_Recurrente__c != null && UserInfo.getUserType() != 'Guest'){
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.Status = 'En Planificación';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionPE__c = false;
@@ -469,22 +469,24 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_AceptaRespuesta__c != item.FS_AceptaRespuesta__c && item.FS_AceptaRespuesta__c != null){
-                CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_AceptaRespuesta__c == 'Si' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){ 
+                    CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'Certificado'; 
                     item.FS_RequiereInformacionAdicional__c = false;
-                    item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
+                    //item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EnviarNotificacionEntregado__c = false;
-                    //item.FS_AceptaRespuesta__c = '';
+                    item.FS_EnviarNotificacionCertificado__c = true;
+                    item.FS_AceptaRespuesta__c = 'Si';
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
                     String titulo = 'EL CLIENTE APROBO LA VALIDACION DEL PARCHE '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
-                }else if(item.FS_AceptaRespuesta__c == 'No'){
+                }else if(item.FS_AceptaRespuesta__c == 'No' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
+                    CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'En Revisión Entregado';
-                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_AceptaRespuesta__c = 'No';
                     item.FS_EnviarNotificacionEntregado__c = false;
                     String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
@@ -499,6 +501,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_AceptaSolucionEnProduccion__c == 'Si' && (item.Status == 'Certificado' || item.Status == 'En Revisión Certificado')){ 
                     item.FS_EnviarNotificacionCertificado__c = false;
                     item.Status = 'En Producción';
+                    item.FS_EnviarNotificacionProduccion__c = true;
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
                     String titulo = 'EL CLIENTE APROBO LA CERTIFICACION '+item.CaseNumber;
                     String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
@@ -546,7 +549,7 @@ public with sharing class CaseTriggerHelperPMPS {
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_EnvioNotificacion__c != item.FS_EnvioNotificacion__c && item.FS_EnvioNotificacion__c != null){
                 //CaseTriggerHelper.crearHistorialAprobaciones(item);
-                if(item.FS_EnvioNotificacion__c == true && item.Status == 'En Análisis'){
+                if(item.FS_EnvioNotificacion__c == true && item.Status == 'Análisis Previo'){
                     item.FS_FechaEntregaAnalisisPrevio__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
@@ -560,7 +563,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionAnalisisPrevio', true);
                     }
                 }
             }
@@ -578,7 +581,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
                         customNotificationObj.send(new Set<String> {item.CreatedById});
-                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionEstimacionMacro', true);
                     }
                 }
             }
@@ -596,7 +599,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
                         customNotificationObj.send(new Set<String> {item.CreatedById});
-                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionDEF', true);
                     }
                 }
             }
@@ -614,7 +617,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
                         customNotificationObj.send(new Set<String> {item.CreatedById});
-                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
+                        CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionPropuestaEconomica', true);
                     }
                 }
                 

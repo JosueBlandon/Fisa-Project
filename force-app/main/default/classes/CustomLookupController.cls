@@ -45,7 +45,7 @@ public without sharing class CustomLookupController {
                         WHERE	Id =: caseId 
                         LIMIT	1 ];
 
-        if(record.Status == 'Nuevo' || record.Status == 'En Análisis') {
+        if(record.Status == 'Nuevo' || record.Status == 'Análisis Previo') {
             record.FS_Buscar_Proyecto__c = projectId;
             record.FS_Buscar_Proyecto2__c = projectId;
             record.FS_Buscar_Proyecto3__c = projectId;
