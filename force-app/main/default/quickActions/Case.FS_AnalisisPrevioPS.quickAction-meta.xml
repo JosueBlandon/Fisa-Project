@@ -31,7 +31,7 @@
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>FS_DiasAprobacionAnalisisPrevio__c</field>
-                <uiBehavior>Edit</uiBehavior>
+                <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>

@@ -1162,7 +1162,7 @@ public without sharing class CaseTriggerHelper {
             html = html.replace('<![CDATA[', '');
             mail.setSubject(asunnto);
             mail.setHtmlBody(html);
-            mail.saveAsActivity = esContacto;
+            //mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
             mail.setSaveAsActivity(true);
             mail.setWhatId(caso.Id);

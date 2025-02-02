@@ -2205,7 +2205,7 @@
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>En Análisis</rightValue>
+                        <rightValue>Análisis Previo</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2240,7 +2240,7 @@
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>En Análisis</rightValue>
+                        <rightValue>Análisis Previo</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
@@ -2280,7 +2280,7 @@
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
-                        <rightValue>En Análisis</rightValue>
+                        <rightValue>Análisis Previo</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
@@ -2912,10 +2912,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Tabs</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>tabs</name>
                     <value>tabs</value>
                 </componentInstanceProperties>
@@ -2932,10 +2928,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Tabs</value>
-                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-8ef63da9-af46-48ab-b043-a0ea027464ad</value>
