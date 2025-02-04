@@ -588,6 +588,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_FechaDesarrolloListo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_FechaEntregaDesarrollo__c</field>
         <readable>true</readable>
     </fieldPermissions>
