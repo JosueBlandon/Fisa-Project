@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_Campos_Requeridos_PropuestaEconomica</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  ISBLANK(TEXT(FS_Acepta_Propuesta_Economica__c)),
+  NOT(ISBLANK(TEXT(FS_Aplica_Licencia_Recurrente__c))) 
+)</errorConditionFormula>
+    <errorMessage>el cliente tiene que aprobar la propuesta económica para continuar.</errorMessage>
+</ValidationRule>

@@ -92,10 +92,10 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelperPMPS.sendNotification(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.actualizacionDescripcion(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.informacionCompleta(lstCaseRequerimiento, mpCaseRequerimiento);
-            CaseTriggerHelperPMPS.aceptaRespuesta(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelper.validacionProducto(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.envioNotificacionFinanzas(lstCaseRequerimiento, mpCaseRequerimiento);
             if(UserInfo.getUserType() != 'Guest'){
+                CaseTriggerHelperPMPS.aceptaRespuesta(lstCaseRequerimiento, mpCaseRequerimiento);
                 CaseTriggerHelperPMPS.envioNotificacionComunidad(lstCaseRequerimiento, mpCaseRequerimiento);
             }
         }

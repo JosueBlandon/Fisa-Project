@@ -3,6 +3,9 @@
     <fullName>FS_FechaCompromisoEntrega</fullName>
     <active>true</active>
     <description>Valida que el campo fecha compromiso entrega sea mayor o igual a la fecha actual</description>
-    <errorConditionFormula>FS_FechaCompromisoEntrega__c  &lt;  TODAY()</errorConditionFormula>
+    <errorConditionFormula>AND(
+FS_FechaCompromisoEntrega__c  &lt; TODAY(),
+ISCHANGED(FS_FechaCompromisoEntrega__c ) 
+)</errorConditionFormula>
     <errorMessage>Ingrese una fecha mayor a la fecha actual.</errorMessage>
 </ValidationRule>
