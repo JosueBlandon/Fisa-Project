@@ -21,7 +21,7 @@
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>FS_Fecha_Entrega_Cliente__c</field>
-                <uiBehavior>Edit</uiBehavior>
+                <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
