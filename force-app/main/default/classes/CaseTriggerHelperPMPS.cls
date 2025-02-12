@@ -140,7 +140,7 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             if(record.FS_Fecha_Puesta_en_Produccion__c != null && record.FS_Fecha_Puesta_en_Produccion__c != caso.FS_Fecha_Puesta_en_Produccion__c) {
                 //record.Status = 'En Producción';  
-                CaseTriggerHelper.crearHistorialAprobaciones(record);
+                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
@@ -149,7 +149,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 record.Status = 'Pendiente de Respuesta CSAT';  
                 record.FS_EncuestaEnviada__c = true;
                 record.FS_FechaEnvioEncuesta__c = System.now();
-                CaseTriggerHelper.crearHistorialAprobaciones(record);
+                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 CaseTriggerHelper.crearEncuesta(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
@@ -323,7 +323,9 @@ public with sharing class CaseTriggerHelperPMPS {
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
                 Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                 if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.Status == 'Análisis Previo'){
-                    item.FS_AceptaRespuesta__c = 'Si';
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'Estimación Macro';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacion__c = false;
@@ -342,7 +344,9 @@ public with sharing class CaseTriggerHelperPMPS {
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                     }                    
                 }else if(item.FS_AceptaAnalisisPrevio__c == 'No'){
-                    item.FS_AceptaRespuesta__c = 'No';
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacion__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -372,7 +376,9 @@ public with sharing class CaseTriggerHelperPMPS {
                 CaseTriggerHelper.crearHistorialAprobaciones(item);
                 Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                 if(item.FS_AceptaEstimacionMacro__c == 'Si' && item.Status == 'Estimación Macro'){
-                    item.FS_AceptaRespuesta__c = 'Si';
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'Documento de Especificación Funcional';
                     //item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionEM__c = false;
@@ -392,7 +398,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
 
                 }else if(item.FS_AceptaEstimacionMacro__c == 'No'){
-                    item.FS_AceptaRespuesta__c = 'No';
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionEM__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -427,6 +435,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_AceptaDEF__c == 'Si' && item.Status == 'Documento de Especificación Funcional'){
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'En Propuesta Económica';
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionDEF__c = false;
@@ -447,6 +456,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 }else if(item.FS_AceptaDEF__c == 'No'){
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.Status = 'Dado de Baja';
                     item.FS_EnvioNotificacionDEF__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
@@ -480,6 +490,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && item.FS_Aplica_Licencia_Recurrente__c != null && UserInfo.getUserType() != 'Guest'){
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.FS_DiasProyecto__c = null;
                     item.Status = 'En Planificación';
                     item.FS_RequiereInformacionAdicional__c = false;
@@ -498,6 +509,9 @@ public with sharing class CaseTriggerHelperPMPS {
                 Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && UserInfo.getUserType() != 'Guest'){ 
                     //item.FS_RequiereInformacionAdicional__c = false;
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.FS_EnvioNotificacionPE__c = false;
                     item.FS_FechaAprobacionClientePE__c = date.valueOf(item.LastModifiedDate);
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
@@ -515,6 +529,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
                 }else if(item.FS_Acepta_Propuesta_Economica__c == 'No'){
                     item.Status = 'Dado de Baja';
+                    item.FS_AceptaRespuesta__c = '';
+                    item.FS_Tipo_de_Aprobacion__c = '';
+                    item.FS_MotivoRechazo__c = '';
                     item.FS_EnvioNotificacionPE__c = false;
                     item.FS_PudeSolventarPregunta__c = null;
                     item.FS_NumeroHorasSolicitud__c = null;
@@ -544,13 +561,14 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_AceptaRespuesta__c != item.FS_AceptaRespuesta__c && item.FS_AceptaRespuesta__c != null){
                 if(item.FS_AceptaRespuesta__c == 'Si' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){ 
-                    CaseTriggerHelper.crearHistorialAprobaciones(item);
+                    //CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'Certificado'; 
                     item.FS_RequiereInformacionAdicional__c = false;
                     //item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EnviarNotificacionEntregado__c = false;
                     item.FS_EnviarNotificacionCertificado__c = true;
                     item.FS_AceptaRespuesta__c = '';
+                    item.FS_DiasProyecto__c = null;
                     item.FS_Tipo_de_Aprobacion__c = '';
                     item.FS_MotivoRechazo__c = '';
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
@@ -560,7 +578,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_AceptaRespuesta__c == 'No' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
-                    CaseTriggerHelper.crearHistorialAprobaciones(item);
+                    //CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'En Revisión Entregado';
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';

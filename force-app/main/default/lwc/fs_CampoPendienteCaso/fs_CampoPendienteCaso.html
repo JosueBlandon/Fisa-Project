@@ -745,7 +745,7 @@
                                                 </lightning-layout-item>
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                     <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                    onchange={handleChange}></lightning-textarea>
+                                                    onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                 </lightning-layout-item>
                                             </lightning-layout>
                                         </lightning-card>
@@ -821,7 +821,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
@@ -912,7 +912,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
