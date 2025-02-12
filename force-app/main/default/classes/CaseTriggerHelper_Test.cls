@@ -24,10 +24,10 @@ public class CaseTriggerHelper_Test {
 
         Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
         User serviceUser = new User(
-            FirstName = 'Service',
+            FirstName = 'Service8',
             LastName = 'User',
             Email = 'service@test.com',
-            Username = 'serviceuser@test.com',
+            Username = 'serviceuser8@test.com',
             Alias = 'service',
             ProfileId = serviceProfile.Id,
             TimeZoneSidKey = 'America/Los_Angeles',
