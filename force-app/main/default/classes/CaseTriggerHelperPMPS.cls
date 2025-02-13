@@ -166,9 +166,9 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             if(record.Status == 'Dado de Baja' && record.Status != caso.Status) {
                 //record.Status = 'Pendiente de Respuesta CSAT';  
+                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 record.FS_EncuestaEnviada__c = true;
                 record.FS_FechaEnvioEncuesta__c = System.now();
-                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 CaseTriggerHelper.crearEncuesta(record);
                 //casesNew.add(record);
                 //casesOld.put(caso.Id, caso);
@@ -354,6 +354,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_FechaCompromisoEntrega__c = null;
                     item.FS_MotivoCambioFechaEntrega__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
+                    item.FS_EncuestaEnviada__c = true;
+                	item.FS_FechaEnvioEncuesta__c = System.now();
+                	CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO EL ANALISIS PREVIO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -409,6 +412,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_MotivoCambioFechaEntrega__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClienteEM__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_EncuestaEnviada__c = true;
+                	item.FS_FechaEnvioEncuesta__c = System.now();
+                	CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO LA ESTIMACION MACRO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -465,6 +471,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_MotivoCambioFechaEntrega__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClienteDEF__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_EncuestaEnviada__c = true;
+                	item.FS_FechaEnvioEncuesta__c = System.now();
+                	CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO EL DOCUMENTO DE ESPECIFICACIÓN FUNCIONAL '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -539,6 +548,9 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_MotivoCambioFechaEntrega__c = null;
                     //item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClientePE__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_EncuestaEnviada__c = true;
+                	item.FS_FechaEnvioEncuesta__c = System.now();
+                	CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO LA PROPUESTA ECONÓMICA '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);

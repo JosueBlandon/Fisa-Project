@@ -228,6 +228,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       this.data.caso.FS_AceptaPaseProducion__c = value;
     } else if (name === "aceptaPropuesta") {
       this.data.caso.FS_Acepta_Propuesta_Economica__c = value;
+      if (value == "Si") {
+        this.data.botonDeshabilitado = false;
+      }
       this.data.caso.FS_RequiereInformacionAdicional__c = false;
       this.data.caso.FS_EnvioNotificacionPE__c = false;
       this.data.mostrarRechazo = (value != "Si");
@@ -351,7 +354,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_Acepta1erCosto__c != null && this.data.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente") {
       window.console.log('Habilito campo13');
       this.data.botonDeshabilitado = false;
-    } else if (this.data.FS_Acepta_Propuesta_Economica__c === "Si" && this.data.caso.Status == "En Propuesta Económica") {
+    } else if (this.data.FS_Acepta_Propuesta_Economica__c == "Si" && this.data.caso.Status == "En Propuesta Económica") {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo6');
     } else if (this.data.caso.FS_AceptaRespuesta__c === "Si" && (this.data.caso.Status != "Validación de Respuesta (Cliente)" && this.data.caso.Status != "En Revisión Entregado")) {
@@ -365,13 +368,13 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_AceptaDEF__c === "Si" && this.data.caso.Status == "Documento de Especificación Funcional") {
       window.console.log('Habilito campo8');
       this.data.botonDeshabilitado = false;
-    } else if (this.data.caso.FS_AceptaAnalisisPrevio__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Análisis Previo") {
+    } else if (this.data.caso.FS_AceptaAnalisisPrevio__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Análisis Previo" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       window.console.log('Habilito campo9');
       this.data.botonDeshabilitado = false;
-    } else if (this.data.caso.FS_AceptaEstimacionMacro__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Estimación Macro") {
+    } else if (this.data.caso.FS_AceptaEstimacionMacro__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Estimación Macro" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       window.console.log('Habilito campo10');
       this.data.botonDeshabilitado = false;
-    } else if (this.data.caso.FS_AceptaDEF__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Documento de Especificación Funcional") {
+    } else if (this.data.caso.FS_AceptaDEF__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Documento de Especificación Funcional" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       window.console.log('Habilito campo11');
       this.data.botonDeshabilitado = false;
     } else if (this.data.caso.FS_AceptaRespuesta__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_ComentariosRespuesta__c != '') {
@@ -387,16 +390,16 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaSolucionEnProduccion__c === "No" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo16');
-    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaAnalisisPrevio__c === "No" && this.data.caso.Status == "Análisis Previo") {
+    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaAnalisisPrevio__c === "No" && this.data.caso.Status == "Análisis Previo" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo17');
-    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaEstimacionMacro__c === "No" && this.data.caso.Status == "Estimación Macro") {
+    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaEstimacionMacro__c === "No" && this.data.caso.Status == "Estimación Macro" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo18');
-    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaDEF__c === "No" && this.data.caso.Status == "Documento de Especificación Funcional") {
+    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptaDEF__c === "No" && this.data.caso.Status == "Documento de Especificación Funcional" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo19');
-    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_Acepta_Propuesta_Economica__c === "No" && this.data.caso.Status == "En Propuesta Económica") {
+    } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_Acepta_Propuesta_Economica__c === "No" && this.data.caso.Status == "En Propuesta Económica" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo20');
     } else if (this.data.caso.FS_AceptacionSolucionSalesforce__c === "Si" && (this.data.caso.Status == "En Producción" || this.data.caso.Status == "En Revisión en Producción")) {
