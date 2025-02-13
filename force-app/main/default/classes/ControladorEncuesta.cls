@@ -4,12 +4,15 @@ public without sharing class ControladorEncuesta {
     public static EncuestaWrapper getCaso(String recordId, String resultado, String resultadoNumero) {
         EncuestaWrapper respuesta = new EncuestaWrapper();
         respuesta.listMotivoInsatisfaccion = new List<PickListOption>();
-        Case caso = [Select CaseNumber, Status, FS_Acepta_Propuesta_Economica__c From Case Where id = :recordId];
+        Case caso = [Select CaseNumber, Status, FS_Acepta_Propuesta_Economica__c, FS_AceptaAnalisisPrevio__c, FS_AceptaEstimacionMacro__c, FS_AceptaDEF__c   From Case Where id = :recordId];
         respuesta.numeroCaso = caso.CaseNumber;
         respuesta.idCaso = caso.Id;
         respuesta.esCerrado = caso.Status == 'Cerrado';
         respuesta.deshabilitarBoton = true;
         respuesta.aceptaPropuestaEconomica = caso.FS_Acepta_Propuesta_Economica__c;
+        respuesta.AceptaAnalisisPrevio = caso.FS_AceptaAnalisisPrevio__c;
+        respuesta.AceptaEstimacionMacro = caso.FS_AceptaEstimacionMacro__c;
+        respuesta.AceptaDEF = caso.FS_AceptaDEF__c;
 
         list<string> lst1 = new List<string>(); 
         lst1.add('Información Incompleta'); 
@@ -72,9 +75,9 @@ public without sharing class ControladorEncuesta {
         caso.FS_ComentariosEncuesta__c = casoObj.comentarios;
         caso.FS_SurveyAnswered__c = UserInfo.getUserId();
         caso.FS_FechaContestacionEncuesta__c = System.now();
-        if(casoObj.aceptaPropuestaEconomica == 'No') {
+        if(casoObj.aceptaPropuestaEconomica == 'No' || casoObj.AceptaAnalisisPrevio == 'No' || casoObj.AceptaEstimacionMacro == 'No' || casoObj.AceptaDEF == 'No'  ) {
             caso.Status = 'Dado de Baja';    
-        } else {
+        }else {
             caso.Status = 'Cerrado';
         }
         update caso;
@@ -99,6 +102,9 @@ public without sharing class ControladorEncuesta {
         @AuraEnabled public Boolean deshabilitarBoton{get;set;}
         @AuraEnabled public List<PickListOption> listMotivoInsatisfaccion{get;set;}
         @AuraEnabled public String aceptaPropuestaEconomica {get;set;}
+        @AuraEnabled public String AceptaAnalisisPrevio {get;set;}
+        @AuraEnabled public String AceptaEstimacionMacro {get;set;}
+        @AuraEnabled public String AceptaDEF {get;set;}
     }
     
     public class PickListOption{

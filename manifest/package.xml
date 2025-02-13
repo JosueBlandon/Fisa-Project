@@ -381,6 +381,7 @@
 	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
+		<members>Case.FS_Campos_Requeridos_PropuestaEconomica</members>
 		<members>Case.FS_Datos_Es_Precontratado</members>
 		<members>Case.FS_Datos_Licencia_Recurrente</members>
 		<members>Case.FS_FechaCompromisoEntrega</members>

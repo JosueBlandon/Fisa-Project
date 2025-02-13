@@ -57,7 +57,7 @@
                                                 </lightning-layout-item>
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="12">
                                                     <lightning-textarea name="comentarioResp" label="Comentarios" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                    onchange={handleChange} ></lightning-textarea>
+                                                    onchange={handleChange} required={data.cometarioRequerido} ></lightning-textarea>
                                                 </lightning-layout-item>
                                             </lightning-layout>
                                         </lightning-card>
@@ -477,7 +477,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
@@ -489,7 +489,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>
@@ -543,7 +543,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
@@ -555,7 +555,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>
@@ -609,7 +609,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
@@ -621,7 +621,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>
@@ -666,7 +666,7 @@
                                                     </lightning-layout-item>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
                                                         <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange}></lightning-textarea>
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
                                                     </lightning-layout-item>
                                                 </lightning-layout-item>
                                             </lightning-layout>
@@ -678,7 +678,7 @@
                                 <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
                                     class="slds-m-left_x-small"></lightning-button>
                                 <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
-                                    class="slds-m-left_x-small" onclick={guardarCaso}></lightning-button>
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
                             </footer>
                         </fieldset>
                     </div>
@@ -894,8 +894,8 @@
                             <div class="slds-modal__content slds-p-around--medium">
                                 <lightning-layout vertical-align="stretch" multiple-rows="true">
                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12">
-                                        <span>Si usted certificó la solución y no tuvo inconvenientes coloque Si</span><br>
-                                        <span>Si usted certificó la solución y tiene inconvenientes (BUGS) coloque No</span>
+                                        <span>Si usted está conforme con la Solución, coloque Si.</span><br>
+                                        <span>Si usted NO está conforme con la solución y tiene inconvenientes (BUGS) coloque No.</span>
                                         <br><br>
                                         <lightning-card icon-name="standard:answer_best" title="Estado en Producción">
                                             <lightning-layout vertical-align="stretch" multiple-rows="true">
