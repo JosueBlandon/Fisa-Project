@@ -235,6 +235,8 @@
 		<members>FS_CorreosClientesCasos/FS_PendienteInformacionEstimacionMacro</members>
 		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaEconomica</members>
 		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
+		<members>FS_CorreosClientesCasos/FS_PMNotificacionCobroCliente</members>
+		<members>FS_CorreosClientesCasos/PMNotificacionCobroCliente1</members>
 		<members>unfiled$public/CommunityWelcomeEmailTemplate</members>
 		<members>unfiled$public/FS_PlantillaEncuestaFISA</members>
 		<members>unfiled$public/FS_TiempoEstimadoRespuesta</members>

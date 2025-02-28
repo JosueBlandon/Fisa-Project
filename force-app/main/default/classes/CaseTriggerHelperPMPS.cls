@@ -9,11 +9,21 @@
 * Date         Author                        Description
 * ----------   ---------------------------   -----------------------------------------------------------------
 * 2024-22-01   Intellect Systems             Initial version.
+* 2025-02-12   Intellect Systems             Add method called: updateJiraRecordPMPS.
 **************************************************************************************************************
 */
 public with sharing class CaseTriggerHelperPMPS {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String CONTROLDC_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
+    public static Map<String, EmailTemplate> mapPlantillas;
+    static{
+        mapPlantillas = new Map<String, EmailTemplate>();
+        
+        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%']){
+            mapPlantillas.put(plantilla.DeveloperName, plantilla);
+        }
+    }
     
     /**
      * @method      preventDeleteRecords
@@ -52,10 +62,10 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(record.ContactId != caso.ContactId) {
                     record.addError('Privilegios insuficientes, no puede editar campos del caso ingresados por el cliente.'); 
                 }
-                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
+                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
                     record.addError('Privilegios insuficientes para modificar el caso en el estado actual.');
                 }
-                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
+                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c) {
                     record.addError('Privilegios insuficientes para modificar la calificación del caso.');    
                 }
             }  
@@ -79,7 +89,7 @@ public with sharing class CaseTriggerHelperPMPS {
                                                                                                 WHERE 	FS_Cuenta__c IN : accountId and FS_Principal__c =: true	 ]);        
 
         for(Case lstCase: records) {
-            if(REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) {	
+            if((REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) || (CONTROLDC_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) ) {	
                 for(Id key : mapRecords.keySet()) {
                     lstCase.OwnerId = mapRecords.get(key).FS_Project_Manager__c; 
                 }
@@ -125,22 +135,18 @@ public with sharing class CaseTriggerHelperPMPS {
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
             if(record.FS_AceptaRespuesta__c == 'Si' && record.Status == 'Validación de Respuesta (Cliente)' && record.FS_AceptaRespuesta__c != caso.FS_AceptaRespuesta__c) {
-                //record.Status = 'Certificado';
                 CaseTriggerHelper.crearHistorialAprobaciones(record); 
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld); 
             }
             if(record.FS_AceptaRespuesta__c == 'No' && record.Status == 'Validación de Respuesta (Cliente)' && record.FS_AceptaRespuesta__c != caso.FS_AceptaRespuesta__c) {
-                //record.Status = 'En Desarrollo'; 
                 CaseTriggerHelper.crearHistorialAprobaciones(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
             if(record.FS_Fecha_Puesta_en_Produccion__c != null && record.FS_Fecha_Puesta_en_Produccion__c != caso.FS_Fecha_Puesta_en_Produccion__c) {
-                //record.Status = 'En Producción';  
-                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
@@ -149,7 +155,6 @@ public with sharing class CaseTriggerHelperPMPS {
                 record.Status = 'Pendiente de Respuesta CSAT';  
                 record.FS_EncuestaEnviada__c = true;
                 record.FS_FechaEnvioEncuesta__c = System.now();
-                //CaseTriggerHelper.crearHistorialAprobaciones(record);
                 CaseTriggerHelper.crearEncuesta(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
@@ -163,24 +168,37 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(!Test.isRunningTest()){
                     CaseTriggerHelper.enviarNotificacion(record.OwnerId, record.Id, titulo, descripcion);
                 }
-            }
-            if(record.Status == 'Dado de Baja' && record.Status != caso.Status) {
-                //record.Status = 'Pendiente de Respuesta CSAT';  
-                //CaseTriggerHelper.crearHistorialAprobaciones(record);
-                record.FS_EncuestaEnviada__c = true;
-                record.FS_FechaEnvioEncuesta__c = System.now();
-                CaseTriggerHelper.crearEncuesta(record);
-                //casesNew.add(record);
-                //casesOld.put(caso.Id, caso);
-                //CreateJiraRecord.updateIssueJira(casesNew, casesOld);
-                CaseTriggerHelper.envioCorreo(record, 'FS_Encuesta', true);
-            }
-            if(record.Status == 'Cerrado' && record.Status != caso.Status) {
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
+            if(record.Status == 'Dado de Baja' && record.Status != caso.Status) {
+                record.FS_EncuestaEnviada__c = true;
+                record.FS_FechaEnvioEncuesta__c = System.now();
+                CaseTriggerHelper.crearEncuesta(record);
+                CaseTriggerHelper.envioCorreo(record, 'FS_Encuesta', true);
+            }
         }    
+    }
+
+    /**
+     * @method      updateJiraRecordPMPS
+     * @description Method to update Jira Record
+     * @author      Intellect Systems - 2025-02-12
+     * @param       records
+     * @param      oldRecords
+     */
+    public static void updateJiraRecordPMPS(List<Case> records, Map<Id, Case> oldRecords) {
+        List<Case> casesNew = new List<Case>();
+        Map<Id, Case> casesOld = new Map<Id, Case>();
+        for (Case record : records) {
+            Case caso = oldRecords.get(record.Id);
+            if((record.Status == 'Estimación Macro' || record.Status == 'Documento de Especificación Funcional' || record.Status == 'En Propuesta Económica' || record.Status == 'En Desarrollo' || record.Status == 'Validación de Respuesta (Cliente)' || record.Status == 'En Revisión Entregado' || record.Status == 'Certificado' || record.Status == 'En Revisión Certificado' || record.Status == 'En Producción'|| record.Status == 'En Revisión en Producción' || record.Status == 'En Espera de Respuesta del Cliente' || record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.Status != caso.Status) {
+                casesNew.add(record);
+                casesOld.put(caso.Id, caso);
+                CreateJiraRecord.updateIssueJira(casesNew, casesOld);
+            }  
+        } 
     }
 
     /**
@@ -284,7 +302,6 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(item.FS_RequiereInformacionAdicional__c == false) {
                     String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
-                    //msjError += String.isBlank(item.FS_Proyecto__c) ? 'Proyecto, ' : '';
                     msjError += String.isBlank(item.FS_SubModulo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
                     
                     if(msjError.length() > 38) {
@@ -331,15 +348,13 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_EnvioNotificacion__c = false;
                     item.FS_FechaAprobacionCliente__c = date.valueOf(item.LastModifiedDate);
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
-                    //String titulo = 'EL CLIENTE APROBO EL ANALISIS PREVIO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE APROBO EL ANALISIS PREVIO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
                     customNotificationObj.setSenderId(item.OwnerId);
                     customNotificationObj.setTargetId(item.Id);
+
                     if(!Test.isRunningTest()){
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteAceptaAnalisisPrevio', false);
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                     }                    
@@ -355,22 +370,18 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_MotivoCambioFechaEntrega__c = null;
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EncuestaEnviada__c = true;
-                	item.FS_FechaEnvioEncuesta__c = System.now();
-                	CaseTriggerHelper.crearEncuesta(item);
+                    item.FS_FechaEnvioEncuesta__c = System.now();
+                    CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO EL ANALISIS PREVIO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
                     customNotificationObj.setSenderId(item.OwnerId);
                     customNotificationObj.setTargetId(item.Id);
-                    //String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
 
                     if(!Test.isRunningTest()){
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteRechazaAnalisisPrevio', false);
                         CaseTriggerHelper.envioCorreo(item, 'FS_Encuesta', true);
-                        //CaseTriggerHelper.envioCorreo(item, 'FS_RechazoRespuesta', false);
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }
             }
@@ -383,21 +394,18 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_Tipo_de_Aprobacion__c = '';
                     item.FS_MotivoRechazo__c = '';
                     item.Status = 'Documento de Especificación Funcional';
-                    //item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_EnvioNotificacionEM__c = false;
                     item.FS_FechaAprobacionClienteEM__c = date.valueOf(item.LastModifiedDate);
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
-                    //String titulo = 'EL CLIENTE APROBO LA ESTIMACION MACRO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE APROBO LA ESTIMACION MACRO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
                     customNotificationObj.setSenderId(item.OwnerId);
                     customNotificationObj.setTargetId(item.Id);
+
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteAceptaAprobacionEstimacioMacro', false);
                         customNotificationObj.send(new Set<String> {item.OwnerId});
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
 
                 }else if(item.FS_AceptaEstimacionMacro__c == 'No'){
@@ -413,8 +421,8 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClienteEM__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EncuestaEnviada__c = true;
-                	item.FS_FechaEnvioEncuesta__c = System.now();
-                	CaseTriggerHelper.crearEncuesta(item);
+                    item.FS_FechaEnvioEncuesta__c = System.now();
+                    CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO LA ESTIMACION MACRO '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -425,13 +433,7 @@ public with sharing class CaseTriggerHelperPMPS {
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteRechazaEstimacionMacro', false);
                         CaseTriggerHelper.envioCorreo(item, 'FS_Encuesta', true);
-                        //CaseTriggerHelper.envioCorreo(item, 'FS_RechazoRespuesta', false);
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
-                    
-                    //String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
-
                 }
             }
             
@@ -447,8 +449,6 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_EnvioNotificacionDEF__c = false;
                     item.FS_FechaAprobacionClienteDEF__c = date.valueOf(item.LastModifiedDate);                
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
-                    //String titulo = 'EL CLIENTE APROBO EL DOCUMENTO DE ESPECIFICACIÓN FUNCIONAL '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE APROBO EL DOCUMENTO DE ESPECIFICACIÓN FUNCIONAL '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -457,7 +457,6 @@ public with sharing class CaseTriggerHelperPMPS {
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteAceptaAprobacionDefinicionEspecificacionFuncionalDEF', false);
                         customNotificationObj.send(new Set<String> {item.OwnerId});
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_AceptaDEF__c == 'No'){
                     item.FS_AceptaRespuesta__c = '';
@@ -472,8 +471,8 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClienteDEF__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EncuestaEnviada__c = true;
-                	item.FS_FechaEnvioEncuesta__c = System.now();
-                	CaseTriggerHelper.crearEncuesta(item);
+                    item.FS_FechaEnvioEncuesta__c = System.now();
+                    CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO EL DOCUMENTO DE ESPECIFICACIÓN FUNCIONAL '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -484,18 +483,11 @@ public with sharing class CaseTriggerHelperPMPS {
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteRechazaDefinicionEspecificacionFuncionalDEF', false);
                         CaseTriggerHelper.envioCorreo(item, 'FS_Encuesta', true);
-                        //CaseTriggerHelper.envioCorreo(item, 'FS_RechazoRespuesta', false);
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
-                    
-                    //String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';  
-                    
                 }
             }
             
             if(caso.FS_Aplica_Licencia_Recurrente__c != item.FS_Aplica_Licencia_Recurrente__c && item.FS_Aplica_Licencia_Recurrente__c != null ){
-                //CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && item.FS_Aplica_Licencia_Recurrente__c != null && UserInfo.getUserType() != 'Guest'){
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
@@ -514,18 +506,14 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(caso.FS_Acepta_Propuesta_Economica__c != item.FS_Acepta_Propuesta_Economica__c && item.FS_Acepta_Propuesta_Economica__c != null) {
-                //CaseTriggerHelper.crearHistorialAprobaciones(item);
                 Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.Status == 'En Propuesta Económica' && UserInfo.getUserType() != 'Guest'){ 
-                    //item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
                     item.FS_MotivoRechazo__c = '';
                     item.FS_EnvioNotificacionPE__c = false;
                     item.FS_FechaAprobacionClientePE__c = date.valueOf(item.LastModifiedDate);
                     //Envio notificacion y Correo PM - Actualizacion de estado - cliente acepta
-                    //String titulo = 'EL CLIENTE APROBO LA PROPUESTA ECONÓMICA '+item.CaseNumber;
-                    //String descripcion = 'Para el caso '+ item.CaseNumber+' se aprobo la propuesta económica, favor dar seguimiento';
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE APROBO LA PROPUESTA ECONÓMICA '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -534,7 +522,6 @@ public with sharing class CaseTriggerHelperPMPS {
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteAceptaAprobacionPropuestaEconomica', false);
                         customNotificationObj.send(new Set<String> {item.OwnerId});
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_Acepta_Propuesta_Economica__c == 'No'){
                     item.Status = 'Dado de Baja';
@@ -546,11 +533,10 @@ public with sharing class CaseTriggerHelperPMPS {
                     item.FS_NumeroHorasSolicitud__c = null;
                     item.FS_FechaCompromisoEntrega__c = null;
                     item.FS_MotivoCambioFechaEntrega__c = null;
-                    //item.FS_RequiereInformacionAdicional__c = false;
                     item.FS_FechaAprobacionClientePE__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EncuestaEnviada__c = true;
-                	item.FS_FechaEnvioEncuesta__c = System.now();
-                	CaseTriggerHelper.crearEncuesta(item);
+                    item.FS_FechaEnvioEncuesta__c = System.now();
+                    CaseTriggerHelper.crearEncuesta(item);
                     customNotificationObj.setBody('El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento');
                     customNotificationObj.setTitle('EL CLIENTE RECHAZO LA PROPUESTA ECONÓMICA '+item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
@@ -561,22 +547,14 @@ public with sharing class CaseTriggerHelperPMPS {
                         customNotificationObj.send(new Set<String> {item.OwnerId});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PMClienteRechazaPropuestaEconomica', false);
                         CaseTriggerHelper.envioCorreo(item, 'FS_Encuesta', true);
-                        //CaseTriggerHelper.envioCorreo(item, 'FS_RechazoRespuesta', false);
-                        //CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
-                    
-                    //String titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
-                    //String descripcion = 'El caso '+ item.CaseNumber+' ha cambiado de estado, por favor dar seguimiento';
-
                 }
             }
             
             if(caso.FS_AceptaRespuesta__c != item.FS_AceptaRespuesta__c && item.FS_AceptaRespuesta__c != null){
                 if(item.FS_AceptaRespuesta__c == 'Si' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){ 
-                    //CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'Certificado'; 
                     item.FS_RequiereInformacionAdicional__c = false;
-                    //item.FS_FechaCertificacionCliente__c = date.valueOf(item.LastModifiedDate);
                     item.FS_EnviarNotificacionEntregado__c = false;
                     item.FS_EnviarNotificacionCertificado__c = true;
                     item.FS_AceptaRespuesta__c = '';
@@ -590,7 +568,6 @@ public with sharing class CaseTriggerHelperPMPS {
                         CaseTriggerHelper.enviarNotificacion(caso.OwnerId, caso.Id, titulo, descripcion);
                     }
                 }else if(item.FS_AceptaRespuesta__c == 'No' && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
-                    //CaseTriggerHelper.crearHistorialAprobaciones(item);
                     item.Status = 'En Revisión Entregado';
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
@@ -670,7 +647,6 @@ public with sharing class CaseTriggerHelperPMPS {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_EnvioNotificacion__c != item.FS_EnvioNotificacion__c && item.FS_EnvioNotificacion__c != null){
-                //CaseTriggerHelper.crearHistorialAprobaciones(item);
                 if(item.FS_EnvioNotificacion__c == true && item.Status == 'Análisis Previo'){
                     item.FS_FechaEntregaAnalisisPrevio__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
@@ -686,7 +662,6 @@ public with sharing class CaseTriggerHelperPMPS {
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionAnalisisPrevio', true);
-                        //enviarCorreoPlantilla(item, 'FS_PendienteInformacionAnalisisPrevio');
                     }
                 }
             }
@@ -816,6 +791,7 @@ public with sharing class CaseTriggerHelperPMPS {
             Case caso = oldCaseMap.get(item.Id);
             if(caso.Status != item.Status && ( item.Status == 'Dado de Baja' || item.Status == 'En Planificación') ){
                 String titulo;
+                String Plantilla = 'PMNotificacionCobroCliente1';
                 decimal contadorDias;
                 decimal Total ;
                 
@@ -845,11 +821,13 @@ public with sharing class CaseTriggerHelperPMPS {
                     ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre4__c + ' y el total USD: ' + item.FS_TotalUSDPropuestaEconomicaF__c + 
                     ', \nAplica Licencia Recurrente: ' + item.FS_Aplica_Licencia_Recurrente__c + ', Cuándo Aplica LR: ' + item.FS_Cuando_Aplica_LR__c + 
                     ', Días que Aplica LR: ' + item.FS_Dias_que_Aplica_LR__c + ' \n' ;
+                    Plantilla = 'FS_PMNotificacionCobroCliente';
                 }
                 
                 //envio de correo Finanzas
                 String correo = System.Label.FS_CorreoFinanzas;
-                enviarCorreoSimple(correo, titulo, descripcion, caso.Id);
+                //CaseTriggerHelper.envioCorreo(item, Plantilla, true);
+                enviarCorreoSimple(correo, Plantilla, caso.Id, item);
             } 
         }
     }
@@ -864,17 +842,29 @@ public with sharing class CaseTriggerHelperPMPS {
      * @param       recordId
      */
 
-    public static void enviarCorreoSimple(String address, String subject, String descripcion, String recordId) {
+    public static void enviarCorreoSimple(String address, String nombrePlantilla, String recordId, Case caso) {
         OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where Address = :Label.FS_CorreoElectronicoServicio];
 
         // Create an email message object
+        EmailTemplate plantilla = mapPlantillas.get(nombrePlantilla);
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        String asunnto = CaseTriggerHelper.reemplazarCampos(caso, plantilla.Subject, 'Case');
+        String html = CaseTriggerHelper.reemplazarCampos(caso, plantilla.HTMLValue, 'Case');
+        String urlLogo = CaseTriggerHelper.getLogoImagen();
+        html = CaseTriggerHelper.getLogoImagen() + html.replace('{urlSiteServicios}', Label.FS_UrlPortalServicios);
+        html = html.replace('{urlSiteEncuestas}', Label.FS_UrlPortalEncuestas);
+        html = html.replace('{urlSalesforceOrg}', Label.FS_urlSalesforceOrg);
+        html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
+        html = html.replace('<![CDATA[', '');
+        mail.setSubject(asunnto);
+        mail.setHtmlBody(html);
         String[] toAddresses = new String[] {address};
         mail.setToAddresses(toAddresses);
-        mail.setSubject(subject);
-        mail.setPlainTextBody(descripcion);
+        //mail.setSubject(subject);
+        //mail.setPlainTextBody(descripcion);
         mail.setWhatId(recordId);
         mail.setOrgWideEmailAddressId(owea.Id);
+        mail.saveAsActivity = true;
         //mail.saveAsActivity = false;
         try{
             if(!Test.isRunningTest()){
@@ -884,63 +874,5 @@ public with sharing class CaseTriggerHelperPMPS {
             System.debug(ex.getMessage()+'Error Correo Simple ----- '+ex.getLineNumber());
         }
     }
-    
-    /**
-     * @method      enviarNotificacionCampana
-     * @description Método muestra las notificaciones en la campana
-     * @author      Intellect Systems - 2025-01-16
-     * @param       wrapper
-     */
-    /*private static void enviarNotificacionCampana(wrapperNotificacion wrapper) {
-        Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
-        customNotificationObj.setBody(wrapper.body);
-        customNotificationObj.setTitle(wrapper.title);
-        customNotificationObj.setNotificationTypeId(wrapper.notification);
-        customNotificationObj.setSenderId(wrapper.sender);
-        customNotificationObj.setTargetId(wrapper.target);
-        if(!Test.isRunningTest()){
-            customNotificationObj.send(new Set<String> {wrapper.createdById});
-        }
-    }
-
-    public class wrapperNotificacion {
-        public String createdById { get; private set; }
-        public String body { get; private set; }
-        public String title { get; private set; }
-        public String notification { get; private set; }
-        public String sender { get; private set; }
-        public String target { get; private set; }
-
-        // Fluent methods for setting properties
-        public wrapperNotificacion setCreatedById(String createdById) {
-            this.createdById = createdById;
-            return this;
-        }
-
-        public wrapperNotificacion setBody(String body) {
-            this.body = body;
-            return this;
-        }
-
-        public wrapperNotificacion setTitle(String title) {
-            this.title = body;
-            return this;
-        }
-
-        public wrapperNotificacion setNotification(String notification) {
-            this.notification = notification;
-            return this;
-        }
-
-        public wrapperNotificacion setSender(String sender) {
-            this.sender = sender;
-            return this;
-        }
-
-        public wrapperNotificacion setTarget(String target) {
-            this.target = target;
-            return this;
-        }
-    }*/
 
 }
