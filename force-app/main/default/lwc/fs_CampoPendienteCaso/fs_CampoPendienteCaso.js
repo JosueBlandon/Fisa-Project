@@ -107,7 +107,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.FS_SubEstado__c === "Respuesta aceptada" && response.caso.Status === "Pendiente de Respuesta CSAT") {
         this.data.pendienteEncuesta = true;
         this.data.pendienteEncuestaDetalle = true;
-      } else if (response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' && response.caso.Status === "Dado de Baja" && response.caso.FS_FechaEnvioEncuesta__c == null) {
+      } else if (response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' && response.caso.Status === "Dado de Baja" && response.caso.FS_FechaContestacionEncuesta__c == null) {
         this.data.pendienteEncuesta = true;
         this.data.pendienteEncuestaDetalle = true;
       } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === false) {

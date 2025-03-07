@@ -9,7 +9,10 @@ CreatedBy.Profile.Name = &apos;Customer Community User&apos;,
 CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;
 ),
 RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
+OR(
 $Profile.Name == &apos;PM-PS&apos;,
+$Profile.Name == &apos;Usuario Fisa&apos;
+),
 OR(
 AND(
 ISCHANGED(FS_Buscar_Proyecto__c),

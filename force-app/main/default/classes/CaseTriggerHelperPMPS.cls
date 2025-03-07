@@ -15,7 +15,6 @@
 public with sharing class CaseTriggerHelperPMPS {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
-    public static final String CONTROLDC_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
     public static Map<String, EmailTemplate> mapPlantillas;
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
@@ -62,10 +61,10 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(record.ContactId != caso.ContactId) {
                     record.addError('Privilegios insuficientes, no puede editar campos del caso ingresados por el cliente.'); 
                 }
-                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
+                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
                     record.addError('Privilegios insuficientes para modificar el caso en el estado actual.');
                 }
-                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c) {
+                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
                     record.addError('Privilegios insuficientes para modificar la calificación del caso.');    
                 }
             }  
@@ -89,7 +88,7 @@ public with sharing class CaseTriggerHelperPMPS {
                                                                                                 WHERE 	FS_Cuenta__c IN : accountId and FS_Principal__c =: true	 ]);        
 
         for(Case lstCase: records) {
-            if((REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) || (CONTROLDC_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) ) {	
+            if(REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) {	
                 for(Id key : mapRecords.keySet()) {
                     lstCase.OwnerId = mapRecords.get(key).FS_Project_Manager__c; 
                 }
@@ -197,6 +196,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.updateIssueJira(casesNew, casesOld);
+                
             }  
         } 
     }
@@ -787,11 +787,17 @@ public with sharing class CaseTriggerHelperPMPS {
     }
     
     public static void envioNotificacionFinanzas(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
+        system.debug('llego a finanzas');
+        
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
-            if(caso.Status != item.Status && ( item.Status == 'Dado de Baja' || item.Status == 'En Planificación') ){
+            system.debug('estado en finanzas: '+ item.Status);
+            if((caso.Status != item.Status && ( item.Status == 'Dado de Baja' || item.Status == 'En Planificación')) || (caso.FS_AceptaAnalisisPrevio__c != item.FS_AceptaAnalisisPrevio__c && item.FS_AceptaAnalisisPrevio__c == 'No') ||
+                (caso.FS_Acepta_Propuesta_Economica__c != item.FS_Acepta_Propuesta_Economica__c && item.FS_Acepta_Propuesta_Economica__c == 'No') || (caso.FS_AceptaEstimacionMacro__c != item.FS_AceptaEstimacionMacro__c && item.FS_AceptaEstimacionMacro__c == 'No') || 
+                (caso.FS_AceptaDEF__c != item.FS_AceptaDEF__c && item.FS_AceptaDEF__c == 'No')){
+                system.debug('entro en dado de baja');
                 String titulo;
-                String Plantilla = 'PMNotificacionCobroCliente1';
+                String Plantilla = 'FS_PMNotificacionCobroClienteNoAcepta';
                 decimal contadorDias;
                 decimal Total ;
                 
@@ -844,6 +850,7 @@ public with sharing class CaseTriggerHelperPMPS {
 
     public static void enviarCorreoSimple(String address, String nombrePlantilla, String recordId, Case caso) {
         OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where Address = :Label.FS_CorreoElectronicoServicio];
+        system.debug('envio en dado de baja');
 
         // Create an email message object
         EmailTemplate plantilla = mapPlantillas.get(nombrePlantilla);
@@ -862,10 +869,11 @@ public with sharing class CaseTriggerHelperPMPS {
         mail.setToAddresses(toAddresses);
         //mail.setSubject(subject);
         //mail.setPlainTextBody(descripcion);
-        mail.setWhatId(recordId);
+        mail.setWhatId(caso.Id);
         mail.setOrgWideEmailAddressId(owea.Id);
         mail.saveAsActivity = true;
         //mail.saveAsActivity = false;
+        mail.setTargetObjectId(caso.ContactId);
         try{
             if(!Test.isRunningTest()){
                 Messaging.SendEmailResult[] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
