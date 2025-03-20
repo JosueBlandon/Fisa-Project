@@ -720,15 +720,12 @@ public with sharing class CaseTriggerHelperPMPS {
                 }
                 
             }
-            
-            if(caso.FS_URLParcheCliente__c != item.FS_URLParcheCliente__c && item.FS_URLParcheCliente__c != null){
-                //estado igual a 'entregado'
-                if(item.FS_URLParcheCliente__c != null && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
-                    item.FS_EnviarNotificacionEntregado__c = true;
-                    //item.status = 'Validación de Respuesta (Cliente)';
-                }
+
+            if(caso.Status != item.Status && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
+                //estado igual a 'Entregado'
+                item.FS_EnviarNotificacionEntregado__c = true;
             }
-            
+
             if(caso.FS_EnviarNotificacionEntregado__c != item.FS_EnviarNotificacionEntregado__c && item.FS_EnviarNotificacionEntregado__c != null){
                 //estado igual a 'entregado'
                 if(item.FS_EnviarNotificacionEntregado__c == true && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
@@ -749,7 +746,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
                 }
             }
-            
+
             if(caso.FS_EnviarNotificacionCertificado__c != item.FS_EnviarNotificacionCertificado__c && item.FS_EnviarNotificacionCertificado__c != null){
                 if(item.FS_EnviarNotificacionCertificado__c == true && (item.Status == 'Certificado' || item.Status == 'En Revisión Certificado')){
                     //envio de notificacion campana - comunidad
@@ -766,7 +763,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     }
                 }
             }
-            
+
             if(caso.FS_EnviarNotificacionProduccion__c != item.FS_EnviarNotificacionProduccion__c && item.FS_EnviarNotificacionProduccion__c != null){
                 if(item.FS_EnviarNotificacionProduccion__c == true && (item.Status == 'En Producción' || item.Status == 'En Revisión en Producción')){
                     //envio de notificacion campana - comunidad
@@ -800,15 +797,15 @@ public with sharing class CaseTriggerHelperPMPS {
                 String Plantilla = 'FS_PMNotificacionCobroClienteNoAcepta';
                 decimal contadorDias;
                 decimal Total ;
-                
+
                 if(item.Status == 'Dado de Baja'){
                     titulo = 'RECHAZO DEL CLIENTE PARA EL CASO NÚMERO '+item.CaseNumber;
                 }else{
                     titulo = 'El Cliente Aprobo la Propuesta economica del Caso Numero: '+item.CaseNumber;
                 }
-                
+
                 String descripcion = 'El caso '+ item.CaseNumber+ ' para el cliente '+ item.FS_NombreContacto__c +  ' ha cambiado de estado, por favor dar seguimiento. \n \n';
-                
+
                 if(item.FS_AceptaAnalisisPrevio__c == 'Si' && item.FS_Buscar_Proyecto__r.FS_Es_Pre_contratado__c == false){
                     descripcion = descripcion + 'El Cliente acepto el Analisis Previo con la cantidad de Dias: '+ item.FS_DiasAprobacionAnalisisPrevio__c + 
                     ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre__c + ' y el total USD: ' + item.FS_TotalUSDAnalisisPrevio__c + ' \n' ;
@@ -821,7 +818,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     descripcion = descripcion + 'El Cliente rechazo la Estimacion Macro, la cantidad de Dias DEF fueron: ' + item.FS_DiasDEF__c + 
                     ', la tarifa es la siguiente: ' + + item.FS_Tarifa_Dias_Hombre2__c + ' \n' ;
                 }
-                
+
                 if(item.FS_Acepta_Propuesta_Economica__c == 'Si' && item.FS_Buscar_Proyecto4__r.FS_Es_Pre_contratado__c == false){
                     descripcion = descripcion + 'El Cliente acepto la Propuesta Economica con la cantidad de Dias: ' + item.FS_DiasAprobacionPropuestaEconomica__c +
                     ', mas la Tarifa: ' + item.FS_Tarifa_Dias_Hombre4__c + ' y el total USD: ' + item.FS_TotalUSDPropuestaEconomicaF__c + 
@@ -829,7 +826,7 @@ public with sharing class CaseTriggerHelperPMPS {
                     ', Días que Aplica LR: ' + item.FS_Dias_que_Aplica_LR__c + ' \n' ;
                     Plantilla = 'FS_PMNotificacionCobroCliente';
                 }
-                
+
                 //envio de correo Finanzas
                 String correo = System.Label.FS_CorreoFinanzas;
                 //CaseTriggerHelper.envioCorreo(item, Plantilla, true);
