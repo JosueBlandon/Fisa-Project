@@ -143,7 +143,8 @@ public with sharing class CaseTriggerHelperPMPS {
                 CaseTriggerHelper.crearHistorialAprobaciones(record);
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
-                CreateJiraRecord.updateIssueJira(casesNew, casesOld);
+                //editado para no enviar doble notificacion por cambio de estado en el metodo updateJiraRecordPMPS.
+                //CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
             if(record.FS_Fecha_Puesta_en_Produccion__c != null && record.FS_Fecha_Puesta_en_Produccion__c != caso.FS_Fecha_Puesta_en_Produccion__c) {
                 casesNew.add(record);
