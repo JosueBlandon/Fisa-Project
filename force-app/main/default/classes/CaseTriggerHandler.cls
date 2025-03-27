@@ -94,6 +94,7 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelperPMPS.informacionCompleta(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelper.validacionProducto(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.envioNotificacionFinanzas(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
             if(UserInfo.getUserType() != 'Guest'){
                 CaseTriggerHelperPMPS.aceptaRespuesta(lstCaseRequerimiento, mpCaseRequerimiento);
                 CaseTriggerHelperPMPS.envioNotificacionComunidad(lstCaseRequerimiento, mpCaseRequerimiento);

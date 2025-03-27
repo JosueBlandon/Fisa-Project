@@ -135,21 +135,21 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             if(record.FS_AceptaRespuesta__c == 'Si' && record.Status == 'Validación de Respuesta (Cliente)' && record.FS_AceptaRespuesta__c != caso.FS_AceptaRespuesta__c) {
                 CaseTriggerHelper.crearHistorialAprobaciones(record); 
-                casesNew.add(record);
-                casesOld.put(caso.Id, caso);
-                CreateJiraRecord.updateIssueJira(casesNew, casesOld); 
+                // casesNew.add(record);
+                // casesOld.put(caso.Id, caso);
+                // CreateJiraRecord.updateIssueJira(casesNew, casesOld); 
             }
             if(record.FS_AceptaRespuesta__c == 'No' && record.Status == 'Validación de Respuesta (Cliente)' && record.FS_AceptaRespuesta__c != caso.FS_AceptaRespuesta__c) {
                 CaseTriggerHelper.crearHistorialAprobaciones(record);
-                casesNew.add(record);
-                casesOld.put(caso.Id, caso);
+                // casesNew.add(record);
+                // casesOld.put(caso.Id, caso);
                 //editado para no enviar doble notificacion por cambio de estado en el metodo updateJiraRecordPMPS.
                 //CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
             if(record.FS_Fecha_Puesta_en_Produccion__c != null && record.FS_Fecha_Puesta_en_Produccion__c != caso.FS_Fecha_Puesta_en_Produccion__c) {
-                casesNew.add(record);
-                casesOld.put(caso.Id, caso);
-                CreateJiraRecord.updateIssueJira(casesNew, casesOld);
+                // casesNew.add(record);
+                // casesOld.put(caso.Id, caso);
+                // CreateJiraRecord.updateIssueJira(casesNew, casesOld);
             }
             if(record.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && record.FS_Quiere_Finalizar_la_Atencion_del_Caso__c != caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c) {
                 record.Status = 'Pendiente de Respuesta CSAT';  
