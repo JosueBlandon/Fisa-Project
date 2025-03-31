@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Incrementar_Numero_de_dias_consumidos</name>
         <label>Incrementar Número de días consumidos</label>
@@ -345,6 +344,13 @@
                 <elementReference>$Record.FS_Buscar_Proyecto__r.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>FS_Es_Pre_contratado__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>FS_Proyecto__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -366,6 +372,13 @@
                 <elementReference>$Record.FS_Buscar_Proyecto4__r.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>FS_Es_Pre_contratado__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>FS_Proyecto__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -385,6 +398,13 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.FS_Buscar_Proyecto2__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>FS_Es_Pre_contratado__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>

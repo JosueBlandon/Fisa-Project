@@ -643,6 +643,36 @@
                 <label>FSDE344 - SF5086 SOPORTE PREVENTIVO CORRECTIVO 2025 AHÍ</label>
             </value>
             <value>
+                <fullName>FSDE345 - SF5405 SOPORTE INSTALACION OMNIA V4.5 MAF</fullName>
+                <default>false</default>
+                <label>FSDE345 - SF5405 SOPORTE INSTALACION OMNIA V4.5 MAF</label>
+            </value>
+            <value>
+                <fullName>FSDE346 - SF5396 INCLUSION PAGOS FICTICIOS FECI CRE</fullName>
+                <default>false</default>
+                <label>FSDE346 - SF5396 INCLUSION PAGOS FICTICIOS FECI CRE</label>
+            </value>
+            <value>
+                <fullName>FSDE347 - SF5414 FUNCIONALIDAD TASAS DE INTERES</fullName>
+                <default>false</default>
+                <label>FSDE347 - SF5414 FUNCIONALIDAD TASAS DE INTERES</label>
+            </value>
+            <value>
+                <fullName>FSDE348 - SF5172 CALCULO TASA EFECTIVA ANUAL COSTOS CAR</fullName>
+                <default>false</default>
+                <label>FSDE348 - SF5172 CALCULO TASA EFECTIVA ANUAL COSTOS CAR</label>
+            </value>
+            <value>
+                <fullName>FSDE349 - SF5287 MEJORAS VISANET ABRIL 2025</fullName>
+                <default>false</default>
+                <label>FSDE349 - SF5287 MEJORAS VISANET ABRIL 2025</label>
+            </value>
+            <value>
+                <fullName>FSDE350 - SF5499 SOPORTE DESPLIEGUE EN PRODUCCION MAF</fullName>
+                <default>false</default>
+                <label>FSDE350 - SF5499 SOPORTE DESPLIEGUE EN PRODUCCION MAF</label>
+            </value>
+            <value>
                 <fullName>FSFL001 - FISA SYSTEM FLAMINGO</fullName>
                 <default>false</default>
                 <label>FSFL001 - FISA SYSTEM FLAMINGO</label>
@@ -698,6 +728,11 @@
                 <label>PNDP109 - SOLUCION DE ERRORES DE PRODUCTO</label>
             </value>
             <value>
+                <fullName>PNDP207 - MEJORA PRODUCTOS</fullName>
+                <default>false</default>
+                <label>PNDP207 - MEJORA PRODUCTOS</label>
+            </value>
+            <value>
                 <fullName>PNHD003 - OMNIA Help Desk</fullName>
                 <default>false</default>
                 <label>PNHD003 - OMNIA Help Desk</label>
@@ -746,6 +781,11 @@
                 <fullName>PNRE047 - Servicio Soporte Local BIT 2022-2023</fullName>
                 <default>false</default>
                 <label>PNRE047 - Servicio Soporte Local BIT 2022-2023</label>
+            </value>
+            <value>
+                <fullName>PNRE048 - HD32096 SERVICIO DE PRECONTRATADO 2022-2023 800D/H</fullName>
+                <default>false</default>
+                <label>PNRE048 - HD32096 SERVICIO DE PRECONTRATADO 2022-2023 800D/H</label>
             </value>
             <value>
                 <fullName>PNRE048 - SERVICIO DE PRECONTRATADO 2022-2023 800D/H</fullName>
