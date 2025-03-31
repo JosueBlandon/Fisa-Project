@@ -6,6 +6,7 @@
 		<members>CaseTriggerHelperPMPS</members>
 		<members>CaseTriggerHelperPMPSTest</members>
 		<members>CaseTriggerHelper_Test</members>
+		<members>ChangeCaseRecordType</members>
 		<members>ContactTriggerHandler</members>
 		<members>ContactTriggerHelper</members>
 		<members>ContactTriggerHelper_Test</members>
