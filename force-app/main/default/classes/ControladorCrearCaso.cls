@@ -202,17 +202,100 @@ public without sharing class ControladorCrearCaso {
         //Assigning default value to the field: Tipo de Aprobacion
         if(caso.FS_Acepta_Propuesta_Economica__c == 'Si' && caso.Status == 'En Propuesta Económica') {
             caso.FS_Tipo_de_Aprobacion__c = 'Propuesta Económica';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaEconomica__c;
             caso.FS_Fecha_Aprobacion_PE__c = System.now();
         }
-        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'Validación de Respuesta (Cliente)') {
+        if(caso.FS_AceptaAnalisisPrevio__c == 'Si' && caso.Status == 'Análisis Previo') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaEstimacionMacro__c == 'Si' && caso.Status == 'Estimación Macro') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Estimación Macro';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionEstimacionMacro__c;
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaDEF__c == 'Si' && caso.Status == 'Documento de Especificación Funcional') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Documento de Especificación Funcional';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'Validación de Respuesta (Cliente)' && caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
             caso.FS_Tipo_de_Aprobacion__c = 'Aceptación Solución';
         }
-        if(caso.FS_Fecha_Puesta_en_Produccion__c != null && caso.Status == 'Certificado') {
+        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'Validación de Respuesta (Cliente)' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Entregado';
+        }
+        if(caso.FS_AceptaRespuesta__c == 'Si' && caso.Status == 'En Revisión Entregado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión Entregado';
+        }
+        if(caso.FS_Fecha_Puesta_en_Produccion__c != null && caso.Status == 'Certificado' && caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
             caso.FS_Tipo_de_Aprobacion__c = 'Puesta en Producción';
         }
-        if(caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && caso.Status == 'En Producción') {
+        if(caso.FS_AceptaSolucionEnProduccion__c == 'Si' && caso.Status == 'Certificado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Certificado';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaSolucionEnProduccion__c == 'Si' && caso.Status == 'En Revisión Certificado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión Certificado';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == true && caso.Status == 'En Producción' && caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
             caso.FS_Tipo_de_Aprobacion__c = 'Finalizar Atención';
         }
+        if(caso.FS_AceptacionSolucionSalesforce__c == 'Si' && caso.Status == 'En Producción' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Producción';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptacionSolucionSalesforce__c == 'Si' && caso.Status == 'En Revisión en Producción' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión en Producción';
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        
+        if(caso.FS_Acepta_Propuesta_Economica__c == 'No' && caso.Status == 'En Propuesta Económica') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Propuesta Económica';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaEconomica__c;
+            caso.FS_Fecha_Aprobacion_PE__c = System.now();
+        }
+        if(caso.FS_AceptaEstimacionMacro__c == 'No' && caso.Status == 'Estimación Macro') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Estimación Macro';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionEstimacionMacro__c;
+        }
+        if(caso.FS_AceptaAnalisisPrevio__c == 'No' && caso.Status == 'Análisis Previo') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
+        }
+        if(caso.FS_AceptaDEF__c == 'No' && caso.Status == 'Documento de Especificación Funcional') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Documento de Especificación Funcional';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptaRespuesta__c == 'No' && caso.Status == 'Validación de Respuesta (Cliente)' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Entregado';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptaRespuesta__c == 'No' && caso.Status == 'En Revisión Entregado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión Entregado';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptaSolucionEnProduccion__c == 'No' && caso.Status == 'Certificado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Certificado';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptaSolucionEnProduccion__c == 'No' && caso.Status == 'En Revisión Certificado' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión Certificado';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptacionSolucionSalesforce__c == 'No' && caso.Status == 'En Producción' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Producción';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        if(caso.FS_AceptacionSolucionSalesforce__c == 'No' && caso.Status == 'En Revisión en Producción' && caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+            caso.FS_Tipo_de_Aprobacion__c = 'En Revisión en Producción';
+            caso.FS_AceptaRespuesta__c = 'No';
+        }
+        
 
         upsert caso;
         if(crearCaso){

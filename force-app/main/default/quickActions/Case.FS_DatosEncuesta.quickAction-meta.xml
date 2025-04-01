@@ -17,6 +17,11 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>FS_ResultadoEncuestaNumero__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>FS_ComentariosEncuesta__c</field>
                 <uiBehavior>Readonly</uiBehavior>
             </quickActionLayoutItems>

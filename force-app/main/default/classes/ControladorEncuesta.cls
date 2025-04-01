@@ -1,15 +1,18 @@
 public without sharing class ControladorEncuesta {
 
     @AuraEnabled
-    public static EncuestaWrapper getCaso(String recordId, String resultado) {
+    public static EncuestaWrapper getCaso(String recordId, String resultado, String resultadoNumero) {
         EncuestaWrapper respuesta = new EncuestaWrapper();
         respuesta.listMotivoInsatisfaccion = new List<PickListOption>();
-        Case caso = [Select CaseNumber, Status, FS_Acepta_Propuesta_Economica__c From Case Where id = :recordId];
+        Case caso = [Select CaseNumber, Status, FS_Acepta_Propuesta_Economica__c, FS_AceptaAnalisisPrevio__c, FS_AceptaEstimacionMacro__c, FS_AceptaDEF__c   From Case Where id = :recordId];
         respuesta.numeroCaso = caso.CaseNumber;
         respuesta.idCaso = caso.Id;
         respuesta.esCerrado = caso.Status == 'Cerrado';
         respuesta.deshabilitarBoton = true;
         respuesta.aceptaPropuestaEconomica = caso.FS_Acepta_Propuesta_Economica__c;
+        respuesta.AceptaAnalisisPrevio = caso.FS_AceptaAnalisisPrevio__c;
+        respuesta.AceptaEstimacionMacro = caso.FS_AceptaEstimacionMacro__c;
+        respuesta.AceptaDEF = caso.FS_AceptaDEF__c;
 
         list<string> lst1 = new List<string>(); 
         lst1.add('Información Incompleta'); 
@@ -35,6 +38,7 @@ public without sharing class ControladorEncuesta {
                 p.value = str; 
                 respuesta.listMotivoInsatisfaccion.add(p);    
                 respuesta.resultadoEncuesta = resultado; 
+                respuesta.resultadoEncuestaNumero = resultadoNumero;
             }            
         } else if(resultado == 'Muy Satisfecho' || resultado == 'Satisfecho') {
             for(string str : lst2) {
@@ -42,7 +46,8 @@ public without sharing class ControladorEncuesta {
                 p.label = str;
                 p.value = str; 
                 respuesta.listMotivoInsatisfaccion.add(p);  
-                respuesta.resultadoEncuesta = resultado;   
+                respuesta.resultadoEncuesta = resultado;  
+                respuesta.resultadoEncuestaNumero = resultadoNumero;
             }
         }
 
@@ -65,19 +70,22 @@ public without sharing class ControladorEncuesta {
         Case caso = new Case();
         caso.Id = casoObj.idCaso;
         caso.FS_ResultadoEncuesta__c = casoObj.resultadoEncuesta;
+        caso.FS_ResultadoEncuestaNumero__c = casoObj.resultadoEncuestaNumero;
         caso.FS_MotivoInsatisfaccion__c = casoObj.motivoSeleccionado;       
         caso.FS_ComentariosEncuesta__c = casoObj.comentarios;
+        caso.FS_SurveyAnswered__c = UserInfo.getUserId();
         caso.FS_FechaContestacionEncuesta__c = System.now();
-        if(casoObj.aceptaPropuestaEconomica == 'No') {
+        if(casoObj.aceptaPropuestaEconomica == 'No' || casoObj.AceptaAnalisisPrevio == 'No' || casoObj.AceptaEstimacionMacro == 'No' || casoObj.AceptaDEF == 'No'  ) {
             caso.Status = 'Dado de Baja';    
-        } else {
+        }else {
             caso.Status = 'Cerrado';
         }
         update caso;
         
-        FS_Encuesta__c encuesta = [Select Id, FS_MotivoInsatisfaccion__c, FS_ResultadoEncuesta__c, FS_Comentarios__c from FS_Encuesta__c Where FS_Caso__c = :caso.Id limit 1];
+        FS_Encuesta__c encuesta = [Select Id, FS_MotivoInsatisfaccion__c, FS_ResultadoEncuesta__c, FS_Comentarios__c, FS_ResultadoEncuestaNumero__c from FS_Encuesta__c Where FS_Caso__c = :caso.Id limit 1];
         encuesta.FS_MotivoInsatisfaccion__c = casoObj.motivoSeleccionado;
         encuesta.FS_ResultadoEncuesta__c = casoObj.resultadoEncuesta;
+        encuesta.FS_ResultadoEncuestaNumero__c = casoObj.resultadoEncuestaNumero;
         encuesta.FS_Comentarios__c = casoObj.comentarios;
         update encuesta;
     }
@@ -89,10 +97,14 @@ public without sharing class ControladorEncuesta {
         @AuraEnabled public String mostrarMotivo{get;set;}
         @AuraEnabled public String comentarios{get;set;}
         @AuraEnabled public String resultadoEncuesta{get;set;}
+        @AuraEnabled public String resultadoEncuestaNumero{get;set;}
         @AuraEnabled public Boolean esCerrado{get;set;}
         @AuraEnabled public Boolean deshabilitarBoton{get;set;}
         @AuraEnabled public List<PickListOption> listMotivoInsatisfaccion{get;set;}
         @AuraEnabled public String aceptaPropuestaEconomica {get;set;}
+        @AuraEnabled public String AceptaAnalisisPrevio {get;set;}
+        @AuraEnabled public String AceptaEstimacionMacro {get;set;}
+        @AuraEnabled public String AceptaDEF {get;set;}
     }
     
     public class PickListOption{

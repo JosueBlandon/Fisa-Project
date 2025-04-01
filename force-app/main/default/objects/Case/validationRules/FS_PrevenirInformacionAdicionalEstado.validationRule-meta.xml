@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirInformacionAdicionalEstado</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
+$Profile.Name == &apos;PM-PS&apos;,
+ISCHANGED(FS_RequiereInformacionAdicional__c),
+OR(
+TEXT(PRIORVALUE(Status))  = &apos;Validación de Respuesta (Cliente)&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;En Revisión Entregado&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;Certificado&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;En Revisión Certificado&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;En Producción&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;En Revisión en Producción&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;Pendiente de Respuesta CSAT&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;Cerrado&apos;,
+TEXT(PRIORVALUE(Status))  = &apos;Dado de Baja&apos;
+)
+)</errorConditionFormula>
+    <errorMessage>No se puede pedir información adicional en este estado.</errorMessage>
+</ValidationRule>

@@ -34,8 +34,8 @@ public without sharing class ContactTriggerHelper {
         
          //Search related Manager
         Map<Id, FS_Gestor_Cuenta__c> managerList = new Map<Id, FS_Gestor_Cuenta__c>([	SELECT	Id, FS_Cuenta__c, FS_Principal__c, FS_Area__c, FS_Project_Manager__r.name
-                                               													FROM	FS_Gestor_Cuenta__c
-                                               													WHERE	FS_Cuenta__c IN: accountsIds	]);
+                                               											FROM	FS_Gestor_Cuenta__c
+                                               											WHERE	FS_Cuenta__c IN: accountsIds	]);
 
         //Find all active related products
         Set<String> listAllProducts = new Set<String>();
@@ -59,8 +59,7 @@ public without sharing class ContactTriggerHelper {
                 	//valida si el gestor es el pm-ps.
                 	if(managerList.get(keyManager).FS_Principal__c == false && managerList.get(keyManager).FS_Area__c == 'PM-PS'){
                     	record.FS_PMPSSecundario__c = managerList.get(keyManager).FS_Project_Manager__r.name;
-                	}
-                	
+                	}               	
 					//validates if the manager is pm-core.
                 	if(managerList.get(keyManager).FS_Principal__c == false && managerList.get(keyManager).FS_Area__c == 'Core'){
                     	record.FS_PMCore__c = managerList.get(keyManager).FS_Project_Manager__r.name;
@@ -74,7 +73,6 @@ public without sharing class ContactTriggerHelper {
                     	record.FS_KAM__c = managerList.get(keyManager).FS_Project_Manager__r.name; 
                 	}
                 }
-
             }    
         }
 
@@ -95,7 +93,5 @@ public without sharing class ContactTriggerHelper {
                 }
             }	   
         }
-        
-        
     }
 }

@@ -3,18 +3,19 @@
     <fullName>FS_ValidacionTipoIncidente</fullName>
     <active>true</active>
     <errorConditionFormula>AND(
-  ISCHANGED(FS_TipoIncidente__c),
-  OR(
-    AND(
-      TEXT(PRIORVALUE(FS_TipoIncidente__c)) = &apos;Definitivo&apos;,
-      TEXT(FS_TipoIncidente__c) = &apos;Puntual&apos;
-    ),
-    AND(
-      TEXT(PRIORVALUE(FS_TipoIncidente__c)) = null,
-      TEXT(PRIORVALUE(FS_SubEstado__c)) != &apos;Análisis N1&apos;
-    ),
-    TEXT(FS_TipoIncidente__c) = NULL
-  )
+ISCHANGED(FS_TipoIncidente__c),
+NOT(ISCHANGED(RecordTypeId)),				
+OR(
+AND(
+TEXT(PRIORVALUE(FS_TipoIncidente__c)) = &apos;Definitivo&apos;,
+TEXT(FS_TipoIncidente__c) = &apos;Puntual&apos;
+),
+AND(
+TEXT(PRIORVALUE(FS_TipoIncidente__c)) = null,
+TEXT(PRIORVALUE(FS_SubEstado__c)) != &apos;Análisis N1&apos;
+),
+TEXT(FS_TipoIncidente__c) = NULL
+)
 )</errorConditionFormula>
     <errorDisplayField>FS_TipoIncidente__c</errorDisplayField>
     <errorMessage>No puede seleccionar esta campo ahora.</errorMessage>

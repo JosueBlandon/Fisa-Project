@@ -38,7 +38,7 @@ public class TaskTriggerHelperTest {
      */
     @isTest
     static void upsertTask() {        
-        List<Case> casosRequerimiento =  [	SELECT	Id, Status, OwnerId, ContactId, RecordType.DeveloperName, FS_Calificacion__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c  
+        List<Case> casosRequerimiento =  [	SELECT	Id, Status, OwnerId, ContactId, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c  
                                             FROM 	Case 
                                             WHERE	RecordTypeId =: REQUERIMIENTO_TIPO_REGISTRO];
         

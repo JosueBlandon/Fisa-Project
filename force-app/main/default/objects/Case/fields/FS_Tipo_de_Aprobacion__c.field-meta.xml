@@ -28,6 +28,51 @@
                 <label>Puesta en Producción</label>
             </value>
             <value>
+                <fullName>Análisis Previo</fullName>
+                <default>false</default>
+                <label>Análisis Previo</label>
+            </value>
+            <value>
+                <fullName>Estimación Macro</fullName>
+                <default>false</default>
+                <label>Estimación Macro</label>
+            </value>
+            <value>
+                <fullName>Documento de Especificación Funcional</fullName>
+                <default>false</default>
+                <label>Documento de Especificación Funcional</label>
+            </value>
+            <value>
+                <fullName>Entregado</fullName>
+                <default>false</default>
+                <label>Entregado</label>
+            </value>
+            <value>
+                <fullName>En Revisión Entregado</fullName>
+                <default>false</default>
+                <label>En Revisión Entregado</label>
+            </value>
+            <value>
+                <fullName>Certificado</fullName>
+                <default>false</default>
+                <label>Certificado</label>
+            </value>
+            <value>
+                <fullName>En Revisión Certificado</fullName>
+                <default>false</default>
+                <label>En Revisión Certificado</label>
+            </value>
+            <value>
+                <fullName>En Producción</fullName>
+                <default>false</default>
+                <label>En Producción</label>
+            </value>
+            <value>
+                <fullName>En Revisión en Producción</fullName>
+                <default>false</default>
+                <label>En Revisión en Producción</label>
+            </value>
+            <value>
                 <fullName>Finalizar Atención</fullName>
                 <default>false</default>
                 <label>Finalizar Atención</label>

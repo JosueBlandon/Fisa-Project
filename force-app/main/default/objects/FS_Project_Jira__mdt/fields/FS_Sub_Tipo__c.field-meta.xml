@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_Sub_Tipo__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Sub Tipo</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Puntual</fullName>
+                <default>false</default>
+                <label>Puntual</label>
+            </value>
+            <value>
+                <fullName>Definitivo</fullName>
+                <default>false</default>
+                <label>Definitivo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

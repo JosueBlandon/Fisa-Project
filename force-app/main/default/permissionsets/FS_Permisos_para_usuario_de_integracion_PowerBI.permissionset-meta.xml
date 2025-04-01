@@ -316,6 +316,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_AceptaAnalisisPrevio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_AceptaDEF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_AceptaEstimacionMacro__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_AceptaInstalacionParche__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -331,7 +346,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_AceptaSolucionEnProduccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_Acepta_Propuesta_Economica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_AceptacionSolucionSalesforce__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -406,6 +431,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Buscar_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_CSATCaso__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -422,6 +467,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_CasoRQOrigenNovedad__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Cerrar_caso_en_Jira__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -456,6 +506,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_Compromisos_internos__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_CorreosNotificacionesServicios__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -472,6 +527,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_DescripcionCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasAprobacionAnalisisPrevio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasAprobacionEstimacionMacro__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasAprobacionPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasProyecto__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -511,7 +586,52 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_EnviarNotificacionCertificado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnviarNotificacionEntregado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnviarNotificacionProduccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnvioNotificacionDEF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnvioNotificacionEM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnvioNotificacionPE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EnvioNotificacion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_Es_Precontratado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Es_cliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_EstadoAnterior__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -526,6 +646,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClienteDEF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClienteEM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClientePE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaCertificacionCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_FechaCompromisoEntrega__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -536,7 +681,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_FechaDesarrolloListo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaEntregaAnalisisPrevio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaEntregaDEF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_FechaEntregaDesarrollo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaEntregaEstimacionMacro__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaEntregaPropuestaEconomica__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -547,6 +717,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_FechaEstadoActual__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaPuestaProduccionCliente__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -577,6 +752,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_Fecha_Puesta_en_Produccion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Fecha_de_entrega__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -686,6 +866,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_NombreProyecto2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_NombreProyecto3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_NombreProyecto4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_NombreProyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_NombreTipoRegistro__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -746,7 +946,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_RequiereInformacionAdicional__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_RespuestaCliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_ResultadoEncuestaNumero__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -767,6 +977,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_RolPropietario__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Saldo_de_dias__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -806,12 +1036,52 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_Tarifa_Dias_Hombre__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_TipoIncidente__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_Tipo_de_Aprobacion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDAnalisisPrevio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDEstimacionMacro__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDPropuestaEconomicaF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDPropuestaEconomica__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1240,6 +1510,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_AceptacionRechazoCaso__c.FS_DiasProyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>FS_Gestor_Cuenta__c.FS_Area__c</field>
         <readable>true</readable>
@@ -1332,6 +1612,51 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FS_ProductoAdquirido__c.FS_SubModulo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Cliente__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Es_Pre_contratado__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Fecha_Fin_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Fecha_Inicio_Proyecto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Numero_de_dias_consumidos__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Numero_de_dias_contratados__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Saldo_de_dias__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Tarifa_Dias_Hombre__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FS_Proyecto__c.FS_Tipo_de_Caso__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1489,6 +1814,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Account</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1498,6 +1824,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1507,6 +1834,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contact</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1516,6 +1844,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_Gestor_Cuenta__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1525,6 +1854,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_HistorialCampos__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1534,6 +1864,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_HistorialDescripcionCaso__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1543,6 +1874,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_ProductoAdquirido__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1552,6 +1884,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Respuestas_a_la_preguntas_de_encuestas__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>

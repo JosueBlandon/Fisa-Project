@@ -22,65 +22,97 @@ public without sharing class CaseTriggerHandler {
     }
     
     public static void afterInsert(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-        CaseTriggerHelper.validacionCorreoNuevo(newCaseList);
+        CaseTriggerHelper.historialDescripcion(newCaseList);
         CaseTriggerHelper.historialCaso(newCaseList);
     }
     
     public static void beforeUpdate(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
-        Boolean executeFlag = true;
+        List<Case> lstCaseRequerimiento = new List<Case>();
+        Map<Id, Case> mpCaseRequerimiento = new Map<Id, Case>();
+
+        List<Case> lstCaseRecordCare = new List<Case>();
+        Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
 
         for(Case record : newCaseList) {
+            Case caso = oldCaseMap.get(record.Id);
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
-                executeFlag = false;
+                lstCaseRequerimiento.add(record);
+                mpCaseRequerimiento.put(caso.Id, caso);
+            } else {
+                lstCaseRecordCare.add(record);
+                mpCaseRecordCare.put(caso.Id, caso);
             }
         }
 
-        CaseTriggerHelperPMPS.validateChangeRecordType(newCaseList, oldCaseMap);
         CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
-        CaseTriggerHelperPMPS.preventChangeCaseValues(newCaseList, oldCaseMap);
-        CaseTriggerHelper.validacionAgenteN2(newCaseList);
+        CaseTriggerHelper.validacionProducto(newCaseList, oldCaseMap);
+        CaseTriggerHelper.esCliente(newCaseList);
 
-        if(executeFlag) {
-            CaseTriggerHelper.validacionSubEstado(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionCamposAprobacion(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionProducto(newCaseList, oldCaseMap);
-            CaseTriggerHelper.informacionCompleta(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionTipo(newCaseList, oldCaseMap);
-            CaseTriggerHelper.aceptaRespuesta(newCaseList, oldCaseMap);
-            CaseTriggerHelper.actualizacionDescripcion(newCaseList, oldCaseMap);
-            CaseTriggerHelper.horasSolicitud(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionSolucion(newCaseList, oldCaseMap);
-            CaseTriggerHelper.acepta1erCosto(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionFechaEntrega(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionTipoIncidente(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLResultadoAnalasis(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAutorizacionSolucionIPN2(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionSolucionIPRelease(newCaseList, oldCaseMap);        
-            CaseTriggerHelper.validacionSolucionCortoPlazo(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLDisenioTecnico(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionDisenioTecnico(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLCodigoFuente(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLSolucionDefinitiva(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionSolucionDefinitivaN2(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionSolucionDefinitivaRelease(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLPlanPruebas(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionPlanPruebas(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLAmbientePruebas(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionInstalacionRelease(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionURLEvidenciaPruebas(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAprobacionCertificacionQA(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionUrlEntregaParche(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAceptaInstalacionParche(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionAceptaPaseProduccion(newCaseList, oldCaseMap);
-            CaseTriggerHelper.validacionIngProducto(newCaseList, oldCaseMap);
-            CaseTriggerHelper.asignarAprobadorActual(newCaseList, oldCaseMap);
-            CaseTriggerHelper.llenarOrigen(newCaseList, oldCaseMap);
-            CaseTriggerHelper.mapeoFechaEstado(newCaseList, oldCaseMap);
-            CaseTriggerHelper.assignDeliveryDate(newCaseList, oldCaseMap);
-        } else {
-            CaseTriggerHelperPMPS.sendToJiraPMPS(newCaseList, oldCaseMap);
-            CaseTriggerHelperPMPS.sendNotification(newCaseList, oldCaseMap);
-            CaseTriggerHelperPMPS.actualizacionDescripcion(newCaseList, oldCaseMap);
+        if(!lstCaseRecordCare.isEmpty()) {
+            CaseTriggerHelper.validacionAgenteN2(lstCaseRecordCare);
+            CaseTriggerHelper.validacionSubEstado(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionCamposAprobacion(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.informacionCompleta(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionTipo(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.aceptaRespuesta(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.actualizacionDescripcion(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.horasSolicitud(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionSolucion(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.acepta1erCosto(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionFechaEntrega(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionTipoIncidente(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLResultadoAnalasis(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAutorizacionSolucionIPN2(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionSolucionIPRelease(lstCaseRecordCare, mpCaseRecordCare);        
+            CaseTriggerHelper.validacionSolucionCortoPlazo(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLDisenioTecnico(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionDisenioTecnico(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLCodigoFuente(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLSolucionDefinitiva(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionSolucionDefinitivaN2(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionSolucionDefinitivaRelease(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLPlanPruebas(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionPlanPruebas(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLAmbientePruebas(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionInstalacionRelease(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionURLEvidenciaPruebas(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAprobacionCertificacionQA(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionUrlEntregaParche(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAceptaInstalacionParche(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionAceptaPaseProduccion(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.validacionIngProducto(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.asignarAprobadorActual(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.mapeoFechaEstado(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.assignDeliveryDate(lstCaseRecordCare, mpCaseRecordCare);
+        }
+        
+        if(!lstCaseRequerimiento.isEmpty()) {
+            CaseTriggerHelperPMPS.preventChangeCaseValues(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelperPMPS.sendToJiraPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.sendNotification(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.actualizacionDescripcion(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.informacionCompleta(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelper.validacionProducto(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.envioNotificacionFinanzas(lstCaseRequerimiento, mpCaseRequerimiento);
+            CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
+            if(UserInfo.getUserType() != 'Guest'){
+                CaseTriggerHelperPMPS.aceptaRespuesta(lstCaseRequerimiento, mpCaseRequerimiento);
+                CaseTriggerHelperPMPS.envioNotificacionComunidad(lstCaseRequerimiento, mpCaseRequerimiento);
+            }
+        }
+
+        List<Case> lstCase = new List<Case>();
+        Map<Id, Case> mpCase = new Map<Id, Case>();
+        for(Case record : newCaseList) {
+            Case caso = oldCaseMap.get(record.Id); 
+            if(record.RecordTypeId != caso.RecordTypeId) {
+                lstCase.add(record);
+                mpCase.put(caso.Id, caso);
+            }
+        }
+
+        if(!lstCase.isEmpty()) {
+            ChangeCaseRecordType.validateChangeRecordType(lstCase, mpCase);
         }
     }
     

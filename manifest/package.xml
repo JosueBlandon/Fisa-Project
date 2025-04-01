@@ -4,7 +4,9 @@
 		<members>CaseTriggerHandler</members>
 		<members>CaseTriggerHelper</members>
 		<members>CaseTriggerHelperPMPS</members>
+		<members>CaseTriggerHelperPMPSTest</members>
 		<members>CaseTriggerHelper_Test</members>
+		<members>ChangeCaseRecordType</members>
 		<members>ContactTriggerHandler</members>
 		<members>ContactTriggerHelper</members>
 		<members>ContactTriggerHelper_Test</members>
@@ -12,8 +14,17 @@
 		<members>ControladorBaseConocimientos_Test</members>
 		<members>ControladorCrearCaso</members>
 		<members>ControladorCrearCaso_Test</members>
+		<members>ControladorEncuesta</members>
 		<members>ControladorEncuesta_Test</members>
+		<members>CreateJiraRecord</members>
+		<members>CreateJiraRecord_Test</members>
+		<members>CustomLookupController</members>
+		<members>CustomLookupControllerTest</members>
 		<members>DataFactory</members>
+		<members>DuplicateChecker</members>
+		<members>DuplicateCheckerTest</members>
+		<members>EnviarEmailCreacionCaso</members>
+		<members>EnviarEmailCreacionCasoTest</members>
 		<members>FeedCommentTriggerHelper</members>
 		<members>FeedCommentTriggerHelper_Test</members>
 		<members>GestorCuentaTriggerHandler</members>
@@ -43,16 +54,78 @@
 		<members>FeedCommentTrigger</members>
 		<members>GestorCuentaTrigger</members>
 		<members>ProductsPurchasedTrigger</members>
+		<members>ProyectoTrigger</members>
 		<members>TaskTrigger</members>
 		<members>TrabajoAgenteTrigger</members>
 		<name>ApexTrigger</name>
 	</types>
 	<types>
+		<members>Case.FS_Requerimiento</members>
+		<name>BusinessProcess</name>
+	</types>
+	<types>
+		<members>Case.FS_Cerrar_caso_en_Jira__c</members>
 		<members>Case.FS_Compromisos_internos__c</members>
 		<members>Case.FS_Es_cliente__c</members>
 		<members>Case.FS_Fecha_de_entrega__c</members>
 		<members>Case.FS_FechaDesarrolloListo__c</members>
+		<members>Case.FS_Issue_Type__c</members>
+		<members>Case.FS_Project_Id__c</members>
+		<members>Case.FS_Proyecto__c</members>
+		<members>Case.FS_RequiereInformacionAdicional__c</members>
 		<members>Case.FS_SurveyAnswered__c</members>
+		<members>Case.FS_TipoRequerimiento__c</members>
+		<members>Case.FS_Buscar_Proyecto__c</members>
+		<members>Case.FS_Buscar_Proyecto2__c</members>
+		<members>Case.FS_Buscar_Proyecto3__c</members>
+		<members>Case.FS_Buscar_Proyecto4__c</members>
+		<members>Case.FS_EstadoAnterior__c</members>
+		<members>Case.FS_AceptaAnalisisPrevio__c</members>
+		<members>Case.FS_AceptacionSolucionSalesforce__c</members>
+		<members>Case.FS_EnvioNotificacion__c</members>
+		<members>Case.FS_FechaAprobacionCliente__c</members>
+		<members>Case.FS_AceptaEstimacionMacro__c</members>
+		<members>Case.FS_EnvioNotificacionEM__c</members>
+		<members>Case.FS_FechaAprobacionClienteEM__c</members>
+		<members>Case.FS_AceptaDEF__c</members>
+		<members>Case.FS_AceptaSolucionEnProduccion__c </members>
+		<members>Case.FS_EnvioNotificacionDEF__c</members>
+		<members>Case.FS_FechaAprobacionClienteDEF__c</members>
+		<members>Case.FS_EnvioNotificacionPE__c</members>
+		<members>Case.FS_FechaAprobacionClientePE__c</members>
+		<members>Case.FS_FechaEntregaAnalisisPrevio__c</members>
+		<members>Case.FS_FechaEntregaEstimacionMacro__c</members>
+		<members>Case.FS_FechaEntregaDEF__c</members>
+		<members>Case.FS_FechaEntregaPropuestaEconomica__c</members>
+		<members>Case.FS_DiasAprobacionAnalisisPrevio__c</members>
+		<members>Case.FS_TotalUSDAnalisisPrevio__c</members>
+		<members>Case.FS_Saldo_de_dias__c</members>
+		<members>Case.FS_Saldo_de_dias2__c</members>
+		<members>Case.FS_Saldo_de_dias3__c</members>
+		<members>Case.FS_Saldo_de_dias4__c</members>
+		<members>Case.FS_DiasAprobacionEstimacionMacro__c</members>
+		<members>Case.FS_TotalUSDPropuestaEconomicaF__c</members>
+		<members>Case.FS_Tarifa_Dias_Hombre__c</members>
+		<members>Case.FS_Tarifa_Dias_Hombre2__c</members>
+		<members>Case.FS_Tarifa_Dias_Hombre3__c</members>
+		<members>Case.FS_Tarifa_Dias_Hombre4__c</members>
+		<members>Case.FS_Tipo_de_Aprobacion__c</members>
+		<members>Case.FS_DiasAprobacionPropuestaEconomica__c</members>
+		<members>Case.FS_TotalUSDEstimacionMacro__c</members>
+		<members>Case.FS_TotalUSDPropuestaEconomica__c</members>
+		<members>Case.FS_DiasDEF__c</members>
+		<members>Case.FS_EnviarNotificacionCertificado__c</members>
+		<members>Case.FS_EnviarNotificacionEntregado__c</members>
+		<members>Case.FS_EnviarNotificacionProduccion__c</members>
+		<members>Case.FS_FechaCertificacionCliente__c</members>
+		<members>Case.FS_FechaPuestaProduccionCliente__c</members>
+		<members>Case.FS_ResultadoEncuestaNumero__c</members>
+		<members>Case.FS_NombreProyecto2__c</members>
+		<members>Case.FS_NombreProyecto3__c</members>
+		<members>Case.FS_NombreProyecto4__c</members>
+		<members>Case.FS_NombreProyecto__c</members>
+		<members>Case.FS_DiasProyecto__c</members>
+		<members>Contact.FS_CategoriaContacto__c</members>
 		<members>Contact.FS_KAM__c</members>
 		<members>Contact.FS_PMCore__c</members>
 		<members>Contact.FS_PMOmnia__c</members>
@@ -63,6 +136,9 @@
 		<members>Contact.FS_Producto_3__c</members>
 		<members>Contact.FS_Producto_4__c</members>
 		<members>Contact.FS_Tipo_de_Contacto__c</members>
+		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
+		<members>FS_AceptacionRechazoCaso__c.FS_DiasProyecto__c</members>
+		<members>FS_Encuesta__c.FS_ResultadoEncuestaNumero__c</members>
 		<members>FS_BaseConocimiento__c.FS_Activo__c</members>
 		<members>FS_BaseConocimiento__c.FS_Contenido__c</members>
 		<members>FS_BaseConocimiento__c.FS_Cuenta__c</members>
@@ -70,6 +146,7 @@
 		<members>FS_BaseConocimiento__c.FS_ProductoAdquirido__c</members>
 		<members>FS_BaseConocimiento__c.FS_Producto__c</members>
 		<members>FS_BaseConocimiento__c.FS_SubModulo__c</members>
+		<members>FS_Case_Event__e.FS_Case_Id__c</members>
 		<members>FS_Gestor_Cuenta__c.FS_Area__c</members>
 		<members>FS_Gestor_Cuenta__c.FS_Producto__c</members>
 		<members>FS_HistorialCampos__c.FS_FechaCreacion__c</members>
@@ -80,6 +157,20 @@
 		<members>FS_ProductoAdquirido__c.FS_Modulo__c</members>
 		<members>FS_ProductoAdquirido__c.FS_Producto__c</members>
 		<members>FS_ProductoAdquirido__c.FS_SubModulo__c</members>
+		<members>FS_Project_Jira__mdt.FS_Issue_Type__c</members>
+		<members>FS_Project_Jira__mdt.FS_Nombre_del_Proyecto_Jira__c</members>
+		<members>FS_Project_Jira__mdt.FS_Project_Id__c</members>
+		<members>FS_Project_Jira__mdt.FS_Sub_Tipo__c</members>
+		<members>FS_Project_Jira__mdt.FS_Tipo_de_Registro__c</members>
+		<members>FS_Proyecto__c.FS_Cliente__c</members>
+		<members>FS_Proyecto__c.FS_Es_Pre_contratado__c</members>
+		<members>FS_Proyecto__c.FS_Fecha_Fin_Proyecto__c</members>
+		<members>FS_Proyecto__c.FS_Fecha_Inicio_Proyecto__c</members>
+		<members>FS_Proyecto__c.FS_Numero_de_dias_consumidos__c</members>
+		<members>FS_Proyecto__c.FS_Numero_de_dias_contratados__c</members>
+		<members>FS_Proyecto__c.FS_Saldo_de_dias__c</members>
+		<members>FS_Proyecto__c.FS_Tarifa_Dias_Hombre__c</members>
+		<members>FS_Proyecto__c.FS_Tipo_de_Caso__c</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c.FS_KAM__c</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c.FS_PMCore__c</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c.FS_PMOmnia__c</members>
@@ -96,23 +187,57 @@
 		<name>CustomField</name>
 	</types>
 	<types>
+		<members>FS_CorreoFinanzas</members>
+		<name>CustomLabel</name>
+	</types>
+	<types>
+		<members>FS_Project_Jira.X001</members>
+		<members>FS_Project_Jira.X002</members>
+		<members>FS_Project_Jira.X003</members>
+		<name>CustomMetadata</name>
+	</types>
+	<types>
 		<members>FS_IncumplimientoSLA</members>
 		<name>CustomNotificationType</name>
 	</types>
 	<types>
 		<members>FS_BaseConocimiento__c</members>
+		<members>FS_Case_Event__e</members>
 		<members>FS_ConfiguracionSLA__c</members>
 		<members>FS_ProductoAdquirido__c</members>
+		<members>FS_Project_Jira__mdt</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
 		<members>FS_BaseConocimiento__c</members>
+		<members>FS_Proyecto__c</members>
 		<members>Preguntas_de_Encuesta__c</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c</members>
 		<name>CustomTab</name>
 	</types>
 	<types>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
+		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacion</members>
+		<members>FS_CorreosClientesCasos/FS_Cliente_Aprueba_Notificacion</members>
+		<members>FS_CorreosClientesCasos/FS_Cliente_Acepta_Propuesta_Economica</members>
+		<members>FS_CorreosClientesCasos/FSClienteAceptaPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionEstimacioMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDadoBaja</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
+		<members>FS_CorreosClientesCasos/FS_PMNotificacionCobroCliente</members>
+		<members>FS_CorreosClientesCasos/FS_PMNotificacionCobroClienteNoAcepta</members>
 		<members>unfiled$public/CommunityWelcomeEmailTemplate</members>
 		<members>unfiled$public/FS_PlantillaEncuestaFISA</members>
 		<members>unfiled$public/FS_TiempoEstimadoRespuesta</members>
@@ -125,9 +250,13 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
+		<members>AceptaEstadoChatter</members>
 		<members>FS_Actualizar_campos_historial_producto_adquirido</members>
-		<members>FS_CustomSurveyFlow</members>
+		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
 		<members>FS_EncuestasAutomatizadas</members>
+		<members>FS_Enviar_Notificacion_de_Email_al_Crear_un_Caso</members>
+		<members>FS_Evento_de_Plataforma_Notificacion_Email_Casos</members>
+		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>Send_SLA_Notification</members>
 		<members>SurveyQuestionResponseClone</members>
 		<name>Flow</name>
@@ -139,17 +268,28 @@
 	<types>
 		<members>Account-Formato de cuentas</members>
 		<members>Case-Layout Cliente</members>
+		<members>Case-Layout Interno Casos</members>
 		<members>Contact-Formato de contactos</members>
 		<members>FS_Gestor_Cuenta__c-Formato Gestor Cuenta</members>
 		<members>FS_ProductoAdquirido__c-Formato Producto Adquirido</members>
+		<members>FS_Project_Jira__mdt-Project Jira Layout</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c-Respuestas a la preguntas de encuestas Layout</members>
 		<name>Layout</name>
 	</types>
 	<types>
+		<members>FS_MembreteCasosFISA</members>
+		<name>Letterhead</name>
+	</types>
+	<types>
+		<members>fs_CampoPendienteCaso</members>
+		<members>fs_customLookup</members>
+		<members>fs_Encuesta</members>
 		<members>fs_Inicio</members>
+		<members>fs_ldsUtils</members>
 		<name>LightningComponentBundle</name>
 	</types>
 	<types>
+		<members>FS_Proyecto__c.All</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c.All</members>
 		<members>Respuestas_a_la_preguntas_de_encuestas__c.Today</members>
 		<name>ListView</name>
@@ -164,30 +304,51 @@
 		<name>MilestoneType</name>
 	</types>
 	<types>
+		<members>FS_Permiso_PM_PS</members>
 		<members>FS_PermisosServicioCliente</members>
 		<members>FS_PermisosServicioClientePlus</members>
 		<members>FS_Permisos_Encuestas_Fisa</members>
+		<members>FS_Permisos_para_Administrador_del_Sistema</members>
+		<members>FS_Permisos_para_Finanzas</members>
+		<members>FS_Permisos_para_Gerente</members>
+		<members>FS_Permisos_para_Servicio_al_Cliente</members>
+		<members>FS_Permisos_para_usuario_de_integracion_Jira</members>
 		<members>FS_Permisos_para_usuario_de_integracion_PowerBI</members>
-		<members>Permiso_PM_PS</members>
-		<members>PermisosparaGerente</members>
-		<members>PermisosparaServicioalCliente</members>
 		<name>PermissionSet</name>
 	</types>
 	<types>
+		<members>FS_Administrador_del_Sistema</members>
 		<members>FS_Encuestas_Fisa</members>
+		<members>FS_Finanzas</members>
+		<members>FS_Gerente</members>
 		<members>FS_Integracion_Jira</members>
 		<members>FS_Integracion_PowerBI</members>
+		<members>FS_Project_Manager</members>
+		<members>FS_Servicio_al_Cliente</members>
 		<name>PermissionSetGroup</name>
 	</types>
 	<types>
+		<members>Case.FS_AnalisisPrevioPS</members>
 		<members>Case.FS_CamposControlConsulta</members>
 		<members>Case.FS_CamposControlIncidente</members>
 		<members>Case.FS_CamposControlIncidenteDefinitivo</members>
 		<members>Case.FS_CamposControlSolicitud</members>
+		<members>Case.FS_Campos_de_Control_PS</members>
+		<members>Case.FS_CertificadoPS</members>
+		<members>Case.FS_DEFPS</members>
 		<members>Case.FS_DatosEncuesta</members>
+		<members>Case.FS_DesarolloPS</members>
 		<members>Case.FS_Detalles_Planificacion_PS</members>
+		<members>Case.FS_EnProduccionPS</members>
+		<members>Case.FS_EntregadoPS</members>
+		<members>Case.FS_EstimacionMacroPS</members>
+		<members>Case.FS_PropuestaEconomicaPS</members>
 		<members>Case.Reuniones_internas</members>
 		<name>QuickAction</name>
+	</types>
+	<types>
+		<members>Case.FS_Requerimiento</members>
+		<name>RecordType</name>
 	</types>
 	<types>
 		<members>unfiled$public/Encuestas_Contestadas_por_Cliente_PMPS</members>
@@ -199,15 +360,35 @@
 		<name>Settings</name>
 	</types>
 	<types>
+        <members>CaseStatus</members>
+        <name>StandardValueSet</name>
+    </types>
+	<types>
+		<members>FS_Cinco</members>
+		<members>FS_Cuatro</members>
+		<members>FS_Diez</members>
+		<members>FS_Dos</members>
+		<members>FS_Nueve</members>
+		<members>FS_Ocho</members>
+		<members>FS_Seis</members>
+		<members>FS_Siete</members>
+		<members>FS_Tres</members>
+		<members>FS_Uno</members>
+		<name>StaticResource</name>
+	</types>
+	<types>
 		<members>Case.FS_Campos_Requeridos_Encuesta</members>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
+		<members>Case.FS_Campos_Requeridos_PropuestaEconomica</members>
 		<members>Case.FS_Datos_Es_Precontratado</members>
 		<members>Case.FS_Datos_Licencia_Recurrente</members>
+		<members>Case.FS_FechaCompromisoEntrega</members>
 		<members>Case.FS_Fecha_Desarollo_Listo</members>
 		<members>Case.FS_PrevenirEditarCampoProyecto</members>
 		<members>Case.FS_PrevenirEditarDetallesFinancieros</members>
 		<members>Case.FS_PrevenirModificarCamposCaso</members>
 		<members>Case.FS_PrevenirModificarCamposCasoCare</members>
+		<members>Case.FS_PrevenirCambioProyecto</members>
 		<members>Case.FS_ValidacionBorrarMotivoCambioFecha</members>
 		<members>Case.FS_ValidacionFechaCompromiso</members>
 		<members>Case.FS_ValidacionFechaCompromisoConsulta</members>
@@ -227,6 +408,7 @@
 		<members>Case.FS_ValidacionRechazoSolucionIPN2</members>
 		<members>Case.FS_ValidacionRespuestaCliente</members>
 		<members>Case.FS_ValidacionSolucionCortoPlazo</members>
+		<members>Case.FS_ValidacionAprobacionAnalisisP</members>
 		<members>Case.FS_ValidacionTipoIncidente</members>
 		<members>Case.FS_Validacion_Campo_Dias_que_Aplica_LR</members>
 		<members>Case.FS_Validacion_Campos_En_Blanco</members>
@@ -238,5 +420,5 @@
 		<members>*</members>
 		<name>WorkflowAlert</name>
 	</types>
-	<version>60.0</version>
+	<version>63.0</version>
 </Package>

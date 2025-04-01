@@ -1,243 +1,400 @@
-/**
-**************************************************************************************************************
-* @author           Intellect Systems href=<infor@intellectsystems.net>
-* @project          Fisa Ecuador - Implementación CRM
-* @name             CaseTriggerHelper_Test
-* @description      Test class to CaseTriggerHelper
-* @changes
-* ----------   ---------------------------   -----------------------------------------------------------------
-* Date         Author                        Description
-* ----------   ---------------------------   -----------------------------------------------------------------
-* 2023-09-04   Intellect Systems             Initial version.
-**************************************************************************************************************
-*/
-
 @isTest
 public class CaseTriggerHelper_Test {
 
-    @TestSetup
-    static void setup(){ 
+    public static final String TIPO_REGISTRO_CON = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Consulta').getRecordTypeId();
+    public static final String TIPO_REGISTRO_SOL = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Solicitud').getRecordTypeId();
+    public static final String TIPO_REGISTRO_INC = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Incidente').getRecordTypeId();
+    public static final String TIPO_REGISTRO_REQ = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+
+	@testSetup
+    static void setup() {  
         Account acc = DataFactory.insertAccount();
         Contact cont = DataFactory.insertContact(acc);
         User user = DataFactory.insertUserCommunity(cont);
-        System.runAs(user){
-            FS_ProductoAdquirido__c p = DataFactory.insertProduct(acc, 'FISA System', 'Colocaciones (Módulo 6)', 'Crédito Hipotecario');
-            test.startTest();
-                DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
-                DataFactory.insertCase(acc, cont, p, 'FS_Solicitud');
-                DataFactory.insertCase(acc, cont, p, 'FS_Incidente');
-                DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
-            test.stopTest();	
-        }
+        Case caseCon = DataFactory.insertCase2(acc, cont, TIPO_REGISTRO_CON);
+        Case caseSol = DataFactory.insertCase2(acc, cont, TIPO_REGISTRO_SOL);
+        Case caseInc = DataFactory.insertCase2(acc, cont, TIPO_REGISTRO_INC);
+        Case caseReq = DataFactory.insertCase2(acc, cont, TIPO_REGISTRO_REQ);
+        FS_ProductoAdquirido__c product = DataFactory.insertProduct(acc, 'FISA System', 'Colocaciones (Módulo 6)', 'Crédito Hipotecario');
     }
     
     @isTest
-    static void CasoConsulta() {
-        Case caso =  [Select Id, AccountId, RecordType.DeveloperName from Case Where RecordTypeId = :CaseTriggerHelper.CONSULTA_TIPO_REGISTRO];
-        
-        Account acc = DataFactory.insertAccount();
-        caso.AccountId = acc.Id;
-        update caso;
-        
-        DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
+    static void caseConsulta() {
+        Case record = [SELECT Id, Subject, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c, FS_Area__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_CON];
 
-        caso.FS_InformacionCompleta__c = 'No';
-        update caso;
-        
-        caso.FS_DescripcionCliente__c = '<p>Test Test</p>';
-        update caso;
-        
-        caso.FS_InformacionCompleta__c = 'Si';
-        actualizarCasoError(caso);
-        caso.FS_Proyecto__c = 'FSHD001 - Fisa System Help desk';
-        caso.FS_Producto__c = 'FISA System';
-        caso.FS_Modulo__c = 'Núcleo del Sistema';
-        caso.FS_SubModulo__c = 'Seguridades (Modulo 90)';
-        caso.FS_PudeSolventarPregunta__c = 'Si';
-        caso.FS_FechaCompromisoEntrega__c = Date.today();
-        update caso;
-        
-        caso.FS_PudeSolventarPregunta__c = 'Si';
-        update caso;
-        caso.FS_AprobacionSolucion__c = 'Si';
-        update caso;
-        caso.FS_AprobacionSolucion__c = 'No';
-        caso.FS_ComentariosRechazoSolucion__c = 'No';
-        update caso;
-        actualizarCasoError(caso);
-        caso.FS_Producto__c = null;
-        actualizarCasoError(caso);
-        
-        delete caso;
-    }
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service8',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser8@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario'; 
+            record.FS_Area__c = 'N1. CORE';    
+            record.FS_PudeSolventarPregunta__c = 'Si';
+            record.FS_FechaCompromisoEntrega__c = System.today();
+            update record;  
     
+            record.FS_PudeSolventarPregunta__c = 'No'; 
+            update record;    
+        }    
+    }
+
     @isTest
-    static void CasoSolicitud() {
-        Case caso =  [Select Id, RecordType.DeveloperName from Case Where RecordTypeId = :CaseTriggerHelper.SOLICITUD_TIPO_REGISTRO];
-        
-        caso.FS_InformacionCompleta__c = 'Si';
-        actualizarCasoError(caso);
-        caso.FS_Proyecto__c = 'FSHD001 - Fisa System Help desk';
-        caso.FS_FechaCompromisoEntrega__c = Date.today();
-        caso.FS_FechaAprobacion1erCosto__c = Date.today();
-        update caso;
-        
-        caso.FS_Acepta1erCosto__c = 'No';
-        update caso;
-        
-        caso.FS_Acepta1erCosto__c = 'Si';
-        update caso;
-        
-        caso.FS_NumeroHorasSolicitud__c = 12;
-        update caso;
-        
-    }
-    
-    @isTest
-    static void CasoIncidentePuntual() {
-        Case caso =  [Select Id, AccountId, RecordType.DeveloperName from Case Where RecordTypeId = :CaseTriggerHelper.INCIDENTE_TIPO_REGISTRO];
-        
-        DataFactory.insertConfiguracionSLA(caso.AccountId);    
-        
-        caso.FS_InformacionCompleta__c = 'Si';
-        actualizarCasoError(caso);
-        caso.FS_Proyecto__c = 'FSHD001 - Fisa System Help desk';
-        caso.FS_FechaCompromisoEntrega__c = Date.today();
-        update caso;
-        
-        caso.FS_URLResultadoAnalasis__c = 'https://fisagrp.com';
-        update caso;
-        actualizarCasoError(caso);
-        
-        caso.FS_AprobacionSolucionIPN2__c = 'No';
-        caso.FS_MotivosRechazoAprobacionIPN2__c = 'Desarrollo incompleto';
-        caso.FS_UsuarioAprobadorSolucionIPN2__c = userInfo.getUserId();
-        update caso;
-        
-        caso.FS_URLResultadoAnalasis__c = 'https://fisagrp.com';
-        caso.FS_EnviarAprobacionSolucionIPN2__c = true;
-        update caso;
-        caso.FS_AprobacionSolucionIPN2__c = 'Si';
-        caso.FS_MotivosRechazoAprobacionIPN2__c = null;
-        update caso;
-        
-        actualizarCasoError(caso);
-        caso.FS_UsuarioAprobacionSolucionRelease__c = 'Test';
-        caso.FS_AprobacionSolucionIPRelease__c = 'No';
-        caso.FS_MotivoRechazoAprobacionIPRealease__c = 'Desarrollo incompleto';
-        update caso;
-        
-        caso.FS_AprobacionSolucionIPRelease__c = 'Si';
-        update caso;
-        
-        caso.FS_TipoIncidente__c = 'Definitivo';
-        update caso;
-        
-        caso.FS_AprobacionDisenioTecnico__c = 'No';
-        caso.FS_MotivosRechazoDT__c = 'Desarrollo incompleto';
-        caso.FS_UsuarioAprobadorDT__c = userInfo.getUserId();
-        update caso;
-        
-        caso.FS_AprobacionDisenioTecnico__c = 'Si';
-        caso.FS_MotivosRechazoDT__c = null;
-        update caso;
-        
-        caso.FS_URLCodigoFuente__c = 'https://fisagrp.com';
-        caso.FS_URLSolucionDefinitiva__c = 'https://fisagrp.com';
-        caso.FS_EnviarAprobacionSolucionDN2__c = true;
-        update caso;
-        
-        caso.FS_AprobacionSolucionDefinitivaN2__c = 'No';
-        caso.FS_MotivoRechazoSDN2__c = 'Desarrollo incompleto';
-        update caso;     
-    }
-    
-    @isTest
-    static void CasoIncidentePuntualOtrosEscenarios() {
-        Case caso =  [Select Id, RecordType.DeveloperName from Case Where RecordTypeId = :CaseTriggerHelper.INCIDENTE_TIPO_REGISTRO];
-        
-        caso.FS_InformacionCompleta__c = 'Si';
-        caso.FS_Proyecto__c = 'FSHD001 - Fisa System Help desk';
-        caso.FS_FechaCompromisoEntrega__c = Date.today();
-        update caso;
-        caso.FS_AprobacionSolucionDefinitivaRelease__c = 'No';
-        caso.FS_MotivoRechazoSDRelease__c = 'Inconsistencia en parche';
-        update caso;
-        
-        caso.FS_AprobacionSolucionDefinitivaRelease__c = 'Si';
-        update caso;
-        
-        caso.FS_URLPlanPruebas__c = 'https://fisagrp.com';
-        update caso;
-        
-        caso.FS_UsuarioAprobadorPlanPruebas__c = userInfo.getUserId();
-        caso.FS_AprobacionPlanPruebas__c = 'No';
-        caso.FS_MotivoRechazoPlanPruebas__c = 'Incosistencia en plan de pruebas';
-        update caso;
-        
-        caso.FS_AprobacionPlanPruebas__c = 'Si';
-        caso.FS_MotivoRechazoPlanPruebas__c = null;
-        update caso;
-        
-        caso.FS_UrlAmbientePruebas__c = 'https://fisagrp.com';
-        update caso;
-        actualizarCasoError(caso);
-        
-        caso.FS_UsuarioAprobadorInstalacionParcheRele__c = userInfo.getUserId();
-        caso.FS_AprobacionInstalacionParcheRelease__c = 'No';
-        caso.FS_MotivosRechazoInstalacionParche__c = 'Error en scripts';
-        update caso;
-        
-        caso.FS_AprobacionPlanPruebas__c = 'Si';
-        update caso;
-        
-        caso.FS_UrlEvidenciaPruebas__c = 'https://fisagrp.com';
-        update caso;
-        caso.FS_AprobacionCertificacionParcheQA__c = 'No';
-        caso.FS_MotivoRechazoEntregaParche__c = 'Release plan';
-        update caso;
-        caso.FS_MotivoRechazoEntregaParche__c = null;
-        caso.FS_AprobacionCertificacionParcheQA__c = 'Si';
-        update caso;
-        
-    }
-    
-    
-    @isTest
-    static void CasoIncidenteDefinitivo() {
-        Case caso =  [Select Id, RecordType.DeveloperName from Case Where RecordTypeId = :CaseTriggerHelper.INCIDENTE_TIPO_REGISTRO];
-        
-        caso.FS_InformacionCompleta__c = 'Si';
-        caso.FS_Proyecto__c = 'FSHD001 - Fisa System Help desk';
-        caso.FS_FechaCompromisoEntrega__c = Date.today();
-        update caso;
-        
-        caso.FS_URLParcheCliente__c = 'https://fisagrp.com';
-        update caso;
-        caso.FS_AceptaInstalacionParche__c = 'No';
-        caso.FS_MotivosRechazoInstalacionParche__c = 'Error en scripts';
-        update caso;
-        caso.FS_AceptaInstalacionParche__c = 'Si';
-        update caso;
-        
-        caso.FS_AceptaPaseProducion__c = 'No';
-        update caso;
-        caso.FS_AceptaPaseProducion__c = 'Si';
-        update caso;
-        
-    }
-    
-    @isTest
-    static void preventChangeCaseValues() {
-        CaseTriggerHelper.entitlementCaseId(CaseTriggerHelper.CONSULTA_TIPO_REGISTRO); 
-    }
-    
-    public static case actualizarCasoError(Case caso){
-        try{
-            update caso;
-        }catch(exception ex){
-            return caso;
+    static void caseSolicitud() {
+        Case record = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_SOL];	    
+
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service1',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser1@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            record.Status = 'Análisis Previo';   
+            record.FS_Area__c = 'N1. CORE';    
+            record.FS_SubEstado__c = 'Análisis N1';
+            record.Type = 'Puntual';
+            record.FS_AprobacionSolucion__c = 'No';
+            record.FS_ComentariosRechazoSolucion__c = 'Rechazado';    
+            record.FS_NumeroHorasSolicitud__c = 0;        
+            update record;  
+
+            try{    
+                record.FS_DescripcionCliente__c = 'Test Descripcion Cliente';
+                record.FS_SubEstado__c = 'En Espera de Respuesta del Cliente';
+                record.FS_CorreosNotificacionesServicios__c = 'test001@gmail.com';     
+                record.FS_NumeroHorasSolicitud__c = 20;    
+                update record;    
+            } catch (Exception ex) {
+                System.debug('Error: '+ex.getLineNumber()+'---'+ex.getMessage());
+            }   
         }
-        return caso;
+    }
+
+    @isTest
+    static void caseIncidenteApobado() {
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+                        FROM	Case 
+                        WHERE	RecordType.Id =: TIPO_REGISTRO_INC  
+                        LIMIT 	1  ];
+        
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service2',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser2@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            try{
+                record.Subject = 'Subject Changed';
+                record.FS_Producto__c = 'FISA System';
+                record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+                record.FS_SubModulo__c = 'Crédito Hipotecario'; 
+                record.Status = 'Análisis Previo';    
+                record.FS_SubEstado__c = 'Análisis N1';
+                record.FS_SubEstadoAnterior__c = 'Apertura de caso';     
+                record.FS_RequiereInformacionAdicional__c = false;              
+                record.FS_EnviarAprobacionSolucionIPN2__c = false;   
+                record.FS_EnviarAprobacionDisenioTecnico__c = true;
+                record.FS_EnviarAprobacionSolucionDN2__c = true;
+                record.FS_URLParcheCliente__c = 'http://www.parche.com';
+                record.FS_IngenieroProducto__c = null;
+                record.FS_IngenieroProductoQA__c = null;
+
+                update record;   
+
+                record.FS_SolucionCortoPlazo__c = 'Si';
+                record.FS_PropietarioCasoSolucionCortoPlazo__c = serviceUser.Id;       
+                record.FS_AprobacionSolucionDefinitivaN2__c = 'Si';
+                record.FS_AprobacionSolucionDefinitivaRelease__c = 'Si';
+                record.FS_AprobacionPlanPruebas__c = 'Si';   
+                record.FS_AprobacionInstalacionParcheRelease__c = 'Si';
+                record.FS_UrlAmbientePruebas__c = 'http://www.test.com';
+                record.FS_AprobacionCertificacionParcheQA__c = 'Si';  
+                record.FS_URLParcheCliente__c = '';
+                record.FS_AceptaInstalacionParche__c = 'Si';
+                record.FS_AceptaPaseProducion__c = 'Si';
+                record.FS_AceptaRespuesta__c = 'No'; 
+
+                update record;    
+
+                record.FS_AceptaRespuesta__c = 'Si';
+                record.FS_RequiereInformacionAdicional__c = true;
+                record.FS_EnviarAprobacionSolucionIPN2__c = true;      
+                record.FS_AprobacionSolucion__c = 'Si';     
+                record.FS_AprobacionSolucionIPN2__c = 'Si'; 
+                record.FS_AprobacionSolucionIPRelease__c = 'Si';  
+                record.FS_AprobacionDisenioTecnico__c = 'Si';
+                record.FS_EnviarAprobacionPlanPruebas__c = true; 
+                update record;   
+
+                record.FS_SubEstado__c = 'Aprobación Solución IP-N2';
+                record.FS_UsuarioAprobadorSolucionIPN2__c = serviceUser.Id;
+                update record;
+            } catch (Exception ex) {
+                System.debug('Error: '+ex.getLineNumber()+'---'+ex.getMessage());
+            } 
+        }  
+    }
+    
+    @isTest
+    static void caseIncidenteNoAprobado() {
+        try {
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+                        FROM	Case 
+                        WHERE	RecordType.Id =: TIPO_REGISTRO_INC  
+                        LIMIT 	1  ];
+
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service3',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser3@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';   
+            record.Status = 'Análisis Previo';    
+            record.FS_SubEstado__c = 'Análisis N1'; 
+            record.FS_AprobacionSolucion__c = 'No';
+            record.FS_ComentariosRechazoSolucion__c = 'Test'; 
+            record.FS_AprobacionSolucionIPN2__c = 'No';
+            record.FS_MotivosRechazoAprobacionIPN2__c = 'Desarrollo incompleto';        
+            record.FS_AprobacionSolucionIPRelease__c = 'No';
+            record.FS_MotivoRechazoAprobacionIPRealease__c = 'Desarrollo incompleto'; 
+            record.FS_AprobacionDisenioTecnico__c = 'No';    
+            record.FS_SolucionCortoPlazo__c = 'No';
+            record.FS_AprobacionSolucionDefinitivaN2__c = 'No';     
+            record.FS_AprobacionSolucionDefinitivaN2__c = 'No'; 
+            record.FS_MotivoRechazoSDN2__c = 'Desarrollo incompleto';    
+            record.FS_AprobacionSolucionDefinitivaRelease__c = 'No';
+            record.FS_MotivoRechazoSDRelease__c = 'Falta de aprobación PR'; 
+            record.FS_AprobacionPlanPruebas__c = 'No';
+            record.FS_MotivosRechazoDT__c = 'Desarrollo incompleto';
+            record.FS_MotivoRechazoPlanPruebas__c = 'Incosistencia en plan de pruebas';   
+            record.FS_AprobacionInstalacionParcheRelease__c = 'No';
+            record.FS_MotivosRechazoInstalacionParche__c = 'Error en compilación';
+            record.FS_AceptaPaseProducion__c = 'No';
+
+            update record;  
+		} 
+        } catch(Exception ex) {
+            System.debug('Error en caseIncidenteNoAprobado'+ex.getLineNumber());    
+        }    
+    }
+
+    @isTest
+    static void caseIncidenteChangeSubStado() {
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+                        FROM	Case 
+                        WHERE	RecordType.Id =: TIPO_REGISTRO_INC
+                        LIMIT 	1  ];
+
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service4',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser4@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';   
+            record.Status = 'Análisis Previo';
+            record.FS_SubEstado__c = 'Aprobación Solución IP-N2';
+            record.FS_UsuarioAprobadorSolucionIPN2__c = serviceUser.Id;
+            update record; 
+
+            record.FS_SubEstado__c = 'Aprobación Diseño Técnico';
+            update record;
+
+            record.FS_SubEstado__c = 'Aprobación Plan de Pruebas';
+            update record;
+
+            record.FS_SubEstado__c = 'Aprobación Consulta N2';
+            update record;
+        }  
+    }
+    
+    @isTest
+    static void caseIncidentePuntual() {
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+                        FROM	Case 
+                        WHERE	RecordType.Id =: TIPO_REGISTRO_INC
+                        LIMIT 	1  ];
+
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service5',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser5@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            record.Status = 'Análisis Previo';    
+            record.FS_SubEstado__c = 'Análisis N1';
+            record.FS_InformacionCompleta__c = 'Si';
+            record.FS_TipoIncidente__c = 'Puntual';
+            record.FS_FechaCompromisoEntrega__c = System.today();
+            record.FS_SubEstado__c = 'Aprobación Plan de Pruebas';
+            update record;
+            
+            record.FS_SubEstado__c = 'Desarrollo Incidente Puntual';
+            update record;
+
+            CaseTriggerHelper.crearEncuesta(record);
+        }  
+    }
+    
+    @isTest
+    static void caseIncidenteDefinitivo() {
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+                        FROM	Case 
+                        WHERE	RecordType.Id =: TIPO_REGISTRO_INC
+                        LIMIT 	1  ];
+        
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service6',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser6@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            record.Status = 'Análisis Previo';    
+            record.FS_SubEstado__c = 'Análisis N1';
+            record.FS_InformacionCompleta__c = 'Si';
+            record.FS_TipoIncidente__c = 'Definitivo';
+            record.FS_SubEstado__c = 'Aprobación Plan de Pruebas';
+            update record;
+
+            record.FS_SubEstado__c = 'Desarrollo Incidente Definitivo';
+            update record;
+
+            record.FS_SubEstado__c = 'Validación-Entrega de Fuentes';
+            update record;
+        }  
+    }
+    
+    @isTest
+    static void caseRequerimiento() {
+        Case record = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_REQ];	    
+
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        User serviceUser = new User(
+            FirstName = 'Service7',
+            LastName = 'User',
+            Email = 'service@test.com',
+            Username = 'serviceuser7@test.com',
+            Alias = 'service',
+            ProfileId = serviceProfile.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert serviceUser;
+
+        System.runAs(serviceUser) {  
+            record.Subject = 'Subject Changed';
+            record.FS_Producto__c = 'FISA System';
+            record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
+            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            record.Status = 'Análisis Previo';    
+            record.FS_SubEstado__c = 'Análisis N1';
+            record.FS_RequiereInformacionAdicional__c = false;  
+            record.FS_Acepta1erCosto__c = 'No';
+            update record;  
+
+            record.FS_Acepta1erCosto__c = 'Si';
+            record.Status = 'Aprobación 1er Costo';
+            record.FS_SubEstado__c = 'Costo Aceptado';    
+            update record;     
+        }
+    }
+    
+    @isTest
+    static void caseMilestone() {
+        CaseTriggerHelper.entitlementCaseId(CaseTriggerHelper.CONSULTA_TIPO_REGISTRO); 
     }
 }

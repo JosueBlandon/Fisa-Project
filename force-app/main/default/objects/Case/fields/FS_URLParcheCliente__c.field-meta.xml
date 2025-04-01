@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_URLParcheCliente__c</fullName>
-    <externalId>false</externalId>
     <label>URL parche de cliente</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

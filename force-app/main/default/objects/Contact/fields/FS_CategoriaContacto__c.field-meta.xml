@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_CategoriaContacto__c</fullName>
+    <label>Categoría de contacto</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Gestor</fullName>
+                <default>false</default>
+                <label>Gestor</label>
+            </value>
+            <value>
+                <fullName>Tomador de Decisión</fullName>
+                <default>false</default>
+                <label>Tomador de Decisión</label>
+            </value>
+            <value>
+                <fullName>⁠Tomador de Decisión/Gestor</fullName>
+                <default>false</default>
+                <label>⁠Tomador de Decisión/Gestor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

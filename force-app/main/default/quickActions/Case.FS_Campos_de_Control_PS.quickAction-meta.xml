@@ -8,12 +8,12 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>FS_Calificacion__c</field>
+                <field>FS_TipoRequerimiento__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>FS_InformacionCompleta__c</field>
+                <field>FS_RequiereInformacionAdicional__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -26,11 +26,6 @@
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>FS_Referencia__c</field>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>FS_Notificaciones__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>

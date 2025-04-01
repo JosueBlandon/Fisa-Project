@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>FS_CorreoFinanzas</fullName>
+        <language>es</language>
+        <protected>false</protected>
+        <shortDescription>FS_CorreoFinanzas</shortDescription>
+        <value>pfinanzas94@gmail.com</value>
+    </labels>
+    <labels>
         <fullName>FS_CamposProtegidosAprobacion</fullName>
         <language>es</language>
         <protected>false</protected>
