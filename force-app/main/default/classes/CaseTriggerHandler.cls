@@ -94,7 +94,6 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelperPMPS.informacionCompleta(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelper.validacionProducto(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.envioNotificacionFinanzas(lstCaseRequerimiento, mpCaseRequerimiento);
-            CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
             if(UserInfo.getUserType() != 'Guest'){
                 CaseTriggerHelperPMPS.aceptaRespuesta(lstCaseRequerimiento, mpCaseRequerimiento);
                 CaseTriggerHelperPMPS.envioNotificacionComunidad(lstCaseRequerimiento, mpCaseRequerimiento);
@@ -131,6 +130,8 @@ public without sharing class CaseTriggerHandler {
         if(executeFlag) {
             CaseTriggerHelper.solventarPregunta(newCaseList, oldCaseMap);
             CaseTriggerHelper.upsertCaseJira(newCaseList, oldCaseMap);
+        }else{
+          CaseTriggerHelperPMPS.updateJiraRecordPMPS(newCaseList, oldCaseMap);
         }
     }
     
