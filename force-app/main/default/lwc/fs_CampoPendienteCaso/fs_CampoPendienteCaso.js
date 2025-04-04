@@ -408,6 +408,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.FS_AceptacionSolucionSalesforce__c === "No" && this.data.caso.FS_ComentariosRespuesta__c != '') {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo22');
+    } else if (this.data.caso.FS_AceptaRespuesta__c === "Si" && this.data.caso.FS_NombreTipoRegistro__c != "Requerimiento") {
+      this.data.botonDeshabilitado = false;
+      window.console.log('Habilito campo23');
     }
   }
 
