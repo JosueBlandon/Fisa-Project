@@ -279,7 +279,7 @@ public class CaseTriggerHelper_Test {
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
 
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service5',
             LastName = 'User',
@@ -321,7 +321,7 @@ public class CaseTriggerHelper_Test {
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
         
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service6',
             LastName = 'User',
