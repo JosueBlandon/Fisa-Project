@@ -1107,17 +1107,20 @@ public without sharing class CaseTriggerHelper {
                 if(item.FS_SubEstado__c == 'Desarrollo Incidente Puntual' && (caso.FS_SubEstado__c == 'Revisión Documentación N2' || caso.FS_SubEstado__c == 'Escalado a N2')){
                     casesNewIP.add(item);
                     casesOldIP.put(caso.Id, caso);
+                    CreateJiraRecord.createJira(casesNewIP, casesOldIP);
                 }else if(item.FS_SubEstado__c == 'Aprobación de Solución IP-Release' || item.FS_SubEstado__c == 'Aprobación Solución IP-N2' ||
                     item.FS_SubEstado__c == 'Desarrollo Incidente Puntual'){
                     casesNewUpdateIP.add(item);
                     casesOldUpdateIP.put(caso.Id, caso);
+                    CreateJiraRecord.createJira(casesNewUpdateIP, casesOldUpdateIP);
                 }
             }
 
             if(caso.FS_SubEstado__c != item.FS_SubEstado__c && item.FS_TipoIncidente__c == 'Definitivo') {
-                if(item.FS_SubEstado__c == 'Escalado a N2' && caso.FS_SubEstado__c == 'Análisis N1') {
+                if(item.FS_SubEstado__c == 'Desarrollo Incidente Definitivo' && (caso.FS_SubEstado__c == 'Revisión Documentación N2' || caso.FS_SubEstado__c == 'Escalado a N2')){
                     casesNewID.add(item);
                     casesOldID.put(caso.Id, caso);
+                    CreateJiraRecord.createJira(casesNewID, casesOldID);
                 }else if(item.FS_SubEstado__c == 'Validación-Entrega de Fuentes' || item.FS_SubEstado__c == 'Elaboración Diseño Técnico' ||
                             item.FS_SubEstado__c == 'Aprobación Solución Definitiva Releases' || item.FS_SubEstado__c == 'Elaboración Solución Definitiva' ||
                             item.FS_SubEstado__c == 'Escalado a QA' || item.FS_SubEstado__c == 'Instalación Parche Releases' ||
@@ -1130,21 +1133,10 @@ public without sharing class CaseTriggerHelper {
                             item.FS_SubEstado__c == 'Aprobación Certificación Parche QA' || item.FS_SubEstado__c == 'Instalación de Parche') {
                                 casesNewUpdateID.add(item);
                                 casesOldUpdateID.put(caso.Id, caso);
+                                CreateJiraRecord.createJira(casesNewUpdateID, casesOldUpdateID);
                 }
             }
-        }
-        if(casesNewIP.size() > 0) {
-            CreateJiraRecord.createJira(casesNewIP, casesOldIP);
-        }
-        if(casesNewUpdateIP.size() > 0) {
-            CreateJiraRecord.updateIssueJira(casesNewUpdateIP, casesOldUpdateIP);
-        }
-        if(casesNewID.size() > 0) {
-            CreateJiraRecord.createJira(casesNewIP, casesOldIP);
-        }
-        if(casesNewUpdateID.size() > 0) {
-            CreateJiraRecord.updateIssueJira(casesNewUpdateID, casesOldUpdateID);
-        }           
+        }   
     }
 
     public static void envioCorreo(Case caso, String nombrePlantilla, Boolean esContacto){
