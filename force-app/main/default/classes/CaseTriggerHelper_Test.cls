@@ -305,6 +305,7 @@ public class CaseTriggerHelper_Test {
             record.FS_TipoIncidente__c = 'Puntual';
             record.FS_FechaCompromisoEntrega__c = System.today();
             record.FS_SubEstado__c = 'Aprobación Plan de Pruebas';
+            record.FS_Proyecto__c = 'FSDE238 - Precontratados BMR por 250 días Q2';
             update record;
             
             record.FS_SubEstado__c = 'Desarrollo Incidente Puntual';
@@ -346,6 +347,7 @@ public class CaseTriggerHelper_Test {
             record.FS_InformacionCompleta__c = 'Si';
             record.FS_TipoIncidente__c = 'Definitivo';
             record.FS_SubEstado__c = 'Aprobación Plan de Pruebas';
+            record.FS_Proyecto__c = 'FSDE238 - Precontratados BMR por 250 días Q2	';
             update record;
 
             record.FS_SubEstado__c = 'Desarrollo Incidente Definitivo';
