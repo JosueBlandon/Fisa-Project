@@ -234,7 +234,7 @@ public without sharing class CaseTriggerHelper {
             Case caso = oldCaseMap.get(item.Id);
             
             if((caso.FS_InformacionCompleta__c != item.FS_InformacionCompleta__c) || (caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c)) {
-                if(item.FS_InformacionCompleta__c == 'Si' || item.FS_RequiereInformacionAdicional__c == false) {
+                if(item.FS_InformacionCompleta__c == 'Si') {
                     String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
                     msjError += String.isBlank(item.FS_Proyecto__c) ? 'Proyecto, ' : '';
@@ -255,7 +255,9 @@ public without sharing class CaseTriggerHelper {
                         item.FS_SubEstado__c = item.FS_Area__c == 'N2- CORE' || item.FS_Area__c == 'N2-OMNIA' ? 'Análisis N2' : 'Análisis N1';
                         item.Status = 'Análisis Previo';
                     }
-                } else if(item.FS_InformacionCompleta__c == 'No' || item.FS_RequiereInformacionAdicional__c == true) {
+                }  
+                
+                if(item.FS_InformacionCompleta__c == 'No') {
                     item.FS_SubEstadoQueSePideInformacion__c = item.FS_SubEstado__c;
                     item.FS_SubEstado__c = 'En Espera de Respuesta del Cliente'; 
                     envioCorreo(item, 'FS_InformacionFaltante', true);
