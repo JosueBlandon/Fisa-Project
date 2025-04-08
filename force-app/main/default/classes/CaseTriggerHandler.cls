@@ -84,10 +84,11 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelper.asignarAprobadorActual(lstCaseRecordCare, mpCaseRecordCare);
             CaseTriggerHelper.mapeoFechaEstado(lstCaseRecordCare, mpCaseRecordCare);
             CaseTriggerHelper.assignDeliveryDate(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelper.upsertCaseJira(lstCaseRecordCare, mpCaseRecordCare);
         }
         
         if(!lstCaseRequerimiento.isEmpty()) {
-            CaseTriggerHelperPMPS.preventChangeCaseValues(lstCaseRecordCare, mpCaseRecordCare);
+            CaseTriggerHelperPMPS.preventChangeCaseValues(lstCaseRecordCare, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.sendToJiraPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.sendNotification(lstCaseRequerimiento, mpCaseRequerimiento);
             CaseTriggerHelperPMPS.actualizacionDescripcion(lstCaseRequerimiento, mpCaseRequerimiento);
@@ -118,20 +119,32 @@ public without sharing class CaseTriggerHandler {
     public static void afterUpdate(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
         Boolean executeFlag = true;
 
+        List<Case> lstCaseRequerimiento = new List<Case>();
+        Map<Id, Case> mpCaseRequerimiento = new Map<Id, Case>();
+
+        List<Case> lstCaseRecordCare = new List<Case>();
+        Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
+
         for(Case record : newCaseList) {
+            Case caso = oldCaseMap.get(record.Id);
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
-                executeFlag = false;
+                lstCaseRequerimiento.add(record);
+                mpCaseRequerimiento.put(caso.Id, caso);
+            } else {
+                lstCaseRecordCare.add(record);
+                mpCaseRecordCare.put(caso.Id, caso);
             }
         }
 
         CaseTriggerHelper.historialCaso(newCaseList, oldCaseMap);
         CaseTriggerHelper.UpdateFields(newCaseList, oldCaseMap);
-        
-        if(executeFlag) {
-            CaseTriggerHelper.solventarPregunta(newCaseList, oldCaseMap);
-            CaseTriggerHelper.upsertCaseJira(newCaseList, oldCaseMap);
-        }else{
-          CaseTriggerHelperPMPS.updateJiraRecordPMPS(newCaseList, oldCaseMap);
+
+        if(!lstCaseRecordCare.isEmpty()) {
+            CaseTriggerHelper.solventarPregunta(lstCaseRecordCare, mpCaseRecordCare);
+        }
+
+        if(!lstCaseRequerimiento.isEmpty()) {
+            CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
         }
     }
     
