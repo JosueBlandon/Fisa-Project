@@ -21,33 +21,62 @@ public without sharing class CreateJiraRecord {
      * @param       records
      * @param       oldRecords
      */
-    public static void createJira(List<Case> records, Map<Id, Case> oldRecords) { 
-        // Get a list of records
-        List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
-                                                        FROM    FS_Project_Jira__mdt  ];
+    public static void createJira(List<Case> newCases, Map<Id, Case> oldCasesMap) {
+        // Step 1: Load metadata and group by type/subtype
+        Map<String, List<FS_Project_Jira__mdt>> metadataMap = new Map<String, List<FS_Project_Jira__mdt>>();
+        
+        for (FS_Project_Jira__mdt meta : [
+            SELECT Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
+            FROM FS_Project_Jira__mdt
+        ]) {
+            String key = meta.FS_Tipo_de_Registro__c + ':' + (meta.FS_Sub_Tipo__c != null ? meta.FS_Sub_Tipo__c : '');
+            if (!metadataMap.containsKey(key)) {
+                metadataMap.put(key, new List<FS_Project_Jira__mdt>());
+            }
+            metadataMap.get(key).add(meta);
+        }
 
-        List<Case> casesNew = new List<Case>();
-        List<Case> casesOld = new List<Case>();
+        // Step 2: Group Cases by Metadata Match
+        Map<FS_Project_Jira__mdt, Set<Id>> caseIdsByMeta = new Map<FS_Project_Jira__mdt, Set<Id>>();
+        Map<FS_Project_Jira__mdt, List<Case>> casesNewByMeta = new Map<FS_Project_Jira__mdt, List<Case>>();
+        Map<FS_Project_Jira__mdt, List<Case>> casesOldByMeta = new Map<FS_Project_Jira__mdt, List<Case>>();
 
-        Set<Id> idRecords = new Set<Id>();
+        for (Case newCase : newCases) {
+            Case oldCase = oldCasesMap.get(newCase.Id);
+            if (oldCase == null) continue;
 
-        for(FS_Project_Jira__mdt mdtRecord : metadataRecords) {
-            for (Case record : records) {
-                Case caso = oldRecords.get(record.Id); 
-                if(mdtRecord.FS_Tipo_de_Registro__c == record.FS_NombreTipoRegistro__c) {
-                    casesNew.add(record);
-                    casesOld.add(caso);
-                    if(mdtRecord.FS_Sub_Tipo__c != Null && record.FS_TipoIncidente__c != Null && mdtRecord.FS_Sub_Tipo__c == record.FS_TipoIncidente__c && record.FS_NombreTipoRegistro__c == 'Incidente') {
-                        idRecords.add(record.Id);
-                        fillCaseFields(idRecords, mdtRecord.FS_Project_Id__c, mdtRecord.FS_Issue_Type__c);
-                        JCFS.API.createJiraIssue(mdtRecord.FS_Project_Id__c, mdtRecord.FS_Issue_Type__c, casesNew, casesOld);
-                    } else if(record.FS_NombreTipoRegistro__c == 'Requerimiento'){
-                        idRecords.add(record.Id);
-                        fillCaseFields(idRecords, mdtRecord.FS_Project_Id__c, mdtRecord.FS_Issue_Type__c);
-                        JCFS.API.createJiraIssue(mdtRecord.FS_Project_Id__c, mdtRecord.FS_Issue_Type__c, casesNew, casesOld);
+            String tipo = newCase.FS_NombreTipoRegistro__c;
+            String subTipo = newCase.FS_TipoIncidente__c != null ? newCase.FS_TipoIncidente__c : '';
+            String key = tipo + ':' + subTipo;
+
+            List<FS_Project_Jira__mdt> matchingMetas = metadataMap.get(key);
+            if (matchingMetas == null) continue;
+
+            for (FS_Project_Jira__mdt meta : matchingMetas) {
+                Boolean isIncidente = tipo == 'Incidente' && meta.FS_Sub_Tipo__c != null && meta.FS_Sub_Tipo__c == newCase.FS_TipoIncidente__c;
+                Boolean isRequerimiento = tipo == 'Requerimiento';
+
+                if (isIncidente || isRequerimiento) {
+                    if (!caseIdsByMeta.containsKey(meta)) {
+                        caseIdsByMeta.put(meta, new Set<Id>());
+                        casesNewByMeta.put(meta, new List<Case>());
+                        casesOldByMeta.put(meta, new List<Case>());
                     }
+                    caseIdsByMeta.get(meta).add(newCase.Id);
+                    casesNewByMeta.get(meta).add(newCase);
+                    casesOldByMeta.get(meta).add(oldCase);
                 }
             }
+        }
+
+        // Step 3: Bulk call fillCaseFields and createJiraIssue
+        for (FS_Project_Jira__mdt meta : caseIdsByMeta.keySet()) {
+            Set<Id> caseIds = caseIdsByMeta.get(meta);
+            List<Case> newList = casesNewByMeta.get(meta);
+            List<Case> oldList = casesOldByMeta.get(meta);
+
+            fillCaseFields(caseIds, meta.FS_Project_Id__c, meta.FS_Issue_Type__c);
+            JCFS.API.createJiraIssue(meta.FS_Project_Id__c, meta.FS_Issue_Type__c, newList, oldList);
         }
     }
 

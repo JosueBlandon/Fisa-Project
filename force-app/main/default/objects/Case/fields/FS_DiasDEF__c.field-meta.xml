@@ -3,9 +3,9 @@
     <fullName>FS_DiasDEF__c</fullName>
     <externalId>false</externalId>
     <label>Días DEF</label>
-    <precision>2</precision>
+    <precision>6</precision>
     <required>false</required>
-    <scale>0</scale>
+    <scale>2</scale>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
