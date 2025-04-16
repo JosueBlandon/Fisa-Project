@@ -110,7 +110,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' && response.caso.Status === "Dado de Baja" && response.caso.FS_FechaContestacionEncuesta__c == null) {
         this.data.pendienteEncuesta = true;
         this.data.pendienteEncuestaDetalle = true;
-      } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === false) {
+      } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_InformacionCompleta__c === "Si") {
         this.data.pendienteHorasDetalle = true;
         this.data.pendienteHoras = true;
       } else if (response.caso.Status === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === true) {
@@ -411,6 +411,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_AceptaRespuesta__c === "Si" && this.data.caso.FS_NombreTipoRegistro__c != "Requerimiento") {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo23');
+    } else if (this.data.caso.FS_AceptaInstalacionParche__c === "Si" && this.data.caso.FS_ComentariosRespuesta__c != '' && this.data.caso.FS_NombreTipoRegistro__c != "Requerimiento") {
+      this.data.botonDeshabilitado = false;
+      window.console.log('Habilito campo24');
     }
   }
 
