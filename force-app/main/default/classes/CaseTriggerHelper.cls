@@ -1113,7 +1113,7 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c == 'Desarrollo Incidente Puntual'){
                     casesNewUpdateIP.add(item);
                     casesOldUpdateIP.put(caso.Id, caso);
-                    CreateJiraRecord.createJira(casesNewUpdateIP, casesOldUpdateIP);
+                    CreateJiraRecord.updateIssueJira(casesNewUpdateID, casesOldUpdateID);
                 }
             }
 
@@ -1122,7 +1122,7 @@ public without sharing class CaseTriggerHelper {
                     casesNewID.add(item);
                     casesOldID.put(caso.Id, caso);
                     CreateJiraRecord.createJira(casesNewID, casesOldID);
-                }else if(item.FS_SubEstado__c == 'Validación-Entrega de Fuentes' || item.FS_SubEstado__c == 'Elaboración Diseño Técnico' ||
+                } else if(item.FS_SubEstado__c == 'Validación-Entrega de Fuentes' || item.FS_SubEstado__c == 'Elaboración Diseño Técnico' ||
                             item.FS_SubEstado__c == 'Aprobación Solución Definitiva Releases' || item.FS_SubEstado__c == 'Elaboración Solución Definitiva' ||
                             item.FS_SubEstado__c == 'Escalado a QA' || item.FS_SubEstado__c == 'Instalación Parche Releases' ||
                             item.FS_SubEstado__c == 'Elaboración Plan de Pruebas' || item.FS_SubEstado__c == 'Certificación Parche QA' ||
@@ -1131,10 +1131,10 @@ public without sharing class CaseTriggerHelper {
                             item.FS_SubEstado__c == 'Paso a Producción Confirmado' || item.FS_SubEstado__c == 'Desarrollo Incidente Definitivo' ||
                             item.FS_SubEstado__c == 'Aprobación Diseño Técnico' || item.FS_SubEstado__c == 'Aprobación Solución Definitiva N2'||
                             item.FS_SubEstado__c == 'Aprobación Instalación Parche - Releases' || item.FS_SubEstado__c == 'Aprobación Plan de Pruebas' ||
-                            item.FS_SubEstado__c == 'Aprobación Certificación Parche QA' || item.FS_SubEstado__c == 'Instalación de Parche') {
+                            item.FS_SubEstado__c == 'Aprobación Certificación Parche QA' || item.FS_SubEstado__c == 'Instalación de Parche'){
                                 casesNewUpdateID.add(item);
                                 casesOldUpdateID.put(caso.Id, caso);
-                                CreateJiraRecord.createJira(casesNewUpdateID, casesOldUpdateID);
+                                CreateJiraRecord.updateIssueJira(casesNewUpdateID, casesOldUpdateID);
                 }
             }
         }   
