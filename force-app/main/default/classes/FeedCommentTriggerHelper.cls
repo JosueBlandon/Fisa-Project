@@ -48,11 +48,11 @@ public without sharing class FeedCommentTriggerHelper {
                             WHERE   Id IN : listCasosIds and (FS_SubEstadoQueSePideInformacion__c != null OR FS_EstadoAnterior__c != null)  
                             AND  Status != 'Dado de Baja' AND  Status != 'Cerrado' ]){
                                 
-            if(item.FS_SubEstadoQueSePideInformacion__c != null){
+            if(item.FS_SubEstadoQueSePideInformacion__c != ''){
                 item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
-            	item.FS_SubEstadoQueSePideInformacion__c = null;
+            	item.FS_SubEstadoQueSePideInformacion__c = '';
             }
-            if(item.FS_EstadoAnterior__c != null){
+            if(item.FS_EstadoAnterior__c != ''){
                  item.FS_RequiereInformacionAdicional__c = false;
             	 item.Status = item.FS_EstadoAnterior__c;
                  item.FS_EstadoAnterior__c = '';

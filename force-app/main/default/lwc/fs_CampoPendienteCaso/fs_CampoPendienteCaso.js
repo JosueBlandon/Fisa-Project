@@ -125,7 +125,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.Status === "Documento de Especificación Funcional" && response.caso.FS_RequiereInformacionAdicional__c === true) {
         this.data.pendienteInformacionDetalle = true;
         this.data.pendienteInformacion = true;
-      } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_RequiereInformacionAdicional__c === true) {
+      } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_InformacionCompleta__c === "No") {
         this.data.pendienteInformacionDetalle = true;
         this.data.pendienteInformacion = true;
       } else if ((response.caso.FS_SubEstado__c === "Instalación de Parche" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)')) {
