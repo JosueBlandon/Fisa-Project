@@ -11,7 +11,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuestaClientes</template>
     </alerts>
@@ -26,7 +26,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuestaClientes</template>
     </alerts>
@@ -41,7 +41,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuesta</template>
     </alerts>
@@ -56,7 +56,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuesta</template>
     </alerts>
@@ -71,7 +71,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuesta</template>
     </alerts>
@@ -86,7 +86,7 @@
             <recipient>FS_Grupo_notificaciones_SLA</recipient>
             <type>group</type>
         </recipients>
-        <senderAddress>salesforce.sandbox@fisagrp.com</senderAddress>
+        <senderAddress>smfisahelpdesk@fisagrp.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/FS_TiempoEstimadoRespuestaClientes</template>
     </alerts>
