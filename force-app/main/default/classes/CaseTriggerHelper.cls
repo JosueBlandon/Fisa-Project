@@ -233,7 +233,7 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList) {
             Case caso = oldCaseMap.get(item.Id);
             
-            if((caso.FS_InformacionCompleta__c != item.FS_InformacionCompleta__c) || (caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c)) {
+            if(caso.FS_InformacionCompleta__c != item.FS_InformacionCompleta__c) {
                 if(item.FS_InformacionCompleta__c == 'Si') {
                     String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
