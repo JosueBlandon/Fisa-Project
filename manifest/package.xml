@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>CaseTriggerHelper</members>
 		<members>FeedCommentTriggerHelper</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>fs_CampoPendienteCaso</members>
-		<name>LightningComponentBundle</name>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionEstimacioMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaAprobacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaDefinicionEspecificacionFuncionalDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionAnalisisPrevio</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDEF</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionDadoBaja</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionEstimacionMacro</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaEconomica</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacion_estado</members>
+		<name>EmailTemplate</name>
 	</types>
 	<version>63.0</version>
 </Package>
