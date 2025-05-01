@@ -722,7 +722,7 @@ public with sharing class CaseTriggerHelperPMPS {
                 
             }
 
-            if(caso.Status != item.Status && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
+            if(caso.Status != item.Status && (item.Status == 'Validación de Respuesta (Cliente)')){
                 //estado igual a 'Entregado'
                 item.FS_EnviarNotificacionEntregado__c = true;
             }
