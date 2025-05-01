@@ -4,6 +4,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getCaso from "@salesforce/apex/ControladorCrearCaso.getCaso";
 import guardarCaso from "@salesforce/apex/ControladorCrearCaso.guardarCaso";
 import urlEncuesta from '@salesforce/label/c.FS_UrlPortalEncuestas';
+import { RefreshEvent } from 'lightning/refresh';
 
 export default class Fs_CampoPendienteCaso extends LightningElement {
 
@@ -334,10 +335,13 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       this.init();
       this.showSpinner = false;
       this.pushMessage('Exitoso', 'success', 'Datos guardados exitosamente');
+      window.console.log('reload page');
+      window.location.reload();
     }).catch(error => {
       this.showSpinner = false;
       this.pushMessage('Error', 'error', 'Ha ocurrido un error, por favor contacte a su administrador.');
     });
+
   }
 
   validarBotonPendResp() {
