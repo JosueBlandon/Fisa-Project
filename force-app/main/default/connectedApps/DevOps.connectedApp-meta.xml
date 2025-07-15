@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>josue.blandon@intellectsystem.net</contactEmail>
+    <iconUrl>https://test.salesforce.com/logos/Salesforce/SalesforcePlatform/icon.png</iconUrl>
+    <label>DevOps</label>
+    <logoUrl>https://test.salesforce.com/logos/Salesforce/SalesforcePlatform/logo.png</logoUrl>
+    <oauthConfig>
+        <callbackUrl>http://localhost:1717/OauthRedirect</callbackUrl>
+        <certificate>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
+fHKZ/rRVlt57zkedJXJKOg==</certificate>
+        <consumerKey>3MVG99OxTyEMCQ3iu9lUIEldAheaUo.xmmDRlXn2.oKZygNHPRVH_WyRRX4sz1QrUJGaFnCgMgpnAXq6V9WkM</consumerKey>
+        <isAdminApproved>true</isAdminApproved>
+        <isClientCredentialEnabled>false</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPkceRequired>false</isPkceRequired>
+        <isSecretRequiredForRefreshToken>false</isSecretRequiredForRefreshToken>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+    <permissionSetName>DevOps</permissionSetName>
+    <profileName>System Administrator</profileName>
+    <sessionPolicy>
+        <sessionTimeout>15</sessionTimeout>
+    </sessionPolicy>
+</ConnectedApp>
