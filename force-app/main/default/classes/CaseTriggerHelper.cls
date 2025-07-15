@@ -56,6 +56,7 @@ public without sharing class CaseTriggerHelper {
     public static final String SOLICITUD_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Solicitud').getRecordTypeId();
     public static final String INCIDENTE_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Incidente').getRecordTypeId();
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
 
     public static void validacionEstado(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         if(validacionUser(false)){
@@ -63,7 +64,9 @@ public without sharing class CaseTriggerHelper {
         } 
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
-            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId) {
+            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId != CONTROLDECAMBIO_TIPO_REGISTRO) {
+                item.Status.addError('Privilegios insuficiente para modificar el estado del caso');
+            }else if(item.Status != 'Dado de Baja' && item.Status != 'Análisis Previo' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO){
                 item.Status.addError('Privilegios insuficiente para modificar el estado del caso');
             }
         }
@@ -181,7 +184,7 @@ public without sharing class CaseTriggerHelper {
                     }
                 }
 
-                if(!flag) {
+                if(!flag && item.Status != 'Nuevo' && item.Status != 'En Espera de Respuesta del Cliente' ) {
                     item.addError('El cliente no tiene la combinación de productos seleccionados');
                 } else {
                     Case caso = oldCaseMap.get(item.Id);
@@ -674,7 +677,8 @@ public without sharing class CaseTriggerHelper {
                     casoHijo.ParentId = item.Id;
                     casoHijo.FS_TipoIncidente__c = 'Puntual';
                     casoHijo.FS_SolucionCortoPlazo__c = null;
-                    casoHijo.FS_RequiereInformacionAdicional__c = false;
+                    casoHijo.FS_FechaCompromisoEntrega__c = null;
+                    casoHijo.FS_InformacionCompleta__c = '';
                     insert casoHijo;
                     casoHijo = [Select Id, CaseNumber From Case where Id =: casoHijo.Id];
                     String titulo = 'Asignación de caso No. '+casoHijo.CaseNumber;
@@ -849,6 +853,7 @@ public without sharing class CaseTriggerHelper {
             if(caso.FS_AprobacionInstalacionParcheRelease__c  != item.FS_AprobacionInstalacionParcheRelease__c ){
                 if(item.FS_AprobacionInstalacionParcheRelease__c == 'Si'){
                     item.FS_SubEstado__c = 'Instalación Parche Releases';
+                    item.OwnerId = item.FS_AgenteQA__c;
                 }else if(item.FS_AprobacionInstalacionParcheRelease__c == 'No'){
                     item.FS_SubEstadoAnterior__c = item.FS_SubEstado__c;
                     item.FS_EnviarAprobacionSolucionDN2__c = false;
@@ -897,6 +902,7 @@ public without sharing class CaseTriggerHelper {
                     item.FS_EnviarAprobacionSolucionDN2__c = false;
                     item.FS_SubEstado__c = 'Elaboración Solución Definitiva';
                     item.OwnerId = item.FS_AgenteN2__c;
+                    item.FS_SubEstadoAnterior__c = '';
                     String titulo = 'Rechazo de Certificación Parche QA para caso '+item.CaseNumber;
                     String descripcion = 'El agente ' + UserInfo.getName()  + ' ha rechazado la Certificación Parche QA para el caso número '+item.CaseNumber +' \nPor favor dar seguimiento.';
                     enviarNotificacion(item.OwnerId, item.Id, titulo, descripcion);
@@ -1113,7 +1119,7 @@ public without sharing class CaseTriggerHelper {
                     item.FS_SubEstado__c == 'Desarrollo Incidente Puntual'){
                     casesNewUpdateIP.add(item);
                     casesOldUpdateIP.put(caso.Id, caso);
-                    CreateJiraRecord.updateIssueJira(casesNewUpdateID, casesOldUpdateID);
+                    CreateJiraRecord.updateIssueJira(casesNewUpdateIP, casesOldUpdateID);
                 }
             }
 
@@ -1403,7 +1409,7 @@ public without sharing class CaseTriggerHelper {
 
     public static void validacionAgenteN2(List<Case> newCaseList) {
         for(Case record : newCaseList) {
-            if(record.OwnerId.getSobjectType() != Group.SobjectType){
+            if(record.OwnerId.getSobjectType() != Group.SobjectType && record.FS_Area__c != 'QA CC-CORE' && record.FS_Area__c != 'QA CC-OMNIA' ){
                 record.FS_AgenteN2__c = record.OwnerId;
             }
         }

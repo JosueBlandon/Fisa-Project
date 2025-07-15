@@ -15,6 +15,7 @@
 public with sharing class CaseTriggerHelperPMPS {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
     public static Map<String, EmailTemplate> mapPlantillas;
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
@@ -61,10 +62,10 @@ public with sharing class CaseTriggerHelperPMPS {
                 if(record.ContactId != caso.ContactId) {
                     record.addError('Privilegios insuficientes, no puede editar campos del caso ingresados por el cliente.'); 
                 }
-                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
+                if((record.Status == 'Dado de Baja' || record.Status == 'Cerrado') && record.status == caso.Status && (record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO  || Record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) && (profileName != 'Customer Community User' ||  profileName != 'Encuestas Servicio al Cliente. Perfil') ) {
                     record.addError('Privilegios insuficientes para modificar el caso en el estado actual.');
                 }
-                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
+                if(record.FS_TipoRequerimiento__c != 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c && (record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || Record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO)) {
                     record.addError('Privilegios insuficientes para modificar la calificación del caso.');    
                 }
             }  
@@ -88,7 +89,7 @@ public with sharing class CaseTriggerHelperPMPS {
                                                                                                 WHERE 	FS_Cuenta__c IN : accountId and FS_Principal__c =: true	 ]);        
 
         for(Case lstCase: records) {
-            if(REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId && mapRecords.size() > 0) {	
+            if((REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId || CONTROLDECAMBIO_TIPO_REGISTRO == lstCase.RecordTypeId) && mapRecords.size() > 0) {	
                 for(Id key : mapRecords.keySet()) {
                     lstCase.OwnerId = mapRecords.get(key).FS_Project_Manager__c; 
                 }
@@ -108,12 +109,19 @@ public with sharing class CaseTriggerHelperPMPS {
         Map<Id, Case> casesOld = new Map<Id, Case>();
         for (Case record : records) {
             Case caso = oldRecords.get(record.Id);
-            if(record.FS_TipoRequerimiento__c == 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c) {
+            if(record.FS_TipoRequerimiento__c == 'Master' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c ) {
                 record.Status = 'Análisis Previo';
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.createJira(casesNew, casesOld);
-            } 
+            }
+            
+            if(record.Status == 'Análisis Previo' && record.Status != caso.Status && record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
+                casesNew.add(record);
+                casesOld.put(caso.Id, caso);
+                CreateJiraRecord.createJira(casesNew, casesOld);
+            }
+            
             if((record.FS_Aplica_Licencia_Recurrente__c == 'Si' && record.FS_Cuando_Aplica_LR__c != null && record.FS_Dias_que_Aplica_LR__c != null && record.FS_Aplica_Licencia_Recurrente__c != caso.FS_Aplica_Licencia_Recurrente__c) || (record.FS_Aplica_Licencia_Recurrente__c	== 'No' && record.FS_Aplica_Licencia_Recurrente__c != caso.FS_Aplica_Licencia_Recurrente__c)) {
                 record.Status = 'En Planificación';
                 casesNew.add(record);
@@ -279,14 +287,22 @@ public with sharing class CaseTriggerHelperPMPS {
     public static void informacionCompleta(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
         List<String> listAccount = new  List<String>();
         List<String> listProductos = new  List<String>();
-        
+        List<User> ltsUser = new  List<User>();
+        Set<Id> ContactIdSt = new Set<Id>();
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
+            //ContactIdSt.add(item.ContactId);
 
             if(String.isBlank(item.FS_SubModulo__c)) {
                 listAccount.add(item.AccountId);
             }
         }
+        
+        /*ltsUser = [select id, username from user where ContactId =:ContactIdSt];
+        String UserId;
+        for(User u: ltsUser){
+            UserId = u.Id;
+        }*/
 
         for(FS_ProductoAdquirido__c item: [ SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
                                             FROM    FS_ProductoAdquirido__c 
@@ -311,6 +327,13 @@ public with sharing class CaseTriggerHelperPMPS {
                     
                 } else if(item.FS_RequiereInformacionAdicional__c == true && item.Status != 'Pendiente de Respuesta CSAT' && item.Status != 'Cerrado' && item.Status != 'Dado de Baja') {
                     CustomNotificationType cnType = [SELECT Id FROM CustomNotificationType WHERE DeveloperName = 'FS_NotificacionServicio'];
+                    User CommunityUser = new User();
+                     if(!Test.isRunningTest()){
+                         	 CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
+                     }else{
+                         	 CommunityUser = [SELECT Id, username FROM user WHERE Id =: UserInfo.getUserId()];
+                     }
+                    
                     item.FS_EstadoAnterior__c = caso.Status;
                     item.status = 'En Espera de Respuesta del Cliente';
                     //envio de notificacion campana - comunidad
@@ -318,11 +341,11 @@ public with sharing class CaseTriggerHelperPMPS {
                     customNotificationObj.setBody('Informacion Adicional');
                     customNotificationObj.setTitle('Requerimos tu ayuda con información adicional del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     if(!Test.isRunningTest()){
                         CaseTriggerHelper.envioCorreo(item, 'FS_InformacionFaltante', true);
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                     }
                     
                 }else if(item.FS_RequiereInformacionAdicional__c == true && (item.Status == 'Pendiente de Respuesta CSAT' || item.Status == 'Cerrado' || item.Status == 'Dado de Baja')){
@@ -649,16 +672,17 @@ public with sharing class CaseTriggerHelperPMPS {
             Case caso = oldCaseMap.get(item.Id);
             if(caso.FS_EnvioNotificacion__c != item.FS_EnvioNotificacion__c && item.FS_EnvioNotificacion__c != null){
                 if(item.FS_EnvioNotificacion__c == true && item.Status == 'Análisis Previo'){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     item.FS_FechaEntregaAnalisisPrevio__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Analisis Previo');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                     }
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
@@ -669,17 +693,18 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_EnvioNotificacionEM__c != item.FS_EnvioNotificacionEM__c && item.FS_EnvioNotificacionEM__c != null){
                 if(item.FS_EnvioNotificacionEM__c == true && item.Status == 'Estimación Macro'){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     item.FS_FechaEntregaEstimacionMacro__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Estimación Macro');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionEstimacionMacro', true);
                     }
                 }
@@ -687,17 +712,18 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_EnvioNotificacionDEF__c != item.FS_EnvioNotificacionDEF__c && item.FS_EnvioNotificacionDEF__c != null){
                 if(item.FS_EnvioNotificacionDEF__c == true && item.Status == 'Documento de Especificación Funcional'){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     item.FS_FechaEntregaDEF__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Documento de Especificación Funcional');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionDEF', true);
                     }
                 }
@@ -705,17 +731,18 @@ public with sharing class CaseTriggerHelperPMPS {
             
             if(caso.FS_EnvioNotificacionPE__c != item.FS_EnvioNotificacionPE__c && item.FS_EnvioNotificacionPE__c != null){
                 if(item.FS_EnvioNotificacionPE__c == true && item.Status == 'En Propuesta Económica'){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     item.FS_FechaEntregaPropuestaEconomica__c = date.valueOf(item.LastModifiedDate);
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de la Propuesta Económica');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacionPropuestaEconomica', true);
                     }
                 }
@@ -726,11 +753,20 @@ public with sharing class CaseTriggerHelperPMPS {
                 //estado igual a 'Entregado'
                 item.FS_EnviarNotificacionEntregado__c = true;
             }
+            
+            if(caso.FS_URLParcheCliente__c != item.FS_URLParcheCliente__c && (item.Status == 'En Revisión Entregado')){
+                //estado igual a 'Entregado'
+                item.FS_EnviarNotificacionEntregado__c = true;
+            }
+            
+            
 
             if(caso.FS_EnviarNotificacionEntregado__c != item.FS_EnviarNotificacionEntregado__c && item.FS_EnviarNotificacionEntregado__c != null){
                 //estado igual a 'entregado'
                 if(item.FS_EnviarNotificacionEntregado__c == true && (item.Status == 'Validación de Respuesta (Cliente)' || item.Status == 'En Revisión Entregado')){
-                    item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
+                    //item.FS_Fecha_Entrega_Cliente__c = date.valueOf(item.LastModifiedDate);
+                    item.FS_Fecha_Entrega_Cliente__c = System.now();
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     item.FS_AceptaRespuesta__c = '';
                     item.FS_Tipo_de_Aprobacion__c = '';
                     //envio de notificacion campana - comunidad
@@ -738,11 +774,11 @@ public with sharing class CaseTriggerHelperPMPS {
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion del parche');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
                     }
                 }
@@ -750,16 +786,17 @@ public with sharing class CaseTriggerHelperPMPS {
 
             if(caso.FS_EnviarNotificacionCertificado__c != item.FS_EnviarNotificacionCertificado__c && item.FS_EnviarNotificacionCertificado__c != null){
                 if(item.FS_EnviarNotificacionCertificado__c == true && (item.Status == 'Certificado' || item.Status == 'En Revisión Certificado')){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion de Certificado');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
                     }
                 }
@@ -767,16 +804,17 @@ public with sharing class CaseTriggerHelperPMPS {
 
             if(caso.FS_EnviarNotificacionProduccion__c != item.FS_EnviarNotificacionProduccion__c && item.FS_EnviarNotificacionProduccion__c != null){
                 if(item.FS_EnviarNotificacionProduccion__c == true && (item.Status == 'En Producción' || item.Status == 'En Revisión en Producción')){
+                    User CommunityUser = [SELECT Id, username FROM user WHERE ContactId =:item.ContactId];
                     //envio de notificacion campana - comunidad
                     Messaging.CustomNotification customNotificationObj = new Messaging.CustomNotification();
                     customNotificationObj.setBody('Se envio una Solicitud para aprobacion en Produccion');
                     customNotificationObj.setTitle('Tienes una nueva Notificacion pendiente por responder del caso No. ' + item.CaseNumber);
                     customNotificationObj.setNotificationTypeId(cnType.id);
-                    customNotificationObj.setSenderId(item.CreatedById);
+                    customNotificationObj.setSenderId(CommunityUser.Id);
                     customNotificationObj.setTargetId(item.Id);
                     //envio de correo cliente
                     if(!Test.isRunningTest()){
-                        customNotificationObj.send(new Set<String> {item.CreatedById});
+                        customNotificationObj.send(new Set<String> {CommunityUser.Id});
                         CaseTriggerHelper.envioCorreo(item, 'FS_PendienteInformacion_estado', true);
                     }
                 }
@@ -871,7 +909,7 @@ public with sharing class CaseTriggerHelperPMPS {
         mail.setOrgWideEmailAddressId(owea.Id);
         mail.saveAsActivity = true;
         //mail.saveAsActivity = false;
-        mail.setTargetObjectId(caso.ContactId);
+        //mail.setTargetObjectId(caso.ContactId);
         try{
             if(!Test.isRunningTest()){
                 Messaging.SendEmailResult[] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
