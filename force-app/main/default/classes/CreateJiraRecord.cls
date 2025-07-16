@@ -53,10 +53,10 @@ public without sharing class CreateJiraRecord {
             if (matchingMetas == null) continue;
 
             for (FS_Project_Jira__mdt meta : matchingMetas) {
-                Boolean isIncidente = tipo == 'Incidente' && meta.FS_Sub_Tipo__c != null && meta.FS_Sub_Tipo__c == newCase.FS_TipoIncidente__c;
-                Boolean isRequerimiento = tipo == 'Requerimiento';
+                //Boolean isIncidente = tipo == 'Incidente' && meta.FS_Sub_Tipo__c != null && meta.FS_Sub_Tipo__c == newCase.FS_TipoIncidente__c;
+                //Boolean isRequerimiento = tipo == 'Requerimiento';
 
-                if (isIncidente || isRequerimiento) {
+                //if (isIncidente || isRequerimiento) {
                     if (!caseIdsByMeta.containsKey(meta)) {
                         caseIdsByMeta.put(meta, new Set<Id>());
                         casesNewByMeta.put(meta, new List<Case>());
@@ -65,7 +65,7 @@ public without sharing class CreateJiraRecord {
                     caseIdsByMeta.get(meta).add(newCase.Id);
                     casesNewByMeta.get(meta).add(newCase);
                     casesOldByMeta.get(meta).add(oldCase);
-                }
+                //}
             }
         }
 

@@ -51,6 +51,7 @@ public without sharing class FeedCommentTriggerHelper {
             if(item.FS_SubEstadoQueSePideInformacion__c != null){
                 item.FS_SubEstado__c = item.FS_SubEstadoQueSePideInformacion__c;
             	item.FS_SubEstadoQueSePideInformacion__c = '';
+                item.FS_InformacionCompleta__c = '';
             }
             if(item.FS_EstadoAnterior__c != null){
                  item.FS_RequiereInformacionAdicional__c = false;
