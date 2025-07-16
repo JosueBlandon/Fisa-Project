@@ -47,7 +47,7 @@ public without sharing class ControladorCrearCaso {
         }
         for(RecordType item : [ SELECT  Id, Name 
                                 FROM    RecordType 
-                                WHERE   SObjectType = 'Case' and IsActive = true Order by Name asc  ]) {
+                                WHERE   SObjectType = 'Case' and IsActive = true and name != 'Control de Cambios' Order by Name asc  ]) {
 
             PickListOption p = new PickListOption();
             p.value = item.Id;
@@ -354,6 +354,19 @@ public without sharing class ControladorCrearCaso {
             listOptions.add(p);
         }
         return listOptions;
+    }
+    
+    @AuraEnabled
+    public static Boolean childrenCaseValidation(String idCase){
+      Boolean flagCase = false;
+      String recordTypeIdControlC = Schema.SObjectType.Case.RecordTypeInfosByDeveloperName.get('FS_ControlCambios').RecordTypeId;
+      List<Case> listCasosHijos = [Select Id from Case Where ParentId = :idCase and recordTypeId =: recordTypeIdControlC and Status != 'Cerrado' and Status != 'Dado de Baja'];
+      if (String.isNotBlank(idCase)){
+          if(listCasosHijos.size() > 0){
+            flagCase = true; 
+          }
+      }
+      return flagCase;
     }
     
     public class ContactoWrapper{

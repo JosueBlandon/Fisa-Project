@@ -16,6 +16,7 @@
 public without sharing class CaseTriggerHandler {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
 
     public static void beforeInsert(List<Case> newCaseList){
         CaseTriggerHelperPMPS.assignCases(newCaseList);
@@ -35,7 +36,7 @@ public without sharing class CaseTriggerHandler {
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
-            if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
+            if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
             } else {
@@ -114,6 +115,18 @@ public without sharing class CaseTriggerHandler {
         if(!lstCase.isEmpty()) {
             ChangeCaseRecordType.validateChangeRecordType(lstCase, mpCase);
         }
+        
+        for(Case record : newCaseList) {
+            Case caso = oldCaseMap.get(record.Id);
+            if(record.Status != caso.Status && (record.Status == 'Cerrado' || record.Status == 'Dado de Baja')) {
+                List<Id> caseIds = new List<Id>();
+            	CaseIds.add(record.Id);
+            	//MilestoneClose.completeMilestone(caseIds);
+                
+            }
+            
+        }
+     
     }
     
     public static void afterUpdate(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
@@ -127,7 +140,7 @@ public without sharing class CaseTriggerHandler {
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
-            if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
+            if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
             } else {
