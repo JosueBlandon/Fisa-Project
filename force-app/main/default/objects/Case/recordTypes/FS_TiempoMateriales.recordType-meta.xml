@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_TiempoMateriales</fullName>
+    <active>true</active>
+    <businessProcess>FS_TiempoMateriales</businessProcess>
+    <description>Tipo de registro para casos de tiempo y materiales</description>
+    <label>Tiempo y Materiales</label>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Análisis Falla Operativa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apertura de caso</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Consulta N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Instalación Parche - Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solicitud N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución IP-N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación de Solución IP-Release</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Aceptado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Rechazado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Puntual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Solución Definitiva</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Espera de Respuesta del Cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En reproceso por rechazo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega 1a respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Envío de respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación Parche Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción No Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta aceptada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta rechazada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión Documentación N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Validación-Entrega de Fuentes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>Alta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>El usuario no asistió a la capacitación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Funcionalidad compleja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instrucciones poco claras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuevo problema</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Problema existente</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Atención 24x7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Atención sin costo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pase en produccción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puntual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión ambiente laboratorio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión sistemas externos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Script personalizados</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
