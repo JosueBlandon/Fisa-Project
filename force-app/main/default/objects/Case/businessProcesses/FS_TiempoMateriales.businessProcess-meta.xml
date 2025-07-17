@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_TiempoMateriales</fullName>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Análisis Previo</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Cerrado</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Certificado</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Dado de Baja</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Documento de Especificación Funcional</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Desarrollo</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Espera de Respuesta del Cliente</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Planificación</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Producción</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Propuesta Económica</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Revisión Certificado</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Revisión Entregado</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>En Revisión en Producción</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Entregado</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Estimación Macro</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Nuevo</fullName>
+        <default>true</default>
+    </values>
+    <values>
+        <fullName>Pendiente de Respuesta CSAT</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>
