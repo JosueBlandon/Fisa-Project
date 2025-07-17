@@ -2,6 +2,10 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>Case.FS_TiempoMateriales</members>
+		<name>BusinessProcess</name>
+	</types>
+	<types>
+		<members>Case.FS_TiempoMateriales</members>
 		<name>RecordType</name>
 	</types>
 	<version>64.0</version>
