@@ -511,6 +511,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_ControlCambiosCasoPadre__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_CorreosNotificacionesServicios__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -542,6 +547,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_DiasAprobacionPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasAprobacionPropuestaServicio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_DiasDEF__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -616,6 +631,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_EnvioNotificacionPS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_EnvioNotificacion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -657,6 +677,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_FechaAprobacionClientePE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClientePS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -707,6 +732,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_FechaEntregaPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaEntregaPropuestaServicio__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1025,6 +1055,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_SubtipoRequerimiento__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_SurveyAnswered__c</field>
         <readable>true</readable>
@@ -1061,6 +1096,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_TipoRequerimiento__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_Tipo_de_Aprobacion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1082,6 +1122,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.FS_TotalUSDPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDPropuestaServicio__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1814,6 +1859,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Account</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1823,6 +1869,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1832,6 +1879,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contact</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1841,6 +1889,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_Gestor_Cuenta__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1850,6 +1899,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_HistorialCampos__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1859,6 +1909,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_HistorialDescripcionCaso__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1868,6 +1919,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_ProductoAdquirido__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1877,6 +1929,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>FS_Proyecto__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1886,10 +1939,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Respuestas_a_la_preguntas_de_encuestas__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>Case.FS_Consulta</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_ControlCambios</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -1902,6 +1960,14 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Case.FS_Solicitud</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_TiempoMateriales</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_TiempoMaterialesSprints</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

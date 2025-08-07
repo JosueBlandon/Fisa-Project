@@ -17,6 +17,9 @@ public without sharing class CaseTriggerHandler {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
     public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
+    public static final String TIEMPOMATERIALES_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
+    public static final String TIEMPOMATERIALSPRINTS_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMaterialesSprints').getRecordTypeId();
+
 
     public static void beforeInsert(List<Case> newCaseList){
         CaseTriggerHelperPMPS.assignCases(newCaseList);
@@ -30,6 +33,9 @@ public without sharing class CaseTriggerHandler {
     public static void beforeUpdate(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
         List<Case> lstCaseRequerimiento = new List<Case>();
         Map<Id, Case> mpCaseRequerimiento = new Map<Id, Case>();
+        
+        List<Case> lstCaseTiempoMateriales = new List<Case>();
+        Map<Id, Case> mpCaseCaseTiempoMateriales = new Map<Id, Case>();
 
         List<Case> lstCaseRecordCare = new List<Case>();
         Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
@@ -39,6 +45,9 @@ public without sharing class CaseTriggerHandler {
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
+            } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+                lstCaseTiempoMateriales.add(record);
+                mpCaseCaseTiempoMateriales.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
@@ -101,6 +110,22 @@ public without sharing class CaseTriggerHandler {
                 CaseTriggerHelperPMPS.envioNotificacionComunidad(lstCaseRequerimiento, mpCaseRequerimiento);
             }
         }
+        
+        
+        if(!lstCaseTiempoMateriales.isEmpty()){
+            CaseTriggerHelperTM.preventChangeCaseValues(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.sendToJiraPMPS(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.sendNotification(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.actualizacionDescripcion(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.informacionCompleta(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelper.validacionProducto(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            //CaseTriggerHelperTM.envioNotificacionFinanzas(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.validateChildrenCases(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            if(UserInfo.getUserType() != 'Guest'){
+                CaseTriggerHelperTM.aceptaRespuesta(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+                CaseTriggerHelperTM.envioNotificacionComunidad(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            }
+        }
 
         List<Case> lstCase = new List<Case>();
         Map<Id, Case> mpCase = new Map<Id, Case>();
@@ -137,12 +162,18 @@ public without sharing class CaseTriggerHandler {
 
         List<Case> lstCaseRecordCare = new List<Case>();
         Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
+        
+        List<Case> lstCaseTiempoMateriales = new List<Case>();
+        Map<Id, Case> mpCaseCaseTiempoMateriales = new Map<Id, Case>();
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
+            } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+                lstCaseTiempoMateriales.add(record);
+                mpCaseCaseTiempoMateriales.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
@@ -158,6 +189,11 @@ public without sharing class CaseTriggerHandler {
 
         if(!lstCaseRequerimiento.isEmpty()) {
             CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
+        }
+        
+        if(!lstCaseTiempoMateriales.isEmpty()) {
+            CaseTriggerHelperTM.updateJiraRecordPMPS(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.changeStatus(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
         }
     }
     

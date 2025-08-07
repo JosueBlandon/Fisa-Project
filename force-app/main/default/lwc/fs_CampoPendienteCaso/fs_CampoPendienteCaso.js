@@ -3,6 +3,7 @@ import { LightningElement, track } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getCaso from "@salesforce/apex/ControladorCrearCaso.getCaso";
 import guardarCaso from "@salesforce/apex/ControladorCrearCaso.guardarCaso";
+import childrenCaseValidation from "@salesforce/apex/ControladorCrearCaso.childrenCaseValidation";
 import urlEncuesta from '@salesforce/label/c.FS_UrlPortalEncuestas';
 import { RefreshEvent } from 'lightning/refresh';
 
@@ -10,6 +11,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
 
   casoId;
   showSpinner = true;
+  casosHijos = false;
   @track data = {
     caso: {},
     listAceptaRespuesta: [],
@@ -39,6 +41,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     pendienteRespuestaEnProduccion: false,
     pendientePropuestaEconomica: false,
     pendienteAnalisisPrevio: false,
+    pendientePropuestaServicio: false,
     pendienteEstadoEntregado: false,
     pendienteEstadoCertificado: false,
     pendienteEstadoEnProduccion: false,
@@ -72,13 +75,13 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       this.data.caso.FS_Tipo_de_Aprobacion__c = '';
       this.data.caso.FS_Fecha_de_Pase_Produccion__c = '';
       this.data.caso.FS_ComentariosRespuesta__c = '';
-      if (response.caso.Status === 'Certificado' && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
+      if (response.caso.Status === 'Certificado' && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento' && response.caso.FS_NombreTipoRegistro__c != 'Control de Cambios' && response.caso.FS_NombreTipoRegistro__c != 'Tiempo y Materiales - Con Sprints') {
         this.data.pendienteEstadoCertificado = true;
         this.data.pendienteRespuestaCertificado = true;
       } else if ((response.caso.Status === 'Certificado' || response.caso.Status === 'En Revisión Certificado') && response.caso.FS_EnviarNotificacionCertificado__c == true) {
         this.data.pendienteEstadoCertificado = true;
         this.data.pendienteRespuestaCertificado = true;
-      } else if (response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
+      } else if (response.caso.Status === 'En Producción' && response.caso.FS_Quiere_Finalizar_la_Atencion_del_Caso__c == false && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento' && response.caso.FS_NombreTipoRegistro__c != 'Control de Cambios' && response.caso.FS_NombreTipoRegistro__c != 'Tiempo y Materiales - Con Sprints') {
         this.data.pendienteEstadoEnProduccion = true;
         this.data.pendienteRespuestaEnProduccion = true;
       } else if ((response.caso.Status === 'En Producción' || response.caso.Status === 'En Revisión en Producción') && response.caso.FS_EnviarNotificacionProduccion__c == true) {
@@ -87,6 +90,9 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.Status === "Análisis Previo" && response.caso.FS_EnvioNotificacion__c === true) {
         this.data.pendienteAnalisisPrevio = true;
         this.data.pendienteRespuestaAnalisisPrevio = true;
+      } else if (response.caso.Status === "Propuesta de Servicio" && response.caso.FS_EnvioNotificacionPS__c === true) {
+        this.data.pendientePropuestaServicio = true;
+        this.data.pendienteRespuestaPropuestaServicio = true;
       } else if (response.caso.Status === "Estimación Macro" && response.caso.FS_EnvioNotificacionEM__c === true) {
         this.data.pendienteEstimacionMacro = true;
         this.data.pendienteRespuestaEstimacionMacro = true;
@@ -96,7 +102,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.Status === "En Propuesta Económica" && response.caso.FS_EnvioNotificacionPE__c === true) {
         this.data.pendientePropuestaEconomica = true;
         this.data.pendienteRespuestaPropuestaEconomica = true;
-      } else if ((response.caso.Status === "Validación de Respuesta (Cliente)" || response.caso.Status === "En Revisión Entregado") && response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.FS_NombreTipoRegistro__c == 'Requerimiento') {
+      } else if ((response.caso.Status === "Validación de Respuesta (Cliente)" || response.caso.Status === "En Revisión Entregado") && response.caso.FS_EnviarNotificacionEntregado__c == true && (response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' || response.caso.FS_NombreTipoRegistro__c == 'Control de Cambios' || response.caso.FS_NombreTipoRegistro__c == 'Tiempo y Materiales - Con Sprints')) {
         this.data.pendienteEstadoEntregado = true;
         this.data.pendienteRespuestaEntregado = true;
       } else if ((response.caso.FS_Acepta_Propuesta_Economica__c === "No" || response.caso.Status === "Pendiente de Respuesta CSAT") && (response.caso.Status != 'Dado de Baja' && response.caso.Status != 'Cerrado')) {
@@ -108,7 +114,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.FS_SubEstado__c === "Respuesta aceptada" && response.caso.Status === "Pendiente de Respuesta CSAT") {
         this.data.pendienteEncuesta = true;
         this.data.pendienteEncuestaDetalle = true;
-      } else if (response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' && response.caso.Status === "Dado de Baja" && response.caso.FS_FechaContestacionEncuesta__c == null) {
+      } else if ((response.caso.FS_NombreTipoRegistro__c == 'Requerimiento' || response.caso.FS_NombreTipoRegistro__c == 'Control de Cambios' || response.caso.FS_NombreTipoRegistro__c == 'Tiempo y Materiales - Con Sprints') && response.caso.Status === "Dado de Baja" && response.caso.FS_FechaContestacionEncuesta__c == null) {
         this.data.pendienteEncuesta = true;
         this.data.pendienteEncuestaDetalle = true;
       } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_InformacionCompleta__c === "Si") {
@@ -129,10 +135,10 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       } else if (response.caso.FS_SubEstado__c === "En Espera de Respuesta del Cliente" && response.caso.FS_InformacionCompleta__c === "No") {
         this.data.pendienteInformacionDetalle = true;
         this.data.pendienteInformacion = true;
-      } else if ((response.caso.FS_SubEstado__c === "Instalación de Parche" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)')) {
+      } else if ((response.caso.FS_SubEstado__c === "Instalación de Parche" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento' && response.caso.FS_NombreTipoRegistro__c != 'Control de Cambios' && response.caso.FS_NombreTipoRegistro__c != 'Tiempo y Materiales - Con Sprints') || (response.caso.FS_EnviarNotificacionEntregado__c == true && response.caso.Status === 'Validación de Respuesta (Cliente)')) {
         this.data.pendienteInstalacionParcheDetalle = true;
         this.data.pendienteInstalacionParche = true;
-      } else if (response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento') {
+      } else if (response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_NombreTipoRegistro__c != 'Requerimiento' && response.caso.FS_NombreTipoRegistro__c != 'Control de Cambios' && response.caso.FS_NombreTipoRegistro__c != 'Tiempo y Materiales - Con Sprints') {
         this.data.pendientePaseProduccionDetalle = true;
         this.data.pendientePaseProduccion = true;
       } else if (response.caso.FS_SubEstado__c === "Paso a Producción" && response.caso.FS_EnviarNotificacionCertificado__c == true) {
@@ -143,10 +149,26 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
         this.data.pendienteEncuestaDetalle = true;
       }
       this.showSpinner = false;
+      //this.casosHijos = true;
     }).catch(error => {
       this.showSpinner = false;
       this.pushMessage('Error', 'error', 'Ha ocurrido un error, por favor contacte a su administrador.');
     });
+
+    childrenCaseValidation({ idCase: this.casoId }).then(response => {
+      window.console.log("Respuesta: " + response);
+      if (response == true) {
+        this.casosHijos = true;
+      } else {
+        //this.validarBotonPendResp();
+      }
+      //this.data.caso = response;
+    }).catch(error => {
+      //this.showSpinner = false;
+      //this.pushMessage('Error', 'error', 'Ha ocurrido un error, por favor contacte a su administrador.');
+    });
+
+
   }
 
   getQueryParameters() {
@@ -175,6 +197,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     this.data.pendientePaseProduccion = false;
     this.data.pendientePropuestaEconomica = false;
     this.data.pendienteAnalisisPrevio = false;
+    this.data.pendientePropuestaServicio = false;
     this.data.pendienteEstimacionMacro = false;
     this.data.pendienteDEF = false;
     this.data.pendienteEstadoEntregado = false;
@@ -196,6 +219,11 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (name === "aceptaAnalisisPrevio") {
       this.data.caso.FS_AceptaAnalisisPrevio__c = value;
       this.data.caso.FS_EnvioNotificacion__c = false;
+      this.data.mostrarRechazo = (value != "Si");
+      this.data.caso.FS_MotivoRechazo__c = !this.data.mostrarRechazo ? null : this.data.caso.FS_MotivoRechazo__c;
+    } else if (name === "aceptaPropuestaServicio") {
+      this.data.caso.FS_AceptaPropuestaServicio__c = value;
+      this.data.caso.FS_EnvioNotificacionPS__c = false;
       this.data.mostrarRechazo = (value != "Si");
       this.data.caso.FS_MotivoRechazo__c = !this.data.mostrarRechazo ? null : this.data.caso.FS_MotivoRechazo__c;
     } else if (name === "aceptaEstimacionMacro") {
@@ -294,6 +322,8 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     }
 
     this.validarBotonPendResp();
+    //window.console.log("Caso2: " + this.casoId);
+    //windowconsole.log("Caso2: " + this.casoId);
   }
 
   handleChangeCheckBox(event) {
@@ -326,6 +356,7 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       this.data.pendienteRespuestaEnProduccionRequerimiento = false;
       this.data.pendientePropuestaEconomica = false;
       this.data.pendienteAnalisisPrevio = false;
+      this.data.pendientePropuestaServicio = false;
       this.data.pendienteEstimacionMacro = false;
       this.data.pendienteDEF = false;
       this.data.pendienteEstadoEntregado = false;
@@ -418,6 +449,12 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
     } else if (this.data.caso.FS_AceptaInstalacionParche__c === "Si" && this.data.caso.FS_ComentariosRespuesta__c != '' && this.data.caso.FS_NombreTipoRegistro__c != "Requerimiento") {
       this.data.botonDeshabilitado = false;
       window.console.log('Habilito campo24');
+    } else if (this.data.caso.FS_AceptaPropuestaServicio__c === "Si" && this.data.caso.Status == "Propuesta de Servicio") {
+      this.data.botonDeshabilitado = false;
+      window.console.log('Habilito campo25');
+    } else if (this.data.caso.FS_AceptaPropuestaServicio__c === "No" && this.data.caso.FS_MotivoRechazo__c != null && this.data.caso.Status == "Propuesta de Servicio" && this.data.caso.FS_ComentariosRespuesta__c != '') {
+      window.console.log('Habilito campo26');
+      this.data.botonDeshabilitado = false;
     }
   }
 
@@ -444,6 +481,8 @@ export default class Fs_CampoPendienteCaso extends LightningElement {
       this.data.pendienteEstadoEnProduccionRequerimiento = true;
     } else if (this.data.pendienteRespuestaAnalisisPrevio) {
       this.data.pendienteAnalisisPrevio = true;
+    } else if (this.data.pendienteRespuestaPropuestaServicio) {
+      this.data.pendientePropuestaServicio = true;
     } else if (this.data.pendienteRespuestaEstimacionMacro) {
       this.data.pendienteEstimacionMacro = true;
     } else if (this.data.pendienteRespuestaDEF) {

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fs_PrevenirModificacionTipoRequerimiento</fullName>
+    <active>true</active>
+    <description>No se permite modificar el valor del campo después de haber sido seleccionado.</description>
+    <errorConditionFormula>AND(
+ISCHANGED(FS_TipoRequerimiento__c),
+NOT(ISBLANK(PRIORVALUE(FS_TipoRequerimiento__c))),
+OR($Profile.Name  &lt;&gt; &apos;Administrador del sistema&apos;,
+$Profile.Name  &lt;&gt; &apos;System Administrator&apos;)
+)</errorConditionFormula>
+    <errorMessage>No se permite modificar el valor del campo después de haber sido seleccionado.</errorMessage>
+</ValidationRule>

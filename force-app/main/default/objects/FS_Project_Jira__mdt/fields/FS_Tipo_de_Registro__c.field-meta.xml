@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Tipo_de_Registro__c</fullName>
-    <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
     <label>Tipo de Registro</label>
     <required>false</required>
@@ -29,6 +28,16 @@
                 <fullName>Solicitud (Falla Operativa)</fullName>
                 <default>false</default>
                 <label>Solicitud (Falla Operativa)</label>
+            </value>
+            <value>
+                <fullName>Control de Cambios</fullName>
+                <default>false</default>
+                <label>Control de Cambios</label>
+            </value>
+            <value>
+                <fullName>Tiempo y Materiales - Con Sprints</fullName>
+                <default>false</default>
+                <label>Tiempo y Materiales - Con Sprints</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -5,6 +5,8 @@ public class CaseTriggerHelper_Test {
     public static final String TIPO_REGISTRO_SOL = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Solicitud').getRecordTypeId();
     public static final String TIPO_REGISTRO_INC = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Incidente').getRecordTypeId();
     public static final String TIPO_REGISTRO_REQ = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String TIPO_REGISTRO_TM = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
+    public static final String TIPO_REGISTRO_TMS = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMaterialesSprints').getRecordTypeId();
 
 	@testSetup
     static void setup() {  
@@ -56,7 +58,7 @@ public class CaseTriggerHelper_Test {
     static void caseSolicitud() {
         Case record = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_SOL];	    
 
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service1',
             LastName = 'User',
@@ -104,7 +106,7 @@ public class CaseTriggerHelper_Test {
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC  
                         LIMIT 	1  ];
         
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service2',
             LastName = 'User',
@@ -236,7 +238,7 @@ public class CaseTriggerHelper_Test {
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
 
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service4',
             LastName = 'User',
@@ -362,7 +364,7 @@ public class CaseTriggerHelper_Test {
     static void caseRequerimiento() {
         Case record = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_REQ];	    
 
-        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
+        Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Administrador del Sistema' or Name = 'System Administrator' LIMIT 1];
         User serviceUser = new User(
             FirstName = 'Service7',
             LastName = 'User',

@@ -47,7 +47,9 @@ public without sharing class ControladorCrearCaso {
         }
         for(RecordType item : [ SELECT  Id, Name 
                                 FROM    RecordType 
-                                WHERE   SObjectType = 'Case' and IsActive = true and name != 'Control de Cambios' Order by Name asc  ]) {
+                                WHERE   SObjectType = 'Case' AND IsActive = true AND name != 'Control de Cambios' 
+                                AND name != 'Tiempo y Materiales' AND name != 'Tiempo y Materiales - Con Sprints'
+                                Order by Name asc  ]) {
 
             PickListOption p = new PickListOption();
             p.value = item.Id;
@@ -153,7 +155,9 @@ public without sharing class ControladorCrearCaso {
         Case caso = (Case) JSON.deserialize(casoJSON, Case.class);
         Boolean crearCaso = String.isBlank(caso.Id);
         
-        String recordTypeId = Schema.SObjectType.Case.RecordTypeInfosByDeveloperName.get('FS_Requerimiento').RecordTypeId;
+        List<String> listRecordType = new List<String>();
+        listRecordType.add(Schema.SObjectType.Case.RecordTypeInfosByDeveloperName.get('FS_Requerimiento').RecordTypeId);
+        listRecordType.add(Schema.SObjectType.Case.RecordTypeInfosByDeveloperName.get('FS_TiempoMateriales').RecordTypeId);
         
         if(crearCaso){
             user usuario = [    SELECT  Contact.Account.FS_Carterizacion__c, Contact.Account.FS_ServicioRemoto__c, Contact.Account.FS_ColaAtencion__c, Contact.Account.FS_CorreosNotificacionesServicios__c, Contact.Account.FS_Correos_Notificaciones_PS__c  
@@ -161,7 +165,7 @@ public without sharing class ControladorCrearCaso {
                                 WHERE   Id =: userInfo.getUserId()    ];
 
             Boolean esCore = CaseTriggerHelper.ProductoCore(caso);
-            if(recordTypeId != caso.RecordTypeId) {
+            if(!listRecordType.contains(caso.RecordTypeId)) {
                 caso.FS_Area__c = esCore ? 'N1. CORE' : 'N1. OMNIA';
             } else {
                 caso.FS_Area__c = 'PS';
@@ -173,7 +177,7 @@ public without sharing class ControladorCrearCaso {
             caso.FS_FechaEstadoActual__c = System.now();
             caso.FS_FechaSubEstadoActual__c = System.now();
 
-            if(recordTypeId != caso.RecordTypeId) {
+            if(!listRecordType.contains(caso.RecordTypeId)) {
                 if(usuario.Contact.Account.FS_ServicioRemoto__c){
                     caso.OwnerId = [Select Id from Group Where DeveloperName = :usuario.Contact.Account.FS_ColaAtencion__c and Type = 'Queue'].Id;
                 }else{
@@ -184,7 +188,7 @@ public without sharing class ControladorCrearCaso {
                                                                                                         FROM 	FS_Gestor_Cuenta__c
                                                                                                         WHERE 	FS_Cuenta__c =: caso.AccountId and FS_Principal__c =: true	 ]);
                 
-				if(recordTypeId == caso.RecordTypeId && mapRecords.size() > 0) {	
+				if(listRecordType.contains(caso.RecordTypeId) && mapRecords.size() > 0) {	
                     for(Id key : mapRecords.keySet()) {
                         caso.OwnerId = mapRecords.get(key).FS_Project_Manager__c;    
                     }
@@ -208,6 +212,11 @@ public without sharing class ControladorCrearCaso {
         if(caso.FS_AceptaAnalisisPrevio__c == 'Si' && caso.Status == 'Análisis Previo') {
             caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
             caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
+            caso.FS_AceptaRespuesta__c = 'Si';
+        }
+        if(caso.FS_AceptaPropuestaServicio__c == 'Si' && caso.Status == 'Propuesta de Servicio') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Aprobación de Propuesta de Servicio';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaServicio__c;
             caso.FS_AceptaRespuesta__c = 'Si';
         }
         if(caso.FS_AceptaEstimacionMacro__c == 'Si' && caso.Status == 'Estimación Macro') {
@@ -266,6 +275,11 @@ public without sharing class ControladorCrearCaso {
             caso.FS_Tipo_de_Aprobacion__c = 'Análisis Previo';
             caso.FS_AceptaRespuesta__c = 'No';
             caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionAnalisisPrevio__c;
+        }
+        if(caso.FS_AceptaPropuestaServicio__c == 'No' && caso.Status == 'Propuesta de Servicio') {
+            caso.FS_Tipo_de_Aprobacion__c = 'Rechazo de Propuesta de Servicio';
+            caso.FS_AceptaRespuesta__c = 'No';
+            caso.FS_DiasProyecto__c = caso.FS_DiasAprobacionPropuestaServicio__c;
         }
         if(caso.FS_AceptaDEF__c == 'No' && caso.Status == 'Documento de Especificación Funcional') {
             caso.FS_Tipo_de_Aprobacion__c = 'Documento de Especificación Funcional';

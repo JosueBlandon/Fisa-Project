@@ -56,6 +56,8 @@ public without sharing class CustomLookupController {
             record.FS_Buscar_Proyecto3__c = projectId;
         } else if(record.Status == 'En Propuesta Económica') {
             record.FS_Buscar_Proyecto4__c = projectId;
+        } else if(record.Status == 'Propuesta de Servicio') {
+            record.FS_Buscar_Proyecto__c = projectId;
         }    
 
         update record;                                                             

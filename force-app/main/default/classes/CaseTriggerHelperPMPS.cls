@@ -16,6 +16,7 @@ public with sharing class CaseTriggerHelperPMPS {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
     public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
+    public static final String TIEMPOMATERIALES_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
     public static Map<String, EmailTemplate> mapPlantillas;
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
@@ -89,7 +90,7 @@ public with sharing class CaseTriggerHelperPMPS {
                                                                                                 WHERE 	FS_Cuenta__c IN : accountId and FS_Principal__c =: true	 ]);        
 
         for(Case lstCase: records) {
-            if((REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId || CONTROLDECAMBIO_TIPO_REGISTRO == lstCase.RecordTypeId) && mapRecords.size() > 0) {	
+            if((REQUERIMIENTO_TIPO_REGISTRO == lstCase.RecordTypeId || CONTROLDECAMBIO_TIPO_REGISTRO == lstCase.RecordTypeId || TIEMPOMATERIALES_TIPO_REGISTRO == lstCase.RecordTypeId) && mapRecords.size() > 0) {	
                 for(Id key : mapRecords.keySet()) {
                     lstCase.OwnerId = mapRecords.get(key).FS_Project_Manager__c; 
                 }
@@ -117,6 +118,15 @@ public with sharing class CaseTriggerHelperPMPS {
             }
             
             if(record.Status == 'Análisis Previo' && record.Status != caso.Status && record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
+                casesNew.add(record);
+                casesOld.put(caso.Id, caso);
+                CreateJiraRecord.createJira(casesNew, casesOld);
+            }
+
+            if(record.FS_TipoRequerimiento__c == 'Tiempo y Materiales' && record.FS_TipoRequerimiento__c != caso.FS_TipoRequerimiento__c && record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
+                record.Status = 'Propuesta de Servicio';  
+                record.RecordTypeId = TIEMPOMATERIALES_TIPO_REGISTRO;
+                
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.createJira(casesNew, casesOld);
@@ -317,13 +327,13 @@ public with sharing class CaseTriggerHelperPMPS {
 
             if(caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c) {
                 if(item.FS_RequiereInformacionAdicional__c == false) {
-                    String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
+                    /*String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
                     msjError += String.isBlank(item.FS_SubModulo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
                     
                     if(msjError.length() > 38) {
                         item.addError(msjError.substring(0, msjError.length() - 2));
-                    }
+                    }*/
                     
                 } else if(item.FS_RequiereInformacionAdicional__c == true && item.Status != 'Pendiente de Respuesta CSAT' && item.Status != 'Cerrado' && item.Status != 'Dado de Baja') {
                     CustomNotificationType cnType = [SELECT Id FROM CustomNotificationType WHERE DeveloperName = 'FS_NotificacionServicio'];

@@ -5,7 +5,10 @@
     <description>Regla para llenar campos requeridos en tipo de caso Requerimiento.</description>
     <errorConditionFormula>AND(
 $Profile.Name == &apos;PM-PS&apos;,
-RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,				
+OR(
+RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
+RecordType.DeveloperName = &apos;FS_TiempoMaterialesSprints&apos;
+),				
 ISNEW(),
 OR(
 ISBLANK(Subject), 

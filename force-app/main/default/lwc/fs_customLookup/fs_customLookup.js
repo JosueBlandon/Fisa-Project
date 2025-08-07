@@ -29,201 +29,209 @@ import ID_PROJECT4 from "@salesforce/schema/Case.FS_Buscar_Proyecto4__c";
 const FIELDS = [CLIENT, SEARCH_PROJECT, SEARCH_PROJECT2, SEARCH_PROJECT3, SEARCH_PROJECT4, TARIFA, TARIFA2, TARIFA3, TARIFA4, SALDO, SALDO2, SALDO3, SALDO4, STATUS, ID_PROJECT, ID_PROJECT2, ID_PROJECT3, ID_PROJECT4];
 
 export default class Fs_customLookup extends LightningElement {
-    @api recordId;
-    @track error;
-    @track projectId;
-    @track AccountId;
-    @track clientVal;
-    @track caseType;
-    filter = {};
-    caseList = [];
-    isLoading = false;
-    isLoading2 = false;
+  @api recordId;
+  @track error;
+  @track projectId;
+  @track AccountId;
+  @track clientVal;
+  @track caseType;
+  filter = {};
+  caseList = [];
+  isLoading = false;
+  isLoading2 = false;
 
-    connectedCallback() {
-        this.callApexMethod();
-    }
+  connectedCallback() {
+    this.callApexMethod();
+  }
 
-    callApexMethod() {
-        this.isLoading2 = true;
-        findCase({ recordId: this.recordId })
-            .then(result => {
-                this.caseList = result;             
-                this.clientVal = this.caseList[0].AccountId;
-                this.caseType = this.caseList[0].RecordType.Name;
+  callApexMethod() {
+    this.isLoading2 = true;
+    findCase({ recordId: this.recordId })
+      .then(result => {
+        this.caseList = result;
+        this.clientVal = this.caseList[0].AccountId;
+        this.caseType = this.caseList[0].RecordType.Name;
 
-                this.filter = {
-                    criteria: [
-                        {
-                            fieldPath: 'FS_Cliente__c',
-                            operator: 'eq',
-                            value: this.clientVal
-                        },
-                        {
-                            fieldPath: 'FS_Tipo_de_Caso__c',
-                            operator: 'includes',
-                            value: this.caseType
-                        },
-                        {
-                            fieldPath: 'FS_Saldo_de_dias__c',
-                            operator: 'ne',
-                            value: 0
-                        },
-                        {
-                            fieldPath: 'FS_Fecha_Fin_Proyecto__c',
-                            operator: 'gt',
-                            value: { literal: 'TODAY' }
-                        },
-                        {
-                            fieldPath: 'FS_Es_Pre_contratado__c',
-                            operator: 'eq',
-                            value: true
-                        },
-                        {
-                            fieldPath: 'FS_Es_Pre_contratado__c',
-                            operator: 'eq',
-                            value: false
-                        }
-                    ],
-                    filterLogic: '1 AND 2 AND 4 AND ((3 AND 5) OR (6))',
-                }
-                this.isLoading2 = false;
-            })
-            .catch(error => {
-                console.error('Error calling Apex method: ', error);
-                this.isLoading2 = false;
-            });
-    }
-    
-
-    @wire(getRecord, { recordId: "$recordId", fields: FIELDS })
-    case;
-
-    get clientVal() {
-        return getFieldValue(this.case.data, CLIENT);
-    }
-
-    get statusVal() {
-        return getFieldValue(this.case.data, STATUS);
-    }
-
-    get proyecto() {
-        let projectName = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
-            this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT);
-        } else if(this.statusVal == 'Estimación Macro') {
-            this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT2);
-        } else if(this.statusVal == 'Documento de Especificación Funcional') {
-            this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT3)
-        } else if(this.statusVal == 'En Propuesta Económica') {
-            this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT4)
-        }
-        return this.projectName;
-    }
-
-    get tarifa() {
-        let tarifaVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
-            this.tarifaVal = getFieldValue(this.case.data, TARIFA);
-        } else if(this.statusVal == 'Estimación Macro') {
-            this.tarifaVal = getFieldValue(this.case.data, TARIFA2);
-        } else if(this.statusVal == 'Documento de Especificación Funcional') {
-            this.tarifaVal = getFieldValue(this.case.data, TARIFA3)
-        } else if(this.statusVal == 'En Propuesta Económica') {
-            this.tarifaVal = getFieldValue(this.case.data, TARIFA4)
-        }
-        return this.tarifaVal;
-    }
-
-    get saldo() {
-        let saldoVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
-            this.saldoVal = getFieldValue(this.case.data, SALDO);
-        } else if(this.statusVal == 'Estimación Macro') {
-            this.saldoVal = getFieldValue(this.case.data, SALDO2);
-        } else if(this.statusVal == 'Documento de Especificación Funcional') {
-            this.saldoVal = getFieldValue(this.case.data, SALDO3)
-        } else if(this.statusVal == 'En Propuesta Económica') {
-            this.saldoVal = getFieldValue(this.case.data, SALDO4)
-        }
-        return this.saldoVal;
-    }
-
-    get idProject() {
-        let projectVal = '';
-        if(this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
-            this.projectVal = getFieldValue(this.case.data, ID_PROJECT);
-        } else if(this.statusVal == 'Estimación Macro') {
-            this.projectVal = getFieldValue(this.case.data, ID_PROJECT2);
-        } else if(this.statusVal == 'Documento de Especificación Funcional') {
-            this.projectVal = getFieldValue(this.case.data, ID_PROJECT3)
-        } else if(this.statusVal == 'En Propuesta Económica') {
-            this.projectVal = getFieldValue(this.case.data, ID_PROJECT4)
-        }
-        return this.projectVal;
-    }
-
-    handleChange(event) {
-        console.log(event.detail);
-        this.projectId = event.detail.recordId;
-        console.log("projectId -", this.projectId);
-    }
-
-    //to assign Project in Case
-    saveProyect() {
-        this.isLoading = true;
-        this.projectId = this.projectId == null ? this.idProject : this.projectId;
-
-        if(this.projectId == null) {
-            this.isLoading = false;
-            this.fireToastMessage('Error', 'Debe seleccionar un proyecto', 'error');
-        } else {
-            saveProyect({caseId: this.recordId, projectId: this.projectId})
-            .then(result => {
-                this.isLoading = false;
-                this.fireToastMessage('Éxito', 'Proyecto asignado al caso', 'success');
-                this.dispatchEvent(new RefreshEvent());
-            })
-            .catch(error => {
-                this.isLoading = false;
-                this.error = error;
-                this.displayMessageError(error);
-            });
-        }
-    }
-
-    isJSON(str) {
-        try {
-            return (JSON.parse(str) && !!str);
-        } catch (e) {
-            return false;
-        }
-    }
-
-    displayMessageError(error){
-        let errorResolved = reduceErrors(error);
-        
-        if(this.isJSON(errorResolved[0])){
-            let jsonError = JSON.parse(errorResolved[0]);
-            if(typeof jsonError.error.message.value !== "undefined"){
-                this.fireToastMessage('Error al asignar el Proyecto', jsonError.error.message.value, 'error');
-            } else {
-                this.fireToastMessage('Error al asignar el Proyecto', jsonError, 'error');
+        this.filter = {
+          criteria: [
+            {
+              fieldPath: 'FS_Cliente__c',
+              operator: 'eq',
+              value: this.clientVal
+            },
+            {
+              fieldPath: 'FS_Tipo_de_Caso__c',
+              operator: 'includes',
+              value: this.caseType
+            },
+            {
+              fieldPath: 'FS_Saldo_de_dias__c',
+              operator: 'ne',
+              value: 0
+            },
+            {
+              fieldPath: 'FS_Fecha_Fin_Proyecto__c',
+              operator: 'gt',
+              value: { literal: 'TODAY' }
+            },
+            {
+              fieldPath: 'FS_Es_Pre_contratado__c',
+              operator: 'eq',
+              value: true
+            },
+            {
+              fieldPath: 'FS_Es_Pre_contratado__c',
+              operator: 'eq',
+              value: false
             }
-        } else {
-            this.fireToastMessage('Error al asignar el Proyecto', errorResolved[0], 'error');
+          ],
+          filterLogic: '1 AND 2 AND 4 AND ((3 AND 5) OR (6))',
         }
-    }
+        this.isLoading2 = false;
+      })
+      .catch(error => {
+        console.error('Error calling Apex method: ', error);
+        this.isLoading2 = false;
+      });
+  }
 
-    fireToastMessage(title,message,variant){
-        const evt = new ShowToastEvent({
-            title,
-            message,
-            variant
+
+  @wire(getRecord, { recordId: "$recordId", fields: FIELDS })
+  case;
+
+  get clientVal() {
+    return getFieldValue(this.case.data, CLIENT);
+  }
+
+  get statusVal() {
+    return getFieldValue(this.case.data, STATUS);
+  }
+
+  get proyecto() {
+    let projectName = '';
+    if (this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
+      this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT);
+    } else if (this.statusVal == 'Estimación Macro') {
+      this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT2);
+    } else if (this.statusVal == 'Documento de Especificación Funcional') {
+      this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT3)
+    } else if (this.statusVal == 'En Propuesta Económica') {
+      this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT4)
+    } else if (this.statusVal == 'Propuesta de Servicio') {
+      this.projectName = getFieldValue(this.case.data, SEARCH_PROJECT);
+    }
+    return this.projectName;
+  }
+
+  get tarifa() {
+    let tarifaVal = '';
+    if (this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
+      this.tarifaVal = getFieldValue(this.case.data, TARIFA);
+    } else if (this.statusVal == 'Estimación Macro') {
+      this.tarifaVal = getFieldValue(this.case.data, TARIFA2);
+    } else if (this.statusVal == 'Documento de Especificación Funcional') {
+      this.tarifaVal = getFieldValue(this.case.data, TARIFA3)
+    } else if (this.statusVal == 'En Propuesta Económica') {
+      this.tarifaVal = getFieldValue(this.case.data, TARIFA4)
+    } else if (this.statusVal == 'Propuesta de Servicio') {
+      this.tarifaVal = getFieldValue(this.case.data, TARIFA);
+    }
+    return this.tarifaVal;
+  }
+
+  get saldo() {
+    let saldoVal = '';
+    if (this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
+      this.saldoVal = getFieldValue(this.case.data, SALDO);
+    } else if (this.statusVal == 'Estimación Macro') {
+      this.saldoVal = getFieldValue(this.case.data, SALDO2);
+    } else if (this.statusVal == 'Documento de Especificación Funcional') {
+      this.saldoVal = getFieldValue(this.case.data, SALDO3)
+    } else if (this.statusVal == 'En Propuesta Económica') {
+      this.saldoVal = getFieldValue(this.case.data, SALDO4)
+    } else if (this.statusVal == 'Propuesta de Servicio') {
+      this.saldoVal = getFieldValue(this.case.data, SALDO);
+    }
+    return this.saldoVal;
+  }
+
+  get idProject() {
+    let projectVal = '';
+    if (this.statusVal == 'Nuevo' || this.statusVal == 'Análisis Previo') {
+      this.projectVal = getFieldValue(this.case.data, ID_PROJECT);
+    } else if (this.statusVal == 'Estimación Macro') {
+      this.projectVal = getFieldValue(this.case.data, ID_PROJECT2);
+    } else if (this.statusVal == 'Documento de Especificación Funcional') {
+      this.projectVal = getFieldValue(this.case.data, ID_PROJECT3)
+    } else if (this.statusVal == 'En Propuesta Económica') {
+      this.projectVal = getFieldValue(this.case.data, ID_PROJECT4)
+    } else if (this.statusVal == 'Propuesta de Servicio') {
+      this.projectVal = getFieldValue(this.case.data, ID_PROJECT);
+    }
+    return this.projectVal;
+  }
+
+  handleChange(event) {
+    console.log(event.detail);
+    this.projectId = event.detail.recordId;
+    console.log("projectId -", this.projectId);
+  }
+
+  //to assign Project in Case
+  saveProyect() {
+    this.isLoading = true;
+    this.projectId = this.projectId == null ? this.idProject : this.projectId;
+
+    if (this.projectId == null) {
+      this.isLoading = false;
+      this.fireToastMessage('Error', 'Debe seleccionar un proyecto', 'error');
+    } else {
+      saveProyect({ caseId: this.recordId, projectId: this.projectId })
+        .then(result => {
+          this.isLoading = false;
+          this.fireToastMessage('Éxito', 'Proyecto asignado al caso', 'success');
+          this.dispatchEvent(new RefreshEvent());
+        })
+        .catch(error => {
+          this.isLoading = false;
+          this.error = error;
+          this.displayMessageError(error);
         });
-        this.dispatchEvent(evt);
-
-        return refreshApex(this.wiredAccountResults);
     }
+  }
+
+  isJSON(str) {
+    try {
+      return (JSON.parse(str) && !!str);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  displayMessageError(error) {
+    let errorResolved = reduceErrors(error);
+
+    if (this.isJSON(errorResolved[0])) {
+      let jsonError = JSON.parse(errorResolved[0]);
+      if (typeof jsonError.error.message.value !== "undefined") {
+        this.fireToastMessage('Error al asignar el Proyecto', jsonError.error.message.value, 'error');
+      } else {
+        this.fireToastMessage('Error al asignar el Proyecto', jsonError, 'error');
+      }
+    } else {
+      this.fireToastMessage('Error al asignar el Proyecto', errorResolved[0], 'error');
+    }
+  }
+
+  fireToastMessage(title, message, variant) {
+    const evt = new ShowToastEvent({
+      title,
+      message,
+      variant
+    });
+    this.dispatchEvent(evt);
+
+    return refreshApex(this.wiredAccountResults);
+  }
 
 }
