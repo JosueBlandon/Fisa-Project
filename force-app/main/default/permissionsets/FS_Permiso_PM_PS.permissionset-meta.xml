@@ -364,6 +364,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_AceptaPropuestaServicio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_AceptaRespuesta__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -533,6 +538,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_ControlCambiosCasoPadre__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_CorreosNotificacionesServicios__c</field>
         <readable>true</readable>
@@ -565,6 +575,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_DiasAprobacionPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_DiasAprobacionPropuestaServicio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_DiasDEF__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -639,6 +659,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_EnvioNotificacionPS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_EnvioNotificacion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -680,6 +705,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_FechaAprobacionClientePE__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_FechaAprobacionClientePS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -730,6 +760,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_FechaEntregaPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_FechaEntregaPropuestaServicio__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1049,6 +1084,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_SubtipoRequerimiento__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_Tarifa_DH__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1089,6 +1129,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.FS_TotalUSDAnalisisPrevio__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.FS_TotalUSDEstimacionMacro__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1100,6 +1145,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_TotalUSDPropuestaEconomica__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.FS_TotalUSDPropuestaServicio__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1882,6 +1932,10 @@
         <field>Task.WhoId</field>
         <readable>true</readable>
     </fieldPermissions>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>FS_CasoControlCambios</flow>
+    </flowAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Permiso PM-PS</label>
     <license>Salesforce</license>
@@ -2010,6 +2064,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Case.FS_ControlCambios</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Case.FS_Incidente</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -2019,6 +2077,14 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Case.FS_Solicitud</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_TiempoMateriales</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_TiempoMaterialesSprints</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2088,6 +2154,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SendCustomNotifications</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

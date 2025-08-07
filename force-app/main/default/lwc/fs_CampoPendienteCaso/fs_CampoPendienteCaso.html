@@ -399,6 +399,25 @@
         </lightning-layout>
     </template>
 
+    <template if:true={data.pendienteRespuestaPropuestaServicio}>
+        <lightning-layout vertical-align="stretch" multiple-rows="true">
+            <lightning-layout-item flexibility="auto" padding="around-small" size="12">
+                <lightning-card icon-name="standard:answer_best" title="Aceptación de Respuesta">
+                    <lightning-layout vertical-align="stretch" multiple-rows="true">
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                            <h1>Tienes Pendiente la Aceptación de Respuesta</h1>
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                            <br />
+                            <lightning-button label="Contestar" title="Contestar" variant="brand" name="contestar"
+                                class="slds-m-left_x-small" onclick={popRespuesta}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+
     <template if:true={data.pendienteRespuestaEstimacionMacro}>
         <lightning-layout vertical-align="stretch" multiple-rows="true">
             <lightning-layout-item flexibility="auto" padding="around-small" size="12">
@@ -533,6 +552,75 @@
                                                     </lightning-input>
                                                     <lightning-combobox name="aceptaAnalisisPrevio" label="Acepta Análisis Previo"
                                                         value={data.caso.FS_AceptaAnalisisPrevio__c} options={data.listAceptaRespuesta}
+                                                        onchange={handleChange} placeholder="Seleccione una Opción">
+                                                    </lightning-combobox>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
+                                                        <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
+                                                        value={data.caso.FS_MotivoRechazo__c} options={data.listMotivosRechazo}
+                                                        onchange={handleChange} placeholder="Seleccione una Motivo">
+                                                        </lightning-combobox>
+                                                    </lightning-layout-item>
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
+                                                        <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
+                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
+                                                    </lightning-layout-item>
+                                                </lightning-layout-item>
+                                            </lightning-layout>
+                                        </lightning-card>
+                                    </lightning-layout-item>
+                                </lightning-layout>
+                            </div>
+                            <footer class="slds-modal__footer">
+                                <lightning-button label="Cancelar" title="Cancelar" onclick={cancelar}
+                                    class="slds-m-left_x-small"></lightning-button>
+                                <lightning-button label="Guardar" title="Guardar" variant="brand" name="guardar"
+                                    class="slds-m-left_x-small" onclick={guardarCaso} disabled={data.botonDeshabilitado}></lightning-button>
+                            </footer>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={data.pendientePropuestaServicio}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h1 id="modal-heading-16" class="slds-text-heading_medium slds-hyphenate">Aceptación de Propuesta de Servicio</h1>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium ">
+                    <div class="slds-form slds-form_compound slds-align--absolute-left">
+                        <fieldset class="slds-form-element">
+                            <div class="slds-modal__content slds-p-around--medium">
+                                <lightning-layout vertical-align="stretch" multiple-rows="true">
+                                    <lightning-layout-item flexibility="auto" padding="around-small" size="12">
+                                        <span>Estimado</span> &nbsp; {data.caso.FS_NombreContacto__c} &nbsp;
+                                        <!-- <span>Su requerimiento No. </span> &nbsp; {data.caso.CaseNumber} &nbsp; -->
+                                            <span>acepta trabajar bajo la modalidad de Tiempo y Materiales.</span> &nbsp; <br>
+                                            <span>El costo tarifa es $</span>&nbsp; {data.caso.FS_Tarifa_Dias_Hombre__c} <span>.00?</span> &nbsp;
+                                            <!-- <span>ha sido atendido. ¿Procede a aprobar el tiempo de Propuesta de Servicio?</span> -->
+                                            <br><br>
+                                        <lightning-card icon-name="standard:answer_best" title="Propuesta de Servicio">
+
+                                            
+
+                                            <lightning-layout vertical-align="stretch" multiple-rows="true">
+                                                
+                                                <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                                                    <lightning-input type="text" label="Días aprobación Propuesta de Servicio" disabled
+                                                        value={data.caso.FS_DiasAprobacionPropuestaServicio__c}>
+                                                    </lightning-input>
+                                                    <lightning-input type="text" label="Tarifa Dias/Hombre" disabled
+                                                        value={data.caso.FS_Tarifa_Dias_Hombre__c}>
+                                                    </lightning-input>
+                                                    <lightning-input type="text" label="Total USD Propuesta Servicio" disabled
+                                                        value={data.caso.FS_TotalUSDPropuestaServicio__c}>
+                                                    </lightning-input>
+                                                    <lightning-combobox name="aceptaPropuestaServicio" label="Acepta Propuesta de Servicio"
+                                                        value={data.caso.FS_AceptaPropuestaServicio__c} options={data.listAceptaRespuesta}
                                                         onchange={handleChange} placeholder="Seleccione una Opción">
                                                     </lightning-combobox>
                                                     <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
@@ -894,29 +982,38 @@
                             <div class="slds-modal__content slds-p-around--medium">
                                 <lightning-layout vertical-align="stretch" multiple-rows="true">
                                     <lightning-layout-item flexibility="auto" padding="around-small" size="12">
-                                        <span>Si usted está conforme con la Solución, coloque Si.</span><br>
-                                        <span>Si usted NO está conforme con la solución y tiene inconvenientes (BUGS) coloque No.</span>
-                                        <br><br>
-                                        <lightning-card icon-name="standard:answer_best" title="Estado en Producción">
-                                            <lightning-layout vertical-align="stretch" multiple-rows="true">
-                                                <lightning-layout-item flexibility="auto" padding="around-small" size="6">
-                                                    <lightning-combobox name="aceptaEstadoEnProduccion" label="Aceptación de la Solución en Salesforce"
-                                                        value={data.caso.FS_AceptacionSolucionSalesforce__c} options={data.listAceptaRespuesta}
-                                                        onchange={handleChange} placeholder="Seleccione una Opción">
-                                                    </lightning-combobox>
-                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo} >
-                                                        <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
-                                                        value={data.caso.FS_MotivoRechazo__c} options={data.listMotivosRechazo}
-                                                        onchange={handleChange} placeholder="Seleccione una Motivo">
+                                        <template if:true={casosHijos}>
+                                            <span style="color:#e90909;">Tiene Casos Hijos aun abiertos de tipo control de cambios</span><br>
+                                            <span style="color:#e90909;">No podra continuar hasta cerrarlos.</span>
+                                            <br><br>
+                                        </template>
+                                        <template if:false={casosHijos}>
+                                            <span>Si usted está conforme con la Solución, coloque Si.</span><br>
+                                            <span>Si usted NO está conforme con la solución y tiene inconvenientes (BUGS) coloque No.</span>
+                                            <br><br>
+                                            <lightning-card icon-name="standard:answer_best" title="Estado en Producción">
+                                                <lightning-layout vertical-align="stretch" multiple-rows="true">
+                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                                                        <lightning-combobox name="aceptaEstadoEnProduccion" label="Aceptación de la Solución en Salesforce"
+                                                            value={data.caso.FS_AceptacionSolucionSalesforce__c} options={data.listAceptaRespuesta}
+                                                            onchange={handleChange} placeholder="Seleccione una Opción">
                                                         </lightning-combobox>
+                                                        <lightning-layout-item flexibility="auto" padding="around-small" size="6" if:true={data.mostrarRechazo}>
+                                                            <lightning-combobox name="motivoRechazo" label="Motivo Rechazo Entrega"
+                                                                value={data.caso.FS_MotivoRechazo__c} options={data.listMotivosRechazo} onchange={handleChange}
+                                                                placeholder="Seleccione una Motivo">
+                                                            </lightning-combobox>
+                                                        </lightning-layout-item>
+                                                        <lightning-layout-item flexibility="auto" padding="around-small" size="12"
+                                                            if:true={data.mostrarRechazo}>
+                                                            <lightning-textarea name="comentarioResp" label="Comentario"
+                                                                vaue={data.caso.FS_ComentariosRespuesta__c} onchange={handleChange}
+                                                                required={data.cometarioRequerido}></lightning-textarea>
+                                                        </lightning-layout-item>
                                                     </lightning-layout-item>
-                                                    <lightning-layout-item flexibility="auto" padding="around-small" size="12" if:true={data.mostrarRechazo}>
-                                                        <lightning-textarea name="comentarioResp" label="Comentario" vaue={data.caso.FS_ComentariosRespuesta__c}
-                                                        onchange={handleChange} required={data.cometarioRequerido}></lightning-textarea>
-                                                    </lightning-layout-item>
-                                                </lightning-layout-item>
-                                            </lightning-layout>
-                                        </lightning-card>
+                                                </lightning-layout>
+                                            </lightning-card>
+                                        </template>
                                     </lightning-layout-item>
                                 </lightning-layout>
                             </div>
