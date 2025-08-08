@@ -67,7 +67,7 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
 
-            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId != CONTROLDECAMBIO_TIPO_REGISTRO && item.RecordTypeId != CONSULTA_TIPO_REGISTRO) {
+            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && item.Status != 'Propuesta de Servicio' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId != CONTROLDECAMBIO_TIPO_REGISTRO && item.RecordTypeId != CONSULTA_TIPO_REGISTRO) {
                 item.Status.addError('Privilegios insuficiente para modificar el estado del caso');
             }else if(item.Status != 'Dado de Baja' && item.Status != 'Análisis Previo' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO){
                 item.Status.addError('Privilegios insuficiente para modificar el estado del caso');

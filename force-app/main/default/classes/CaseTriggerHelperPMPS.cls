@@ -127,9 +127,9 @@ public with sharing class CaseTriggerHelperPMPS {
                 record.Status = 'Propuesta de Servicio';  
                 record.RecordTypeId = TIEMPOMATERIALES_TIPO_REGISTRO;
                 
-                casesNew.add(record);
+                /*casesNew.add(record);
                 casesOld.put(caso.Id, caso);
-                CreateJiraRecord.createJira(casesNew, casesOld);
+                CreateJiraRecord.createJira(casesNew, casesOld);*/
             }
             
             if((record.FS_Aplica_Licencia_Recurrente__c == 'Si' && record.FS_Cuando_Aplica_LR__c != null && record.FS_Dias_que_Aplica_LR__c != null && record.FS_Aplica_Licencia_Recurrente__c != caso.FS_Aplica_Licencia_Recurrente__c) || (record.FS_Aplica_Licencia_Recurrente__c	== 'No' && record.FS_Aplica_Licencia_Recurrente__c != caso.FS_Aplica_Licencia_Recurrente__c)) {

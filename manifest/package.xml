@@ -32,6 +32,7 @@
 		<members>Case.FS_EnvioNotificacionPS__c</members>
 		<members>Case.FS_FechaAprobacionClientePS__c</members>
 		<members>Case.FS_FechaEntregaPropuestaServicio__c</members>
+		<members>Case.FS_JiraCreated__c</members>
 		<members>Case.FS_Tipo_de_Aprobacion__c</members>
 		<members>Case.FS_TotalUSDPropuestaServicio__c</members>
 		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
@@ -43,6 +44,10 @@
 		<members>FS_Project_Jira.X004</members>
 		<members>FS_Project_Jira.X005</members>
 		<name>CustomMetadata</name>
+	</types>
+	<types>
+		<members>Case</members>
+		<name>CustomObject</name>
 	</types>
 	<types>
 		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacionTM</members>
@@ -74,19 +79,6 @@
 		<name>PathAssistant</name>
 	</types>
 	<types>
-		<members>FS_Permiso_PM_PS</members>
-		<members>FS_PermisosServicioCliente</members>
-		<members>FS_PermisosServicioClientePlus</members>
-		<members>FS_Permisos_Encuestas_Fisa</members>
-		<members>FS_Permisos_para_Administrador_del_Sistema</members>
-		<members>FS_Permisos_para_Finanzas</members>
-		<members>FS_Permisos_para_Gerente</members>
-		<members>FS_Permisos_para_Servicio_al_Cliente</members>
-		<members>FS_Permisos_para_usuario_de_integracion_Jira</members>
-		<members>FS_Permisos_para_usuario_de_integracion_PowerBI</members>
-		<name>PermissionSet</name>
-	</types>
-	<types>
 		<members>Case.FS_AprobacionConsulta</members>
 		<members>Case.FS_AprobacionSolicitud</members>
 		<members>Case.FS_CrearCasoHijoTM</members>
@@ -99,10 +91,6 @@
 		<members>Case.FS_TiempoMaterialesSprints</members>
 		<name>RecordType</name>
 	</types>
-	<types>
-        <members>CaseStatus</members>
-        <name>StandardValueSet</name>
-    </types>
 	<types>
 		<members>Case.FS_Campos_Requeridos_PMPS</members>
 		<members>Case.FS_PrevenirModificarCamposCaso</members>

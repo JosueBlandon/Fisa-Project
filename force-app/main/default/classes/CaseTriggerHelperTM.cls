@@ -54,7 +54,7 @@ public with sharing class CaseTriggerHelperTM {
                 Case record = new Case(Id = item.Id);
                 record.Status = 'Propuesta de Servicio';
                 updateCaseList.add(record);
-                record.addError('Privilegios insuficientes para modificar la calificación del caso.');
+                //record.addError('Privilegios insuficientes para modificar la calificación del caso.');
             }
         }
         
@@ -157,23 +157,15 @@ public with sharing class CaseTriggerHelperTM {
                 record.Status = 'Propuesta de Servicio';  
                 record.RecordTypeId = TIEMPOMATERIALES_TIPO_REGISTRO;
                 
-                /*casesNew.add(record);
-                casesOld.put(caso.Id, caso);
-                CreateJiraRecord.createJira(casesNew, casesOld);*/
             }
             
-            if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO && record.Status == 'En Planificación') {
-
+            if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO && record.Status == 'En Planificación' && record.FS_JiraCreated__c == false) {
+				record.FS_JiraCreated__c = true;
                 casesNew.add(record);
                 casesOld.put(caso.Id, caso);
                 CreateJiraRecord.createJira(casesNew, casesOld);
             }
             
-            /*if(record.Status == 'Propuesta de Servicio' && record.Status != caso.Status && record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
-                casesNew.add(record);
-                casesOld.put(caso.Id, caso);
-                CreateJiraRecord.createJira(casesNew, casesOld);
-            }*/
             
             if(record.FS_AceptaRespuesta__c == 'Si' && record.Status == 'Validación de Respuesta (Cliente)' && record.FS_AceptaRespuesta__c != caso.FS_AceptaRespuesta__c) {
                 CaseTriggerHelper.crearHistorialAprobaciones(record); 
@@ -211,6 +203,27 @@ public with sharing class CaseTriggerHelperTM {
                 CaseTriggerHelper.envioCorreo(record, 'FS_Encuesta', true);
             }
         }    
+    }
+    
+    /**
+     * @method      sendToJiraTM
+     * @description Method to send case to jira
+     * @author      Intellect Systems - 2025-07-08
+     * @param       records     - New list of cases
+     * @param       oldRecords  - Old map of cases
+     */
+    public static void sendToJiraTM(List<Case> records, Map<Id, Case> oldRecords) {
+        list<Case> updateCaseList = new list<Case>();
+        for(Case item: records) {
+            if(item.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO && item.Status == 'En Planificación') {
+                Case record = new Case(Id = item.Id);
+                updateCaseList.add(record);
+            }
+        }
+        
+        if(!updateCaseList.isEmpty()) {
+            update updateCaseList;
+        }
     }
 
     /**
