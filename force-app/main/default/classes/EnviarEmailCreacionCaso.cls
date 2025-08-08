@@ -20,7 +20,9 @@ public without sharing class EnviarEmailCreacionCaso {
     public static CustomNotificationType notificacion;
     
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
-    
+    public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
+    public static final String TIEMPOMATERIALES_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
+    public static final String TIEMPOMATERIALSPRINTS_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMaterialesSprints').getRecordTypeId();
     static{
         mapColas = new Map<String, String>();
         mapPlantillas = new Map<String, EmailTemplate>();
@@ -52,10 +54,14 @@ public without sharing class EnviarEmailCreacionCaso {
                         FROM	Case 
                         WHERE	Id In: values ];
 
-        EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
+        if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCasoTM', true);
+        }else{
+            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
+        }
         
-        if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO) {
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);    
+        if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
+            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
         }
 	}
 
@@ -116,7 +122,7 @@ public without sharing class EnviarEmailCreacionCaso {
             if(esContacto && caso.FS_OrigenCaso__c != 'Web'){
                 return;
             }
-            
+
             List<Messaging.SingleEmailMessage> MessageList = new List<Messaging.SingleEmailMessage>();
             EmailTemplate plantilla = mapPlantillas.get(nombrePlantilla);
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
@@ -158,7 +164,7 @@ public without sharing class EnviarEmailCreacionCaso {
                     mail.setCcAddresses(Label.FS_KAM_Email.split(','));    
                 }
             }
-
+            
             MessageList.add(mail);
             Messaging.SendEmailResult[] results = Messaging.sendEmail(MessageList);
         } catch(Exception ex) {

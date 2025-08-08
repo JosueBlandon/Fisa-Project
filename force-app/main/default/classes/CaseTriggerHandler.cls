@@ -28,6 +28,20 @@ public without sharing class CaseTriggerHandler {
     public static void afterInsert(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         CaseTriggerHelper.historialDescripcion(newCaseList);
         CaseTriggerHelper.historialCaso(newCaseList);
+        
+        List<Case> lstCaseTiempoMateriales = new List<Case>();
+        Map<Id, Case> mpCaseCaseTiempoMateriales = new Map<Id, Case>();
+        
+        for(Case record : newCaseList) {
+            if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+                lstCaseTiempoMateriales.add(record);
+            }
+        }
+        
+        if(!lstCaseTiempoMateriales.isEmpty()){
+            CaseTriggerHelperTM.sendToJiraTM(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+        }
+        
     }
     
     public static void beforeUpdate(List<Case> newCaseList, Map<Id, Case> oldCaseMap) {
