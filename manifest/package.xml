@@ -15,6 +15,7 @@
 		<members>EmailMessageTriggerHandler</members>
 		<members>EmailMessageTriggerHelper</members>
 		<members>EmailMessageTriggerHelperTest</members>
+		<members>EnviarEmailCreacionCaso</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
