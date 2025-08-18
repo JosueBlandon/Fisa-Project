@@ -30,6 +30,8 @@
 	<types>
 		<members>Case.FS_AceptaPropuestaServicio__c</members>
 		<members>Case.FS_DiasAprobacionPropuestaServicio__c</members>
+		<members>Case.FS_DiasInvertidosEntregaCaso__c</members>
+		<members>Case.FS_DiasInvertidosTotalEntregaCaso__c</members>
 		<members>Case.FS_EnvioNotificacionPS__c</members>
 		<members>Case.FS_FechaAprobacionClientePS__c</members>
 		<members>Case.FS_FechaEntregaPropuestaServicio__c</members>
@@ -63,6 +65,7 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
+		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
 		<members>FS_CrearCasoTiempoMaterialesSprint</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
 		<members>FS_NotificacionComunidadCreacionCasosCC</members>

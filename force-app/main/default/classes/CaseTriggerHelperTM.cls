@@ -63,6 +63,44 @@ public with sharing class CaseTriggerHelperTM {
         }
     }
     
+    /**
+     * @method      UpdateTotalDays
+     * @description Method that updates the total field of days invested with the sum of child cases
+     * @author      Intellect Systems - 2025-08-15
+     * @param 		records - list of cases		
+     */
+    public static void UpdateTotalDays(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
+        list<Case> updateCaseList = new list<Case>();
+        Map<Id, decimal> mapCaseUpdate = new Map<Id, decimal>();
+        for(Case item: newCaseList) {
+            Case caso = oldCaseMap.get(item.Id);
+            if(item.FS_DiasInvertidosEntregaCaso__c != caso.FS_DiasInvertidosEntregaCaso__c && item.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
+                decimal conDays = 0;
+                conDays = item.FS_DiasInvertidosEntregaCaso__c - caso.FS_DiasInvertidosEntregaCaso__c;
+                mapCaseUpdate.put(item.ParentId, conDays);
+            }
+         }
+        
+        List<Case> parentCases = [SELECT Id, FS_DiasInvertidosTotalEntregaCaso__c FROM Case WHERE ID =: mapCaseUpdate.keySet()];
+        
+        for(Case item: parentCases) {
+            Decimal currentTotal = mapCaseUpdate.get(item.Id);
+            Case record = new Case(Id = item.Id);
+            if(currentTotal > 0){
+                record.FS_DiasInvertidosTotalEntregaCaso__c = item.FS_DiasInvertidosTotalEntregaCaso__c + currentTotal;
+                updateCaseList.add(record);
+            } else{
+                record.FS_DiasInvertidosTotalEntregaCaso__c = item.FS_DiasInvertidosTotalEntregaCaso__c - currentTotal;
+                updateCaseList.add(record);
+            }
+            
+        }
+        
+        if(!updateCaseList.isEmpty()) {
+            update updateCaseList;
+        }
+    }
+    
     public static void validateChildrenCases(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
         Boolean flagCase = false;
         Set<Id> idCase = new Set<Id>();

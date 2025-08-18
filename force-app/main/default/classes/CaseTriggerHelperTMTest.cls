@@ -361,10 +361,6 @@ public class CaseTriggerHelperTMTest {
             newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
             newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
             newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
-            newCaseClone.FS_DescripcionCliente__c = '<p>Test</p>';
-            newCaseClone.FS_TipoIncidente__c = 'Puntual';
-            newCaseClone.FS_AgenteQA__c = record.FS_AgenteQA__c;
-            newCaseClone.FS_AgenteN2__c = record.FS_AgenteN2__c;
             newCaseClone.RecordTypeId = TIPO_REGISTRO_TMS;
             newCaseClone.Subject = 'Prueba1';
         }
@@ -383,21 +379,6 @@ public class CaseTriggerHelperTMTest {
         newCaseClone.FS_AceptaSolucionEnProduccion__c = 'Si';
         update newCaseClone;
         
-        newCaseClone.FS_AceptaSolucionEnProduccion__c = 'No';
-        newCaseClone.Status = 'Certificado';
-        update newCaseClone;
-        
-        newCaseClone.FS_EnviarNotificacionProduccion__c = true;
-        newCaseClone.Status = 'En Producción';
-        update newCaseClone;
-        
-        newCaseClone.Status = 'En Revisión en Producción';
-        newCaseClone.FS_AceptacionSolucionSalesforce__c = 'Si';
-        update newCaseClone;
-        
-        newCaseClone.Status = 'En Producción';
-        newCaseClone.FS_AceptacionSolucionSalesforce__c = 'No';
-        update newCaseClone;
         
     }
     
@@ -458,5 +439,52 @@ public class CaseTriggerHelperTMTest {
         newCaseClone.FS_ComentariosRechazoSolucion__c = 'prueba';
         update newCaseClone;
  
+    }
+    
+    @isTest
+    static void caseTypeRequerimiento7() {
+        List<Case> casosRequerimiento =  [	SELECT	Id, Status, AccountId, ContactId, RecordType.DeveloperName, FS_TipoRequerimiento__c, FS_Aplica_Licencia_Recurrente__c, FS_Cuando_Aplica_LR__c, FS_Dias_que_Aplica_LR__c, FS_Acepta_Propuesta_Economica__c, FS_AceptaRespuesta__c, FS_Fecha_Puesta_en_Produccion__c, FS_Quiere_Finalizar_la_Atencion_del_Caso__c,  
+                                            FS_Producto__c, FS_Buscar_Proyecto__c, FS_Modulo__c, FS_SubModulo__c, FS_DescripcionCliente__c, FS_AgenteQA__c, FS_AgenteN2__c
+                                            FROM 	Case 
+                                            WHERE	RecordTypeId =: TIPO_REGISTRO_TMS];
+
+        List<Case> updateCasos = new List<Case>();
+        List<Case> updateCasos2 = new List<Case>();
+        Map<Id, Case> oldRecords = new Map<Id, Case>();
+        Date day = System.today();
+        Case newCaseClone = new Case();
+        
+        for(Case record : casosRequerimiento) {
+            oldRecords.put(record.Id, record);
+            newCaseClone.Status = 'Nuevo';
+            newCaseClone.AccountId = record.AccountId;
+            newCaseClone.ContactId = record.ContactId;
+            newCaseClone.FS_Producto__c = record.FS_Producto__c;
+            newCaseClone.FS_Buscar_Proyecto__c = record.FS_Buscar_Proyecto__c;
+            newCaseClone.FS_Modulo__c = record.FS_Modulo__c;
+            newCaseClone.FS_SubModulo__c = record.FS_SubModulo__c;
+            newCaseClone.RecordTypeId = TIPO_REGISTRO_TMS;
+            newCaseClone.Subject = 'Prueba1';
+        }
+
+        Insert newCaseClone;
+        
+        
+        newCaseClone.FS_AceptaSolucionEnProduccion__c = 'No';
+        newCaseClone.Status = 'Certificado';
+        update newCaseClone;
+        
+        newCaseClone.FS_EnviarNotificacionProduccion__c = true;
+        newCaseClone.Status = 'En Producción';
+        update newCaseClone;
+        
+        newCaseClone.Status = 'En Revisión en Producción';
+        newCaseClone.FS_AceptacionSolucionSalesforce__c = 'Si';
+        update newCaseClone;
+        
+        newCaseClone.Status = 'En Producción';
+        newCaseClone.FS_AceptacionSolucionSalesforce__c = 'No';
+        update newCaseClone;
+        
     }
 }
