@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Incrementar_N_mero_de_d_as_consumidosDiasEntrega</name>
+        <label>Incrementar Número de días consumidos</label>
+        <locationX>1634</locationX>
+        <locationY>863</locationY>
+        <assignmentItems>
+            <assignToReference>Proyecto_Propuesta_de_Servicio1.FS_Numero_de_dias_consumidos__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.FS_DiasInvertidosEntregaCaso__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Actualizar_Proyecto_Propuesta_Servicio</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Incrementar_N_mero_de_d_as_consumidosPS</name>
+        <label>Incrementar Número de días consumidos</label>
+        <locationX>1370</locationX>
+        <locationY>863</locationY>
+        <assignmentItems>
+            <assignToReference>Proyecto_Propuesta_de_Servicio1.FS_Numero_de_dias_consumidos__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.FS_DiasAprobacionPropuestaServicio__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Actualizar_Proyecto_Propuesta_Servicio</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Incrementar_Numero_de_dias_consumidos</name>
         <label>Incrementar Número de días consumidos</label>
         <locationX>50</locationX>
-        <locationY>755</locationY>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Proyecto_Analisis_Previo.FS_Numero_de_dias_consumidos__c</assignToReference>
             <operator>Add</operator>
@@ -21,7 +55,7 @@
         <name>Incrementar_Numero_de_dias_consumidos2</name>
         <label>Incrementar Número de días consumidos</label>
         <locationX>314</locationX>
-        <locationY>755</locationY>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Proyecto_Estimacion_Macro.FS_Numero_de_dias_consumidos__c</assignToReference>
             <operator>Add</operator>
@@ -37,7 +71,7 @@
         <name>Incrementar_Numero_de_dias_consumidos3</name>
         <label>Incrementar Número de días consumidos</label>
         <locationX>578</locationX>
-        <locationY>755</locationY>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Proyecto_Estimacion_Macro.FS_Numero_de_dias_consumidos__c</assignToReference>
             <operator>Add</operator>
@@ -54,7 +88,7 @@
         <name>Incrementar_Numero_de_dias_consumidos4</name>
         <label>Incrementar Número de días consumidos</label>
         <locationX>842</locationX>
-        <locationY>755</locationY>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Proyecto_En_Propuesta_Economica.FS_Numero_de_dias_consumidos__c</assignToReference>
             <operator>Add</operator>
@@ -70,7 +104,7 @@
         <name>Incrementar_Numero_de_dias_consumidos5</name>
         <label>Incrementar Número de días consumidos</label>
         <locationX>1106</locationX>
-        <locationY>755</locationY>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Proyecto_En_Propuesta_Economica.FS_Numero_de_dias_consumidos__c</assignToReference>
             <operator>Add</operator>
@@ -85,8 +119,8 @@
     <decisions>
         <name>Validacion_de_campos</name>
         <label>Validación de campos</label>
-        <locationX>710</locationX>
-        <locationY>647</locationY>
+        <locationX>974</locationX>
+        <locationY>755</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Acepta_Analisis_Previo</name>
@@ -303,6 +337,78 @@
             </connector>
             <label>Rechaza Propuesta Económica</label>
         </rules>
+        <rules>
+            <name>Acepta_Propuesta_Serviciio</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Propuesta de Servicio</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FS_AceptaPropuestaServicio__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Si</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FS_DiasAprobacionPropuestaServicio__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FS_DiasAprobacionPropuestaServicio__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Proyecto_Analisis_Previo.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Incrementar_N_mero_de_d_as_consumidosPS</targetReference>
+            </connector>
+            <label>Acepta Propuesta Servicio</label>
+        </rules>
+        <rules>
+            <name>Total_de_Dias_Invertidos</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FS_DiasInvertidosEntregaCaso__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FS_DiasInvertidosEntregaCaso__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Validación de Respuesta (Cliente)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Incrementar_N_mero_de_d_as_consumidosDiasEntrega</targetReference>
+            </connector>
+            <label>Total de Dias Invertidos</label>
+        </rules>
     </decisions>
     <description>Flujo que actualiza el campo Número de días consumidos en el objeto Proyecto, cada vez que en el Caso el Cliente aprueba el número de días.</description>
     <environments>Default</environments>
@@ -330,7 +436,7 @@
     <recordLookups>
         <name>Proyecto_Analisis_Previo</name>
         <label>Proyecto Análisis Previo</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -358,11 +464,11 @@
     <recordLookups>
         <name>Proyecto_En_Propuesta_Economica</name>
         <label>Proyecto En Propuesta Económica</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Validacion_de_campos</targetReference>
+            <targetReference>Proyecto_Propuesta_de_Servicio1</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -386,7 +492,7 @@
     <recordLookups>
         <name>Proyecto_Estimacion_Macro</name>
         <label>Proyecto Estimación Macro</label>
-        <locationX>710</locationX>
+        <locationX>974</locationX>
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -411,29 +517,64 @@
         <object>FS_Proyecto__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Proyecto_Propuesta_de_Servicio1</name>
+        <label>Proyecto Propuesta de Servicio</label>
+        <locationX>974</locationX>
+        <locationY>647</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Validacion_de_campos</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.FS_Buscar_Proyecto__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>FS_Es_Pre_contratado__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>FS_Proyecto__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Actualizar_Proyecto_Analisis_Precio</name>
         <label>Actualizar Proyecto Análisis Precio</label>
         <locationX>50</locationX>
-        <locationY>863</locationY>
+        <locationY>971</locationY>
         <inputReference>Proyecto_Analisis_Previo</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Actualizar_Proyecto_Estimacion_Macro</name>
         <label>Actualizar Proyecto Estimación Macro</label>
         <locationX>314</locationX>
-        <locationY>863</locationY>
+        <locationY>971</locationY>
         <inputReference>Proyecto_Estimacion_Macro</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Actualizar_Proyecto_Propuesta_Economica</name>
         <label>Actualizar Proyecto Propuesta Económica</label>
-        <locationX>710</locationX>
-        <locationY>1163</locationY>
+        <locationX>974</locationX>
+        <locationY>1271</locationY>
         <inputReference>Proyecto_En_Propuesta_Economica</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Actualizar_Proyecto_Propuesta_Servicio</name>
+        <label>Actualizar Proyecto Propuesta Servicio</label>
+        <locationX>1370</locationX>
+        <locationY>971</locationY>
+        <inputReference>Proyecto_Propuesta_de_Servicio1</inputReference>
+    </recordUpdates>
     <start>
-        <locationX>584</locationX>
+        <locationX>848</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Proyecto_Analisis_Previo</targetReference>

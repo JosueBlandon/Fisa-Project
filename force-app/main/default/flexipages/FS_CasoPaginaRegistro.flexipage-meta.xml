@@ -2772,6 +2772,62 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FS_DiasInvertidosTotalEntregaCaso__c</fieldItem>
+                <identifier>RecordFS_DiasInvertidosTotalEntregaCaso_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-876661c2-6f5a-4541-8fa4-a14d2e3d631c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-876661c2-6f5a-4541-8fa4-a14d2e3d631c</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column9</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-2f70c003-add4-4f71-bf48-a323cb6d6045</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.FS_DiasInvertidosEntregaCaso__c</fieldItem>
+                <identifier>RecordFS_DiasInvertidosEntregaCaso_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-6c70e9b1-a820-4e9c-9840-a7da7851f6bc</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6c70e9b1-a820-4e9c-9840-a7da7851f6bc</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c7edcc92-ad18-4d00-a6f4-4ad79d8a9c62</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>createQuickActionName</name>
@@ -2900,6 +2956,46 @@
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>FS_TiempoMateriales</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-2f70c003-add4-4f71-bf48-a323cb6d6045</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_TiempoMateriales</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Planificación</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Cerrado</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Dado de Baja</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -3185,7 +3281,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord45</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9</booleanFilter>
+                    <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND (10)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>EQUAL</operator>
@@ -3231,6 +3327,76 @@
                         <operator>EQUAL</operator>
                         <rightValue>En Revisión en Producción</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>FS_TiempoMateriales</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c7edcc92-ad18-4d00-a6f4-4ad79d8a9c62</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection8</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1) AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_TiempoMaterialesSprints</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Desarrollo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Validación de Respuesta (Cliente)</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Revisión Entregado</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Certificado</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Revisión Certificado</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Producción</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>En Revisión en Producción</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Cerrado</rightValue>
+                    </criteria>
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
@@ -3255,7 +3421,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord46</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8</booleanFilter>
+                    <booleanFilter>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) AND ( 9 )</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>EQUAL</operator>
@@ -3296,6 +3462,11 @@
                         <operator>EQUAL</operator>
                         <rightValue>En Revisión en Producción</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>FS_TiempoMateriales</rightValue>
+                    </criteria>
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
@@ -3320,7 +3491,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord47</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+                    <booleanFilter>( 1 OR 2 OR 3 OR 4 OR 5 OR 6 ) AND ( 7 )</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>EQUAL</operator>
@@ -3351,6 +3522,11 @@
                         <operator>EQUAL</operator>
                         <rightValue>En Revisión en Producción</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>FS_TiempoMateriales</rightValue>
+                    </criteria>
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
@@ -3375,7 +3551,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord48</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+                    <booleanFilter>( 1 OR 2 OR 3 OR 4 OR 5 ) AND ( 6 )</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>EQUAL</operator>
@@ -3400,6 +3576,11 @@
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>En Revisión en Producción</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>FS_TiempoMateriales</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

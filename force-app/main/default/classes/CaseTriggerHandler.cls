@@ -135,6 +135,7 @@ public without sharing class CaseTriggerHandler {
             CaseTriggerHelper.validacionProducto(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             //CaseTriggerHelperTM.envioNotificacionFinanzas(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             CaseTriggerHelperTM.validateChildrenCases(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
+            CaseTriggerHelperTM.UpdateTotalDays(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             if(UserInfo.getUserType() != 'Guest'){
                 CaseTriggerHelperTM.aceptaRespuesta(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
                 CaseTriggerHelperTM.envioNotificacionComunidad(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);

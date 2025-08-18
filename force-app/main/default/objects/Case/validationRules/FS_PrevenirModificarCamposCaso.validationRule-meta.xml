@@ -11,9 +11,7 @@ CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;
 ),
 OR(
 RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
-RecordType.DeveloperName = &apos;FS_ControlCambios&apos;,
-RecordType.DeveloperName = &apos;FS_TiempoMateriales&apos;,
-RecordType.DeveloperName = &apos;FS_TiempoMaterialesSprints&apos;
+RecordType.DeveloperName = &apos;FS_ControlCambios&apos;
 ),
 $Profile.Name == &apos;PM-PS&apos;,
 OR(
