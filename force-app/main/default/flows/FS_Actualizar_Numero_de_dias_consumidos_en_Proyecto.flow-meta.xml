@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Incrementar_N_mero_de_d_as_consumidosDiasEntrega</name>
         <label>Incrementar Número de días consumidos</label>
@@ -13,6 +14,10 @@
                 <elementReference>$Record.FS_DiasInvertidosEntregaCaso__c</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Actualizar_Proyecto_Propuesta_Servicio</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Incrementar_N_mero_de_d_as_consumidosPS</name>
@@ -336,13 +341,6 @@
             <name>Acepta_Propuesta_Serviciio</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Propuesta de Servicio</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
                 <leftValueReference>$Record.FS_AceptaPropuestaServicio__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
@@ -370,6 +368,13 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.FS_AceptaPropuestaServicio__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Incrementar_N_mero_de_d_as_consumidosPS</targetReference>
             </connector>
@@ -390,13 +395,6 @@
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Validación de Respuesta (Cliente)</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -585,5 +583,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>
