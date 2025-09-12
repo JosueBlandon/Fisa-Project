@@ -59,15 +59,20 @@ public without sharing class CaseTriggerHelper {
     public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
 
     public static void validacionEstado(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-        if(validacionUser(false)){
+         User u = mapUser.get(UserInfo.getUserId());
+        if(validacionUser(false) && u.Profile.Name != 'Servicio al Cliente'){ 
             return;
         } 
+        
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
-            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId != CONTROLDECAMBIO_TIPO_REGISTRO) {
+
+            if(item.Status != 'Dado de Baja' && item.Status != 'Cerrado' && item.Status != 'Propuesta de Servicio' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId != CONTROLDECAMBIO_TIPO_REGISTRO && item.RecordTypeId != CONSULTA_TIPO_REGISTRO) {
                 item.Status.addError('Privilegios insuficiente para modificar el estado del caso');
             }else if(item.Status != 'Dado de Baja' && item.Status != 'Análisis Previo' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO){
                 item.Status.addError('Privilegios insuficiente para modificar el estado del caso');
+            }else if(item.Status != 'Dado de Baja' && item.Status != 'Análisis Previo' && item.Status != 'Cerrado' && caso.Status != item.Status && caso.Status != 'En Espera de Respuesta del Cliente' && item.RecordTypeId == caso.RecordTypeId && item.RecordTypeId == CONSULTA_TIPO_REGISTRO && item.FS_PudeSolventarPregunta__c == caso.FS_PudeSolventarPregunta__c ){
+                item.Status.addError('Privilegios insuficiente para modificar el estado del caso en consulta');
             }
         }
     }
@@ -1172,7 +1177,8 @@ public without sharing class CaseTriggerHelper {
             if(esContacto){
                 User usuario = mapUser.get(userInfo.getUserId());
                 if(usuario.Profile.Name != 'Customer Community User' || usuario.Profile.Name != 'Customer Community Plus User'){
-                    mail.setWhatId(caso.Id);
+                    //mail.setWhatId(caso.Id);
+                    //mail.setSaveAsActivity(true);
                 }
 
                 mail.setTargetObjectId(caso.ContactId);
@@ -1411,6 +1417,8 @@ public without sharing class CaseTriggerHelper {
         for(Case record : newCaseList) {
             if(record.OwnerId.getSobjectType() != Group.SobjectType && record.FS_Area__c != 'QA CC-CORE' && record.FS_Area__c != 'QA CC-OMNIA' ){
                 record.FS_AgenteN2__c = record.OwnerId;
+            }else if(record.OwnerId.getSobjectType() != Group.SobjectType && record.FS_Area__c == 'QA CC-CORE' && record.FS_Area__c == 'QA CC-OMNIA' ){
+                record.FS_AgenteQA__c = record.OwnerId;
             }
         }
     }

@@ -16,6 +16,11 @@
                 <label>Consulta</label>
             </value>
             <value>
+                <fullName>Control de Cambios</fullName>
+                <default>false</default>
+                <label>Control de Cambios</label>
+            </value>
+            <value>
                 <fullName>Incidente</fullName>
                 <default>false</default>
                 <label>Incidente</label>
@@ -29,6 +34,16 @@
                 <fullName>Solicitud (Falla Operativa)</fullName>
                 <default>false</default>
                 <label>Solicitud (Falla Operativa)</label>
+            </value>
+            <value>
+                <fullName>Tiempo y Materiales</fullName>
+                <default>false</default>
+                <label>Tiempo y Materiales</label>
+            </value>
+            <value>
+                <fullName>Tiempo y Materiales - Con Sprints</fullName>
+                <default>false</default>
+                <label>Tiempo y Materiales - Con Sprints</label>
             </value>
         </valueSetDefinition>
     </valueSet>

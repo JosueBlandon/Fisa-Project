@@ -15,6 +15,7 @@
 public with sharing class ChangeCaseRecordType {
 
     public static final String REQUERIMIENTO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_Requerimiento').getRecordTypeId();
+    public static final String TIEMPOMATERIALES_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
 
     /**
      * @method      validateChangeRecordType
@@ -39,7 +40,7 @@ public with sharing class ChangeCaseRecordType {
 
         for(Case caso : records) { 
             Boolean esCore = CaseTriggerHelper.ProductoCore(caso);
-            if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId) {
+            if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId && TIEMPOMATERIALES_TIPO_REGISTRO != caso.RecordTypeId) {
                 caso.FS_Area__c = esCore ? 'N1. CORE' : 'N1. OMNIA';
             } else {
                 caso.FS_Area__c = 'PS';
@@ -52,7 +53,7 @@ public with sharing class ChangeCaseRecordType {
             caso.FS_InformacionCompleta__c = '';
             caso.FS_NumeroRequerimientosNuevo__c = null;
 
-            if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId) {
+            if(REQUERIMIENTO_TIPO_REGISTRO != caso.RecordTypeId && TIEMPOMATERIALES_TIPO_REGISTRO != caso.RecordTypeId) {
                 if(usuario.Contact.Account.FS_ServicioRemoto__c){
                     caso.OwnerId = [Select Id from Group Where DeveloperName = :usuario.Contact.Account.FS_ColaAtencion__c and Type = 'Queue'].Id;
                 }else{
@@ -62,7 +63,7 @@ public with sharing class ChangeCaseRecordType {
                 map<String, FS_Gestor_Cuenta__c> mapRecords = new map<String, FS_Gestor_Cuenta__c>([	SELECT 	Id, FS_Project_Manager__c  
                                                                                                         FROM 	FS_Gestor_Cuenta__c
                                                                                                         WHERE 	FS_Cuenta__c =: caso.AccountId and FS_Principal__c =: true	 ]);
-                if(REQUERIMIENTO_TIPO_REGISTRO == caso.RecordTypeId && mapRecords.size() > 0) {	
+                if((REQUERIMIENTO_TIPO_REGISTRO == caso.RecordTypeId || TIEMPOMATERIALES_TIPO_REGISTRO == caso.RecordTypeId) && mapRecords.size() > 0) {	
                     for(Id key : mapRecords.keySet()) {
                         caso.OwnerId = mapRecords.get(key).FS_Project_Manager__c;    
                     }

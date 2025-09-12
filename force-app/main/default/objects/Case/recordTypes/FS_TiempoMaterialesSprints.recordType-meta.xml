@@ -1,0 +1,2232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_TiempoMaterialesSprints</fullName>
+    <active>true</active>
+    <businessProcess>FS_TiempoMaterialesSprints</businessProcess>
+    <label>Tiempo y Materiales - Con Sprints</label>
+    <picklistValues>
+        <picklist>FS_Acepta1erCosto__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaAnalisisPrevio__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaDEF__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaEstimacionMacro__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaInstalacionParche__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaPaseProducion__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaPropuestaServicio__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaRespuesta__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptaSolucionEnProduccion__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Acepta_Propuesta_Economica__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AceptacionSolucionSalesforce__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Aplica_Licencia_Recurrente__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionCertificacionParcheQA__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionDisenioTecnico__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionInstalacionParcheRelease__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionPlanPruebas__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionSolucionDefinitivaN2__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionSolucionDefinitivaRelease__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionSolucionIPN2__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionSolucionIPRelease__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_AprobacionSolucion__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Area__c</picklist>
+        <values>
+            <fullName>N1%2E CORE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N1%2E OMNIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N2- CORE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N2-OMNIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QA CC-CORE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QA CC-OMNIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Release</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Carterizacion__c</picklist>
+        <values>
+            <fullName>Alta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIP</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Cerrar_caso_en_Jira__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Cuando_Aplica_LR__c</picklist>
+        <values>
+            <fullName>Entrega de Solución</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pase de Producción</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Es_Precontratado__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_InformacionCompleta__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Modulo__c</picklist>
+        <values>
+            <fullName>BRE %28Motor de reglas%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BackOffice</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Application Generator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Application Products %28Plataforma de Ventas%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Support Aplication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cajas y Bóveda %28Módulo 3%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Calendarizador Procesos Bach</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Captaciones a Plazo %28Módulo 5%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Captaciones a la Vista %28Módulo 4%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colocaciones %28Módulo 6%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio Exterior %28Módulo 10%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contabilidad %28Módulo 20%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Core Tarjeta de Crédito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DIPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DIPS %28Modulo 19%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ECCO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enterprise Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Garantías %28Módulo 28%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IMS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kioskos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MCM %28MultiChannel Managemt%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobile Banking Personas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Núcleo del Sistema</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Banking Personas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rapid Cash</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reportes %28Módulo 21%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tarjeta de Débito %28Módulo 15%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tesorería %28Módulo 12%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoCambioFechaDesarrollo__c</picklist>
+        <values>
+            <fullName>Cambio de alcance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cambio de prioridad interna</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cambio de prioridad solicitada por el cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dependencia de versionamiento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Problema en ambientes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoCambioFechaEntrega__c</picklist>
+        <values>
+            <fullName>Cambio de alcance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cambio de prioridad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dependencia de versionamiento</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoInsatisfaccion__c</picklist>
+        <values>
+            <fullName>Brindaron alternativas de solución</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Conocimiento del negocio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desconocimiento del negocio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega tiene errores</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Información Incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Información completa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No se ofrece alternativas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Precio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicio y calidad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tiempo de entrega</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazoAprobacionIPRealease__c</picklist>
+        <values>
+            <fullName>Desarrollo incompleto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en documentación</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazoEntregaParche__c</picklist>
+        <values>
+            <fullName>Bloqueo por dependencia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cambio en fecha de entrega</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Release plan</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazoPlanPruebas__c</picklist>
+        <values>
+            <fullName>Incosistencia en plan de pruebas</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazoSDN2__c</picklist>
+        <values>
+            <fullName>Desarrollo erróneo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo incompleto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentación incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en documentación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia en proyecto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia objetos</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazoSDRelease__c</picklist>
+        <values>
+            <fullName>Documentación incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en documentación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Falta de aprobación PR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia en parche</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivoRechazo__c</picklist>
+        <values>
+            <fullName>Complemento o alcance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en la entrega</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No resolvió lo reportado</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivosRechazoAprobacionIPN2__c</picklist>
+        <values>
+            <fullName>Desarrollo erróneo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo incompleto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentación incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en documentación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia objetos</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivosRechazoCertificacion__c</picklist>
+        <values>
+            <fullName>Cambio plan de pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No autorizar pruebas FQC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivosRechazoDT__c</picklist>
+        <values>
+            <fullName>Desarrollo erróneo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo incompleto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentación incompleta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en documentación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia en proyecto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inconsistencia objetos</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_MotivosRechazoInstalacionParche__c</picklist>
+        <values>
+            <fullName>Error en compilación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en levantar el ambiente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error en scripts</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Notificaciones__c</picklist>
+        <values>
+            <fullName>Documento de Especificación Funcional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Espera de Respuesta del Cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Propuesta Económica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estimación Macro</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_OrigenCaso__c</picklist>
+        <values>
+            <fullName>Interno</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Producto__c</picklist>
+        <values>
+            <fullName>FISA CreditCard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FISA FISS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FISA System</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OMNIA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Proyecto__c</picklist>
+        <values>
+            <fullName>FSAH001 - FISA SYSTEM AHIBA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSBD001 - FISA SYSTEM BDI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSBL001 - FISA SYSTEM BLH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSCA100 - FISA SYSTEM CARIBE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSCM001 - FISA SYSTEM CREDITO MAESTRO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSCN001 - FISA SYSTEM CONSORCIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSCR001 - FISA SYSTEM CREDICORP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE126 - HD28911 MEJORA EN LA DESCRIPCIÓN DE GLOSAS EN ESTA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE130 - DESARROLLO FISA SYSTEM - OMNIA MAF CHILE 1000 D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE135 - HD29457 ASIGNACIÓN DE TASAS DE INTERÉS%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE136 - HD29458 COBRO DE ADMINISTRACIÓN MENSUAL CLIENTES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE138 - SOPORTE INSTALACION HD 28957 %22PROYECTO CONFIRMACIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE144 - HD29836 INSTALACIÓN SOFTWARE BASE PARA SERVIDORES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE147 - HD29772 FUNCIONALIDAD NUEVO FACTOR DE SEGURIDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE149 - PRECONTRATADO BDI 400 DIAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE150 - PRECONTRATADO BLH 300 DIAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE155 - HD30108 BANCO CARIBE CVN 18 %28CRYPTOGRAM VERSION NU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE158 - HD30189 HABILITAR EL PROCESO DE TRANSACCIONES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE163 - HD30292 PRELACION DE PAGOS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE167 - HD30583 CONTABILIDAD AUTOMÁTICA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE173 - PRECONTRATADO CREDICORP POR 1000 DÍAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE179 - HD31294 CC_MAF_RETENIDOS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE189 - HD30956 CONSULTA SOBRE UPGRADE DE VERSIÓN DE SO BD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE193 - HD30414 CARGA DE LOTES POR BCRD PARA REALIZAR PAGO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE205 - HD30960 PROCESO MASIVO DE RENOVACIÓN DE CERTIFICAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE209 - PRECONTRATADOS CONSORCIO 800 DIAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE210 - HD30209 DIFERIMIENTO DE COMISIONES PARA OPERACIONE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE221 - HD31607 SERVICIO DE SOPORTE DE MANTENIMIENTO PREDI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE228 - HD31852 MODIFICACIONES PROCESO DE EMBOZO Y ACT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE229 - FASE DE ESTABILIZACIÓN PROYECTO MAF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE231 - PRECONTRATADOS BDI 500%2FDH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE233 - HD31652 CONSULTA%3A PRE-REQUISITOS CORE VISA %28IMPLE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE234 - HD31641 DETALLE REPORTE DE CUADRATURAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE237 - NUEVOS REQUERIMIENTOS MAF 70 D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE238 - Precontratados BMR por 250 días Q2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE240 - HD32010 GENERACIÓN DE  ARCHIVOS INDEPENDIENTES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE241 - HD32129 INTEGRACION PROYECTO MESAS DE TESORIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE242 - HD32490  MODIFICACIÓN SWITCH TRANSACCIONAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE244 - HD32427 IMPLANTACIÓN FISA SYSTEM 12C CMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE254 - HD30869 REPORTE HISTÓRICO DE POSICIÓN DE BOVEDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE256 - HD32646 SWITCH TRANSACCIONAL -NUEVA VERSIÓN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE257 - HD33196 PRECONTRATADOS 150 D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE258 - HD33229 CONTINUACIÓN REQUERIMIENTOS DESARROLLOS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE261 - HD32711 AGREGAR OTRO PROVEEDOR DE FIRMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE262 - PRECONTRATADOS BMR 150%2FDH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE263 - HD33574 SERVICIO DE QA CMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE264 - PRECONTRATADOS BMR 150%2FDH NOVIEMBRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE265 - HD33546 RENOVACIÓN DE TARJETAS DE DÉBITO FISA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE266 - PRECONTRATADOS BMR 150%2FDH DICIEMBRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE267 - PRECONTRATADOS CRE 100%2FDH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE268 - HD33735 DIGITALIZACIÓN O AUTOMATIZACIÓN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE269 - HD33817 RECURSOS  FISA PARA SOPORTE EN DESPLIEGUE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE271 - PRECONTRATADOS BMR 150%2FDH ENERO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE273 - HD33091 ROBUSTECER ALGORITMO DE CONFORMACION PAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE275 - HD33833 CAMBIO DE USABILIDAD DE FT-OLB Y RQ33414</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE276 - HD33753 CÓDIGO DE VERIFICACIÓN CAPTACIONES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE277 - HD33596 CUENTA DIGITAL BLH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE278 - HD33821 REQUERIMIENTO AUTOMATIZACIÓN PARÁMETROS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE279 - PRECONTRATADOS BMR 150%2FDH FEBRERO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE280 - HD33827 CREACIÓN DE TRX DE NOTA DE DÉBITO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE281 - HD2151 ASSESMENT MAF-FISA CORE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE282 %E2%80%93 HD33663 CAPACITACION TECNICA OMNIA-FISA System</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE283 - HD33810 ACELERACIÓN CUOTAS CONVENIO FISASYSTEM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE284 - HD33800 MEJORA AL REPORTE 21-1066</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE285 - HD33809 PROYECTO SITE DE CONTINGENCIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE286 - PRECONTRATADOS BMR 150%2FDH MARZO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE287 - SF2287 RECALCULO DE SOLICITUDES AMICAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE288 - SF2258 LEY DE SOLVENCIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE289 - SF2229 GENERACION DE ENROLAMIENTO EJECUTIVOS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE290 - SF2060 CAMBIOS EN MENSAJERÍA DE TARJETA DE DÉBITO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE291 - HD33835 REPORTE DE SALDO DE DEUDA POR OPERACIÓN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE292 - SF2269 MODIFICACIONES EN FISA PARA TARJETAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE293 - HD33830 SERVICIOS DE SOPORTE DE MANTENIMIENTO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE294 - SF2533 CAMBIO EN EL REGISTRO FISA SYSTEM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE295 - SF2031 ESTIMACIÓN MACRO CONTRATOS PRESTAMOS FBP 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE296 - PRECONTRATADOS BMR 150%2FDH MARZO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE297 - SF2414 SERVICIO DE SOPORTE CERTIFICACIÓN Y POST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE298 - SF2165 IMPLEMENTACIÓN CUENTA ESTÁNDAR REGIONAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE299 - SF2555 INCIDENCIAS BÓVEDAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE300 - SF2503 EMISORES DE LAC TENDRÁN QUE DENEGAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSDE301 - SF2466 SOPORTE FISA %E2%80%93 MPH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSFL001 - FISA SYSTEM FLAMINGO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSHD001 - Fisa System Help desk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSHD010 - Fallas operativas Helpdesk Fisa System</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSIM208 - IMPLEMENTACION CMA PROYECTO UPGRADE PC A OMNIA 4%2E5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSMA001 - FISA SYSTEM MAF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FSSB001 - FISA SYSTEM SALCOBRAND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNBD001 - PLATAFORMA DE NEGOCIOS BDI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNBI001 - PLATAFORMA DE NEGOCIOS BANCO INTERNACIONAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNCM001 - PLATAFORMA DE NEGOCIOS CREDITO MAESTRO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNCR001 - PLATAFORMA DE NEGOCIOS CREDICORP BANK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNDP109 - SOLUCION DE ERRORES DE PRODUCTO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNHD003 - OMNIA Help Desk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNHD006 - Fallas operativas HLPDESK plataforma de negocios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNMA001 - PLATAFORMA DE NEGOCIOS MAF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE030 - ONLINE BANKING BANCA EMPRESAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE031 - HD24241 MEJORAS FUCIONALES PORTALES PERSONAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE032 - HD23930 MOVIL FASE II</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE041 - PRECTR BANINTER 2021 CONTROLES DE CAMBIO 150 DIAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE044 - SERVICIO CAMBIOS Y NUEVO PREC BIT 2022-2023 600D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE046 - SOPORTE ESPECIALIZADO PREC BIT 2022-2023 240D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE047 - Servicio Soporte Local BIT 2022-2023</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE048 - SERVICIO DE PRECONTRATADO 2022-2023 800D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE049 - SERVICIO CAMBIOS MENORES BIT 2023-2024</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE050 - SOPORTE LOCAL BNT 2023 %E2%80%93 2024</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE050 - SOPORTE LOCAL BNT 2023 - 2024</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE051 - PRECONTRATADO 2023-2024 800D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE052 - SOPORTE ESPECIALIZADO DE GERENCIA 240D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE053 - PRECONTRATADO 2024 600 D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE054 - PRECONTRATADO 2024 500 D%2FH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE055 - HD32927 Y HD32928 EXCENTO ISD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNRE056 - PRECONTRATADO 2024 150 D%2FH MULTIMONEDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNSO045 - Soporte remoto online Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNSO046 - Soporte remoto Online Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNSO047 - SOPORTE REMOTO ONLINE BANKING</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_PudeSolventarPregunta__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_ResultadoEncuestaNumero__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_ResultadoEncuesta__c</picklist>
+        <values>
+            <fullName>Insatisfecho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Muy Insatisfecho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Muy Satisfecho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Satisfecho</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_SolucionCortoPlazo__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_SubEstado__c</picklist>
+        <values>
+            <fullName>Análisis Falla Operativa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apertura de caso</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Aprobación Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Consulta N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Instalación Parche - Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solicitud N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución IP-N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación de Solución IP-Release</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Aceptado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Rechazado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Puntual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Solución Definitiva</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Espera de Respuesta del Cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En reproceso por rechazo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega 1a respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Envío de respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación Parche Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción No Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta aceptada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta rechazada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión Documentación N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Validación-Entrega de Fuentes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_SubModulo__c</picklist>
+        <values>
+            <fullName>ACH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Activación de versiones por política</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administración multicanal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Afiliaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Afiliación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Analizer Monitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autenticación y seguridad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autorizaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autorizados de pago</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Avales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beneficiarios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beneficiarios Enterprise Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Boletas de garantía</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Application Tools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Business Rule Engine - BRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Calendarización Y Procesos Masivos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Campaign Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Carga de Documentos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cartas de crédito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Catalogos y Mapeos B%2EO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clientes %28Módulo 2%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cobranzas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cobros Enterprise Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Componente generales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Configuración de servidores</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultas de saldos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crédito Automotriz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crédito Hipotecario</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crédito Hipotecario con Letras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Créditos de Consumo%2FComerciales%2FPersonales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuentas Corrientes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuentas Líneas de Crédito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuentas Nostro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuentas de Acumulación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuentas de Ahorro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cupones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cupos y límites</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definción de políticas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de características</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de decisiones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de estructura de matrices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de funciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de matrices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de menús</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de plantillas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición de variables</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definición flujo política por versión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Depositos a Plazo Fijo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diccionario de aplicaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Divisas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentos BAG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documentos-Alfresco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enrolamiento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enrolamiento R%2EC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujo Cuentas Vista</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujo Prestamos Personales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujo Tarjeta de Crédito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujo venta cruzada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos BPEL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos Camunda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos JBPM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos Rutas De Procesos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flujos-Camunda</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Herramientas de Desarrollo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integración BT-BRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integración Servicios MCM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integración Servicios Terceros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrador Login</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrador Transferencias</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integration Service FSY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jerarquías</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Líneas de Crédito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manejador de contenidos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mantenimiento de Clientes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Motor transaccional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Notificaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Notificaciones BAG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Obtención de datos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Originación-Flujo Automotriz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Originación-Flujo Consumo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Originación-Flujo%C2%A0AMICAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pagos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pagos Enterprise Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pagos R%2EC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parametrización</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parametrización B%2EO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parametros Generales %28Módulo 1%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posición Consolidada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posición Consolidada Enterprise Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posición Consolidada R%2EC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing y cupos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Procesos-lentitud-herramientas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Resultados de las reglas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seguridad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seguridades</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seguridades %28Modulo 90%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seguridades y%2Fo Tecnología</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Simulaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Solicitud de crédito - Cliente final</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suscripciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tarjetas Innominadas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tarjetas Nominadas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transferencias</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transferencias Internacionales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transferencias R%2EC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transferencias y%2Fo pagos programados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Títulos y valores</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wizard BT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wizard QT</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_SubtipoRequerimiento__c</picklist>
+        <values>
+            <fullName>Control de Cambios</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_TipoIncidente__c</picklist>
+        <values>
+            <fullName>Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puntual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_TipoRequerimiento__c</picklist>
+        <values>
+            <fullName>Master</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tiempo y Materiales</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FS_Tipo_de_Aprobacion__c</picklist>
+        <values>
+            <fullName>Aceptación Solución</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis Previo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación de Propuesta de Servicio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Documento de Especificación Funcional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión Certificado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión Entregado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Revisión en Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entregado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estimación Macro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finalizar Atención</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Propuesta Económica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puesta en Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rechazo de Propuesta de Servicio</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Origin</picklist>
+        <values>
+            <fullName>Análisis Falla Operativa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Análisis N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apertura de caso</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Consulta N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Instalación Parche - Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solicitud N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución Definitiva Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación Solución IP-N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aprobación de Solución IP-Release</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Certificación Parche QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Aceptado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costo Rechazado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Desarrollo Incidente Puntual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Diseño Técnico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Plan de Pruebas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración Solución Definitiva</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En Espera de Respuesta del Cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>En reproceso por rechazo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega 1a respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entrega de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Envío de respuesta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalado a QA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación Parche Releases</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instalación de Parche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paso a Producción No Confirmado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta aceptada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Respuesta rechazada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión Documentación N2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Validación-Entrega de Fuentes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>Alta</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason</picklist>
+        <values>
+            <fullName>El usuario no asistió a la capacitación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Funcionalidad compleja</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instrucciones poco claras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuevo problema</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Problema existente</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Atención 24x7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Atención sin costo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Definitivo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pase en produccción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puntual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión ambiente laboratorio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión sistemas externos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Script personalizados</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

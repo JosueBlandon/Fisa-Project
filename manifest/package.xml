@@ -1,12 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>*</members>
+		<members>CaseTriggerHandler</members>
+		<members>CaseTriggerHelper</members>
+		<members>CaseTriggerHelperPMPS</members>
+		<members>CaseTriggerHelperPMPSTest</members>
+		<members>CaseTriggerHelperTM</members>
+		<members>CaseTriggerHelperTMTest</members>
+		<members>CaseTriggerHelper_Test</members>
+		<members>ChangeCaseRecordType</members>
+		<members>ControladorCrearCaso</members>
+		<members>ControladorCrearCaso_Test</members>
+		<members>CustomLookupController</members>
+		<members>EmailMessageTriggerHandler</members>
+		<members>EmailMessageTriggerHelper</members>
+		<members>EmailMessageTriggerHelperTest</members>
+		<members>EnviarEmailCreacionCaso</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>EmailMessageTrigger</members>
 		<name>ApexTrigger</name>
+	</types>
+	<types>
+		<members>Case.FS_TiempoMateriales</members>
+		<members>Case.FS_TiempoMaterialesSprints</members>
+		<name>BusinessProcess</name>
+	</types>
+	<types>
+		<members>Case.FS_AceptaPropuestaServicio__c</members>
+		<members>Case.FS_DiasAprobacionPropuestaServicio__c</members>
+		<members>Case.FS_DiasInvertidosEntregaCaso__c</members>
+		<members>Case.FS_DiasInvertidosTotalEntregaCaso__c</members>
+		<members>Case.FS_EnvioNotificacionPS__c</members>
+		<members>Case.FS_FechaAprobacionClientePS__c</members>
+		<members>Case.FS_FechaEntregaPropuestaServicio__c</members>
+		<members>Case.FS_JiraCreated__c</members>
+		<members>Case.FS_Tipo_de_Aprobacion__c</members>
+		<members>Case.FS_TotalUSDPropuestaServicio__c</members>
+		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
+		<members>FS_Project_Jira__mdt.FS_Tipo_de_Registro__c</members>
+		<members>FS_Proyecto__c.FS_Tipo_de_Caso__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>FS_Project_Jira.X004</members>
+		<members>FS_Project_Jira.X005</members>
+		<name>CustomMetadata</name>
+	</types>
+	<types>
+		<members>Case</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacionTM</members>
+		<members>FS_CorreosClientesCasos/FS_CreacionCasoTM</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaPropuestaServicio</members>
+		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaPropuestaServicio</members>
+		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaServicio</members>
+		<name>EmailTemplate</name>
+	</types>
+	<types>
+		<members>FS_CasoPaginaRegistro</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
+		<members>FS_CrearCasoTiempoMaterialesSprint</members>
+		<members>FS_NotificacionComunidadCreacionCasos</members>
+		<members>FS_NotificacionComunidadCreacionCasosCC</members>
+		<name>Flow</name>
+	</types>
+	<types>
+		<members>fs_CampoPendienteCaso</members>
+		<members>fs_Encuesta</members>
+		<members>fs_customLookup</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>FS_EstadoCasoTiempoMateriales</members>
+		<members>FS_EstadoCasoTiempoMaterialesSprints</members>
+		<name>PathAssistant</name>
+	</types>
+	<types>
+		<members>Case.FS_AprobacionConsulta</members>
+		<members>Case.FS_AprobacionSolicitud</members>
+		<members>Case.FS_CrearCasoHijoTM</members>
+		<members>Case.FS_DetalleCasoConsulta</members>
+		<members>Case.FS_PropuestaServicio</members>
+		<name>QuickAction</name>
+	</types>
+	<types>
+		<members>Case.FS_TiempoMateriales</members>
+		<members>Case.FS_TiempoMaterialesSprints</members>
+		<name>RecordType</name>
+	</types>
+	<types>
+		<members>Case.FS_Campos_Requeridos_PMPS</members>
+		<members>Case.FS_PrevenirModificarCamposCaso</members>
+		<members>Case.Fs_PrevenirModificacionTipoRequerimiento</members>
+		<name>ValidationRule</name>
 	</types>
 	<version>64.0</version>
 </Package>

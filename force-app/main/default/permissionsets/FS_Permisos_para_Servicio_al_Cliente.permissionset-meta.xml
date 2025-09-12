@@ -365,6 +365,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_EstadoAnterior__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_FechaAprobacion1erCosto__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1778,6 +1783,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Case.FS_Solicitud</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Case.FS_TiempoMateriales</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>

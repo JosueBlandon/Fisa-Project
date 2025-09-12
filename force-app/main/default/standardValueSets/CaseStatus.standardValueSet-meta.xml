@@ -14,6 +14,12 @@
         <closed>false</closed>
     </standardValue>
     <standardValue>
+        <fullName>Propuesta de Servicio</fullName>
+        <default>false</default>
+        <label>Propuesta de Servicio</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
         <fullName>Estimación Macro</fullName>
         <default>false</default>
         <label>Estimación Macro</label>

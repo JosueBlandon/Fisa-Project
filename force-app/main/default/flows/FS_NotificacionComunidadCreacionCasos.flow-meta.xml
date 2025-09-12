@@ -217,12 +217,19 @@
         <connector>
             <targetReference>FS_ObtenerNotificacion</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>FS_NombreTipoRegistro__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Requerimiento</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FS_NombreTipoRegistro__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Tiempo y Materiales</stringValue>
             </value>
         </filters>
         <object>Case</object>

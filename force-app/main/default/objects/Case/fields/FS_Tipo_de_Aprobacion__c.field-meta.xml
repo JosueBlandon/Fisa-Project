@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Tipo_de_Aprobacion__c</fullName>
-    <externalId>false</externalId>
     <label>Tipo de Aprobación</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -76,6 +75,16 @@
                 <fullName>Finalizar Atención</fullName>
                 <default>false</default>
                 <label>Finalizar Atención</label>
+            </value>
+            <value>
+                <fullName>Aprobación de Propuesta de Servicio</fullName>
+                <default>false</default>
+                <label>Aprobación de Propuesta de Servicio</label>
+            </value>
+            <value>
+                <fullName>Rechazo de Propuesta de Servicio</fullName>
+                <default>false</default>
+                <label>Rechazo de Propuesta de Servicio</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -9,7 +9,10 @@ OR(
 CreatedBy.Profile.Name = &apos;Customer Community User&apos;,
 CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;
 ),
+OR(
 RecordType.DeveloperName = &apos;FS_Requerimiento&apos;,
+RecordType.DeveloperName = &apos;FS_ControlCambios&apos;
+),
 $Profile.Name == &apos;PM-PS&apos;,
 OR(
 ISCHANGED(AccountId),
@@ -36,7 +39,9 @@ ISCHANGED(FS_Fecha_Aprobacion_PE__c),
 ISCHANGED(FS_URLParcheCliente__c),
 ISCHANGED(FS_Fecha_Puesta_en_Produccion__c),
 ISCHANGED(FS_AceptaAnalisisPrevio__c),
+ISCHANGED(FS_AceptaPropuestaServicio__c),
 ISCHANGED(FS_FechaAprobacionCliente__c),
+ISCHANGED(FS_FechaAprobacionClientePS__c),
 ISCHANGED(FS_AceptaEstimacionMacro__c),
 ISCHANGED(FS_FechaAprobacionClienteEM__c),
 ISCHANGED(FS_AceptaDEF__c),
