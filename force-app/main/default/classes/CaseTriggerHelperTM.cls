@@ -86,7 +86,10 @@ public with sharing class CaseTriggerHelperTM {
         for(Case item: parentCases) {
             Decimal currentTotal = mapCaseUpdate.get(item.Id);
             Case record = new Case(Id = item.Id);
-            if(currentTotal > 0){
+            if(item.FS_DiasInvertidosTotalEntregaCaso__c == null){
+                record.FS_DiasInvertidosTotalEntregaCaso__c = currentTotal;
+                updateCaseList.add(record);
+            } else if(currentTotal > 0){
                 record.FS_DiasInvertidosTotalEntregaCaso__c = item.FS_DiasInvertidosTotalEntregaCaso__c + currentTotal;
                 updateCaseList.add(record);
             } else{
@@ -96,6 +99,17 @@ public with sharing class CaseTriggerHelperTM {
             
         }
         
+        /*list<Case> updateCaseList = new list<Case>();
+        for(Case item: newCaseList) {
+            Case caso = oldCaseMap.get(item.Id);
+            if(item.Status == 'Nuevo') {
+                Case record = new Case(Id = item.Id);
+                record.Status = 'Propuesta de Servicio';
+                updateCaseList.add(record);
+                //record.addError('Privilegios insuficientes para modificar la calificación del caso.');
+            }
+        }
+        */
         if(!updateCaseList.isEmpty()) {
             update updateCaseList;
         }
