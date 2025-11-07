@@ -3,6 +3,7 @@
 	<types>
 		<members>CaseTriggerHandler</members>
 		<members>CaseTriggerHelper</members>
+		<members>CaseTriggerHelperPMPSTest</members>
 		<members>CaseTriggerHelperTM</members>
 		<members>CaseTriggerHelperTMTest</members>
 		<members>CaseTriggerHelperTS</members>
@@ -10,6 +11,7 @@
 		<members>CaseTriggerHelper_Test</members>
 		<members>ContactTriggerHelper</members>
 		<members>ContactTriggerHelper_Test</members>
+		<members>ControladorBaseConocimientos_Test</members>
 		<members>ControladorCrearCaso</members>
 		<members>ControladorCrearCaso_Test</members>
 		<members>DataFactory</members>

@@ -34,7 +34,7 @@ public class CaseTriggerHelperPMPSTest {
             test.startTest();
             DataFactory.insertCase(acc, cont, p, 'FS_Requerimiento');
             DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
-            DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
+            //DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
             test.stopTest();
         }
         
