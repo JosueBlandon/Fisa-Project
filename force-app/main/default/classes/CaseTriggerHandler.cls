@@ -22,6 +22,8 @@ public without sharing class CaseTriggerHandler {
 
 
     public static void beforeInsert(List<Case> newCaseList){
+        System.debug('CPU Time (ms): ' + Limits.getCpuTime() + ' / ' + Limits.getLimitCpuTime());
+        System.debug('Heap Size (bytes): ' + Limits.getHeapSize() + ' / ' + Limits.getLimitHeapSize());
         CaseTriggerHelperPMPS.assignCases(newCaseList);
     }
     
@@ -53,19 +55,50 @@ public without sharing class CaseTriggerHandler {
 
         List<Case> lstCaseRecordCare = new List<Case>();
         Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
+        
+        List<Case> lstCaseRecordTesoreria = new List<Case>();
+        Map<Id, Case> mpCaseRecordTesoreria = new Map<Id, Case>();
+        
+        Set<String> ProductoCase = new Set<String>();
+        Set<String> ModuloCase = new Set<String>();
+        Set<String> SubModuloCase = new Set<String>();
+        Set<String> accCase = new Set<String>();
+        /*for(Case record : newCaseList) {
+            ProductoCase.add(record.FS_Producto__c);
+            ModuloCase.add(record.FS_Modulo__c);
+            SubModuloCase.add(record.FS_SubModuloCatalogo__c);
+            accCase.add(record.AccountId);
+        }
+        
+        List<FS_ProductoAdquirido__c> ltsProductosAdq = [     SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c, FS_Esta_activo__c 
+                                                            FROM    FS_ProductoAdquirido__c 
+                                                            WHERE   FS_Cuenta__c IN: accCase AND FS_Producto__c IN: ProductoCase AND FS_Modulo__c IN: ModuloCase
+                                                            AND     FS_SubModuloCatalogo__c IN: SubModuloCase  AND FS_ProductoTesoreria__c = true];
+        
+        Map<String, FS_ProductoAdquirido__c> productoMap = new Map<String, FS_ProductoAdquirido__c>();
+        for (FS_ProductoAdquirido__c pa : ltsProductosAdq) {
+            //
+            String key = pa.FS_Cuenta__c + '-' + pa.FS_Producto__c + '-' + pa.FS_Modulo__c;// + '-' + pa.FS_SubModuloCatalogo__c;
+            productoMap.put(key, pa);
+        }*/
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
+            String key = record.AccountId + '-' + record.FS_Producto__c + '-' + record.FS_Modulo__c; //+ '-' + record.FS_SubModuloCatalogo__c;
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
             } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
                 lstCaseTiempoMateriales.add(record);
                 mpCaseCaseTiempoMateriales.put(caso.Id, caso);
+            } else if(record.FS_esTesoreria__c == true) {
+                lstCaseRecordTesoreria.add(record);
+                mpCaseRecordTesoreria.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
             }
+            
         }
 
         CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
@@ -141,6 +174,17 @@ public without sharing class CaseTriggerHandler {
                 CaseTriggerHelperTM.envioNotificacionComunidad(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             }
         }
+        
+        //Tesoreria Flow
+        if(!lstCaseRecordTesoreria.isEmpty()){
+            CaseTriggerHelperTS.changeStatus(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.aceptaRespuesta(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.sendToJiraTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.actualizacionDescripcion(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.mapeoFechaEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            //CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+        }
+        
 
         List<Case> lstCase = new List<Case>();
         Map<Id, Case> mpCase = new Map<Id, Case>();
@@ -180,6 +224,9 @@ public without sharing class CaseTriggerHandler {
         
         List<Case> lstCaseTiempoMateriales = new List<Case>();
         Map<Id, Case> mpCaseCaseTiempoMateriales = new Map<Id, Case>();
+        
+        List<Case> lstCaseRecordTesoreria = new List<Case>();
+        Map<Id, Case> mpCaseRecordTesoreria = new Map<Id, Case>();
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
@@ -189,6 +236,9 @@ public without sharing class CaseTriggerHandler {
             } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
                 lstCaseTiempoMateriales.add(record);
                 mpCaseCaseTiempoMateriales.put(caso.Id, caso);
+            } else if(record.FS_esTesoreria__c == true){
+                lstCaseRecordTesoreria.add(record);
+                mpCaseRecordTesoreria.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
@@ -204,6 +254,10 @@ public without sharing class CaseTriggerHandler {
 
         if(!lstCaseRequerimiento.isEmpty()) {
             CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
+        }
+        
+        if(!lstCaseRecordTesoreria.isEmpty()) {
+            CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
         }
         
         if(!lstCaseTiempoMateriales.isEmpty()) {

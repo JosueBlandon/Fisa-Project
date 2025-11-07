@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla Cliente ha rechazado respuesta FISA GROUP</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_MembreteCasosFISA</letterhead>
+    <name>Cliente ha rechazado respuesta FISA GROUP Tesorería</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Cliente ha rechazado respuesta FISA GROUP</subject>
+    <textOnly>Hola {!Case.OwnerFirstName}
+
+
+
+Hemos recibido un rechazo de respuesta entregada del  caso {!Case.CaseNumber} del cliente {!Case.FS_NombreContacto__c}, con prioridad: {!Case.Priority}
+
+
+
+
+Tipo de requerimiento: {!Case.FS_TipoRequerimiento__c}
+
+Motivo de Rechazo: {!Case.FS_MotivoRechazo__c} Comentarios de rechazo:{!Case.FS_ComentariosRespuesta__c}
+
+Subject: {!Case.Subject} 
+
+Descripción: {!Case.Description} 
+
+Fecha de creación del caso: {!Case.CreatedDate}
+
+ 
+
+
+
+¡Gracias!
+
+  Tesorería Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

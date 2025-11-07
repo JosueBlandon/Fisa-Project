@@ -560,6 +560,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_EnviarAnalisisN1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_EnviarAprobacionDisenioTecnico__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1045,6 +1050,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_SubModuloCatalogo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_SubModulo__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1140,6 +1150,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_URLEntregaSolucion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_URLEvidenciaPruebas__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1201,6 +1216,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_UsuarioAprobadorSolucion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_esTesoreria__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1464,6 +1484,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_ProductCatalog__c.FS_Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_ProductCatalog__c.FS_Modulo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_ProductCatalog__c.FS_Producto__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FS_ProductCatalog__c.FS_RecordTypePC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>FS_Proyecto__c.FS_Cliente__c</field>
         <readable>true</readable>
@@ -1541,6 +1581,16 @@
         <viewAllFields>false</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>FS_ProductCatalog__c</object>
+        <viewAllFields>false</viewAllFields>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <recordTypeVisibilities>
         <recordType>Case.FS_Consulta</recordType>
         <visible>true</visible>
@@ -1581,6 +1631,10 @@
         <recordType>Contact.Prospectos</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>FS_ProductCatalog__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>standard-Account</tab>
         <visibility>Visible</visibility>

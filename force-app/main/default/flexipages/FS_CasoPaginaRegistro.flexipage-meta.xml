@@ -137,56 +137,6 @@
                 <identifier>RecordContactIdField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.FS_DiasAprobacionPropuestaServicio__c</fieldItem>
-                <identifier>RecordFS_DiasAprobacionPropuestaServicio__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.FS_TotalUSDPropuestaServicio__c</fieldItem>
-                <identifier>RecordFS_TotalUSDPropuestaServicio__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.FS_FechaEntregaPropuestaServicio__c</fieldItem>
-                <identifier>RecordFS_FechaEntregaPropuestaServicio__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.FS_FechaAprobacionClientePS__c</fieldItem>
-                <identifier>RecordFS_FechaAprobacionClientePS__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.FS_EnvioNotificacionPS__c</fieldItem>
-                <identifier>RecordFS_EnvioNotificacionPS__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-f002af55-a691-4762-a767-1477d3cc3f98</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -646,7 +596,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.IsEscalated}</leftValue>
                         <operator>EQUAL</operator>
@@ -656,6 +606,11 @@
                         <leftValue>{!Record.FS_NombreTipoRegistro__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Consulta</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2046,6 +2001,227 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                    <value>Campos de Control</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_CamposControlTesoreria</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord51</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_Consulta</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                    <value>Campos de Control</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_CamposControlIncidentePuntualTesoreria</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord54</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_Incidente</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                    <value>En Análisis</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_EnAnalisisConsultasTS</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord52</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Nuevo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>FS_Incidente</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                    <value>Entregado</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_EntregadoTesoreriaConsulta</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord53</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Nuevo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Análisis Previo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_Consulta</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_DesarrolloIncidenteTesoreria</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord55</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_Incidente</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Nuevo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Análisis Previo</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
+                    <value>NewCommunityCase</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>lookupFieldName</name>
+                    <value>Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                    <value>Entregado</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>updateQuickActionName</name>
+                    <value>Case.FS_EntregadoTesoreriaConsulta</value>
+                </componentInstanceProperties>
+                <componentName>console:relatedRecord</componentName>
+                <identifier>console_relatedRecord56</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>FS_Incidente</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Nuevo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Análisis Previo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>En Desarrollo</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-89eed5ca-25af-4d81-a5b3-ea3f4f5ea051</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>createQuickActionName</name>
                     <value>GuestCommunityCase</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -2189,6 +2365,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -2203,6 +2386,34 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-89eed5ca-25af-4d81-a5b3-ea3f4f5ea051</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>N1 Tesoreria</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab12</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -2217,6 +2428,13 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab5</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -3803,6 +4021,32 @@
                 <componentInstanceProperties>
                     <name>actionNames</name>
                     <valueList>
+                        <valueListItems>
+                            <value>Case.FS_Asignarme</value>
+                            <visibilityRule>
+                                <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.FS_esTesoreria__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.Status}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Nuevo</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.FS_SubEstado__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Apertura de caso</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!$User.UserRole.DeveloperName}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>FS_AgenteN1Tesoreria</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
                         </valueListItems>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirModificarCamposJefeTesoreria</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+OR(
+CreatedBy.Profile.Name = &apos;Customer Community User&apos;,
+CreatedBy.Profile.Name = &apos;Customer Community Plus User&apos;
+),
+OR(
+RecordType.DeveloperName = &apos;FS_Consulta&apos;,
+RecordType.DeveloperName = &apos;FS_Incidente&apos;,
+RecordType.DeveloperName = &apos;FS_Solicitud&apos;
+),
+$UserRole.DeveloperName = &apos;FS_JefeTesoreria&apos;,
+AND(
+ISCHANGED(FS_Fecha_de_entrega__c),
+NOT(ISNULL(PRIORVALUE(FS_Fecha_de_entrega__c)))
+)
+)</errorConditionFormula>
+    <errorMessage>Privilegios insuficientes, no puede editar campos del caso ingresados por el cliente o el sistema Tesoreria.</errorMessage>
+</ValidationRule>

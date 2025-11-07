@@ -21,7 +21,8 @@ ISPICKVAL(Status, &apos;Validación de Respuesta (Cliente)&apos;),
 ISPICKVAL(Status, &apos;Pendiente de Respuesta CSAT&apos;)			
 )    
 )
-)
+),
+FS_esTesoreria__c = false
 )</errorConditionFormula>
     <errorDisplayField>FS_FechaCompromisoEntrega__c</errorDisplayField>
     <errorMessage>No puede modificar este campo.</errorMessage>

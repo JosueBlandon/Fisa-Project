@@ -45,6 +45,11 @@
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>FS_SubModuloCatalogo__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
                 <emptySpace>true</emptySpace>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>

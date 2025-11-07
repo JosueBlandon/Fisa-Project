@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_SubModuloCatalogo__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Sub Módulo Catálogo</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FS_ProductCatalog__c.FS_Active__c</field>
+            <operation>equals</operation>
+            <value>true</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.FS_Producto__c</field>
+            <operation>equals</operation>
+            <valueField>FS_ProductCatalog__c.FS_Producto__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$Source.FS_Modulo__c</field>
+            <operation>equals</operation>
+            <valueField>FS_ProductCatalog__c.FS_Modulo__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FS_ProductCatalog__c</referenceTo>
+    <relationshipLabel>Productos Adquiridos</relationshipLabel>
+    <relationshipName>Productos_Adquiridos</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

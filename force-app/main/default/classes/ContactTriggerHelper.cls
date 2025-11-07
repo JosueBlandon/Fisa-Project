@@ -28,7 +28,7 @@ public without sharing class ContactTriggerHelper {
         }
 
         //Search related Products
-        Map<Id, FS_ProductoAdquirido__c> productsList = new Map<Id, FS_ProductoAdquirido__c>([	SELECT	Id, FS_Cuenta__c, FS_Modulo__c, FS_Producto__c, FS_SubModulo__c, FS_Esta_activo__c
+        Map<Id, FS_ProductoAdquirido__c> productsList = new Map<Id, FS_ProductoAdquirido__c>([	SELECT	Id, FS_Cuenta__c, FS_Modulo__c, FS_Producto__c, FS_SubModuloCatalogo__c, FS_Esta_activo__c
                                                													FROM	FS_ProductoAdquirido__c
                                                													WHERE	FS_Cuenta__c IN: accountsIds	]);
         

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla Envio Respuesta Comunidad FISA GROUP</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_MembreteCasosFISA</letterhead>
+    <name>Envio Respuesta Comunidad FISA GROUP Tesorería</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Envio Respuesta Comunidad FISA GROUP</subject>
+    <textOnly>{!Case.FS_NombreContacto__c} gracias por contactarte con nosotros. 
+
+
+
+Se ha realizado la entrega de la solución al caso {!Case.CaseNumber}, la cual se puede descargar desde el siguiente repositorio: {!Case.FS_URLEntregaSolucion__c}.
+
+
+
+Le recordamos que tiene 7 días para descargar la solución. Te invitamos a validarlo y enviarnos tu confirmación.
+
+
+
+Nota: La descarga aplica solo para clientes OnPremise (Clientes cuya infraestructura y sistemas están instalados y gestionados directamente en sus propios servidores.)
+
+
+
+
+
+Tus comentarios son importantes para nosotros.
+
+ 
+
+
+
+¡Gracias!
+
+  Tesorería Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
