@@ -12,6 +12,7 @@
 		<members>ContactTriggerHelper_Test</members>
 		<members>ControladorCrearCaso</members>
 		<members>ControladorCrearCaso_Test</members>
+		<members>DataFactory</members>
 		<members>EnviarEmailCreacionCaso</members>
 		<members>EnviarEmailCreacionCasoTest</members>
 		<members>FeedCommentTriggerHelper</members>

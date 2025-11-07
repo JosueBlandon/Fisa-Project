@@ -180,7 +180,20 @@ public without sharing class DataFactory {
         p.FS_Cuenta__c = acc.Id;
         p.FS_Producto__c = prod;
         p.FS_Modulo__c = mod;
-        p.FS_SubModulo__c = subM;
+        //p.FS_SubModulo__c = subM;
+        p.FS_Esta_activo__c = true;
+        insert p;
+
+        return p;
+    }
+    
+    public static FS_ProductoAdquirido__c insertProductTS(Account acc, String prod, String mod, String subM){
+        FS_ProductoAdquirido__c p = new FS_ProductoAdquirido__c();
+        p.FS_Cuenta__c = acc.Id;
+        p.FS_Producto__c = prod;
+        p.FS_Modulo__c = mod;
+        p.FS_ProductoTesoreria__c = true;
+        //p.FS_SubModulo__c = subM;
         p.FS_Esta_activo__c = true;
         insert p;
 
@@ -200,7 +213,8 @@ public without sharing class DataFactory {
             newProyect.FS_Cliente__c = acc.Id;
             newProyect.FS_Tipo_de_Caso__c = 'Requerimiento';
             newProyect.FS_Tarifa_Dias_Hombre__c = 56;
-            newProyect.FS_Numero_de_dias_contratados__c = 15;
+            newProyect.FS_Numero_de_dias_consumidos__c = 0;
+            newProyect.FS_Numero_de_dias_contratados__c = 155;
             newProyect.FS_Fecha_Inicio_Proyecto__c = system.today();
             newProyect.FS_Fecha_Fin_Proyecto__c = system.today() + 30;
             insert newProyect;
@@ -214,7 +228,7 @@ public without sharing class DataFactory {
         caso.FS_Producto__c = p.FS_Producto__c;
         caso.FS_Buscar_Proyecto__c = proyectId;
         caso.FS_Modulo__c = p.FS_Modulo__c;
-        caso.FS_SubModulo__c = p.FS_SubModulo__c;
+        //caso.FS_SubModulo__c = p.FS_SubModulo__c;
         caso.FS_DescripcionCliente__c = '<p>Test</p>';
         caso.FS_TipoIncidente__c = 'Puntual';
         caso.FS_AgenteQA__c = userInfo.getUserId();
@@ -306,7 +320,8 @@ public without sharing class DataFactory {
         newProyect.FS_Cliente__c = accId;
         newProyect.FS_Tipo_de_Caso__c = 'Requerimiento';
         newProyect.FS_Tarifa_Dias_Hombre__c = 56;
-        newProyect.FS_Numero_de_dias_contratados__c = 15;
+        newProyect.FS_Numero_de_dias_consumidos__c = 0;
+        newProyect.FS_Numero_de_dias_contratados__c = 155;
         newProyect.FS_Fecha_Inicio_Proyecto__c = system.today();
         newProyect.FS_Fecha_Fin_Proyecto__c = system.today() + 30;
         
