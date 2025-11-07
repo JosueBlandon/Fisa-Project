@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Atención N1 - Tesoreria</name>
+    <queueMembers>
+        <users>
+            <user>camila.cedeno@fisagrp.com</user>
+            <user>joselyn.cherrez@fisagrp.com</user>
+            <user>liliana.uchupaille@fisagrp.com</user>
+            <user>paula.becerra@fisagrp.com</user>
+            <user>santiago.parraga@fisagrp.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

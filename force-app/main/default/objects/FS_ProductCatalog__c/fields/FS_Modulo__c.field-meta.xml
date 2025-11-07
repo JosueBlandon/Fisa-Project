@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_Modulo__c</fullName>
+    <label>Módulo</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Núcleo del Sistema</fullName>
+                <default>false</default>
+                <label>Núcleo del Sistema</label>
+            </value>
+            <value>
+                <fullName>Cajas y Bóveda (Módulo 3)</fullName>
+                <default>false</default>
+                <label>Cajas y Bóveda (Módulo 3)</label>
+            </value>
+            <value>
+                <fullName>Captaciones a la Vista (Módulo 4)</fullName>
+                <default>false</default>
+                <label>Captaciones a la Vista (Módulo 4)</label>
+            </value>
+            <value>
+                <fullName>Captaciones a Plazo (Módulo 5)</fullName>
+                <default>false</default>
+                <label>Captaciones a Plazo (Módulo 5)</label>
+            </value>
+            <value>
+                <fullName>Colocaciones (Módulo 6)</fullName>
+                <default>false</default>
+                <label>Colocaciones (Módulo 6)</label>
+            </value>
+            <value>
+                <fullName>Comercio Exterior (Módulo 10)</fullName>
+                <default>false</default>
+                <label>Comercio Exterior (Módulo 10)</label>
+            </value>
+            <value>
+                <fullName>Tesorería (Módulo 12)</fullName>
+                <default>false</default>
+                <label>Tesorería (Módulo 12)</label>
+            </value>
+            <value>
+                <fullName>Tarjeta de Débito (Módulo 15)</fullName>
+                <default>false</default>
+                <label>Tarjeta de Débito (Módulo 15)</label>
+            </value>
+            <value>
+                <fullName>DIPS (Modulo 19)</fullName>
+                <default>false</default>
+                <label>DIPS (Modulo 19)</label>
+            </value>
+            <value>
+                <fullName>Contabilidad (Módulo 20)</fullName>
+                <default>false</default>
+                <label>Contabilidad (Módulo 20)</label>
+            </value>
+            <value>
+                <fullName>Reportes (Módulo 21)</fullName>
+                <default>false</default>
+                <label>Reportes (Módulo 21)</label>
+            </value>
+            <value>
+                <fullName>Garantías (Módulo 28)</fullName>
+                <default>false</default>
+                <label>Garantías (Módulo 28)</label>
+            </value>
+            <value>
+                <fullName>Calendarizador Procesos Bach</fullName>
+                <default>false</default>
+                <label>Calendarizador Procesos Bach</label>
+            </value>
+            <value>
+                <fullName>Core Tarjeta de Crédito</fullName>
+                <default>false</default>
+                <label>Core Tarjeta de Crédito</label>
+            </value>
+            <value>
+                <fullName>MCM (MultiChannel Managemt)</fullName>
+                <default>false</default>
+                <label>MCM (MultiChannel Managemt)</label>
+            </value>
+            <value>
+                <fullName>Business Application Generator</fullName>
+                <default>false</default>
+                <label>Business Application Generator</label>
+            </value>
+            <value>
+                <fullName>Business Support Aplication</fullName>
+                <default>false</default>
+                <label>Business Support Aplication</label>
+            </value>
+            <value>
+                <fullName>BRE (Motor de reglas)</fullName>
+                <default>false</default>
+                <label>BRE (Motor de reglas)</label>
+            </value>
+            <value>
+                <fullName>Business Application Products (Plataforma de Ventas)</fullName>
+                <default>false</default>
+                <label>Business Application Products (Plataforma de Ventas)</label>
+            </value>
+            <value>
+                <fullName>BackOffice</fullName>
+                <default>false</default>
+                <label>BackOffice</label>
+            </value>
+            <value>
+                <fullName>Online Banking Personas</fullName>
+                <default>false</default>
+                <label>Online Banking Personas</label>
+            </value>
+            <value>
+                <fullName>Mobile Banking Personas</fullName>
+                <default>false</default>
+                <label>Mobile Banking Personas</label>
+            </value>
+            <value>
+                <fullName>Kioskos</fullName>
+                <default>false</default>
+                <label>Kioskos</label>
+            </value>
+            <value>
+                <fullName>Enterprise Banking</fullName>
+                <default>false</default>
+                <label>Enterprise Banking</label>
+            </value>
+            <value>
+                <fullName>Rapid Cash</fullName>
+                <default>false</default>
+                <label>Rapid Cash</label>
+            </value>
+            <value>
+                <fullName>DIPS</fullName>
+                <default>false</default>
+                <label>DIPS</label>
+            </value>
+            <value>
+                <fullName>ECCO</fullName>
+                <default>false</default>
+                <label>ECCO</label>
+            </value>
+            <value>
+                <fullName>IMS</fullName>
+                <default>false</default>
+                <label>IMS</label>
+            </value>
+            <value>
+                <fullName>Flujos</fullName>
+                <default>false</default>
+                <label>Flujos</label>
+            </value>
+            <value>
+                <fullName>Tesoreria 1</fullName>
+                <default>false</default>
+                <label>Tesoreria 1</label>
+            </value>
+            <value>
+                <fullName>CLIENTES</fullName>
+                <default>false</default>
+                <label>CLIENTES</label>
+            </value>
+            <value>
+                <fullName>CONTABILIDAD</fullName>
+                <default>false</default>
+                <label>CONTABILIDAD</label>
+            </value>
+            <value>
+                <fullName>INFORMACION DE MERCADO</fullName>
+                <default>false</default>
+                <label>INFORMACION DE MERCADO</label>
+            </value>
+            <value>
+                <fullName>LIMITES Y RIESGOS</fullName>
+                <default>false</default>
+                <label>LIMITES Y RIESGOS</label>
+            </value>
+            <value>
+                <fullName>NEGOCIACION</fullName>
+                <default>false</default>
+                <label>NEGOCIACION</label>
+            </value>
+            <value>
+                <fullName>OPERACIONES</fullName>
+                <default>false</default>
+                <label>OPERACIONES</label>
+            </value>
+            <value>
+                <fullName>PARAMETRIZACION</fullName>
+                <default>false</default>
+                <label>PARAMETRIZACION</label>
+            </value>
+            <value>
+                <fullName>REPORTES</fullName>
+                <default>false</default>
+                <label>REPORTES</label>
+            </value>
+            <value>
+                <fullName>SEGURIDADES</fullName>
+                <default>false</default>
+                <label>SEGURIDADES</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

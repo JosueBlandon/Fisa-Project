@@ -159,7 +159,7 @@ public without sharing class CaseTriggerHelper {
 
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
-            if(caso.FS_Producto__c != item.FS_Producto__c || caso.FS_Modulo__c != item.FS_Modulo__c || caso.FS_SubModulo__c != item.FS_SubModulo__c || caso.FS_TipoRequerimiento__c != item.FS_TipoRequerimiento__c || item.FS_Buscar_Proyecto__c == null){
+            if(caso.FS_Producto__c != item.FS_Producto__c || caso.FS_Modulo__c != item.FS_Modulo__c || caso.FS_SubModuloCatalogo__c != item.FS_SubModuloCatalogo__c || caso.FS_TipoRequerimiento__c != item.FS_TipoRequerimiento__c || item.FS_Buscar_Proyecto__c == null){
                 flag = true;
                 listAccount.add(item.AccountId);
                 if(item.FS_TipoRequerimiento__c != null && item.FS_Buscar_Proyecto__c == null){
@@ -169,7 +169,7 @@ public without sharing class CaseTriggerHelper {
         }
 
         if(flag){
-            List<FS_ProductoAdquirido__c> productos = [     SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c, FS_Esta_activo__c 
+            List<FS_ProductoAdquirido__c> productos = [     SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c, FS_Esta_activo__c 
                                                             FROM    FS_ProductoAdquirido__c 
                                                             WHERE   FS_Cuenta__c in: listAccount    ];
 
@@ -177,14 +177,14 @@ public without sharing class CaseTriggerHelper {
                 flag = false;
                 isActive = true;
                 for(FS_ProductoAdquirido__c p :productos) {
-                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModulo__c == p.FS_SubModulo__c){
+                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModuloCatalogo__c == p.FS_SubModuloCatalogo__c){
                         flag = true;
                     }
-                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModulo__c == p.FS_SubModulo__c && p.FS_Esta_activo__c == false) {
+                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModuloCatalogo__c == p.FS_SubModuloCatalogo__c && p.FS_Esta_activo__c == false) {
                         isActive = false;
                     }
                     
-                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModulo__c == p.FS_SubModulo__c && item.FS_TipoRequerimiento__c != ''){
+                    if(item.AccountId == p.FS_Cuenta__c && item.FS_Producto__c == p.FS_Producto__c && item.FS_Modulo__c == p.FS_Modulo__c && item.FS_SubModuloCatalogo__c == p.FS_SubModuloCatalogo__c && item.FS_TipoRequerimiento__c != ''){
                         flag = true;
                     }
                 }
@@ -225,16 +225,16 @@ public without sharing class CaseTriggerHelper {
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
 
-            if(String.isBlank(item.FS_SubModulo__c)) {
+            if(String.isBlank(item.FS_SubModuloCatalogo__c)) {
                 listAccount.add(item.AccountId);
             }
         }
 
-        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                                             FROM    FS_ProductoAdquirido__c 
                                             WHERE   FS_Cuenta__c = :listAccount ]) {
 
-            String prod = item.FS_Cuenta__c  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
+            String prod = item.FS_Cuenta__c  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModuloCatalogo__c;
             listProductos.add(prod);
         }
 
@@ -243,10 +243,10 @@ public without sharing class CaseTriggerHelper {
             
             if(caso.FS_InformacionCompleta__c != item.FS_InformacionCompleta__c) {
                 if(item.FS_InformacionCompleta__c == 'Si') {
-                    String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
+                    String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModuloCatalogo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
                     msjError += String.isBlank(item.FS_Proyecto__c) ? 'Proyecto, ' : '';
-                    msjError += String.isBlank(item.FS_SubModulo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
+                    msjError += String.isBlank(item.FS_SubModuloCatalogo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
                     
                     if(msjError.length() > 38) {
                         item.addError(msjError.substring(0, msjError.length() - 2));
@@ -318,13 +318,16 @@ public without sharing class CaseTriggerHelper {
                     if(item.FS_Area__c == 'N1. CORE' || item.FS_Area__c == 'N1. OMNIA') {
                         aprobacionConsSolic2(item);
                         record.FS_SubEstado__c = item.recordTypeId == CONSULTA_TIPO_REGISTRO ? 'Aprobación Consulta N2' : 'Aprobación Solicitud N2';
+                        record.FS_PudeSolventarPregunta__c = '';
                         updateCaseList.add(record);
                     } else {
                         record.FS_SubEstado__c = 'Envío de respuesta';
                         record.Status = 'Validación de Respuesta (Cliente)';
                         record.FS_AceptaRespuesta__c = null;
+                        record.FS_PudeSolventarPregunta__c = '';
                         updateCaseList.add(record);
                         envioCorreo(item, 'FS_ValidacionInformacion', true);
+                        
                     }
                     validarTareas(item);
                 } else if(item.FS_PudeSolventarPregunta__c == 'No') {
@@ -335,6 +338,7 @@ public without sharing class CaseTriggerHelper {
                     record.IsEscalated = true;
                     record.FS_InformacionCompleta__c = null;
                     record.FS_RequiereInformacionAdicional__c = false;
+                    record.FS_PudeSolventarPregunta__c = '';
                     updateCaseList.add(record);
                     validarTareas(item);
                     if(item.FS_UsuarioAprobadorSolucion__c != null) {
@@ -342,6 +346,7 @@ public without sharing class CaseTriggerHelper {
                         String descripcion = 'El agente ' + UserInfo.getName() + ' ha escalado el caso '+item.CaseNumber +' \nPor favor dar seguimiento.';
                         enviarNotificacion(item.OwnerId, item.Id, titulo, descripcion);
                     }
+                    
                 }
             }
         }
@@ -1169,16 +1174,15 @@ public without sharing class CaseTriggerHelper {
             html = html.replace('<![CDATA[', '');
             mail.setSubject(asunnto);
             mail.setHtmlBody(html);
-            //mail.saveAsActivity = esContacto;
+            mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
-            mail.setSaveAsActivity(true);
-            mail.setWhatId(caso.Id);
+            //mail.setSaveAsActivity(true);
+            //mail.setWhatId(caso.Id);
 
             if(esContacto){
                 User usuario = mapUser.get(userInfo.getUserId());
                 if(usuario.Profile.Name != 'Customer Community User' || usuario.Profile.Name != 'Customer Community Plus User'){
-                    //mail.setWhatId(caso.Id);
-                    //mail.setSaveAsActivity(true);
+                    mail.setWhatId(caso.Id);
                 }
 
                 mail.setTargetObjectId(caso.ContactId);
@@ -1238,6 +1242,8 @@ public without sharing class CaseTriggerHelper {
         mail.setHtmlBody(html);
         mail.saveAsActivity = true;
         mail.setWhatId(recordId);
+        //mail.setTargetObjectId(caso.ContactId);
+        //mail.IsExternallyVisible(false);
         mail.setOrgWideEmailAddressId(owea.Id);
 
         try{
@@ -1245,6 +1251,8 @@ public without sharing class CaseTriggerHelper {
             mail.setBccAddresses(  new List<String>{usuario.Email});
             MessageList.add(mail);          
             Messaging.SendEmailResult[] results = Messaging.sendEmail(MessageList);
+            system.debug('Resultado: ' + results);
+            system.debug('Resultado2: ' + MessageList);
         }catch(Exception ex){
             System.debug(ex.getMessage()+' ----- '+ex.getLineNumber());
         }

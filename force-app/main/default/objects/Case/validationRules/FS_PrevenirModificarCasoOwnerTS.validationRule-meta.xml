@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirModificarCasoOwnerTS</fullName>
+    <active>true</active>
+    <description>Regla que evita que usuarios de Tesorería modifiquen los casos si no son propietarios del registro.</description>
+    <errorConditionFormula>AND(
+    $UserRole.Name = &quot;Agente N1 - Tesoreria&quot;,
+    $User.Id &lt;&gt; OwnerId,
+    ISPICKVAL(Status, &quot;Nuevo&quot;) = FALSE,
+    ISPICKVAL(FS_SubEstado__c, &quot;Apertura de caso&quot;) = FALSE
+)</errorConditionFormula>
+    <errorMessage>Privilegios insuficientes, no puedes modificar un registro del que no eres propietario.</errorMessage>
+</ValidationRule>

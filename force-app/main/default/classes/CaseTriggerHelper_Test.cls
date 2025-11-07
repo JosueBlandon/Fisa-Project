@@ -22,7 +22,7 @@ public class CaseTriggerHelper_Test {
     
     @isTest
     static void caseConsulta() {
-        Case record = [SELECT Id, Subject, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c, FS_Area__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_CON];
+        Case record = [SELECT Id, Subject, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c, FS_Area__c FROM Case Where RecordType.Id =: TIPO_REGISTRO_CON];
 
         Profile serviceProfile = [SELECT Id FROM Profile WHERE Name = 'Servicio al Cliente' LIMIT 1];
         User serviceUser = new User(
@@ -43,7 +43,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario'; 
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario'; 
             record.FS_Area__c = 'N1. CORE';    
             record.FS_PudeSolventarPregunta__c = 'Si';
             record.FS_FechaCompromisoEntrega__c = System.today();
@@ -77,7 +77,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';
             record.Status = 'Análisis Previo';   
             record.FS_Area__c = 'N1. CORE';    
             record.FS_SubEstado__c = 'Análisis N1';
@@ -101,7 +101,7 @@ public class CaseTriggerHelper_Test {
 
     @isTest
     static void caseIncidenteApobado() {
-        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                         FROM	Case 
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC  
                         LIMIT 	1  ];
@@ -126,7 +126,7 @@ public class CaseTriggerHelper_Test {
                 record.Subject = 'Subject Changed';
                 record.FS_Producto__c = 'FISA System';
                 record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-                record.FS_SubModulo__c = 'Crédito Hipotecario'; 
+                //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario'; 
                 record.Status = 'Análisis Previo';    
                 record.FS_SubEstado__c = 'Análisis N1';
                 record.FS_SubEstadoAnterior__c = 'Apertura de caso';     
@@ -177,7 +177,7 @@ public class CaseTriggerHelper_Test {
     @isTest
     static void caseIncidenteNoAprobado() {
         try {
-        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                         FROM	Case 
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC  
                         LIMIT 	1  ];
@@ -201,7 +201,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';   
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';   
             record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1'; 
             record.FS_AprobacionSolucion__c = 'No';
@@ -233,7 +233,7 @@ public class CaseTriggerHelper_Test {
 
     @isTest
     static void caseIncidenteChangeSubStado() {
-        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                         FROM	Case 
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
@@ -257,7 +257,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';   
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';   
             record.Status = 'Análisis Previo';
             record.FS_SubEstado__c = 'Aprobación Solución IP-N2';
             record.FS_UsuarioAprobadorSolucionIPN2__c = serviceUser.Id;
@@ -276,7 +276,7 @@ public class CaseTriggerHelper_Test {
     
     @isTest
     static void caseIncidentePuntual() {
-        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                         FROM	Case 
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
@@ -300,7 +300,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';
             record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_InformacionCompleta__c = 'Si';
@@ -319,7 +319,7 @@ public class CaseTriggerHelper_Test {
     
     @isTest
     static void caseIncidenteDefinitivo() {
-        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        Case record = [	SELECT	Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, AccountId, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                         FROM	Case 
                         WHERE	RecordType.Id =: TIPO_REGISTRO_INC
                         LIMIT 	1  ];
@@ -343,7 +343,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';
             record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_InformacionCompleta__c = 'Si';
@@ -383,7 +383,7 @@ public class CaseTriggerHelper_Test {
             record.Subject = 'Subject Changed';
             record.FS_Producto__c = 'FISA System';
             record.FS_Modulo__c = 'Colocaciones (Módulo 6)';
-            record.FS_SubModulo__c = 'Crédito Hipotecario';
+            //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario';
             record.Status = 'Análisis Previo';    
             record.FS_SubEstado__c = 'Análisis N1';
             record.FS_RequiereInformacionAdicional__c = false;  

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla Solicitud de información de Caso FISA GROUP</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_MembreteCasosFISA</letterhead>
+    <name>Solicitud de información de Caso FISA GROUP Tesoreria</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Apertura de ticket FISA GROUP</subject>
+    <textOnly>{!Case.Contact},  
+
+
+
+
+
+hemos actualizado tu caso  N° {!Case.CaseNumber}, requerimos tu ayuda con información adicional para solventar el incidente reportado, te invitamos a revisar el detalle en nuestro portal de servicio
+
+
+
+
+Saludos
+
+Tesorería Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

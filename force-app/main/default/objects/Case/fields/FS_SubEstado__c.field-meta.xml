@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_SubEstado__c</fullName>
-    <externalId>false</externalId>
     <label>Sub Estado</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -106,6 +105,11 @@
                 <fullName>En reproceso por rechazo</fullName>
                 <default>false</default>
                 <label>En reproceso por rechazo</label>
+            </value>
+            <value>
+                <fullName>Pendiente Respuesta Cliente</fullName>
+                <default>false</default>
+                <label>Pendiente Respuesta Cliente</label>
             </value>
             <value>
                 <fullName>En Espera de Respuesta del Cliente</fullName>

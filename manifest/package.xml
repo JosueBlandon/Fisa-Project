@@ -3,61 +3,62 @@
 	<types>
 		<members>CaseTriggerHandler</members>
 		<members>CaseTriggerHelper</members>
-		<members>CaseTriggerHelperPMPS</members>
 		<members>CaseTriggerHelperPMPSTest</members>
 		<members>CaseTriggerHelperTM</members>
 		<members>CaseTriggerHelperTMTest</members>
+		<members>CaseTriggerHelperTS</members>
+		<members>CaseTriggerHelperTSTest</members>
 		<members>CaseTriggerHelper_Test</members>
-		<members>ChangeCaseRecordType</members>
+		<members>ContactTriggerHelper</members>
+		<members>ContactTriggerHelper_Test</members>
+		<members>ControladorBaseConocimientos_Test</members>
 		<members>ControladorCrearCaso</members>
 		<members>ControladorCrearCaso_Test</members>
-		<members>CustomLookupController</members>
-		<members>EmailMessageTriggerHandler</members>
-		<members>EmailMessageTriggerHelper</members>
-		<members>EmailMessageTriggerHelperTest</members>
+		<members>DataFactory</members>
 		<members>EnviarEmailCreacionCaso</members>
+		<members>EnviarEmailCreacionCasoTest</members>
+		<members>FeedCommentTriggerHelper</members>
+		<members>ProductsPurchasedTriggerHelper</members>
+		<members>ProductsPurchasedTriggerHelper_Test</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>EmailMessageTrigger</members>
-		<name>ApexTrigger</name>
-	</types>
-	<types>
-		<members>Case.FS_TiempoMateriales</members>
-		<members>Case.FS_TiempoMaterialesSprints</members>
-		<name>BusinessProcess</name>
-	</types>
-	<types>
-		<members>Case.FS_AceptaPropuestaServicio__c</members>
-		<members>Case.FS_DiasAprobacionPropuestaServicio__c</members>
-		<members>Case.FS_DiasInvertidosEntregaCaso__c</members>
-		<members>Case.FS_DiasInvertidosTotalEntregaCaso__c</members>
-		<members>Case.FS_EnvioNotificacionPS__c</members>
-		<members>Case.FS_FechaAprobacionClientePS__c</members>
-		<members>Case.FS_FechaEntregaPropuestaServicio__c</members>
-		<members>Case.FS_JiraCreated__c</members>
-		<members>Case.FS_Tipo_de_Aprobacion__c</members>
-		<members>Case.FS_TotalUSDPropuestaServicio__c</members>
-		<members>FS_AceptacionRechazoCaso__c.FS_Tipo_de_Aprobacion__c</members>
-		<members>FS_Project_Jira__mdt.FS_Tipo_de_Registro__c</members>
-		<members>FS_Proyecto__c.FS_Tipo_de_Caso__c</members>
+		<members>Case.FS_Area__c</members>
+		<members>Case.FS_EnviarAnalisisN1__c</members>
+		<members>Case.FS_NombrePropietario__c</members>
+		<members>Case.FS_SubEstado__c</members>
+		<members>Case.FS_SubModuloCatalogo__c</members>
+		<members>Case.FS_URLEntregaSolucion__c</members>
+		<members>Case.FS_esTesoreria__c</members>
+		<members>FS_BaseConocimiento__c.FS_SubModulo__c</members>
+		<members>FS_ProductCatalog__c.FS_Active__c</members>
+		<members>FS_ProductCatalog__c.FS_Modulo__c</members>
+		<members>FS_ProductCatalog__c.FS_Producto__c</members>
+		<members>FS_ProductCatalog__c.FS_RecordTypePC__c</members>
+		<members>FS_ProductoAdquirido__c.FS_ProductoTesoreria__c</members>
+		<members>FS_ProductoAdquirido__c.FS_SubModuloCatalogo__c</members>
 		<name>CustomField</name>
 	</types>
 	<types>
-		<members>FS_Project_Jira.X004</members>
-		<members>FS_Project_Jira.X005</members>
-		<name>CustomMetadata</name>
+		<members>FS_CorreoJefeTesoreria</members>
+		<name>CustomLabel</name>
 	</types>
 	<types>
-		<members>Case</members>
+		<members>FS_ProductCatalog__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>FS_CorreosClientesCasos/FS_AprobacionNotificacionTM</members>
-		<members>FS_CorreosClientesCasos/FS_CreacionCasoTM</members>
-		<members>FS_CorreosClientesCasos/FS_PMClienteAceptaPropuestaServicio</members>
-		<members>FS_CorreosClientesCasos/FS_PMClienteRechazaPropuestaServicio</members>
-		<members>FS_CorreosClientesCasos/FS_PendienteInformacionPropuestaServicio</members>
+		<members>FS_ProductCatalog__c</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>FS_CorreosClientesCasos/FS_AperturaTicketTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_AsignacionCasoTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_ClienteRechazadoRespuestaTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_EnvioRespuestaComunidadTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_PrimeraRespuestaTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_SolicitudInformacionCasoTesoreria</members>
+		<members>FS_CorreosClientesCasos/FS_ValidacionResolucionTesoreria</members>
 		<name>EmailTemplate</name>
 	</types>
 	<types>
@@ -65,41 +66,51 @@
 		<name>FlexiPage</name>
 	</types>
 	<types>
-		<members>FS_Actualizar_Numero_de_dias_consumidos_en_Proyecto</members>
-		<members>FS_CrearCasoTiempoMaterialesSprint</members>
+		<members>CaseAssignFlow</members>
 		<members>FS_NotificacionComunidadCreacionCasos</members>
-		<members>FS_NotificacionComunidadCreacionCasosCC</members>
+		<members>FS_ValidacionProductosAdquiridos</members>
+		<members>FS_ValidacionProductosAdquiridosCreacion</members>
 		<name>Flow</name>
 	</types>
 	<types>
-		<members>fs_CampoPendienteCaso</members>
-		<members>fs_Encuesta</members>
-		<members>fs_customLookup</members>
-		<name>LightningComponentBundle</name>
+		<members>Case.FS_TesoreriaCasosAbiertos</members>
+		<members>Case.FS_TesoreriaCasosCerrados</members>
+		<name>ListView</name>
 	</types>
 	<types>
-		<members>FS_EstadoCasoTiempoMateriales</members>
-		<members>FS_EstadoCasoTiempoMaterialesSprints</members>
-		<name>PathAssistant</name>
+		<members>FS_PermisosServicioCliente</members>
+		<members>FS_PermisosTesoreria</members>
+		<members>FS_Permisos_para_usuario_de_integracion_Jira</members>
+		<name>PermissionSet</name>
 	</types>
 	<types>
-		<members>Case.FS_AprobacionConsulta</members>
-		<members>Case.FS_AprobacionSolicitud</members>
-		<members>Case.FS_CrearCasoHijoTM</members>
+		<members>FS_AtencionN1Tesoreria</members>
+		<name>Queue</name>
+	</types>
+	<types>
+		<members>Case.FS_Asignarme</members>
+		<members>Case.FS_CamposControlIncidentePuntualTesoreria</members>
+		<members>Case.FS_CamposControlTesoreria</members>
+		<members>Case.FS_DesarrolloIncidenteTesoreria</members>
+		<members>Case.FS_DetalleCaso</members>
 		<members>Case.FS_DetalleCasoConsulta</members>
-		<members>Case.FS_PropuestaServicio</members>
+		<members>Case.FS_EnAnalisisConsultasTS</members>
+		<members>Case.FS_EntregadoTesoreriaConsulta</members>
 		<name>QuickAction</name>
 	</types>
 	<types>
-		<members>Case.FS_TiempoMateriales</members>
-		<members>Case.FS_TiempoMaterialesSprints</members>
-		<name>RecordType</name>
+		<members>FS_AgenteN1Tesoreria</members>
+		<members>FS_JefeTesoreria</members>
+		<name>Role</name>
 	</types>
 	<types>
-		<members>Case.FS_Campos_Requeridos_PMPS</members>
-		<members>Case.FS_PrevenirModificarCamposCaso</members>
-		<members>Case.Fs_PrevenirModificacionTipoRequerimiento</members>
+		<members>Case.FS_PrevenirAbrirCasosTS</members>
+		<members>Case.FS_PrevenirModificarCamposCasoCare</members>
+		<members>Case.FS_PrevenirModificarCamposJefeTesoreria</members>
+		<members>Case.FS_PrevenirModificarCasoOwnerTS</members>
+		<members>Case.FS_ValidacionFechaCompromisoConsulta</members>
+		<members>Case.FS_Validacion_Ingresar_Fecha_Compromiso</members>
 		<name>ValidationRule</name>
 	</types>
-	<version>64.0</version>
+	<version>65.0</version>
 </Package>

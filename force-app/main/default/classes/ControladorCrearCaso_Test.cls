@@ -27,7 +27,7 @@ public class ControladorCrearCaso_Test {
         FS_ProductoAdquirido__c p = DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Parametros Generales (Módulo 1)');
         DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
         DataFactory.insertCase(acc, cont, p, 'FS_Requerimiento');
-        DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Clientes (Módulo 2)');
+        //DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Clientes (Módulo 2)');
     }
     
     /**
