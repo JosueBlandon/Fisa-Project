@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla para notificar contestasción de la Encuesta del Cliente caso de tesoreria</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_CasoClientes</letterhead>
+    <name>Cliente Contestó Encuesta Tesoreria</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Resultado de la Encuesta</subject>
+    <textOnly>{!Case.FS_NombrePropietario__c},
+
+
+
+Hemos recibido una calificación del caso {!Case.CaseNumber}, del Cliente {!Case.FS_NombreCuenta__c}, con Prioridad {!Case.Priority}.
+
+
+Tipo de Caso: {!Case.FS_NombreTipoRegistro__c}
+
+Calificación: {!Case.FS_ResultadoEncuesta__c}
+
+Motivo de Calificación: {!Case.FS_MotivoInsatisfaccion__c}
+
+Comentarios: {!Case.FS_ComentariosEncuesta__c}
+
+Asunto: {!Case.Subject}
+
+Descripción: {!Case.Description}
+
+Fecha de creación del Caso: {!Case.CreatedDate}
+
+
+¡Gracias!
+
+Professional Services Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

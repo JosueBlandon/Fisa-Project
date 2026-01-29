@@ -12,6 +12,34 @@
         <apexClass>CaseTriggerHelperPMPS</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperPMPSTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperTM</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperTMTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperTS</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelperTSTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseTriggerHelper_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ChangeCaseRecordType</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Permisos para integración Jira-Salesforce.</description>
     <fieldPermissions>
         <editable>false</editable>
@@ -529,7 +557,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.FS_DiasInvertidosEntregaCaso__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1181,6 +1209,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_UrlAmbientePruebas__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_UstedPudoSolventarTS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

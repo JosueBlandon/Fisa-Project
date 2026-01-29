@@ -7,8 +7,8 @@
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>FS_PudeSolventarPregunta__c</field>
-                <uiBehavior>Required</uiBehavior>
+                <field>FS_UstedPudoSolventarTS__c</field>
+                <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns/>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirModificarCasosCerradosTS</fullName>
+    <active>true</active>
+    <description>Regla que impide modificar casos cerrados a agentes.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISPICKVAL(Status, &quot;Cerrado&quot;),
+    FS_esTesoreria__c = TRUE,
+    $UserRole.Name = &quot;Agente N1 - Tesoreria&quot;
+)</errorConditionFormula>
+    <errorMessage>No tienes permisos para modificar casos cerrados. Contacte al administrador.</errorMessage>
+</ValidationRule>

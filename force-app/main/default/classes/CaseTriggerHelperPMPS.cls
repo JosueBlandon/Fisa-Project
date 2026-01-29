@@ -18,10 +18,11 @@ public with sharing class CaseTriggerHelperPMPS {
     public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
     public static final String TIEMPOMATERIALES_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_TiempoMateriales').getRecordTypeId();
     public static Map<String, EmailTemplate> mapPlantillas;
+    public static Map<String, EmailTemplate> mapPlantillasPMPS;
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
         
-        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%']){
+        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%' Limit 1]){
             mapPlantillas.put(plantilla.DeveloperName, plantilla);
         }
     }
@@ -897,9 +898,15 @@ public with sharing class CaseTriggerHelperPMPS {
     public static void enviarCorreoSimple(String address, String nombrePlantilla, String recordId, Case caso) {
         OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where Address = :Label.FS_CorreoElectronicoServicio];
         system.debug('envio en dado de baja');
+        
+        mapPlantillasPMPS = new Map<String, EmailTemplate>();
+        
+        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName = :nombrePlantilla Limit 1]){
+            mapPlantillasPMPS.put(plantilla.DeveloperName, plantilla);
+        }
 
         // Create an email message object
-        EmailTemplate plantilla = mapPlantillas.get(nombrePlantilla);
+        EmailTemplate plantilla = mapPlantillasPMPS.get(nombrePlantilla);
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         String asunnto = CaseTriggerHelper.reemplazarCampos(caso, plantilla.Subject, 'Case');
         String html = CaseTriggerHelper.reemplazarCampos(caso, plantilla.HTMLValue, 'Case');

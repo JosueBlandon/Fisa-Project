@@ -2076,7 +2076,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord52</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
@@ -2086,6 +2086,11 @@
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>NE</operator>
                         <rightValue>FS_Incidente</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>En Espera de Respuesta del Cliente</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2111,7 +2116,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord53</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
@@ -2126,6 +2131,11 @@
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>FS_Consulta</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>En Espera de Respuesta del Cliente</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2150,7 +2160,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord55</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
@@ -2165,6 +2175,11 @@
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Análisis Previo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>En Espera de Respuesta del Cliente</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2190,7 +2205,7 @@
                 <componentName>console:relatedRecord</componentName>
                 <identifier>console_relatedRecord56</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.RecordType.DeveloperName}</leftValue>
                         <operator>EQUAL</operator>
@@ -2210,6 +2225,11 @@
                         <leftValue>{!Record.Status}</leftValue>
                         <operator>NE</operator>
                         <rightValue>En Desarrollo</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Status}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>En Espera de Respuesta del Cliente</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

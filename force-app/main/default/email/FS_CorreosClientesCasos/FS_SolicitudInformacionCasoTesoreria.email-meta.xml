@@ -6,7 +6,7 @@
     <letterhead>FS_MembreteCasosFISA</letterhead>
     <name>Solicitud de información de Caso FISA GROUP Tesoreria</name>
     <style>freeForm</style>
-    <subject>Caso: {!Case.CaseNumber} Apertura de ticket FISA GROUP</subject>
+    <subject>Caso: {!Case.CaseNumber} Solicitud de información de Caso FISA GROUP</subject>
     <textOnly>{!Case.Contact},  
 
 

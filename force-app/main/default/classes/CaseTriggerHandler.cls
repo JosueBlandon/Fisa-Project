@@ -22,8 +22,6 @@ public without sharing class CaseTriggerHandler {
 
 
     public static void beforeInsert(List<Case> newCaseList){
-        System.debug('CPU Time (ms): ' + Limits.getCpuTime() + ' / ' + Limits.getLimitCpuTime());
-        System.debug('Heap Size (bytes): ' + Limits.getHeapSize() + ' / ' + Limits.getLimitHeapSize());
         CaseTriggerHelperPMPS.assignCases(newCaseList);
     }
     
@@ -63,24 +61,6 @@ public without sharing class CaseTriggerHandler {
         Set<String> ModuloCase = new Set<String>();
         Set<String> SubModuloCase = new Set<String>();
         Set<String> accCase = new Set<String>();
-        /*for(Case record : newCaseList) {
-            ProductoCase.add(record.FS_Producto__c);
-            ModuloCase.add(record.FS_Modulo__c);
-            SubModuloCase.add(record.FS_SubModuloCatalogo__c);
-            accCase.add(record.AccountId);
-        }
-        
-        List<FS_ProductoAdquirido__c> ltsProductosAdq = [     SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c, FS_Esta_activo__c 
-                                                            FROM    FS_ProductoAdquirido__c 
-                                                            WHERE   FS_Cuenta__c IN: accCase AND FS_Producto__c IN: ProductoCase AND FS_Modulo__c IN: ModuloCase
-                                                            AND     FS_SubModuloCatalogo__c IN: SubModuloCase  AND FS_ProductoTesoreria__c = true];
-        
-        Map<String, FS_ProductoAdquirido__c> productoMap = new Map<String, FS_ProductoAdquirido__c>();
-        for (FS_ProductoAdquirido__c pa : ltsProductosAdq) {
-            //
-            String key = pa.FS_Cuenta__c + '-' + pa.FS_Producto__c + '-' + pa.FS_Modulo__c;// + '-' + pa.FS_SubModuloCatalogo__c;
-            productoMap.put(key, pa);
-        }*/
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
@@ -101,9 +81,22 @@ public without sharing class CaseTriggerHandler {
             
         }
 
-        CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
+        //CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
         CaseTriggerHelper.validacionProducto(newCaseList, oldCaseMap);
         CaseTriggerHelper.esCliente(newCaseList);
+        
+        //Tesoreria Flow
+        if(!lstCaseRecordTesoreria.isEmpty()){
+            CaseTriggerHelperTS.validacionEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.changeStatus(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.aceptaRespuesta(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.sendToJiraTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.actualizacionDescripcion(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.mapeoFechaEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+        }else{
+            CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
+        }
 
         if(!lstCaseRecordCare.isEmpty()) {
             CaseTriggerHelper.validacionAgenteN2(lstCaseRecordCare);
@@ -173,16 +166,6 @@ public without sharing class CaseTriggerHandler {
                 CaseTriggerHelperTM.aceptaRespuesta(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
                 CaseTriggerHelperTM.envioNotificacionComunidad(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             }
-        }
-        
-        //Tesoreria Flow
-        if(!lstCaseRecordTesoreria.isEmpty()){
-            CaseTriggerHelperTS.changeStatus(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
-            CaseTriggerHelperTS.aceptaRespuesta(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
-            CaseTriggerHelperTS.sendToJiraTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
-            CaseTriggerHelperTS.actualizacionDescripcion(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
-            CaseTriggerHelperTS.mapeoFechaEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
-            //CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
         }
         
 

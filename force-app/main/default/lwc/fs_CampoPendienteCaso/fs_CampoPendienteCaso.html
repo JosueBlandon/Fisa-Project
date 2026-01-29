@@ -40,7 +40,7 @@
                                                     </p>
                                                 </lightning-layout-item>
                                                 <lightning-layout-item if:true={data.esIncidentePuntual} flexibility="auto" padding="around-small" size="12">
-                                                    <p>Hemos entregado la respuesta al caso, la solución se encuentra disponible en la siguiente URL para su validación <a href={data.caso.FS_URLCodigoFuente__c}  target="_blank" > click aquí.</a></b>
+                                                    <p if:false={data.caso.FS_esTesoreria__c}>Hemos entregado la respuesta al caso, la solución se encuentra disponible en la siguiente URL para su validación <a href={data.caso.FS_URLCodigoFuente__c}  target="_blank" > click aquí.</a></b>
                                                     </p>
                                                 </lightning-layout-item>
                                                 <lightning-layout-item flexibility="auto" padding="around-small" size="6">

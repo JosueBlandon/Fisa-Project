@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirModificarCasosCerradosTSClien</fullName>
+    <active>true</active>
+    <description>Regla que impide modificar casos cerrados a clientes.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISPICKVAL(Status, &quot;Cerrado&quot;),
+    FS_esTesoreria__c = TRUE,
+    OR(
+        ISCHANGED( Subject ), 
+        ISCHANGED( FS_Referencia__c ),
+        ISCHANGED( FS_DescripcionCliente__c )
+    ),
+    OR(
+        $Profile.Name == &apos;Customer Community User&apos;,
+        $Profile.Name == &apos;Customer Community Plus User&apos;
+    )
+)</errorConditionFormula>
+    <errorMessage>No tiene permisos para modificar casos cerrados. Contacte al administrador.</errorMessage>
+</ValidationRule>

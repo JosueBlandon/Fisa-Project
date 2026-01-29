@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Modulo__c</fullName>
-    <externalId>false</externalId>
     <label>Módulo</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -158,7 +157,123 @@
                 <default>false</default>
                 <label>Flujos</label>
             </value>
+            <value>
+                <fullName>CLIENTES</fullName>
+                <default>false</default>
+                <label>CLIENTES</label>
+            </value>
+            <value>
+                <fullName>CONTABILIDAD</fullName>
+                <default>false</default>
+                <label>CONTABILIDAD</label>
+            </value>
+            <value>
+                <fullName>INFORMACION DE MERCADO</fullName>
+                <default>false</default>
+                <label>INFORMACION DE MERCADO</label>
+            </value>
+            <value>
+                <fullName>LIMITES Y RIESGOS</fullName>
+                <default>false</default>
+                <label>LIMITES Y RIESGOS</label>
+            </value>
+            <value>
+                <fullName>NEGOCIACION</fullName>
+                <default>false</default>
+                <label>NEGOCIACION</label>
+            </value>
+            <value>
+                <fullName>OPERACIONES</fullName>
+                <default>false</default>
+                <label>OPERACIONES</label>
+            </value>
+            <value>
+                <fullName>PARAMETRIZACION</fullName>
+                <default>false</default>
+                <label>PARAMETRIZACION</label>
+            </value>
+            <value>
+                <fullName>REPORTES</fullName>
+                <default>false</default>
+                <label>REPORTES</label>
+            </value>
+            <value>
+                <fullName>SEGURIDADES</fullName>
+                <default>false</default>
+                <label>SEGURIDADES</label>
+            </value>
+            <value>
+                <fullName>Tesoreria 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tesoreria 1</label>
+            </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GARANTIAS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>NEGOCIACION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GARANTIAS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>OPERACIONES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>PARAMETRIZACION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GARANTIAS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>REPORTES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>INFORMACION DE MERCADO</valueName>
+        </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
             <valueName>Núcleo del Sistema</valueName>
@@ -274,6 +389,22 @@
         <valueSettings>
             <controllingFieldValue>FISA FISS</controllingFieldValue>
             <valueName>IMS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>CLIENTES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>CONTABILIDAD</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>LIMITES Y RIESGOS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>SEGURIDADES</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

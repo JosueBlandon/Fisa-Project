@@ -1265,6 +1265,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Case.FS_UstedPudoSolventarTS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Case.FS_UsuarioAprobacionSolucionRelease__c</field>
         <readable>true</readable>
     </fieldPermissions>

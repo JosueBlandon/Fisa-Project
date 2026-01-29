@@ -418,7 +418,7 @@
         <fields>NAME</fields>
         <fields>FS_Producto__c</fields>
         <fields>FS_Modulo__c</fields>
-        <fields>FS_SubModulo__c</fields>
+        <fields>FS_SubModuloCatalogo__c</fields>
         <fields>FS_Esta_activo__c</fields>
         <fields>UPDATEDBY_USER</fields>
         <fields>LAST_UPDATE</fields>

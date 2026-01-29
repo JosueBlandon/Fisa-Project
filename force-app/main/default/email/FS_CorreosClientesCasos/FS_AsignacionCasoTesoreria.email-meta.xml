@@ -7,7 +7,7 @@
     <name>Asignación de caso FISA GROUP Tesorería</name>
     <style>freeForm</style>
     <subject>Caso: {!Case.CaseNumber} Asignación Caso FISA GROUP</subject>
-    <textOnly>Hola {!Case.OwnerFirstName}
+    <textOnly>Hola {!Case.FS_NombrePropietario__c}
 
 
 
@@ -18,19 +18,11 @@ Se ha procedido agendar el caso {!Case.CaseNumber} del cliente {!Case.FS_NombreC
 
 Tipo de requerimiento: {!Case.FS_TipoRequerimiento__c}
 
-Subject: {!Case.Subject} 
+Subject: {!Case.Subject}
 
-Descripción: {!Case.Description} 
+Descripción: {!Case.FS_DescripcionCliente__c}
 
-Fecha de creación del caso: {!Case.CreatedDate}
-
- 
-
-
-
-¡Gracias!
-
-  Tesorería Team
+Fecha de creación del caso: 
 
 
 

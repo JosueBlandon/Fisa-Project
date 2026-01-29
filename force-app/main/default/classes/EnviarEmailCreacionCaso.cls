@@ -50,25 +50,29 @@ public without sharing class EnviarEmailCreacionCaso {
      */
 	@InvocableMethod    
     public static void enviarEmailCliente(List<String> values) {
-        Case record = [	SELECT	Id,CaseNumber,Subject,Status,RecordTypeId,FS_OrigenCaso__c,FS_NombrePropietario__c,FS_NombreContacto__c,FS_CorreosNotificacionesServicios__c,FS_NombreCuenta__c,FS_NombreTipoRegistro__c,Owner.Email,Contact.Email,CreatedBy.Email,ContactId, FS_esTesoreria__c
+        Case record = [	SELECT	Id,CaseNumber,Subject,Status,RecordTypeId,FS_OrigenCaso__c,FS_NombrePropietario__c,FS_NombreContacto__c,FS_CorreosNotificacionesServicios__c,FS_NombreCuenta__c,FS_NombreTipoRegistro__c,Owner.Email,Contact.Email,CreatedBy.Email,ContactId, FS_esTesoreria__c, CreatedDate
                         FROM	Case 
                         WHERE	Id In: values ];
 
-        if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCasoTM', true);
-        }else if(record.FS_esTesoreria__c == true){
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_AperturaTicketTesoreria', true);
-        }else{
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
-        }
-        //EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
+        if(record.Status == 'Nuevo'){
+            if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCasoTM', true);
+        	}else if(record.FS_esTesoreria__c == true){
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_AperturaTicketTesoreria', true);
+        	}else{
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
+        	}
+        	//EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
         
-        if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
-            //envioCorreo
-            //CaseTriggerHelper.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);    
+        	if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
+            	//envioCorreo
+            	//CaseTriggerHelper.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);    
+        		}
+        }else if(record.FS_esTesoreria__c == true){
+            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_EncuestaTS', true);
         }
-	}
+    }
 
     /**
      * @method      reemplazarCampos
@@ -133,9 +137,12 @@ public without sharing class EnviarEmailCreacionCaso {
             String asunnto = reemplazarCampos(caso, plantilla.Subject, 'Case');
             String html = reemplazarCampos(caso, plantilla.HTMLValue, 'Case');
             String urlLogo = getLogoImagen();
+            // El método .format() devuelve un String ajustado al Timezone del usuario
+    		String fechaLocal = caso.CreatedDate.format('dd/MM/yyyy HH:mm:ss');
             html = getLogoImagen() + html.replace('{urlSiteServicios}', Label.FS_UrlPortalServicios);
             html = html.replace('{urlSiteEncuestas}', Label.FS_UrlPortalEncuestas);
             html = html.replace('{urlSalesforceOrg}', Label.FS_urlSalesforceOrg);
+            html = html.replace('{fechaCreacionFormateada}', fechaLocal);
             html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
             html = html.replace('<![CDATA[', '');
             mail.setSubject(asunnto);

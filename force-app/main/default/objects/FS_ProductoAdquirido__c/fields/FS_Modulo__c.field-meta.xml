@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Modulo__c</fullName>
-    <externalId>false</externalId>
     <label>Módulo</label>
     <required>false</required>
     <trackHistory>true</trackHistory>
@@ -58,6 +57,11 @@
                 <label>Captaciones a Plazo (Módulo 5)</label>
             </value>
             <value>
+                <fullName>CLIENTES</fullName>
+                <default>false</default>
+                <label>CLIENTES</label>
+            </value>
+            <value>
                 <fullName>Colocaciones (Módulo 6)</fullName>
                 <default>false</default>
                 <label>Colocaciones (Módulo 6)</label>
@@ -66,6 +70,11 @@
                 <fullName>Comercio Exterior (Módulo 10)</fullName>
                 <default>false</default>
                 <label>Comercio Exterior (Módulo 10)</label>
+            </value>
+            <value>
+                <fullName>CONTABILIDAD</fullName>
+                <default>false</default>
+                <label>CONTABILIDAD</label>
             </value>
             <value>
                 <fullName>Contabilidad (Módulo 20)</fullName>
@@ -113,9 +122,19 @@
                 <label>IMS</label>
             </value>
             <value>
+                <fullName>INFORMACION DE MERCADO</fullName>
+                <default>false</default>
+                <label>INFORMACION DE MERCADO</label>
+            </value>
+            <value>
                 <fullName>Kioskos</fullName>
                 <default>false</default>
                 <label>Kioskos</label>
+            </value>
+            <value>
+                <fullName>LIMITES Y RIESGOS</fullName>
+                <default>false</default>
+                <label>LIMITES Y RIESGOS</label>
             </value>
             <value>
                 <fullName>MCM (MultiChannel Managemt)</fullName>
@@ -128,6 +147,11 @@
                 <label>Mobile Banking Personas</label>
             </value>
             <value>
+                <fullName>NEGOCIACION</fullName>
+                <default>false</default>
+                <label>NEGOCIACION</label>
+            </value>
+            <value>
                 <fullName>Núcleo del Sistema</fullName>
                 <default>false</default>
                 <label>Núcleo del Sistema</label>
@@ -138,14 +162,39 @@
                 <label>Online Banking Personas</label>
             </value>
             <value>
+                <fullName>OPERACIONES</fullName>
+                <default>false</default>
+                <label>OPERACIONES</label>
+            </value>
+            <value>
+                <fullName>PARAMETRIZACION</fullName>
+                <default>false</default>
+                <label>PARAMETRIZACION</label>
+            </value>
+            <value>
+                <fullName>Prueba</fullName>
+                <default>false</default>
+                <label>Prueba</label>
+            </value>
+            <value>
                 <fullName>Rapid Cash</fullName>
                 <default>false</default>
                 <label>Rapid Cash</label>
             </value>
             <value>
+                <fullName>REPORTES</fullName>
+                <default>false</default>
+                <label>REPORTES</label>
+            </value>
+            <value>
                 <fullName>Reportes (Módulo 21)</fullName>
                 <default>false</default>
                 <label>Reportes (Módulo 21)</label>
+            </value>
+            <value>
+                <fullName>SEGURIDADES</fullName>
+                <default>false</default>
+                <label>SEGURIDADES</label>
             </value>
             <value>
                 <fullName>Tarjeta de Débito (Módulo 15)</fullName>
@@ -157,7 +206,73 @@
                 <default>false</default>
                 <label>Tesorería (Módulo 12)</label>
             </value>
+            <value>
+                <fullName>Tesoreria 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tesoreria 1</label>
+            </value>
         </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>NEGOCIACION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>OPERACIONES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>PARAMETRIZACION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OBLIGACIONES</controllingFieldValue>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>PASIVOS A PLAZOS</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>REPOS</controllingFieldValue>
+            <controllingFieldValue>SPOT</controllingFieldValue>
+            <controllingFieldValue>SWAPS</controllingFieldValue>
+            <controllingFieldValue>TITULOS VALORES</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>FUTUROS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <controllingFieldValue>INTERBANCARIOS</controllingFieldValue>
+            <valueName>REPORTES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OPCIONES</controllingFieldValue>
+            <controllingFieldValue>RENTA VARIABLE</controllingFieldValue>
+            <controllingFieldValue>FORWARDS</controllingFieldValue>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>INFORMACION DE MERCADO</valueName>
+        </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
             <valueName>Cajas y Bóveda (Módulo 3)</valueName>
@@ -197,6 +312,10 @@
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
             <valueName>Núcleo del Sistema</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FISA System</controllingFieldValue>
+            <valueName>Prueba</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>FISA System</controllingFieldValue>
@@ -240,6 +359,10 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>OMNIA</controllingFieldValue>
+            <valueName>Flujos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OMNIA</controllingFieldValue>
             <valueName>Kioskos</valueName>
         </valueSettings>
         <valueSettings>
@@ -269,6 +392,22 @@
         <valueSettings>
             <controllingFieldValue>FISA FISS</controllingFieldValue>
             <valueName>IMS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>CLIENTES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>CONTABILIDAD</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>LIMITES Y RIESGOS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GENERAL</controllingFieldValue>
+            <valueName>SEGURIDADES</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
