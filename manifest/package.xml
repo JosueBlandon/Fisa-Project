@@ -3,6 +3,8 @@
 	<types>
 		<members>CaseTriggerHandler</members>
 		<members>CaseTriggerHelper</members>
+		<members>CaseTriggerHelperPMPS</members>
+		<members>CaseTriggerHelperPMPSTest</members>
 		<members>CaseTriggerHelperTM</members>
 		<members>CaseTriggerHelperTMTest</members>
 		<members>CaseTriggerHelperTS</members>
