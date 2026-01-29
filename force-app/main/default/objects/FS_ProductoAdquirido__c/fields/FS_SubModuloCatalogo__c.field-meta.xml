@@ -8,7 +8,7 @@
         <filterItems>
             <field>FS_ProductCatalog__c.FS_Active__c</field>
             <operation>equals</operation>
-            <value>true</value>
+            <value>True</value>
         </filterItems>
         <filterItems>
             <field>$Source.FS_Producto__c</field>

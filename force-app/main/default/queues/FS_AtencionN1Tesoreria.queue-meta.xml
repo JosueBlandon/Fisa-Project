@@ -4,11 +4,7 @@
     <name>Atención N1 - Tesoreria</name>
     <queueMembers>
         <users>
-            <user>camila.cedeno@fisagrp.com</user>
-            <user>joselyn.cherrez@fisagrp.com</user>
-            <user>liliana.uchupaille@fisagrp.com</user>
-            <user>paula.becerra@fisagrp.com</user>
-            <user>santiago.parraga@fisagrp.com</user>
+            
         </users>
     </queueMembers>
     <queueSobject>

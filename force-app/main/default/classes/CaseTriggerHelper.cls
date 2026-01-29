@@ -59,11 +59,11 @@ public without sharing class CaseTriggerHelper {
     public static final String CONTROLDECAMBIO_TIPO_REGISTRO = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('FS_ControlCambios').getRecordTypeId();
 
     public static void validacionEstado(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-         User u = mapUser.get(UserInfo.getUserId());
+        User u = mapUser.get(UserInfo.getUserId());
         if(validacionUser(false) && u.Profile.Name != 'Servicio al Cliente'){ 
             return;
         } 
-        
+
         for(Case item: newCaseList){
             Case caso = oldCaseMap.get(item.Id);
 
@@ -189,7 +189,9 @@ public without sharing class CaseTriggerHelper {
                     }
                 }
 
-                if(!flag && item.Status != 'Nuevo' && item.Status != 'En Espera de Respuesta del Cliente' ) {
+                if(!flag && item.Status != 'Nuevo' && item.Status != 'En Espera de Respuesta del Cliente' && item.FS_esTesoreria__c == false ) {
+                    item.addError('El cliente no tiene la combinación de productos seleccionados');
+                } else if(!flag && item.Status == 'Nuevo' && item.FS_EnviarAnalisisN1__c == true && item.FS_esTesoreria__c == true ) {
                     item.addError('El cliente no tiene la combinación de productos seleccionados');
                 } else {
                     Case caso = oldCaseMap.get(item.Id);
@@ -1167,17 +1169,20 @@ public without sharing class CaseTriggerHelper {
             String asunnto = reemplazarCampos(caso, plantilla.Subject, 'Case');
             String html = reemplazarCampos(caso, plantilla.HTMLValue, 'Case');
             String urlLogo = getLogoImagen();
+            // El método .format() devuelve un String ajustado al Timezone del usuario
+    		String fechaLocal = caso.CreatedDate.format('dd/MM/yyyy HH:mm:ss');
             html = getLogoImagen() + html.replace('{urlSiteServicios}', Label.FS_UrlPortalServicios);
             html = html.replace('{urlSiteEncuestas}', Label.FS_UrlPortalEncuestas);
             html = html.replace('{urlSalesforceOrg}', Label.FS_urlSalesforceOrg);
+            html = html.replace('{fechaCreacionFormateada}', fechaLocal);
             html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
             html = html.replace('<![CDATA[', '');
             mail.setSubject(asunnto);
             mail.setHtmlBody(html);
-            mail.saveAsActivity = esContacto;
+            //mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
             //mail.setSaveAsActivity(true);
-            //mail.setWhatId(caso.Id);
+            mail.setWhatId(caso.Id);
 
             if(esContacto){
                 User usuario = mapUser.get(userInfo.getUserId());

@@ -60,14 +60,14 @@ public class CaseTriggerHelperTSTest {
             //record.FS_SubModuloCatalogo__c = 'Crédito Hipotecario'; 
             record.FS_Area__c = 'N1. TESORERIA';
             record.OwnerId = serviceUser.Id;
-            //record.FS_PudeSolventarPregunta__c = 'Si';
+            //record.FS_UstedPudoSolventarTS__c = true;
             //record.FS_FechaCompromisoEntrega__c = System.today();
             update record;  
     
             record.FS_EnviarAnalisisN1__c = true; 
             update record;
             
-            record.FS_PudeSolventarPregunta__c = 'Si';
+            record.FS_UstedPudoSolventarTS__c = true;
             update record;
             
             

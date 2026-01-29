@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_Producto__c</fullName>
-    <externalId>false</externalId>
     <label>Producto</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -31,6 +30,77 @@
                 <fullName>FISA FISS</fullName>
                 <default>false</default>
                 <label>FISA FISS</label>
+            </value>
+            <value>
+                <fullName>FORWARDS</fullName>
+                <default>false</default>
+                <label>FORWARDS</label>
+            </value>
+            <value>
+                <fullName>FUTUROS</fullName>
+                <default>false</default>
+                <label>FUTUROS</label>
+            </value>
+            <value>
+                <fullName>GARANTIAS</fullName>
+                <default>false</default>
+                <label>GARANTIAS</label>
+            </value>
+            <value>
+                <fullName>GENERAL</fullName>
+                <default>false</default>
+                <label>GENERAL</label>
+            </value>
+            <value>
+                <fullName>INTERBANCARIOS</fullName>
+                <default>false</default>
+                <label>INTERBANCARIOS</label>
+            </value>
+            <value>
+                <fullName>OBLIGACIONES</fullName>
+                <default>false</default>
+                <label>OBLIGACIONES</label>
+            </value>
+            <value>
+                <fullName>OPCIONES</fullName>
+                <default>false</default>
+                <label>OPCIONES</label>
+            </value>
+            <value>
+                <fullName>PASIVOS A PLAZOS</fullName>
+                <default>false</default>
+                <label>PASIVOS A PLAZOS</label>
+            </value>
+            <value>
+                <fullName>RENTA VARIABLE</fullName>
+                <default>false</default>
+                <label>RENTA VARIABLE</label>
+            </value>
+            <value>
+                <fullName>REPOS</fullName>
+                <default>false</default>
+                <label>REPOS</label>
+            </value>
+            <value>
+                <fullName>SPOT</fullName>
+                <default>false</default>
+                <label>SPOT</label>
+            </value>
+            <value>
+                <fullName>SWAPS</fullName>
+                <default>false</default>
+                <label>SWAPS</label>
+            </value>
+            <value>
+                <fullName>TITULOS VALORES</fullName>
+                <default>false</default>
+                <label>TITULOS VALORES</label>
+            </value>
+            <value>
+                <fullName>Tesoreria</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tesoreria</label>
             </value>
         </valueSetDefinition>
     </valueSet>

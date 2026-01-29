@@ -21,7 +21,7 @@ public with sharing class CaseTriggerHelperPMPS {
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
         
-        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%']){
+        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%' Limit 1]){
             mapPlantillas.put(plantilla.DeveloperName, plantilla);
         }
     }

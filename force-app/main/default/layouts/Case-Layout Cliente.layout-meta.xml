@@ -49,6 +49,10 @@
                 <behavior>Edit</behavior>
                 <field>FS_Fecha_de_entrega__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ParentId</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -233,6 +237,20 @@
         <fields>CREATED_DATE</fields>
         <relatedList>FS_HistorialDescripcionCaso__c.FS_Caso__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <excludeButtons>ChangeOwner</excludeButtons>
+        <excludeButtons>ChangeStatus</excludeButtons>
+        <excludeButtons>MassClose</excludeButtons>
+        <excludeButtons>NewCase</excludeButtons>
+        <fields>CASES.CASE_NUMBER</fields>
+        <fields>CASES.SUBJECT</fields>
+        <fields>FS_NombreTipoRegistro__c</fields>
+        <fields>CASES.PRIORITY</fields>
+        <fields>CASES.CREATED_DATE</fields>
+        <fields>CASES.STATUS</fields>
+        <fields>OWNER_NAME</fields>
+        <relatedList>RelatedChildCaseList</relatedList>
+    </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
     <runAssignmentRulesDefault>false</runAssignmentRulesDefault>
     <showEmailCheckbox>true</showEmailCheckbox>
@@ -242,7 +260,7 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h6C000000HM4H</masterLabel>
+        <masterLabel>00h5x00000NeRLK</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
