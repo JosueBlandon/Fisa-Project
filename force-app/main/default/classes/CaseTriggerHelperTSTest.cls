@@ -67,6 +67,9 @@ public class CaseTriggerHelperTSTest {
             record.FS_EnviarAnalisisN1__c = true; 
             update record;
             
+            record.FS_Proyecto__c = 'FSDE238 - Precontratados BMR por 250 días Q2';
+            record.FS_FechaCompromisoEntrega__c = System.today();
+            
             record.FS_UstedPudoSolventarTS__c = true;
             update record;
             
