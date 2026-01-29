@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Envio_de_Notificacion_Propietario</name>
         <label>Envio de Notificacion Propietario</label>
-        <locationX>50</locationX>
-        <locationY>863</locationY>
+        <locationX>314</locationX>
+        <locationY>971</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -48,10 +48,57 @@
         <offset>0</offset>
     </actionCalls>
     <actionCalls>
+        <name>Envio_de_Notificacion_Tesoreria</name>
+        <label>Envio de Notificacion Tesoreria</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>FS_ObtenerNotificacion.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>UserId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderId</name>
+            <value>
+                <elementReference>UserIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>Nuevo Caso</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>CuerpoNotificacion</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>FS_EnvioNotificacion</name>
         <label>Envio de Notificacion</label>
-        <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationX>314</locationX>
+        <locationY>755</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -102,8 +149,8 @@
     <assignments>
         <name>Asignar_Propietario</name>
         <label>Asignar Propietario</label>
-        <locationX>50</locationX>
-        <locationY>755</locationY>
+        <locationX>314</locationX>
+        <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>OwnerIdCase</assignToReference>
             <operator>Add</operator>
@@ -118,7 +165,7 @@
     <assignments>
         <name>Asignar_Usuario</name>
         <label>Asignar Usuario</label>
-        <locationX>50</locationX>
+        <locationX>182</locationX>
         <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>UserId</assignToReference>
@@ -128,13 +175,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>FS_EnvioNotificacion</targetReference>
+            <targetReference>Estado_Tesoreria</targetReference>
         </connector>
     </assignments>
     <decisions>
         <name>creado_en_la_Comunidad</name>
         <label>creado en la Comunidad</label>
-        <locationX>182</locationX>
+        <locationX>380</locationX>
         <locationY>431</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -153,6 +200,33 @@
             <label>Si</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Estado_Tesoreria</name>
+        <label>Estado Tesoreria?</label>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <defaultConnector>
+            <targetReference>FS_EnvioNotificacion</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Si1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FS_esTesoreria__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Envio_de_Notificacion_Tesoreria</targetReference>
+            </connector>
+            <label>Si</label>
+        </rules>
+    </decisions>
+    <description>Notificacion para creacion de casos de comunidad Requerimiento y Tiempo y Materiales.
+03/11/2025: Se añade Tesoreria. Version 3</description>
     <environments>Default</environments>
     <formulas>
         <name>CuerpoNotificacion</name>
@@ -193,7 +267,7 @@
     <recordLookups>
         <name>FS_ObtenerNotificacion</name>
         <label>Obtener notificacion</label>
-        <locationX>182</locationX>
+        <locationX>380</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -212,7 +286,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>56</locationX>
+        <locationX>254</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>FS_ObtenerNotificacion</targetReference>
@@ -230,6 +304,13 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Tiempo y Materiales</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>FS_esTesoreria__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>Case</object>

@@ -21,7 +21,7 @@ public with sharing class CaseTriggerHelperTM {
     static{
         mapPlantillas = new Map<String, EmailTemplate>();
         
-        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%']){
+        for(EmailTemplate plantilla :[Select Id, Subject, HTMLValue,DeveloperName from EmailTemplate Where DeveloperName Like '%FS_%' Limit 1]){
             mapPlantillas.put(plantilla.DeveloperName, plantilla);
         }
     }
@@ -374,17 +374,17 @@ public with sharing class CaseTriggerHelperTM {
             Case caso = oldCaseMap.get(item.Id);
             //ContactIdSt.add(item.ContactId);
 
-            if(String.isBlank(item.FS_SubModulo__c)) {
+            if(String.isBlank(item.FS_SubModuloCatalogo__c)) {
                 listAccount.add(item.AccountId);
             }
         }
         
 
-        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Cuenta__c, FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                                             FROM    FS_ProductoAdquirido__c 
                                             WHERE   FS_Cuenta__c = :listAccount ]) {
 
-            String prod = item.FS_Cuenta__c  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
+            String prod = item.FS_Cuenta__c  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModuloCatalogo__c;
             listProductos.add(prod);
         }
 
@@ -393,9 +393,9 @@ public with sharing class CaseTriggerHelperTM {
 
             if(caso.FS_RequiereInformacionAdicional__c != item.FS_RequiereInformacionAdicional__c) {
                 if(item.FS_RequiereInformacionAdicional__c == false) {
-                    /*String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModulo__c;
+                    /*String prod = item.AccountId  + item.FS_Producto__c + item.FS_Modulo__c + item.FS_SubModuloCatalogo__c;
                     String msjError = 'Debe Completar los siguientes campos: ';
-                    msjError += String.isBlank(item.FS_SubModulo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
+                    msjError += String.isBlank(item.FS_SubModuloCatalogo__c) && !listProductos.contains(prod) ? 'Sub Módulo, ' : '';
                     
                     if(msjError.length() > 38) {
                         item.addError(msjError.substring(0, msjError.length() - 2));

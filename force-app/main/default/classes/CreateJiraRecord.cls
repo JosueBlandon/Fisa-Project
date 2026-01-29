@@ -26,10 +26,10 @@ public without sharing class CreateJiraRecord {
         Map<String, List<FS_Project_Jira__mdt>> metadataMap = new Map<String, List<FS_Project_Jira__mdt>>();
         
         for (FS_Project_Jira__mdt meta : [
-            SELECT Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
+            SELECT Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c, FS_Tesoreria__c
             FROM FS_Project_Jira__mdt
         ]) {
-            String key = meta.FS_Tipo_de_Registro__c + ':' + (meta.FS_Sub_Tipo__c != null ? meta.FS_Sub_Tipo__c : '');
+            String key = meta.FS_Tipo_de_Registro__c + ':' + (meta.FS_Sub_Tipo__c != null ? meta.FS_Sub_Tipo__c : '') + ':' + String.valueOf(meta.FS_Tesoreria__c);
             if (!metadataMap.containsKey(key)) {
                 metadataMap.put(key, new List<FS_Project_Jira__mdt>());
             }
@@ -47,7 +47,9 @@ public without sharing class CreateJiraRecord {
 
             String tipo = newCase.FS_NombreTipoRegistro__c;
             String subTipo = newCase.FS_TipoIncidente__c != null ? newCase.FS_TipoIncidente__c : '';
-            String key = tipo + ':' + subTipo;
+            String esTesoreria = String.valueOf(newCase.FS_esTesoreria__c);
+            String key = tipo + ':' + subTipo + ':' + esTesoreria;
+            
 
             List<FS_Project_Jira__mdt> matchingMetas = metadataMap.get(key);
             if (matchingMetas == null) continue;
@@ -106,7 +108,7 @@ public without sharing class CreateJiraRecord {
      */
     public static void checkCloseJira(List<Case> records, Map<Id, Case> oldRecords) {
         // Get a list of records
-        List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c
+        List<FS_Project_Jira__mdt> metadataRecords = [  SELECT  Id, FS_Tipo_de_Registro__c, FS_Sub_Tipo__c, FS_Project_Id__c, FS_Issue_Type__c, FS_Tesoreria__c
                                                         FROM    FS_Project_Jira__mdt ];
 
         // Initialize lists before loop

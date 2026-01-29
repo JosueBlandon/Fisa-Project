@@ -50,20 +50,29 @@ public without sharing class EnviarEmailCreacionCaso {
      */
 	@InvocableMethod    
     public static void enviarEmailCliente(List<String> values) {
-        Case record = [	SELECT	Id,CaseNumber,Subject,Status,RecordTypeId,FS_OrigenCaso__c,FS_NombrePropietario__c,FS_NombreContacto__c,FS_CorreosNotificacionesServicios__c,FS_NombreCuenta__c,FS_NombreTipoRegistro__c,Owner.Email,Contact.Email,CreatedBy.Email,ContactId
+        Case record = [	SELECT	Id,CaseNumber,Subject,Status,RecordTypeId,FS_OrigenCaso__c,FS_NombrePropietario__c,FS_NombreContacto__c,FS_CorreosNotificacionesServicios__c,FS_NombreCuenta__c,FS_NombreTipoRegistro__c,Owner.Email,Contact.Email,CreatedBy.Email,ContactId, FS_esTesoreria__c, CreatedDate
                         FROM	Case 
                         WHERE	Id In: values ];
 
-        if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCasoTM', true);
-        }else{
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
-        }
+        if(record.Status == 'Nuevo'){
+            if(record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCasoTM', true);
+        	}else if(record.FS_esTesoreria__c == true){
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_AperturaTicketTesoreria', true);
+        	}else{
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
+        	}
+        	//EnviarEmailCreacionCaso.envioCorreo(record, 'FS_CreacionCaso', true);
         
-        if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
-            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
+        	if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO) {
+            	EnviarEmailCreacionCaso.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);
+            	//envioCorreo
+            	//CaseTriggerHelper.envioCorreo(record, 'FS_Creacion_de_Caso_Notificacion_al_PM', false);    
+        		}
+        }else if(record.FS_esTesoreria__c == true){
+            EnviarEmailCreacionCaso.envioCorreo(record, 'FS_EncuestaTS', true);
         }
-	}
+    }
 
     /**
      * @method      reemplazarCampos
@@ -122,21 +131,23 @@ public without sharing class EnviarEmailCreacionCaso {
             if(esContacto && caso.FS_OrigenCaso__c != 'Web'){
                 return;
             }
-
             List<Messaging.SingleEmailMessage> MessageList = new List<Messaging.SingleEmailMessage>();
             EmailTemplate plantilla = mapPlantillas.get(nombrePlantilla);
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
             String asunnto = reemplazarCampos(caso, plantilla.Subject, 'Case');
             String html = reemplazarCampos(caso, plantilla.HTMLValue, 'Case');
             String urlLogo = getLogoImagen();
+            // El método .format() devuelve un String ajustado al Timezone del usuario
+    		String fechaLocal = caso.CreatedDate.format('dd/MM/yyyy HH:mm:ss');
             html = getLogoImagen() + html.replace('{urlSiteServicios}', Label.FS_UrlPortalServicios);
             html = html.replace('{urlSiteEncuestas}', Label.FS_UrlPortalEncuestas);
             html = html.replace('{urlSalesforceOrg}', Label.FS_urlSalesforceOrg);
+            html = html.replace('{fechaCreacionFormateada}', fechaLocal);
             html = html.replace(']]>', '') + '</td><td style="width: 25%;" /></table></body></html>';
             html = html.replace('<![CDATA[', '');
             mail.setSubject(asunnto);
             mail.setHtmlBody(html);
-            mail.saveAsActivity = esContacto;
+            //mail.saveAsActivity = esContacto;
             mail.setOrgWideEmailAddressId(owea.Id);
             mail.setSaveAsActivity(true);
             mail.setWhatId(caso.Id);
@@ -158,13 +169,13 @@ public without sharing class EnviarEmailCreacionCaso {
                     mail.setCcAddresses(allMails.split(','));
                 }
             } else {
+                //mail.setTargetObjectId(caso.Id);
                 User usuario = mapUser.get(caso.OwnerId);
                 mail.setBccAddresses( nombrePlantilla != 'FS_PaseProduccionAceptado' ? new List<String>{usuario.Email} : Label.FS_CorreosPaseProduccionAceptado.split(','));
                 if(caso.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO && caso.Status == 'Cerrado' && caso.FS_FechaContestacionEncuesta__c != null) {
                     mail.setCcAddresses(Label.FS_KAM_Email.split(','));    
                 }
             }
-            
             MessageList.add(mail);
             Messaging.SendEmailResult[] results = Messaging.sendEmail(MessageList);
         } catch(Exception ex) {

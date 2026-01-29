@@ -20,6 +20,7 @@ ISCHANGED(Subject),
 ISCHANGED(FS_OrigenCaso__c),
 ISCHANGED(Priority),
 ISBLANK(Contact.Id),
+ISCHANGED(ContactId),
 ISCHANGED(FS_DescripcionCliente__c)
 )
 )</errorConditionFormula>

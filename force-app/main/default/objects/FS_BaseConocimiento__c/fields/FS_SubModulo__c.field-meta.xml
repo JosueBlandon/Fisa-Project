@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FS_SubModulo__c</fullName>
     <externalId>false</externalId>
-    <formula>TEXT(FS_ProductoAdquirido__r.FS_SubModulo__c)</formula>
+    <formula>FS_ProductoAdquirido__r.FS_SubModuloCatalogo__r.Name</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Sub Módulo</label>
     <required>false</required>

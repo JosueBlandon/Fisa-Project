@@ -638,11 +638,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Case.FS_JiraCreated__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Case.FS_Modulo__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1009,6 +1004,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Case.FS_UrlAmbientePruebas__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.FS_UstedPudoSolventarTS__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Plantilla para análisis del caso</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FS_CasoClientes</letterhead>
+    <name>Encuesta Tesoreria</name>
+    <style>freeForm</style>
+    <subject>Caso: {!Case.CaseNumber} Seguimiento Encuesta de Satisfacción FISA GROUP</subject>
+    <textOnly>{!Case.FS_NombreContacto__c},
+
+
+
+Tu opinión es muy importante, nos encontramos pendientes de tu calificación al caso caso N° {!Case.CaseNumber}.
+
+
+¡Gracias!
+
+Tesorería Team</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -3,6 +3,10 @@
     <fullName>FS_Casos</fullName>
     <isActive>true</isActive>
     <values>
+        <fullName>Análisis Previo</fullName>
+        <default>false</default>
+    </values>
+    <values>
         <fullName>Cerrado</fullName>
         <default>false</default>
     </values>
@@ -11,7 +15,7 @@
         <default>false</default>
     </values>
     <values>
-        <fullName>En Análisis</fullName>
+        <fullName>En Espera de Respuesta del Cliente</fullName>
         <default>false</default>
     </values>
     <values>

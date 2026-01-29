@@ -38,7 +38,7 @@ public class CaseTriggerHelperTMTest {
             DataFactory.insertCase(acc, cont, p, 'FS_TiempoMateriales');
             DataFactory.insertCase(acc, cont, p, 'FS_TiempoMaterialesSprints');
             DataFactory.insertCase(acc, cont, p, 'FS_Consulta');
-            DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
+            //DataFactory.insertProduct(acc, 'FISA System', 'Núcleo del Sistema', 'Seguridades (Modulo 90)');
             test.stopTest();
         }
         

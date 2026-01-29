@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_Active__c</fullName>
+    <defaultValue>true</defaultValue>
+    <inlineHelpText>Campo que nos permite identificar si el producto se encuentra activo para su uso o asignación a clientes.</inlineHelpText>
+    <label>Activo</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

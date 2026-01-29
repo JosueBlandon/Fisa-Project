@@ -35,14 +35,14 @@ public without sharing class ControladorCrearCaso {
         respuesta.cuentaId = usuario.Contact.AccountId;
         respuesta.listTodosProductos = new List<Producto>();
         respuesta.listTiporegistro = new List<PickListOption>();
-        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Producto__c, FS_Modulo__c, FS_SubModulo__c 
+        for(FS_ProductoAdquirido__c item: [ SELECT  FS_Producto__c, FS_Modulo__c, FS_SubModuloCatalogo__c 
                                             FROM    FS_ProductoAdquirido__c 
                                             WHERE   FS_Cuenta__c =: respuesta.cuentaId and FS_Esta_activo__c = true ]) {
 
             Producto p = new Producto();
             p.producto = item.FS_Producto__c;
             p.modulo = item.FS_Modulo__c;
-            p.subModulo = item.FS_SubModulo__c;
+            p.subModulo = item.FS_SubModuloCatalogo__c;
             respuesta.listTodosProductos.add(p);
         }
         for(RecordType item : [ SELECT  Id, Name 
@@ -165,9 +165,17 @@ public without sharing class ControladorCrearCaso {
                                 WHERE   Id =: userInfo.getUserId()    ];
 
             Boolean esCore = CaseTriggerHelper.ProductoCore(caso);
-            if(!listRecordType.contains(caso.RecordTypeId)) {
+            System.debug('CPU Time (ms): ' + Limits.getCpuTime() + ' / ' + Limits.getLimitCpuTime());
+            System.debug('Heap Size (bytes): ' + Limits.getHeapSize() + ' / ' + Limits.getLimitHeapSize());
+            Boolean esTesoreria = CaseTriggerHelperTS.productoTesoreria(caso);
+            System.debug('CPU Time (ms): ' + Limits.getCpuTime() + ' / ' + Limits.getLimitCpuTime());
+            System.debug('Heap Size (bytes): ' + Limits.getHeapSize() + ' / ' + Limits.getLimitHeapSize());
+            if(!listRecordType.contains(caso.RecordTypeId) && esTesoreria != True) {
                 caso.FS_Area__c = esCore ? 'N1. CORE' : 'N1. OMNIA';
-            } else {
+            } else if(esTesoreria == True) {
+                caso.FS_Area__c = 'N1. TESORERIA';
+                caso.FS_esTesoreria__c = true;
+            }else {
                 caso.FS_Area__c = 'PS';
             }
             caso.FS_Carterizacion__c = usuario.Contact.Account.FS_Carterizacion__c;
@@ -178,8 +186,10 @@ public without sharing class ControladorCrearCaso {
             caso.FS_FechaSubEstadoActual__c = System.now();
 
             if(!listRecordType.contains(caso.RecordTypeId)) {
-                if(usuario.Contact.Account.FS_ServicioRemoto__c){
+                if(usuario.Contact.Account.FS_ServicioRemoto__c && esTesoreria == false){
                     caso.OwnerId = [Select Id from Group Where DeveloperName = :usuario.Contact.Account.FS_ColaAtencion__c and Type = 'Queue'].Id;
+                }else if(esTesoreria == true){
+                    caso.OwnerId = [Select Id from Group Where DeveloperName = 'FS_AtencionN1Tesoreria' and Type = 'Queue'].Id;
                 }else{
                     caso.OwnerId = [Select Id from Group Where DeveloperName = :(esCore ? CaseTriggerHelper.COLA_ATENCION_N1_CORE : CaseTriggerHelper.COLA_ATENCION_N1_OMNIA) and Type = 'Queue'].Id;
                 }

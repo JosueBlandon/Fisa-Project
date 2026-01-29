@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_SubModuloCatalogo__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Sub Modulo Catalogo</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>No existe un sub Modulo para la combinación de producto y Modulo seleccionado en el Filtro.</errorMessage>
+        <filterItems>
+            <field>$Source.FS_Producto__c</field>
+            <operation>equals</operation>
+            <valueField>FS_ProductCatalog__c.FS_Producto__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$Source.FS_Modulo__c</field>
+            <operation>equals</operation>
+            <valueField>FS_ProductCatalog__c.FS_Modulo__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>FS_ProductCatalog__c.FS_Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FS_ProductCatalog__c</referenceTo>
+    <relationshipLabel>Casos</relationshipLabel>
+    <relationshipName>Casos</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

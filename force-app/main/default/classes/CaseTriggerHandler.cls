@@ -53,24 +53,50 @@ public without sharing class CaseTriggerHandler {
 
         List<Case> lstCaseRecordCare = new List<Case>();
         Map<Id, Case> mpCaseRecordCare = new Map<Id, Case>();
+        
+        List<Case> lstCaseRecordTesoreria = new List<Case>();
+        Map<Id, Case> mpCaseRecordTesoreria = new Map<Id, Case>();
+        
+        Set<String> ProductoCase = new Set<String>();
+        Set<String> ModuloCase = new Set<String>();
+        Set<String> SubModuloCase = new Set<String>();
+        Set<String> accCase = new Set<String>();
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
+            String key = record.AccountId + '-' + record.FS_Producto__c + '-' + record.FS_Modulo__c; //+ '-' + record.FS_SubModuloCatalogo__c;
             if(record.RecordTypeId == REQUERIMIENTO_TIPO_REGISTRO || record.RecordTypeId == CONTROLDECAMBIO_TIPO_REGISTRO) {
                 lstCaseRequerimiento.add(record);
                 mpCaseRequerimiento.put(caso.Id, caso);
             } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
                 lstCaseTiempoMateriales.add(record);
                 mpCaseCaseTiempoMateriales.put(caso.Id, caso);
+            } else if(record.FS_esTesoreria__c == true) {
+                lstCaseRecordTesoreria.add(record);
+                mpCaseRecordTesoreria.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
             }
+            
         }
 
-        CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
+        //CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
         CaseTriggerHelper.validacionProducto(newCaseList, oldCaseMap);
         CaseTriggerHelper.esCliente(newCaseList);
+        
+        //Tesoreria Flow
+        if(!lstCaseRecordTesoreria.isEmpty()){
+            CaseTriggerHelperTS.validacionEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.changeStatus(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.aceptaRespuesta(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.sendToJiraTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.actualizacionDescripcion(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.mapeoFechaEstado(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+            CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
+        }else{
+            CaseTriggerHelper.validacionEstado(newCaseList, oldCaseMap);
+        }
 
         if(!lstCaseRecordCare.isEmpty()) {
             CaseTriggerHelper.validacionAgenteN2(lstCaseRecordCare);
@@ -141,6 +167,7 @@ public without sharing class CaseTriggerHandler {
                 CaseTriggerHelperTM.envioNotificacionComunidad(lstCaseTiempoMateriales, mpCaseCaseTiempoMateriales);
             }
         }
+        
 
         List<Case> lstCase = new List<Case>();
         Map<Id, Case> mpCase = new Map<Id, Case>();
@@ -180,6 +207,9 @@ public without sharing class CaseTriggerHandler {
         
         List<Case> lstCaseTiempoMateriales = new List<Case>();
         Map<Id, Case> mpCaseCaseTiempoMateriales = new Map<Id, Case>();
+        
+        List<Case> lstCaseRecordTesoreria = new List<Case>();
+        Map<Id, Case> mpCaseRecordTesoreria = new Map<Id, Case>();
 
         for(Case record : newCaseList) {
             Case caso = oldCaseMap.get(record.Id);
@@ -189,6 +219,9 @@ public without sharing class CaseTriggerHandler {
             } else if(record.RecordTypeId == TIEMPOMATERIALES_TIPO_REGISTRO || record.RecordTypeId == TIEMPOMATERIALSPRINTS_TIPO_REGISTRO){
                 lstCaseTiempoMateriales.add(record);
                 mpCaseCaseTiempoMateriales.put(caso.Id, caso);
+            } else if(record.FS_esTesoreria__c == true){
+                lstCaseRecordTesoreria.add(record);
+                mpCaseRecordTesoreria.put(caso.Id, caso);
             } else {
                 lstCaseRecordCare.add(record);
                 mpCaseRecordCare.put(caso.Id, caso);
@@ -204,6 +237,10 @@ public without sharing class CaseTriggerHandler {
 
         if(!lstCaseRequerimiento.isEmpty()) {
             CaseTriggerHelperPMPS.updateJiraRecordPMPS(lstCaseRequerimiento, mpCaseRequerimiento);
+        }
+        
+        if(!lstCaseRecordTesoreria.isEmpty()) {
+            CaseTriggerHelperTS.updateJiraRecordTS(lstCaseRecordTesoreria, mpCaseRecordTesoreria);
         }
         
         if(!lstCaseTiempoMateriales.isEmpty()) {

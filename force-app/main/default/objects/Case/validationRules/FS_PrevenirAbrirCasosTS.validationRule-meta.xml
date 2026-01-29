@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_PrevenirAbrirCasosTS</fullName>
+    <active>true</active>
+    <description>Regla que impide reabrir casos cerrados a los agentes de Tesoreria.</description>
+    <errorConditionFormula>AND(
+    $UserRole.Name = &quot;Agente N1 - Tesoreria&quot;,
+    ISPICKVAL(PRIORVALUE(Status), &quot;Cerrado&quot;),
+    NOT(ISPICKVAL(Status, &quot;Cerrado&quot;))
+)</errorConditionFormula>
+    <errorMessage>No tienes permiso para reabrir casos cerrados. Contacta al administrador.</errorMessage>
+</ValidationRule>

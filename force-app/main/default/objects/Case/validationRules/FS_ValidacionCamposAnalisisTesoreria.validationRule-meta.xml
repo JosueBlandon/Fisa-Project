@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FS_ValidacionCamposAnalisisTesoreria</fullName>
+    <active>true</active>
+    <description>Permite avanzar de estado cuando el caso esta en Nuevo, evitando la obligatoriedad de los campos Proyecto y fecha compromiso entrega.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    FS_esTesoreria__c = TRUE,
+    FS_NombreTipoRegistro__c = &apos;Consulta&apos;,
+    ISPICKVAL(PRIORVALUE( Status), &quot;Análisis Previo&quot;),
+    ISPICKVAL(PRIORVALUE( FS_SubEstado__c ), &quot;Análisis N1&quot;),
+    NOT(ISPICKVAL( Status , &quot;En Espera de Respuesta del Cliente&quot;)),
+    OR(
+        ISPICKVAL(FS_Proyecto__c, &quot;&quot;),
+        ISBLANK(FS_FechaCompromisoEntrega__c)
+    )
+)</errorConditionFormula>
+    <errorMessage>Para continuar debe completar los campos Proyecto y Fecha Compromiso de Entrega cuando el caso se encuentra en Análisis Previo / Análisis N1.</errorMessage>
+</ValidationRule>
