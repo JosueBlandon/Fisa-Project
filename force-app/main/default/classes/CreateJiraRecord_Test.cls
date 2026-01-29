@@ -39,7 +39,7 @@ public class CreateJiraRecord_Test {
     @isTest
     static void testCreateJira() {
         // Mock the Case records
-        List<Case> newRecords = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c FROM Case Where RecordType.Id =: TIPO_REGISTRO];
+        List<Case> newRecords = [SELECT Id, RecordType.DeveloperName, FS_NombreTipoRegistro__c, FS_TipoIncidente__c, FS_esTesoreria__c FROM Case Where RecordType.Id =: TIPO_REGISTRO];
         Map<Id, Case> oldRecords = new Map<Id, Case>();
         for(Case record : newRecords) {
             oldRecords.put(record.Id, record);
